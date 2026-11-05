@@ -190,7 +190,14 @@ def scrape(max_pages=60, timeout=30000):
             nxt = pg.get_by_role("button", name=">>")
             if not nxt.count():
                 break
-            nxt.first.click()
+            btn = nxt.first
+            try:
+                # En la ultima pagina el boton sigue presente pero deshabilitado.
+                if btn.is_disabled(timeout=5000):
+                    break
+                btn.click(timeout=10000)
+            except Exception:
+                break
         fichas = {}
         for url, it in items.items():
             if not re.search(r"alerta (amarilla|roja)", norm(it["title"])):
