@@ -331,7 +331,8 @@ footer a,.help-body p a,.hcard p a{text-decoration:underline;text-underline-offs
   .tb-badge.y{background:var(--yellow);color:#1d1d1f}
   .wrap [data-dtab]{display:none!important}
   body[data-tab="mapa"] .wrap [data-dtab~="mapa"]:not([hidden]),body[data-tab="alertas"] .wrap [data-dtab~="alertas"]:not([hidden]),body[data-tab="contacto"] .wrap [data-dtab~="contacto"]:not([hidden]),
-  body[data-tab="oficinas"] .wrap [data-dtab~="oficinas"]:not([hidden]),body[data-tab="planilla"] .wrap [data-dtab~="planilla"]:not([hidden]){display:flex!important}
+  body[data-tab="oficinas"] .wrap [data-dtab~="oficinas"]:not([hidden]),body[data-tab="planilla"] .wrap [data-dtab~="planilla"]:not([hidden]),
+  body[data-tab="clima"] .wrap [data-dtab~="clima"]:not([hidden]){display:flex!important}
   body[data-tab="mapa"] .wrap #tiles,body[data-tab="alertas"] .wrap #tiles{display:grid!important}
   body[data-tab="planilla"] .wrap footer[data-dtab~="planilla"]:not([hidden]){display:block!important}
   body:not([data-tab="mapa"]) .main{grid-template-columns:minmax(0,1fr)}
@@ -342,6 +343,7 @@ footer a,.help-body p a,.hcard p a{text-decoration:underline;text-underline-offs
   body[data-tab="contacto"] .side:has(#follow:not([hidden])){grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   body[data-tab="contacto"] #btnContacts{grid-column:1/-1;min-height:52px;font-size:16px}
   body[data-tab="oficinas"] .side,body[data-tab="planilla"] .side{max-width:760px;width:100%;margin:0 auto;grid-template-columns:minmax(0,1fr)}
+  body[data-tab="clima"] .side{display:none}
   body[data-tab="planilla"] section[data-dtab],body[data-tab="planilla"] footer{max-width:760px;width:100%;margin:0 auto}
   .mapcard{height:min(820px,calc(100vh - 190px))}
 }
@@ -367,13 +369,14 @@ footer a,.help-body p a,.hcard p a{text-decoration:underline;text-underline-offs
   .side{gap:14px}
   .wrap [data-tab]{display:none!important}
   body[data-tab="mapa"] .wrap [data-tab~="mapa"]:not([hidden]),body[data-tab="alertas"] .wrap [data-tab~="alertas"]:not([hidden]),body[data-tab="contacto"] .wrap [data-tab~="contacto"]:not([hidden]),
-  body[data-tab="oficinas"] .wrap [data-tab~="oficinas"]:not([hidden]),body[data-tab="planilla"] .wrap [data-tab~="planilla"]:not([hidden]){display:flex!important}
+  body[data-tab="oficinas"] .wrap [data-tab~="oficinas"]:not([hidden]),body[data-tab="planilla"] .wrap [data-tab~="planilla"]:not([hidden]),
+  body[data-tab="clima"] .wrap [data-tab~="clima"]:not([hidden]){display:flex!important}
   body[data-tab="alertas"] .wrap #tiles{display:grid!important}
   body[data-tab="planilla"] .wrap footer[data-tab~="planilla"]:not([hidden]){display:block!important}
   body[data-tab="mapa"] .mapcard{height:calc(100dvh - 76px - 96px - env(safe-area-inset-bottom,0px) - env(safe-area-inset-top,0px));min-height:420px}
   body[data-tab="mapa"] .wrap{gap:10px}
   .sheet{right:68px}
-  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:25;
+  .tabbar{display:grid;grid-template-columns:repeat(6,1fr);position:fixed;left:0;right:0;bottom:0;z-index:25;
     padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));
     background:var(--material);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid var(--sep)}
   .tabbar button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0;color:var(--label-2);font:500 10.5px var(--font);position:relative;-webkit-tap-highlight-color:transparent}
@@ -639,6 +642,104 @@ details.faq p{padding:0 16px 14px;font-size:14px;color:var(--label-2)}
 .prev-n{flex:none;font:600 12px var(--font);color:var(--label-2);background:var(--fill-2);padding:3px 8px;border-radius:999px;white-space:nowrap}
 .row:has(> #btnHelp){flex-wrap:nowrap}
 table.t.mini td{white-space:nowrap}
+
+/* ============ Clima ============ */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.clima{position:relative;display:flex;flex-direction:column;gap:14px;isolation:isolate;
+  --cl-txt:var(--label);--cl-txt2:var(--label-2);--cl-glass:var(--vidrio);--cl-borde:var(--vidrio-borde);--cl-linea:var(--vidrio-linea);--cl-sep:rgba(34,58,94,.10)}
+.clima.foto{--cl-txt:#fff;--cl-txt2:rgba(255,255,255,.80);--cl-glass:rgba(22,34,56,.34);--cl-borde:rgba(255,255,255,.30);--cl-linea:rgba(255,255,255,.14);--cl-sep:rgba(255,255,255,.22);
+  padding:14px;border-radius:30px;overflow:hidden;min-height:620px}
+.cl-bg{position:absolute;inset:0;z-index:-1;background-size:cover;background-position:center;display:none}
+.clima.foto .cl-bg{display:block}
+.clima.foto .cl-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,16,32,.28),rgba(8,16,32,.42))}
+.cl-top{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.cl-find{flex:1 1 260px;min-width:0;display:flex;align-items:center;gap:8px;padding:0 14px;height:44px;border-radius:999px;
+  background:var(--cl-glass);color:var(--cl-txt);box-shadow:inset 0 1px 0 var(--cl-borde),0 0 0 .5px var(--cl-linea);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px)}
+.cl-find svg.ic{width:17px;height:17px;color:var(--cl-txt2)}
+.cl-find input{all:unset;flex:1;min-width:0;font:400 16px var(--font);color:var(--cl-txt)}
+.cl-find input::placeholder{color:var(--cl-txt2)}
+.cl-btn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;height:44px;padding:0 16px;border-radius:999px;
+  font:500 14px var(--font);color:var(--cl-txt);background:var(--cl-glass);box-shadow:inset 0 1px 0 var(--cl-borde),0 0 0 .5px var(--cl-linea);
+  backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px)}
+.cl-btn svg.ic{width:17px;height:17px}
+.cl-btn:hover{background:var(--fill-2)}
+.clima.foto .cl-btn:hover{background:rgba(255,255,255,.22)}
+.cl-btn:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent)}
+.cl-card{position:relative;border-radius:26px;padding:22px 24px;color:var(--cl-txt);background:var(--cl-glass);
+  box-shadow:inset 0 1px 0 var(--cl-borde),0 0 0 .5px var(--cl-linea),0 14px 34px -18px rgba(34,58,94,.26);
+  backdrop-filter:saturate(180%) blur(26px);-webkit-backdrop-filter:saturate(180%) blur(26px)}
+.cl-now{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px}
+.cl-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;grid-column:1/-1}
+.cl-place{display:flex;align-items:center;gap:7px;font:600 24px/1.15 var(--font);letter-spacing:-.02em}
+.cl-place svg.ic{width:19px;height:19px;color:var(--cl-txt2)}
+.cl-sub{margin-top:4px;font:500 12px var(--font);letter-spacing:.09em;text-transform:uppercase;color:var(--cl-txt2)}
+.cl-hora{text-align:right}
+.cl-hora b{display:block;font:600 26px/1 var(--font-rounded);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.cl-big{display:flex;flex-direction:column;gap:2px;justify-content:center}
+.cl-big .wic{width:84px;height:84px;stroke-width:1.5;margin-bottom:4px}
+.cl-estado{font:400 19px var(--font);color:var(--cl-txt2)}
+.cl-temp{font:300 64px/1 var(--font-rounded);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.cl-temp i{font-style:normal;font-size:30px;vertical-align:super;font-weight:400}
+.cl-feels{font:400 14px var(--font);color:var(--cl-txt2)}
+.cl-side{display:flex;flex-direction:column;gap:14px;padding-left:24px;border-left:1px solid var(--cl-sep)}
+.cl-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cl-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding-top:14px;border-top:1px solid var(--cl-sep)}
+.cl-dato{display:flex;align-items:center;gap:10px;min-width:0}
+.cl-dato svg.ic{width:22px;height:22px;flex:none;color:var(--az-600)}
+.clima.foto .cl-dato svg.ic{color:rgba(255,255,255,.9)}
+.cl-dato .sol{color:#e8872a}
+.cl-dato b{display:block;font:600 17px/1.2 var(--font-rounded);font-variant-numeric:tabular-nums}
+.cl-dato span{display:block;font:400 12.5px var(--font);color:var(--cl-txt2)}
+.cl-dias{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;padding:18px 10px}
+.cl-dia{display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 2px;border-radius:18px;text-align:center}
+.cl-dia+.cl-dia{box-shadow:inset 1px 0 0 var(--cl-sep)}
+.cl-dia .d1{font:600 14px var(--font)}
+.cl-dia .d2{font:400 12px var(--font);color:var(--cl-txt2)}
+.cl-dia .wic{width:36px;height:36px;stroke-width:1.6;margin:2px 0}
+.cl-dia .mx{font:600 19px/1 var(--font-rounded);font-variant-numeric:tabular-nums}
+.cl-dia .mn{font:400 15px/1 var(--font-rounded);font-variant-numeric:tabular-nums;color:var(--cl-txt2)}
+.cl-dia.hoy{background:var(--cl-glass);box-shadow:inset 0 1px 0 var(--cl-borde),0 0 0 .5px var(--cl-linea)}
+.wic{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.wic.sun,.wic.cloudsun{color:#e8a128}
+.wic.cloud,.wic.fog{color:var(--az-500)}
+.wic.rain,.wic.drizzle{color:#3a8fd0}
+.wic.storm{color:#7a6ad6}
+.wic.snow{color:#6fb4d8}
+.clima.foto .wic{color:#fff}
+.cl-alerta{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:7px 13px;border-radius:999px;font:600 13px var(--font)}
+.cl-alerta.Roja{background:color-mix(in srgb,var(--red) 16%,transparent);color:var(--red)}
+.cl-alerta.Amarilla{background:color-mix(in srgb,var(--yellow) 26%,transparent);color:#8a6400}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cl-alerta.Amarilla{background:color-mix(in srgb,var(--yellow) 20%,transparent);color:var(--yellow)}}
+:root[data-theme="dark"] .cl-alerta.Amarilla{background:color-mix(in srgb,var(--yellow) 20%,transparent);color:var(--yellow)}
+.clima.foto .cl-alerta{background:rgba(255,255,255,.92)}
+.cl-msg{padding:26px;text-align:center;color:var(--cl-txt2);font:400 15px var(--font)}
+.cl-pie{font:400 12.5px var(--font);color:var(--cl-txt2);padding:0 6px}
+.cl-pie a{color:inherit}
+@media (max-width:900px){
+  .cl-now{grid-template-columns:minmax(0,1fr)}
+  .cl-side{padding-left:0;border-left:0;padding-top:14px;border-top:1px solid var(--cl-sep)}
+  .cl-dias{grid-template-columns:repeat(7,minmax(74px,1fr));overflow-x:auto;scrollbar-width:none}
+  .cl-dias::-webkit-scrollbar{display:none}
+}
+@media (max-width:760px){
+  .clima.foto{border-radius:24px;padding:10px;min-height:0}
+  .cl-card{padding:18px 16px;border-radius:22px}
+  .cl-temp{font-size:54px}
+  .cl-big .wic{width:70px;height:70px}
+  .cl-place{font-size:21px}
+  .cl-hora b{font-size:22px}
+  .cl-trio{gap:8px}
+  .cl-dato{gap:7px}
+  .cl-dato b{font-size:15px}
+  .cl-dato svg.ic{width:19px;height:19px}
+  .cl-top .cl-find{flex:1 1 100%}
+  .tabbar button{font-size:9.5px}
+  .tabbar button svg.ic{width:22px;height:22px}
+}
+@media (prefers-reduced-transparency:reduce){
+  .cl-card,.cl-find,.cl-btn{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--card)}
+  .clima.foto .cl-card,.clima.foto .cl-find,.clima.foto .cl-btn{background:rgba(16,26,44,.88)}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -664,6 +765,19 @@ table.t.mini td{white-space:nowrap}
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
   <symbol id="i-building" viewBox="0 0 24 24"><path d="M5 21V5.5L13 3v18M13 9l6 2v10M3 21h18M8.5 8v.01M8.5 11.5v.01M8.5 15v.01"/></symbol>
   <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5M7 9.5l5-5 5 5M5 20h14"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.6v2.2M12 19.2v2.2M21.4 12h-2.2M4.8 12H2.6M18.6 5.4l-1.6 1.6M7 17l-1.6 1.6M18.6 18.6 17 17M7 7 5.4 5.4"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7.2 18.5a4.2 4.2 0 0 1-.3-8.4 5.6 5.6 0 0 1 10.8-1.2 3.8 3.8 0 0 1 .6 7.5 4 4 0 0 1-.8.1z"/></symbol>
+  <symbol id="i-cloudsun" viewBox="0 0 24 24"><circle cx="8" cy="7.4" r="2.8"/><path d="M8 2.2v1.4M3.3 7.4H1.9M12.7 2.7l-1 1M3.3 12.1l-1 1M12.7 12.1l-1-1"/><path d="M10.4 20.5a3.9 3.9 0 0 1-.3-7.8 5.2 5.2 0 0 1 10 1.1 3.5 3.5 0 0 1 .3 6.6 3.7 3.7 0 0 1-.8.1z"/></symbol>
+  <symbol id="i-rain" viewBox="0 0 24 24"><path d="M7.2 15.5a4.2 4.2 0 0 1-.3-8.4 5.6 5.6 0 0 1 10.8-1.2 3.8 3.8 0 0 1 .6 7.5 4 4 0 0 1-.8.1z"/><path d="M8.5 18.2 7.4 21M12.4 18.2 11.3 21M16.3 18.2 15.2 21"/></symbol>
+  <symbol id="i-drizzle" viewBox="0 0 24 24"><path d="M7.2 15.5a4.2 4.2 0 0 1-.3-8.4 5.6 5.6 0 0 1 10.8-1.2 3.8 3.8 0 0 1 .6 7.5 4 4 0 0 1-.8.1z"/><path d="M9 18.6v.8M13 18.6v.8M9 21.3v.3M13 21.3v.3"/></symbol>
+  <symbol id="i-storm" viewBox="0 0 24 24"><path d="M7.2 14.8a4.2 4.2 0 0 1-.3-8.4 5.6 5.6 0 0 1 10.8-1.2 3.8 3.8 0 0 1 .6 7.5 4 4 0 0 1-.8.1z"/><path d="m13 15-3.4 4.2h3L10.4 23"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M7.2 14.8a4.2 4.2 0 0 1-.3-8.4 5.6 5.6 0 0 1 10.8-1.2 3.8 3.8 0 0 1 .6 7.5 4 4 0 0 1-.8.1z"/><path d="M9 18.3v.1M13 18.3v.1M11 20.8v.1M9 23v.1M15 20.8v.1"/></symbol>
+  <symbol id="i-fog" viewBox="0 0 24 24"><path d="M7.2 13.8a4.2 4.2 0 0 1-.3-8.4 5.6 5.6 0 0 1 10.8-1.2 3.8 3.8 0 0 1 .6 7.5 4 4 0 0 1-.8.1z"/><path d="M4.5 17h15M6.5 20.2h11"/></symbol>
+  <symbol id="i-sunrise" viewBox="0 0 24 24"><path d="M7 16.4a5 5 0 0 1 10 0"/><path d="M3.2 19.8h17.6"/><path d="M12 2.4v5.8M8.9 5.5 12 2.4l3.1 3.1"/></symbol>
+  <symbol id="i-sunset" viewBox="0 0 24 24"><path d="M7 16.4a5 5 0 0 1 10 0"/><path d="M3.2 19.8h17.6"/><path d="M12 8.2V2.4M8.9 5.1 12 8.2l3.1-3.1"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.2c3.2 4 5.6 6.8 5.6 10a5.6 5.6 0 0 1-11.2 0c0-3.2 2.4-6 5.6-10z"/></symbol>
+  <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3.5 8.5h10a2.7 2.7 0 1 0-2.7-2.7M3.5 15.5h13a2.7 2.7 0 1 1-2.7 2.7M3.5 12h7.8"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="m4.5 17.5 4.8-4.2 4 3.3 2.6-2.3 3.6 3.2"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
 </svg>
 
@@ -681,6 +795,7 @@ table.t.mini td{white-space:nowrap}
     </div>
   </header>
 <nav class="tabbar" id="tabbar" aria-label="Secciones">
+  <button type="button" data-go="clima"><svg class="ic"><use href="#i-cloudsun"/></svg><span>Clima</span></button>
   <button type="button" data-go="mapa"><svg class="ic"><use href="#i-map"/></svg><span>Mapa</span></button>
   <button type="button" data-go="alertas"><svg class="ic"><use href="#i-bell"/></svg><span>Alertas</span><i class="tb-badge" id="tbAlerts" hidden></i></button>
   <button type="button" data-go="contacto"><svg class="ic"><use href="#i-people"/></svg><span>Contacto</span><i class="tb-badge" id="tbContact" hidden></i></button>
@@ -689,6 +804,22 @@ table.t.mini td{white-space:nowrap}
 </nav>
 
   <div class="main" role="main">
+  <section class="clima" id="climaSec" data-tab="clima" data-dtab="clima" aria-labelledby="clTitle">
+    <div class="cl-bg" id="clBg"></div>
+    <h2 id="clTitle" class="sr-only">Clima</h2>
+    <div class="cl-top">
+      <label class="cl-find"><svg class="ic"><use href="#i-search"/></svg>
+        <input id="clInput" list="comList" placeholder="Buscar comuna o ciudad" aria-label="Buscar lugar para ver el clima" autocomplete="off" enterkeyhint="search">
+      </label>
+      <button type="button" class="cl-btn" id="clFondoBtn"><svg class="ic"><use href="#i-image"/></svg><span id="clFondoTxt">Elegir fondo</span></button>
+      <button type="button" class="cl-btn" id="clQuitar" hidden><svg class="ic"><use href="#i-x"/></svg>Quitar fondo</button>
+      <input type="file" id="clFondoFile" accept="image/*" hidden>
+    </div>
+    <div class="cl-card cl-now" id="clNow" aria-live="polite"><div class="cl-msg" style="grid-column:1/-1">Cargando el clima…</div></div>
+    <div class="cl-card cl-dias" id="clDias" hidden></div>
+    <p class="cl-pie">Pronóstico de <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>, referencial. Para decisiones operativas usa el pronóstico oficial de la <a href="https://www.meteochile.gob.cl/" target="_blank" rel="noopener">Dirección Meteorológica de Chile</a>. El fondo que elijas se guarda solo en este dispositivo.</p>
+  </section>
+
     <div class="group" data-tab="mapa" data-dtab="mapa">
       <div class="mapcard" id="mapcard">
         <svg id="map" role="group" aria-label="Mapa de Chile por regiones con alertas SENAPRED"></svg>
@@ -696,7 +827,7 @@ table.t.mini td{white-space:nowrap}
           <div class="lg-head"><b>Leyenda</b><button type="button" class="iconbtn" id="lgToggle" aria-expanded="true" aria-label="Ocultar leyenda"><svg class="ic"><use href="#i-minus"/></svg></button></div>
           <div class="lg-body">
             <div class="keys"><span><i class="dot r"></i>Alerta Roja</span><span><i class="dot y"></i>Alerta Amarilla</span><span><i class="dot k"></i>Fuera de alerta</span><span><i class="okey"></i>Oficina</span></div>
-            <p class="foot"><span id="lgNum">Cada círculo marca una comuna con alerta. Al cargar tu nómina, muestra cuántas personas tienes en esa zona.</span> Toca una región para acercarte.</p>
+            <p class="foot"><span id="lgNum">Cada círculo marca una alerta y el número son las comunas que abarca. Al cargar tu nómina, el número pasa a ser cuántas personas tienes ahí.</span> Toca una región para acercarte.</p>
             <label class="switch"><span>Mostrar personas fuera de alerta</span><input type="checkbox" id="showOthers" role="switch"></label>
           </div>
         </div>
@@ -1358,10 +1489,11 @@ function drawOverlay(){
     for(const ai of R.ordered){
       if(!ai.found.length) continue;
       let x=ai.found.reduce((s,f)=>s+f.c[0],0)/ai.found.length, y=ai.found.reduce((s,f)=>s+f.c[1],0)/ai.found.length;
-      const r=(12+Math.min(6,Math.sqrt(ai.ppl.length)*1.6))*u;
+      const hayN=people.rows.length>0, nPin=hayN?ai.ppl.length:ai.found.length;
+      const r=(12+Math.min(6,Math.sqrt(nPin)*1.6))*u;
       for(let k=0;k<6;k++){const hit=placed.find(p=>Math.hypot(p.x-x,p.y-y)<(p.r+r)*1.02);if(!hit)break;x=hit.x+(hit.r+r)*.9;y=hit.y+(hit.r+r)*.55;}
       placed.push({x,y,r});
-      pinEl(x,y,r,ai.a.level,people.rows.length?ai.ppl.length:"",{alert:String(ai.i)},"Alerta "+ai.a.level+", "+ai.a.hazard+(people.rows.length?": "+plural(ai.ppl.length,"persona expuesta","personas expuestas"):""),ai.a.level==="Roja",sel&&sel.type==="alert"&&sel.id===ai.i,(c=>!!c&&c.kind!=="upd")(changeOf(ai.a)));
+      pinEl(x,y,r,ai.a.level,nPin,{alert:String(ai.i)},"Alerta "+ai.a.level+", "+ai.a.hazard+": "+(hayN?plural(ai.ppl.length,"persona expuesta","personas expuestas"):plural(ai.found.length,"comuna","comunas")),ai.a.level==="Roja",sel&&sel.type==="alert"&&sel.id===ai.i,(c=>!!c&&c.kind!=="upd")(changeOf(ai.a)));
     }
   }else{
     const items=[...R.comLevel].map(([k,lv])=>({k,lv,info:COM.get(k),n:R.countByCom.get(k)||0})).filter(x=>x.info).sort((a,b)=>b.n-a.n);
@@ -2329,8 +2461,168 @@ $("subsBody").addEventListener("submit",async e=>{
   }catch(err){st.className="status err";st.textContent="No se pudo guardar. Puede que tu acceso a esta página no permita inscribirse.";}
 });
 
+/* ============ Clima ============ */
+const CL_LUGAR="hsec_clima_lugar_v1", CL_FONDO="hsec_clima_fondo_v1", CL_CACHE="hsec_clima_datos_v1";
+const WMO={0:["Despejado","sun"],1:["Mayormente despejado","sun"],2:["Parcialmente nublado","cloudsun"],3:["Nublado","cloud"],
+45:["Neblina","fog"],48:["Neblina con escarcha","fog"],51:["Llovizna débil","drizzle"],53:["Llovizna","drizzle"],55:["Llovizna intensa","drizzle"],
+56:["Llovizna helada","drizzle"],57:["Llovizna helada intensa","drizzle"],61:["Lluvia débil","rain"],63:["Lluvia","rain"],65:["Lluvia intensa","rain"],
+66:["Lluvia helada","rain"],67:["Lluvia helada intensa","rain"],71:["Nieve débil","snow"],73:["Nieve","snow"],75:["Nieve intensa","snow"],
+77:["Granos de nieve","snow"],80:["Chubascos","rain"],81:["Chubascos fuertes","rain"],82:["Chubascos muy fuertes","rain"],
+85:["Chubascos de nieve","snow"],86:["Nevadas fuertes","snow"],95:["Tormenta eléctrica","storm"],96:["Tormenta con granizo","storm"],99:["Tormenta con granizo fuerte","storm"]};
+const wmo=c=>WMO[c]||["Sin dato","cloud"];
+const wIcon=(k,cls)=>'<svg class="wic '+k+(cls?" "+cls:"")+'" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-'+k+'"/></svg>';
+const DIAS_C=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"], MESES_C=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+let clLugar=null, clDatos=null, clPidiendo=false, clFondo=null;
+
+function clLeer(k){try{return localStorage.getItem(k);}catch(_){return null;}}
+function clGuardar(k,v){try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v);return true;}catch(_){return false;}}
+
+function clLugarInicial(){
+  const g=clLeer(CL_LUGAR); if(g){try{return JSON.parse(g);}catch(_){}}
+  return null;
+}
+function clSugerido(){
+  if(R&&R.ordered&&R.ordered.length){
+    const roja=R.ordered.find(ai=>ai.a.level==="Roja"&&ai.found.length)||R.ordered.find(ai=>ai.found.length);
+    if(roja) return roja.found[0].n;
+  }
+  return "Santiago";
+}
+async function clGeo(nombre){
+  const u="https://geocoding-api.open-meteo.com/v1/search?count=1&language=es&format=json&countryCode=CL&name="+encodeURIComponent(nombre);
+  const r=await fetch(u,{cache:"no-store"}); if(!r.ok) throw new Error("geo");
+  const j=await r.json(), g=(j.results||[])[0];
+  if(!g) throw new Error("No encontré ese lugar en Chile.");
+  return {n:g.name, reg:g.admin1||"", lat:+g.latitude.toFixed(3), lon:+g.longitude.toFixed(3)};
+}
+async function clPedir(l){
+  const u="https://api.open-meteo.com/v1/forecast?latitude="+l.lat+"&longitude="+l.lon+
+    "&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation_probability,weather_code,wind_speed_10m"+
+    "&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max"+
+    "&timezone=auto&forecast_days=7";
+  const r=await fetch(u,{cache:"no-store"}); if(!r.ok) throw new Error("clima");
+  return r.json();
+}
+async function clCargar(lugar,fuerza){
+  if(clPidiendo) return;
+  clPidiendo=true;
+  try{
+    const l=lugar||clLugar||clLugarInicial();
+    if(!l){ clPidiendo=false; return clBuscar(clSugerido(),true); }
+    clLugar=l; clGuardar(CL_LUGAR,JSON.stringify(l));
+    if(!fuerza&&clDatos&&clDatos._k===l.n+l.lat&&Date.now()-clDatos._t<10*60*1000){clPintar();clPidiendo=false;return;}
+    const d=await clPedir(l); d._k=l.n+l.lat; d._t=Date.now(); d._l=l;
+    clDatos=d; clGuardar(CL_CACHE,JSON.stringify(d)); clPintar();
+  }catch(err){
+    const c=clLeer(CL_CACHE);
+    if(c&&!clDatos){try{clDatos=JSON.parse(c);clLugar=clDatos._l||clLugar;}catch(_){}}
+    if(clDatos){clPintar(true);} else {
+      $("clNow").innerHTML='<div class="cl-msg" style="grid-column:1/-1">No se pudo obtener el clima. Revisa tu conexión y vuelve a intentar.</div>';
+      $("clDias").hidden=true;
+    }
+  }
+  clPidiendo=false;
+}
+async function clBuscar(texto,silencio){
+  const t=String(texto||"").trim(); if(!t) return;
+  $("clNow").innerHTML='<div class="cl-msg" style="grid-column:1/-1">Buscando «'+esc(t)+'»…</div>';
+  try{ const l=await clGeo(t); await clCargar(l,true); }
+  catch(err){
+    $("clNow").innerHTML='<div class="cl-msg" style="grid-column:1/-1">'+esc(err.message||"No se pudo buscar ese lugar.")+'</div>';
+    if(!silencio) toast("No encontré ese lugar");
+  }
+}
+function clHHMM(iso){return String(iso||"").slice(11,16);}
+function clDuracion(a,b){
+  const m=Math.max(0,Math.round((new Date(b)-new Date(a))/60000));
+  return Math.floor(m/60)+"h "+String(m%60).padStart(2,"0")+"m";
+}
+function clNivel(nombre){
+  if(!R||!R.comLevel) return "";
+  return R.comLevel.get(key(nombre))||"";
+}
+function clPintar(viejo){
+  const d=clDatos, l=clLugar; if(!d||!l) return;
+  const cu=d.current||{}, dy=d.daily||{}, [txt,ic]=wmo(cu.weather_code);
+  const off=(d.utc_offset_seconds||0)*1000, ahora=new Date(Date.now()+off);
+  const hora=String(ahora.getUTCHours()).padStart(2,"0")+":"+String(ahora.getUTCMinutes()).padStart(2,"0");
+  const fecha=DIAS_C[ahora.getUTCDay()]+", "+ahora.getUTCDate()+" "+MESES_C[ahora.getUTCMonth()]+" "+ahora.getUTCFullYear();
+  const t=v=>v==null?"—":Math.round(v);
+  const lv=clNivel(l.n);
+  $("clNow").innerHTML=
+    '<div class="cl-head">'+
+      '<div><div class="cl-place"><svg class="ic"><use href="#i-pin"/></svg>'+esc(l.n)+(l.reg?', '+esc(l.reg):'')+'</div>'+
+      '<div class="cl-sub">'+esc(fecha)+(viejo?' · dato guardado':'')+'</div>'+
+      (lv?'<span class="cl-alerta '+lv+'">'+ICON("i-warn")+'Alerta '+lv+' vigente en esta comuna</span>':'')+'</div>'+
+      '<div class="cl-hora"><b>'+hora+'</b><div class="cl-sub">Hora local</div></div>'+
+    '</div>'+
+    '<div class="cl-big">'+wIcon(ic)+
+      '<div class="cl-estado">'+esc(txt)+'</div>'+
+      '<div class="cl-temp">'+t(cu.temperature_2m)+'<i>°C</i></div>'+
+      '<div class="cl-feels">Sensación térmica '+t(cu.apparent_temperature)+'°C</div>'+
+    '</div>'+
+    '<div class="cl-side">'+
+      '<div class="cl-pair">'+
+        '<div class="cl-dato"><svg class="ic sol"><use href="#i-sunrise"/></svg><div><b>'+clHHMM(dy.sunrise&&dy.sunrise[0])+'</b><span>Amanece</span></div></div>'+
+        '<div class="cl-dato"><svg class="ic sol"><use href="#i-sunset"/></svg><div><b>'+clHHMM(dy.sunset&&dy.sunset[0])+'</b><span>Anochece</span></div></div>'+
+      '</div>'+
+      '<div class="cl-pair" style="border-top:1px solid var(--cl-sep);padding-top:14px">'+
+        '<div class="cl-dato"><svg class="ic sol"><use href="#i-sun"/></svg><div><b>'+(dy.sunrise?clDuracion(dy.sunrise[0],dy.sunset[0]):"—")+'</b><span>Horas de luz</span></div></div>'+
+      '</div>'+
+      '<div class="cl-trio">'+
+        '<div class="cl-dato"><svg class="ic"><use href="#i-rain"/></svg><div><b>'+(cu.precipitation_probability==null?"—":cu.precipitation_probability+"%")+'</b><span>Prob. de lluvia</span></div></div>'+
+        '<div class="cl-dato"><svg class="ic"><use href="#i-drop"/></svg><div><b>'+(cu.relative_humidity_2m==null?"—":cu.relative_humidity_2m+"%")+'</b><span>Humedad</span></div></div>'+
+        '<div class="cl-dato"><svg class="ic"><use href="#i-wind"/></svg><div><b>'+t(cu.wind_speed_10m)+' km/h</b><span>Viento</span></div></div>'+
+      '</div>'+
+    '</div>';
+  const dias=$("clDias"); const n=(dy.time||[]).length;
+  dias.hidden=!n;
+  if(n) dias.innerHTML=(dy.time||[]).map((iso,i)=>{
+    const f=new Date(iso+"T12:00:00"), [tx,ik]=wmo(dy.weather_code[i]);
+    return '<div class="cl-dia'+(i===0?' hoy':'')+'" title="'+esc(tx)+'">'+
+      '<div class="d1">'+(i===0?"Hoy":DIAS_C[f.getDay()])+'</div>'+
+      '<div class="d2">'+f.getDate()+" "+MESES_C[f.getMonth()]+'</div>'+
+      wIcon(ik)+
+      '<div class="mx">'+t(dy.temperature_2m_max[i])+'°</div>'+
+      '<div class="mn">'+t(dy.temperature_2m_min[i])+'°</div></div>';
+  }).join("");
+}
+function clAplicarFondo(){
+  const sec=$("climaSec"), bg=$("clBg");
+  if(clFondo){ bg.style.backgroundImage="url("+clFondo+")"; sec.classList.add("foto"); $("clFondoTxt").textContent="Cambiar fondo"; $("clQuitar").hidden=false; }
+  else { bg.style.backgroundImage=""; sec.classList.remove("foto"); $("clFondoTxt").textContent="Elegir fondo"; $("clQuitar").hidden=true; }
+}
+function clLeerFondo(f){
+  const fr=new FileReader();
+  fr.onload=()=>{
+    const img=new Image();
+    img.onload=()=>{
+      const max=1600, esc2=Math.min(1,max/Math.max(img.width,img.height));
+      const cv=document.createElement("canvas");
+      cv.width=Math.round(img.width*esc2); cv.height=Math.round(img.height*esc2);
+      cv.getContext("2d").drawImage(img,0,0,cv.width,cv.height);
+      const url=cv.toDataURL("image/jpeg",.72);
+      if(!clGuardar(CL_FONDO,url)) return toast("La imagen es muy pesada para guardarla");
+      clFondo=url; clAplicarFondo(); toast("Fondo actualizado");
+    };
+    img.onerror=()=>toast("No pude leer esa imagen");
+    img.src=fr.result;
+  };
+  fr.onerror=()=>toast("No pude leer esa imagen");
+  fr.readAsDataURL(f);
+}
+function clInit(){
+  clFondo=clLeer(CL_FONDO); clAplicarFondo();
+  $("clFondoBtn").addEventListener("click",()=>$("clFondoFile").click());
+  $("clFondoFile").addEventListener("change",e=>{const f=e.target.files&&e.target.files[0];if(f)clLeerFondo(f);e.target.value="";});
+  $("clQuitar").addEventListener("click",()=>{clGuardar(CL_FONDO,null);clFondo=null;clAplicarFondo();});
+  const inp=$("clInput");
+  inp.addEventListener("change",()=>{const v=inp.value.trim();if(v){clBuscar(v);inp.blur();}});
+  inp.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();const v=inp.value.trim();if(v){clBuscar(v);inp.blur();}}});
+}
+
 /* ============ formato celular ============ */
-const TABS=["mapa","alertas","contacto","oficinas","planilla"];
+const TABS=["clima","mapa","alertas","contacto","oficinas","planilla"];
 const isMobile=()=>matchMedia("(max-width:760px)").matches;
 function setTab(t,push){
   if(!TABS.includes(t)) t="mapa";
@@ -2338,6 +2630,7 @@ function setTab(t,push){
   $("tabbar").querySelectorAll("button").forEach(b=>{if(b.dataset.go===t)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");});
   if(push!==false){try{if(location.hash!=="#"+t)history.replaceState(null,"","#"+t);}catch(_){}}
   if(t==="mapa") requestAnimationFrame(()=>{if(BASE)setVB(VB,true);});
+  if(t==="clima") clCargar();
   window.scrollTo(0,0);
 }
 $("tabbar").addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)setTab(b.dataset.go);});
@@ -2466,7 +2759,7 @@ $("hBody").addEventListener("submit",async e=>{
 });
 
 const TOUR=[
-  {sel:"#tabbar",tab:"mapa",title:"Navega por secciones",text:"La página está ordenada en cinco secciones: Mapa, Alertas, Contacto, Oficinas y Planilla. Los números rojos indican lo que requiere atención."},
+  {sel:"#tabbar",tab:"mapa",title:"Navega por secciones",text:"La página está ordenada en seis secciones: Clima, Mapa, Alertas, Contacto, Oficinas y Planilla. Los números rojos indican lo que requiere atención."},
   {sel:"#mapcard",tab:"mapa",title:"El mapa de alertas",text:"Las regiones con alerta se tiñen de rojo o amarillo. Cada círculo muestra cuántas personas de tu nómina están en esa zona. Toca una región o un círculo para ver el detalle; usa la rueda o los dedos para acercarte."},
   {sel:".csearch",tab:"mapa",title:"Busca una comuna",text:"Escribe el nombre de una comuna y el mapa se acerca hasta ahí, con sus alertas y personas."},
   {sel:"#tiles",tab:"alertas",title:"Resumen en números",text:"Alertas vigentes, personas expuestas, comunas y regiones con alerta. Se actualiza solo al cargar tu nómina."},
@@ -2556,6 +2849,7 @@ $("wNo").onclick=()=>{$("welcome").hidden=true;try{localStorage.setItem(HELP_KEY
 (function(){let seen=false;try{seen=!!localStorage.getItem(HELP_KEY);}catch(_){seen=true;}
   if(!seen&&!/(^|[#&])notour/.test(location.hash)) setTimeout(()=>{if($("tour").hidden)$("welcome").hidden=false;},1800);})();
 
+clInit();
 setTab(TABS.includes(location.hash.slice(1))?location.hash.slice(1):"mapa",false);
 if(matchMedia("(max-width:600px)").matches) $("lgToggle").click();
 render();
