@@ -36,7 +36,11 @@
   --red-tint:rgba(215,0,21,.10); --yellow-tint:rgba(255,204,0,.22); --green-tint:rgba(31,157,116,.13);
   --reg-y:#fff6d6; --reg-r:#ffe9e6; --com-y:#ffe08a; --com-r:#f7b3ac;
   --sea:#e6f0fa; --land:#ffffff; --land-hover:#eaf3fc; --region-line:#b9cde0; --commune-line:#dbe7f3;
+  --az-900:#0a1e3d; --az-800:#223a5e; --az-700:#355982; --az-600:#4d79a8; --az-500:#6e9ecc;
+  --az-300:#9fc0e3; --az-200:#d0e1f2; --az-100:#e8f1fa; --az-50:#f3f8fd;
   --material:rgba(255,255,255,.62); --glass-edge:rgba(255,255,255,.55);
+  --vidrio:rgba(255,255,255,.80); --vidrio-borde:rgba(255,255,255,.9); --vidrio-linea:rgba(34,58,94,.08);
+  --lienzo:radial-gradient(120% 80% at 50% -10%,#ffffff 0%,#f3f8fd 38%,#e8f1fa 72%,#dcebf8 100%);
   --marca:linear-gradient(90deg,#060e23 0%,#0a1e3d 14%,#06335c 28%,#024b80 42%,#00689b 57%,#0086bb 72%,#10a9c9 87%,#1dc7d4 100%);
   --shadow:0 1px 3px rgba(10,30,61,.08),0 10px 28px rgba(10,30,61,.08);
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI Variable Text","Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
@@ -51,7 +55,11 @@
   --red-tint:rgba(255,90,78,.20); --yellow-tint:rgba(255,214,10,.16); --green-tint:rgba(47,184,140,.18);
   --reg-y:#3a3420; --reg-r:#44242a; --com-y:#6b5d1c; --com-r:#86353a;
   --sea:#0a1526; --land:#17273f; --land-hover:#22354f; --region-line:#45597a; --commune-line:#2c3f5c;
+  --az-900:#dceaf8; --az-800:#b9d3ee; --az-700:#9fc0e3; --az-600:#6e9ecc; --az-500:#4d79a8;
+  --az-300:#355982; --az-200:#223a5e; --az-100:#16304f; --az-50:#101f36;
   --material:rgba(15,29,51,.62); --glass-edge:rgba(145,189,222,.14);
+  --vidrio:rgba(20,33,56,.78); --vidrio-borde:rgba(150,185,230,.16); --vidrio-linea:rgba(150,185,230,.10);
+  --lienzo:radial-gradient(120% 80% at 50% -10%,#0d1b31 0%,#081426 45%,#050e1c 100%);
   --marca:linear-gradient(90deg,#060e23 0%,#0a1e3d 14%,#06335c 28%,#024b80 42%,#00689b 57%,#0086bb 72%,#10a9c9 87%,#1dc7d4 100%);
   --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 28px rgba(0,0,0,.45); color-scheme:dark}}
 :root[data-theme="dark"]{  --bg:#061020; --card:#0f1d33; --card-2:#17273f;
@@ -61,12 +69,16 @@
   --red-tint:rgba(255,90,78,.20); --yellow-tint:rgba(255,214,10,.16); --green-tint:rgba(47,184,140,.18);
   --reg-y:#3a3420; --reg-r:#44242a; --com-y:#6b5d1c; --com-r:#86353a;
   --sea:#0a1526; --land:#17273f; --land-hover:#22354f; --region-line:#45597a; --commune-line:#2c3f5c;
+  --az-900:#dceaf8; --az-800:#b9d3ee; --az-700:#9fc0e3; --az-600:#6e9ecc; --az-500:#4d79a8;
+  --az-300:#355982; --az-200:#223a5e; --az-100:#16304f; --az-50:#101f36;
   --material:rgba(15,29,51,.62); --glass-edge:rgba(145,189,222,.14);
+  --vidrio:rgba(20,33,56,.78); --vidrio-borde:rgba(150,185,230,.16); --vidrio-linea:rgba(150,185,230,.10);
+  --lienzo:radial-gradient(120% 80% at 50% -10%,#0d1b31 0%,#081426 45%,#050e1c 100%);
   --marca:linear-gradient(90deg,#060e23 0%,#0a1e3d 14%,#06335c 28%,#024b80 42%,#00689b 57%,#0086bb 72%,#10a9c9 87%,#1dc7d4 100%);
   --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 28px rgba(0,0,0,.45); color-scheme:dark}
 [hidden]{display:none!important}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--label);font:15px/1.47 var(--font);letter-spacing:-.009em;-webkit-font-smoothing:antialiased;
+body{background:var(--bg);background-image:var(--lienzo);background-attachment:fixed;color:var(--label);font:15px/1.47 var(--font);letter-spacing:-.009em;-webkit-font-smoothing:antialiased;
   padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-block:28px 64px}
 @media (max-width:600px){body{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 48px}}
 .wrap{max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
@@ -600,6 +612,23 @@ details.faq p{padding:0 16px 14px;font-size:14px;color:var(--label-2)}
 @media (max-width:760px){.welcome{bottom:calc(84px + env(safe-area-inset-bottom,0px));left:16px;right:16px;width:auto}}
 @media (prefers-reduced-motion:reduce){.tour-spot,.tour-card{transition:none}}
 #btnHelp svg.ic{width:16px;height:16px}
+/* ===== Superficies tipo vidrio liquido ===== */
+.card,.list,.tile,.acard{
+  background:var(--vidrio);
+  box-shadow:inset 0 1px 0 var(--vidrio-borde),0 0 0 .5px var(--vidrio-linea),
+             0 1px 2px rgba(34,58,94,.04),0 10px 24px -12px rgba(34,58,94,.18);
+}
+.card,.list{border-radius:20px}
+.tile{border-radius:18px}
+.acard{border-radius:22px;padding:18px}
+.dialog{border-radius:26px;box-shadow:0 30px 80px -20px rgba(10,30,61,.45),0 0 0 .5px var(--vidrio-linea)}
+@media (max-width:600px){.dialog{border-radius:22px 22px 0 0}}
+.sym{border-radius:10px}
+/* El tinte azul es solo para los avisos preventivos: los iconos de alerta
+   conservan su rojo y su amarillo, que son senal de seguridad. */
+.prev-li .sym{background:var(--az-100);color:var(--az-700)}
+.mapcard{border-radius:24px}
+@media (prefers-reduced-transparency:reduce){.card,.list,.tile,.acard{background:var(--card)}}
 .prev-li{display:flex;gap:10px;align-items:flex-start;padding:11px 14px;border-bottom:.5px solid var(--sep)}
 .prev-li:last-child{border-bottom:0}
 .prev-li .sym{flex:none;width:28px;height:28px;border-radius:9px;background:var(--fill);color:var(--label-2);display:grid;place-items:center}
@@ -1450,12 +1479,13 @@ let rsz;window.addEventListener("resize",()=>{clearTimeout(rsz);rsz=setTimeout(d
 
 /* ============ panel lateral ============ */
 const PORQUE={residencia:"Donde vive",faena:"Donde trabaja",ambas:"Vive y trabaja"};
+let prevAbierto=false;
 function renderPreventive(){
   const box=$("prevBox"), lista=$("prevList"); if(!box) return;
-  const ps=(feed.preventive||[]).slice(0,12);
-  box.hidden=!ps.length;
-  if(!ps.length) return;
-  $("prevCount").textContent=plural(feed.preventive.length,"aviso","avisos");
+  const todos=feed.preventive||[], ps=prevAbierto?todos.slice(0,30):todos.slice(0,3);
+  box.hidden=!todos.length;
+  if(!todos.length) return;
+  $("prevCount").textContent=plural(todos.length,"aviso","avisos");
   lista.innerHTML=ps.map(x=>{
     const comunas=Array.isArray(x.communes)?x.communes:[];
     const mios=x.nacional?R.persons.length:comunas.reduce((n,c)=>n+(R.countByCom.get(key(c))||0),0);
@@ -1468,7 +1498,9 @@ function renderPreventive(){
       '<span class="m">'+esc(x.at||"")+(isNaN(parseD(x.at))?"":' · '+ago(parseD(x.at)))+'</span></span>'+
       (mios?'<span class="prev-n">'+fmtN(mios)+' de tu planilla</span>':'')+
       '</'+(url?'a':'div')+'>';
-  }).join("");
+  }).join("")+(todos.length>ps.length||prevAbierto
+    ? '<button type="button" class="li" id="prevMas"><span class="main-t"><span class="t1" style="color:var(--blue)">'+
+      (prevAbierto?"Ver menos":"Ver los "+fmtN(todos.length)+" avisos")+'</span></span></button>' : "");
 }
 function renderTiles(){
   const nR=feed.alerts.filter(a=>a.level==="Roja").length, nA=feed.alerts.length-nR;
@@ -1956,6 +1988,9 @@ $("cSaved").addEventListener("click",e=>{
   const b=e.target.closest("#cForget"); if(!b) return;
   if(b.dataset.armed!=="1"){b.dataset.armed="1";b.textContent="Confirmar";setTimeout(()=>{if(b.isConnected){b.dataset.armed="";b.textContent="Borrar avance";}},3000);return;}
   olvidarContacto(); renderContacts(); renderFollow(); render(); toast("Avance borrado");
+});
+$("prevList").addEventListener("click",e=>{
+  if(e.target.closest("#prevMas")){e.preventDefault();prevAbierto=!prevAbierto;renderPreventive();}
 });
 $("cMin").addEventListener("click",e=>{
   const b=e.target.closest("#cIncluir"); if(!b) return;
