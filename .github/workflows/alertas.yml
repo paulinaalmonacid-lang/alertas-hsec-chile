@@ -42,16 +42,28 @@ jobs:
           python tools/senapred_scraper.py \
             --previous alerts.json \
             --comunas tools/comunas_cl.json \
-            --out candidato.json
+            --out candidato.json \
+            --changes-out cambios.json
 
       - name: Aplicar los cambios si los hay
         id: aplicar
         run: python tools/aplicar_cambios.py alerts.json candidato.json
 
+      - name: Avisar por correo a las personas inscritas
+        if: steps.aplicar.outputs.changed == 'true'
+        env:
+          SMTP_USUARIO: ${{ secrets.SMTP_USUARIO }}
+          SMTP_CLAVE: ${{ secrets.SMTP_CLAVE }}
+          DESTINATARIOS: ${{ secrets.DESTINATARIOS }}
+          SMTP_SERVIDOR: ${{ vars.SMTP_SERVIDOR }}
+          SMTP_PUERTO: ${{ vars.SMTP_PUERTO }}
+          PAGINA_URL: https://paulinaalmonacid-lang.github.io/alertas-hsec-chile/
+        run: python tools/avisar_correo.py cambios.json
+
       - name: Guardar en el repositorio
         if: steps.aplicar.outputs.changed == 'true'
         run: |
-          rm -f candidato.json
+          rm -f candidato.json cambios.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add alerts.json
