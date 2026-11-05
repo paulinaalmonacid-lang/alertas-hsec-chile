@@ -1585,7 +1585,11 @@ function render(){
   const st=$("peopleStatus"); st.className="status";
   st.textContent=people.example?"Se muestran 12 personas ficticias. Sube tu planilla para reemplazarlas.":people.name?"Archivo: "+people.name:"No hay planilla cargada.";
   const unk=R.persons.filter(p=>!p.known), unkNames=[...new Set(unk.map(p=>p.row[1]||"(vacía)"))];
-  $("peopleWarn").innerHTML=unk.length?'<p class="note">'+ICON("i-warn")+'<span><b>'+plural(unk.length,"fila con comuna no reconocida","filas con comuna no reconocida")+':</b> '+esc(unkNames.slice(0,6).join(", "))+(unkNames.length>6?"…":"")+'. Corrige la ortografía para que se crucen con las alertas.</span></p>':'';
+  const vistos=new Set(), repetidos=new Set();
+  people.rows.forEach(row=>{const k=claveDe(row); if(vistos.has(k)) repetidos.add(row[0]); else vistos.add(k);});
+  const avisoDup=repetidos.size?'<p class="note">'+ICON("i-warn")+'<span><b>'+(repetidos.size===1?"1 persona repetida":repetidos.size+" personas repetidas")+'</b> en el archivo: '+esc([...repetidos].slice(0,6).join(", "))+(repetidos.size>6?" y "+(repetidos.size-6)+" más":"")+'. Se cuentan y se contactan dos veces. Quita las filas duplicadas.</span></p>':"";
+
+  $("peopleWarn").innerHTML=avisoDup+(unk.length?'<p class="note">'+ICON("i-warn")+'<span><b>'+plural(unk.length,"fila con comuna no reconocida","filas con comuna no reconocida")+':</b> '+esc(unkNames.slice(0,6).join(", "))+(unkNames.length>6?"…":"")+'. Corrige la ortografía para que se crucen con las alertas.</span></p>':'');
   $("alertTag").textContent=plural(feed.alerts.length,"alerta","alertas");
   $("alertList").innerHTML=feed.alerts.length?feed.alerts.map((a,i)=>
     '<div class="li"><span class="sym '+a.level+'">'+ICON("i-warn")+'</span><span class="main-t"><span class="t1">'+esc(a.hazard)+'</span><span class="t2">'+esc(a.communes.join(", "))+'</span></span><button class="al-x" type="button" data-del="'+i+'" aria-label="Quitar alerta '+esc(a.hazard)+'">Quitar</button></div>').join("")
@@ -1725,6 +1729,10 @@ function contactCols(){
   r.mail=row=>{for(const i of r.emails) if(row[i]) return row[i]; return "";};
   return r;
 }
+// Personas cuya comuna no se reconocio: NO se pueden cruzar con las alertas,
+// asi que podrian estar en riesgo sin que la pagina lo sepa. Nunca se cuentan
+// como expuestas, pero tienen que estar a la vista para poder contactarlas.
+function porRevisar(){ return R? R.persons.filter(p=>!p.known) : []; }
 function contactGroups(){
   const seen=new Set(), out=[];
   for(const ai of R.ordered){
@@ -1740,8 +1748,19 @@ const levelGroups=()=>contactGroups().filter(g=>cLevel==="all"||g.ai.a.level===c
 const visibleGroups=()=>levelGroups().map(g=>({...g,members:g.members.filter(passStatus)})).filter(g=>g.members.length);
 function counts(groups){const c={all:0,pending:0,ok:0,noans:0,help:0};for(const g of groups)for(const p of g.members){c.all++;c[stOf(p.idx)]++;}return c;}
 function stamp(t){const d=t?new Date(t):new Date(),p=n=>String(n).padStart(2,"0");return {file:d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+"_"+p(d.getHours())+p(d.getMinutes()),text:p(d.getDate())+"-"+p(d.getMonth()+1)+"-"+d.getFullYear()+" "+p(d.getHours())+":"+p(d.getMinutes()),hm:p(d.getHours())+":"+p(d.getMinutes())};}
+function telHref(v){
+  // Deja el numero listo para marcar desde cualquier parte: en Chile, tanto el
+  // celular (9 XXXX XXXX) como el fijo con su codigo de area suman 9 digitos.
+  let d=String(v||"").replace(/\D/g,"");
+  if(!d||d.length<8) return "";
+  if(d.length===9) return "tel:+56"+d;
+  if(d.length===11&&d.slice(0,2)==="56") return "tel:+"+d;
+  if(d.length===12&&d.slice(0,3)==="569") return "tel:+"+d.slice(1);
+  if(d.length>=11) return "tel:+"+d;               // numero internacional ya completo
+  return "tel:"+d;                                  // fijo sin codigo de area: se marca local
+}
 function waLink(v){let d=String(v||"").replace(/\D/g,"");if(d.length===9&&d[0]==="9")d="56"+d;return /^569\d{8}$/.test(d)?"https://wa.me/"+d:"";}
-function telHref(v){const d=String(v||"").replace(/[^\d+]/g,"");return d.replace(/\D/g,"").length>=8?"tel:"+d:"";}
+
 const phoneVal=(v,big)=>{if(!v)return "";const t=telHref(v),w=waLink(v);
   return '<span class="cval phone'+(big?' big':'')+'"><svg class="ic"><use href="#i-phone"/></svg>'+(t?'<a href="'+esc(t)+'" class="tel">'+esc(v)+'</a>':'<span>'+esc(v)+'</span>')+
     '<button type="button" data-copy="'+esc(v)+'" aria-label="Copiar teléfono"><svg class="ic"><use href="#i-copy"/></svg></button>'+
@@ -1767,6 +1786,18 @@ function renderContacts(){
   let h="";
   if(cc.phone<0) h+='<p class="note">'+ICON("i-warn")+'<span>Tu archivo no trae teléfonos. Agrega una columna o campo <b>telefono</b> a cada persona para verlo aquí, llamar o escribir por WhatsApp, y tenerlo en el PDF y el Excel.</span></p>';
   else{const miss=lg.flatMap(g=>g.members).filter(p=>!cc.tel(p.row)).length; if(miss) h+='<p class="note">'+ICON("i-warn")+'<span>'+plural(miss,"persona no tiene","personas no tienen")+' teléfono en el archivo.</span></p>';}
+  const rev=porRevisar();
+  if(rev.length&&cLevel==="all"&&cStatus==="all"){
+    h+='<section><div class="cgroup-h"><span class="cap unk"><i class="dot"></i>Revisar</span>'+
+      '<b>Comuna no reconocida</b><span class="foot">No se pudieron cruzar con las alertas</span></div>'+
+      '<p class="note" style="margin:8px 0">'+ICON("i-warn")+'<span>'+(rev.length===1?"Esta persona tiene":"Estas personas tienen")+
+      ' una comuna que no está escrita como en el listado oficial, así que la página no sabe si están en alerta. '+
+      'Contáctalas igual y corrige la comuna en tu archivo.</span></p><div class="list">'+
+      rev.map(p=>{const info=(cc.phone>=0?(phoneVal(cc.tel(p.row))||'<span class="cnone">Sin teléfono</span>'):'')+contactVal(cc.mail(p.row),"i-mail","correo");
+        return '<div class="crow"><span class="crow-main" style="cursor:default"><span class="cname">'+esc(p.row[0])+'</span><span class="csub">'+esc(p.row[1]||"(sin comuna)")+'</span></span>'+
+          '<div class="cinfo">'+(info||'<span class="cnone">Sin datos de contacto</span>')+'</div></div>';}).join("")+
+      '</div></section>';
+  }
   h+=groups.map(g=>{const a=g.ai.a;
     return '<section><div class="cgroup-h">'+cap(a.level)+'<b>'+esc(a.hazard)+'</b><span class="foot">'+esc(a.communes.join(", "))+'</span></div><div class="list">'+
       g.members.map(p=>{const s=stOf(p.idx), note=cnote.get(p.idx), sub=[p.row[1]].concat(cc.extra.map(i=>p.row[i]).filter(Boolean)).join(" · ");
@@ -1891,6 +1922,14 @@ function exportRows(){
     cc.extra.forEach(i=>{o[people.cols[i]]=p.row[i]||"";});
     o["Nota"]=cnote.get(p.idx)||""; rows.push(o);
   }
+  for(const p of porRevisar()){
+    const o={"Estado contacto":"Pendiente","Hora":"","Nivel":"Revisar comuna","Peligro":"Comuna no reconocida",
+      "Nombre":p.row[0],"Comuna":p.row[1]||"","Región":""};
+    if(cc.phone>=0) o["Teléfono"]=cc.tel(p.row);
+    if(cc.email>=0) o["Correo"]=cc.mail(p.row);
+    cc.extra.forEach(i=>{o[people.cols[i]]=p.row[i]||"";});
+    o["Nota"]=""; rows.push(o);
+  }
   return rows;
 }
 $("cCopy").onclick=()=>{
@@ -1978,6 +2017,19 @@ $("cPdf").onclick=async()=>{
           doc.setDrawColor(120,120,125);doc.setLineWidth(.8);doc.rect(x,yy,s,s);}}
       });
       y=doc.lastAutoTable.finalY+18;
+    }
+    const rev=porRevisar();
+    if(rev.length){
+      doc.autoTable({startY:y,margin:{left:M,right:M,top:40,bottom:40},theme:"grid",
+        head:[[{content:"REVISAR  ·  Comuna no reconocida: no se pudo verificar si están en alerta  ·  Corregir en el archivo",colSpan:head.length,
+               styles:{fillColor:[90,90,95],textColor:[255,255,255],fontStyle:"bold",fontSize:10}}],head],
+        body:rev.map(p=>{const r=["",p.row[0],p.row[1]||""];if(cc.phone>=0)r.push(cc.tel(p.row));if(cc.email>=0)r.push(cc.mail(p.row));ex.forEach(i=>r.push(p.row[i]||""));r.push("");return r;}),
+        styles:{font:"helvetica",fontSize:9,cellPadding:{top:6,bottom:6,left:6,right:6},lineColor:[210,210,215],lineWidth:.5,textColor:[29,29,31],valign:"middle"},
+        headStyles:{fillColor:[242,242,247],textColor:[90,90,95],fontStyle:"bold"},
+        columnStyles:{0:{cellWidth:78,fontStyle:"bold"},[head.length-1]:{cellWidth:170}},
+        didDrawCell:d=>{if(d.section==="body"&&d.column.index===0){const sz=10,x=d.cell.x+8,yy=d.cell.y+d.cell.height/2-sz/2;
+          doc.setDrawColor(120,120,125);doc.setLineWidth(.8);doc.rect(x,yy,sz,sz);}}
+      });
     }
     const n=doc.getNumberOfPages();
     for(let i=1;i<=n;i++){doc.setPage(i);doc.setFont("helvetica","normal");doc.setFontSize(8);doc.setTextColor(130,130,135);
