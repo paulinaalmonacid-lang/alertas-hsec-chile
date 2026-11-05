@@ -73,7 +73,14 @@ La configuración vive en **Settings → Secrets and variables → Actions**, nu
 | `SMTP_CLAVE` | Una **contraseña de aplicación**, nunca la contraseña normal de la cuenta |
 | `DESTINATARIOS` | Los correos que reciben los avisos, separados por comas o saltos de línea |
 
-Para que alguien reciba solo ciertas regiones, se escribe su correo seguido de una barra vertical y los códigos: `persona@empresa.cl|08,13` avisa solo de Biobío y Metropolitana. Sin barra, recibe todas.
+Para que alguien reciba solo ciertas regiones, se escribe su correo seguido de una barra vertical y los códigos: `persona@empresa.cl|08,13` avisa solo de Biobío y Metropolitana. Sin barra, recibe todas. Varios correos van separados por coma o por salto de línea:
+
+```
+paulina@empresa.cl
+jefatura@empresa.cl|08,13
+```
+
+**Para probar que llegan:** pestaña **Actions** → *Actualizar alertas SENAPRED* → **Run workflow**, marcar *Enviar un correo de prueba* y ejecutar. Manda un correo de prueba a cada destinatario sin tocar SENAPRED, y en el registro de la tarea queda cuántos destinatarios hay y con qué regiones, con las direcciones tapadas a medias.
 
 Si el correo de salida no es de iCloud, se agregan dos *variables* (no secretos) en la misma pantalla: `SMTP_SERVIDOR` y `SMTP_PUERTO`. Para Gmail son `smtp.gmail.com` y `587`.
 

@@ -5,13 +5,16 @@ Lee los cambios que detecto el lector (cambios.json) y escribe a cada persona
 inscrita, filtrando por las regiones que le interesan.
 
 Uso: python tools/avisar_correo.py cambios.json
+     python tools/avisar_correo.py --prueba   (envia un correo de prueba a todos)
 
 Configuracion, toda por variables de entorno (secretos del repositorio):
   SMTP_USUARIO     correo desde el que se envia, p.ej. nombre@icloud.com
   SMTP_CLAVE       contrasena de aplicacion (NO la contrasena normal de la cuenta)
-  DESTINATARIOS    lista separada por comas o saltos de linea. Cada entrada puede
-                   ser "correo@empresa.cl" (todas las regiones) o
-                   "correo@empresa.cl|08,13" (solo esas regiones).
+  DESTINATARIOS    uno o varios correos, separados por comas o saltos de linea.
+                   Cada entrada puede ser "correo@empresa.cl" (todas las
+                   regiones) o "correo@empresa.cl|08,13" para recibir solo
+                   esas regiones. Dentro de la lista de regiones sirven tanto
+                   la coma como el punto y coma.
   SMTP_SERVIDOR    opcional, por defecto smtp.mail.me.com (iCloud)
   SMTP_PUERTO      opcional, por defecto 587
   PAGINA_URL       opcional, el enlace que se incluye en el correo
@@ -39,21 +42,30 @@ TITULOS = {
 }
 
 
+# Un correo, opcionalmente seguido de "|" y sus regiones. Se busca asi, y no
+# cortando por comas, porque la lista de regiones tambien puede llevar comas:
+# "ana@empresa.cl, beto@empresa.cl|08,13" son dos entradas, no tres.
+ENTRADA_RE = re.compile(r"([^\s,;|<>\"]+@[^\s,;|<>\"]+\.[a-zA-Z]{2,})\s*(?:\|\s*([0-9\s,;]*))?")
+
+
 def destinatarios():
     """Devuelve [(correo, {codigos de region} o None para todas)]."""
     crudo = os.environ.get("DESTINATARIOS", "")
-    salida = []
-    for linea in re.split(r"[,\n]", crudo):
-        linea = linea.strip()
-        if not linea:
-            continue
-        correo, _, regs = linea.partition("|")
+    salida, vistos = [], set()
+    for correo, regs in ENTRADA_RE.findall(crudo):
         correo = correo.strip()
         if not CORREO_RE.match(correo):
             print("Se ignora una entrada con formato de correo invalido.")
             continue
-        codigos = {r.strip().zfill(2) for r in regs.split(";") if r.strip()} if regs.strip() else None
+        if correo.lower() in vistos:
+            print("Se ignora un correo repetido.")
+            continue
+        vistos.add(correo.lower())
+        codigos = {r.strip().zfill(2) for r in re.split(r"[;,]", regs) if r.strip()} if regs.strip() else None
         salida.append((correo, codigos))
+    sobra = ENTRADA_RE.sub("", crudo).strip(" ,;\n\t")
+    if sobra:
+        print("Hay texto en DESTINATARIOS que no parece un correo y se ignora: %r" % sobra[:60])
     return salida
 
 
@@ -104,21 +116,58 @@ def cuerpo(cambios, pagina):
     return "\n".join(lineas)
 
 
+def tapado(correo):
+    """Muestra el correo a medias, para poder revisarlo en el registro publico
+    de la tarea sin dejar la direccion completa a la vista."""
+    usuario, _, dominio = correo.partition("@")
+    return (usuario[:2] + "*" * max(1, len(usuario) - 2)) + "@" + dominio
+
+
+def cuerpo_prueba(correo, codigos, pagina):
+    donde = "todas las regiones" if codigos is None else ", ".join(
+        REGIONES.get(r, r) for r in sorted(codigos))
+    return "\n".join([
+        "Esto es una prueba. No hay ninguna alerta nueva.",
+        "",
+        "Si estas leyendo este correo, los avisos de Alertas HSEC por Comuna",
+        "estan bien configurados y te llegaran cuando SENAPRED declare, suba de",
+        "nivel o cancele una Alerta Roja o Amarilla.",
+        "",
+        "Tu correo: %s" % correo,
+        "Regiones que recibes: %s" % donde,
+        "",
+        "La pagina: %s" % pagina,
+        "Fuente oficial: https://senapred.cl/alertas/",
+    ])
+
+
 def main():
     if len(sys.argv) != 2:
-        print("Uso: avisar_correo.py <cambios.json>"); sys.exit(2)
-    try:
-        cambios = json.load(open(sys.argv[1], encoding="utf-8"))
-    except Exception:
+        print("Uso: avisar_correo.py <cambios.json> | --prueba"); sys.exit(2)
+    prueba = sys.argv[1] == "--prueba"
+    if prueba:
         cambios = []
-    if not cambios:
-        print("Sin cambios que avisar."); return
+    else:
+        try:
+            cambios = json.load(open(sys.argv[1], encoding="utf-8"))
+        except Exception:
+            cambios = []
+        if not cambios:
+            print("Sin cambios que avisar."); return
 
     gente = destinatarios()
+    if prueba:
+        print("Destinatarios configurados: %d" % len(gente))
+        for correo, codigos in gente:
+            print("  - %s · %s" % (tapado(correo),
+                  "todas las regiones" if codigos is None else ",".join(sorted(codigos))))
     usuario, clave = os.environ.get("SMTP_USUARIO", "").strip(), os.environ.get("SMTP_CLAVE", "")
     if not gente or not usuario or not clave:
-        print("Avisos por correo no configurados todavia (faltan DESTINATARIOS, SMTP_USUARIO o SMTP_CLAVE).")
-        print("Hubo %d cambio(s) oficial(es); no se envio ningun correo." % len(cambios))
+        falta = [n for n in ("DESTINATARIOS", "SMTP_USUARIO", "SMTP_CLAVE")
+                 if not os.environ.get(n, "").strip()]
+        print("Avisos por correo no configurados todavia. Falta: %s" % (", ".join(falta) or "revisar el formato de DESTINATARIOS"))
+        if not prueba:
+            print("Hubo %d cambio(s) oficial(es); no se envio ningun correo." % len(cambios))
         return
 
     servidor = os.environ.get("SMTP_SERVIDOR", "smtp.mail.me.com").strip()
@@ -131,21 +180,25 @@ def main():
         s.starttls(context=contexto)
         s.login(usuario, clave)
         for correo, codigos in gente:
-            suyos = [c for c in cambios if codigos is None or (para(c) & codigos)]
-            if not suyos:
-                omitidos += 1
-                continue
+            if prueba:
+                suyos = None
+            else:
+                suyos = [c for c in cambios if codigos is None or (para(c) & codigos)]
+                if not suyos:
+                    omitidos += 1
+                    continue
             msg = EmailMessage()
             msg["From"] = usuario
             msg["To"] = correo
-            msg["Subject"] = asunto(suyos)
-            msg.set_content(cuerpo(suyos, pagina))
+            msg["Subject"] = "[Alertas HSEC] Prueba de aviso" if prueba else asunto(suyos)
+            msg.set_content(cuerpo_prueba(correo, codigos, pagina) if prueba else cuerpo(suyos, pagina))
             try:
                 s.send_message(msg)
                 enviados += 1
             except Exception as e:
                 fallidos.append("%s (%s)" % (correo, type(e).__name__))
-    print("Correos enviados: %d · sin cambios en sus regiones: %d" % (enviados, omitidos))
+    print(("Correos de prueba enviados: %d" % enviados) if prueba
+          else ("Correos enviados: %d · sin cambios en sus regiones: %d" % (enviados, omitidos)))
     if fallidos:
         print("No se pudo enviar a: " + ", ".join(fallidos))
 
