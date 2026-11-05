@@ -1,0 +1,2270 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Alertas HSEC por Comuna</title>
+<meta name="description" content="Cruza las Alertas Rojas y Amarillas oficiales de SENAPRED con la nómina de personas de tu empresa. La nómina se lee solo en tu navegador: no se sube a ningún servidor.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
+<meta name="referrer" content="no-referrer">
+<meta property="og:title" content="Alertas HSEC por Comuna">
+<meta property="og:description" content="Alertas SENAPRED cruzadas con tu nómina, sin subir datos de nadie.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23d70015'/%3E%3Cpath d='M16 7.5 26 25H6z' fill='%23fff'/%3E%3Crect x='14.8' y='13' width='2.4' height='6' rx='1.2' fill='%23d70015'/%3E%3Ccircle cx='16' cy='21.6' r='1.3' fill='%23d70015'/%3E%3C/svg%3E">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{min-height:100vh}</style>
+</head>
+<body>
+<style>
+/* Layout: estilo Apple HIG — título grande, mapa en tarjeta redondeada con controles en material translúcido, barra lateral de listas agrupadas; debajo tarjetas de alerta y lista de personas */
+:root{
+  --bg:#f2f2f7; --card:#ffffff; --card-2:#f2f2f7;
+  --label:#1d1d1f; --label-2:rgba(55,55,61,.78); --label-3:rgba(60,60,67,.46);
+  --sep:rgba(60,60,67,.16); --fill:rgba(118,118,128,.12); --fill-2:rgba(118,118,128,.08);
+  --blue:#007aff; --red:#ff3b30; --yellow:#ffcc00; --yellow-ink:#9a6a00; --green:#34c759; --green-ink:#248a3d; --gray:#8e8e93;
+  --red-tint:rgba(255,59,48,.12); --yellow-tint:rgba(255,204,0,.20); --green-tint:rgba(52,199,89,.14);
+  --reg-y:#fff8db; --reg-r:#ffeceb; --com-y:#ffe58f; --com-r:#ffb8b3;
+  --sea:#dbe8f3; --land:#ffffff; --land-hover:#eef3f9; --region-line:#b8c2ce; --commune-line:#d6dce4;
+  --material:rgba(255,255,255,.76); --shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.06);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI Variable Text","Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
+  --font-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
+  --font-rounded:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
+  --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --card:#1c1c1e; --card-2:#2c2c2e;
+  --label:#f5f5f7; --label-2:rgba(235,235,245,.62); --label-3:rgba(235,235,245,.3);
+  --sep:rgba(84,84,88,.55); --fill:rgba(118,118,128,.24); --fill-2:rgba(118,118,128,.16);
+  --blue:#0a84ff; --red:#ff453a; --yellow:#ffd60a; --yellow-ink:#ffd60a; --green:#30d158; --green-ink:#30d158; --gray:#8e8e93;
+  --red-tint:rgba(255,69,58,.22); --yellow-tint:rgba(255,214,10,.16); --green-tint:rgba(48,209,88,.16);
+  --reg-y:#38341f; --reg-r:#3e2a2a; --com-y:#6b5d1c; --com-r:#7a3530;
+  --sea:#0d1824; --land:#2c2c2e; --land-hover:#3a3a3c; --region-line:#55555a; --commune-line:#3d3d41;
+  --material:rgba(44,44,46,.74); --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#000000; --card:#1c1c1e; --card-2:#2c2c2e;
+  --label:#f5f5f7; --label-2:rgba(235,235,245,.62); --label-3:rgba(235,235,245,.3);
+  --sep:rgba(84,84,88,.55); --fill:rgba(118,118,128,.24); --fill-2:rgba(118,118,128,.16);
+  --blue:#0a84ff; --red:#ff453a; --yellow:#ffd60a; --yellow-ink:#ffd60a; --green:#30d158; --green-ink:#30d158; --gray:#8e8e93;
+  --red-tint:rgba(255,69,58,.22); --yellow-tint:rgba(255,214,10,.16); --green-tint:rgba(48,209,88,.16);
+  --reg-y:#38341f; --reg-r:#3e2a2a; --com-y:#6b5d1c; --com-r:#7a3530;
+  --sea:#0d1824; --land:#2c2c2e; --land-hover:#3a3a3c; --region-line:#55555a; --commune-line:#3d3d41;
+  --material:rgba(44,44,46,.74); --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35); color-scheme:dark}
+[hidden]{display:none!important}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--label);font:15px/1.47 var(--font);letter-spacing:-.009em;-webkit-font-smoothing:antialiased;
+  padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+@media (max-width:600px){body{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 48px}}
+.wrap{max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1{font:700 34px/1.12 var(--font-display);letter-spacing:.004em;margin:0;text-wrap:balance}
+h2{font:700 22px/1.25 var(--font-display);letter-spacing:.01em;margin:0}
+h3{font:600 17px/1.3 var(--font);letter-spacing:-.02em;margin:0}
+p{margin:0}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.sub{color:var(--label-2);font-size:15px}
+.foot{font-size:13px;color:var(--label-2);line-height:1.4}
+.caption{font-size:12px;color:var(--label-2)}
+.sect{font-size:13px;color:var(--label-2);text-transform:uppercase;letter-spacing:.02em;padding:0 16px 6px}
+svg.ic{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tnum{font-variant-numeric:tabular-nums}
+
+header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 20px;flex-wrap:wrap}
+header.top .t{display:flex;flex-direction:column;gap:4px;min-width:0}
+.status-pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px 7px 10px;border-radius:999px;background:var(--card);box-shadow:var(--shadow);font-size:13px;color:var(--label-2)}
+.status-pill b{color:var(--label);font-weight:600;font-variant-numeric:tabular-nums}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.dot.g{background:var(--green)} .dot.r{background:var(--red)} .dot.y{background:var(--yellow)} .dot.k{background:var(--gray)}
+.privacy{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--label-2)}
+.privacy svg{margin-top:2px;color:var(--green-ink)}
+
+.main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(320px,400px);gap:20px;align-items:start}
+@media (max-width:980px){.main{grid-template-columns:minmax(0,1fr)}}
+.side{display:flex;flex-direction:column;gap:20px;min-width:0}
+.group{display:flex;flex-direction:column;min-width:0}
+.card{background:var(--card);border-radius:14px;min-width:0}
+.pad{padding:16px}
+
+.mapcard{position:relative;background:var(--sea);border-radius:20px;overflow:hidden;height:min(820px,calc(100vh - 140px));min-height:540px;box-shadow:var(--shadow)}
+@media (max-width:980px){.mapcard{height:74vh;min-height:500px}}
+#map{width:100%;height:100%;display:block;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+#map.dragging{cursor:grabbing}
+#map .region{fill:var(--land);stroke:var(--region-line);stroke-width:.9;vector-effect:non-scaling-stroke;cursor:pointer;transition:fill .2s}
+#map .region:hover{fill:var(--land-hover)}
+#map .region.Amarilla{fill:var(--reg-y)}
+#map .region.Roja{fill:var(--reg-r)}
+#map .region.sel{stroke:var(--blue);stroke-width:2}
+#map .commune{fill:transparent;stroke:var(--commune-line);stroke-width:.6;vector-effect:non-scaling-stroke;pointer-events:none;stroke-opacity:var(--cl-op,0)}
+#map .commune.Amarilla{fill:var(--com-y);stroke:color-mix(in srgb,var(--yellow) 70%,#000);stroke-opacity:.55}
+#map .commune.Roja{fill:var(--com-r);stroke:var(--red);stroke-opacity:.6}
+#map .commune.sel{stroke:var(--blue);stroke-width:2;stroke-opacity:1}
+#map .leader{stroke:var(--label-3);stroke-width:.6;vector-effect:non-scaling-stroke;fill:none}
+#map .rlabel{fill:var(--label-2);font-family:var(--font);font-weight:500}
+#map .rlabel.Roja{fill:var(--red);font-weight:600} #map .rlabel.Amarilla{fill:var(--yellow-ink);font-weight:600}
+#map .zlabel{fill:var(--label-3);font-family:var(--font);font-weight:600;letter-spacing:.14em}
+#map .clabel{fill:var(--label);font-family:var(--font);font-weight:600;paint-order:stroke;stroke:var(--land);stroke-linejoin:round}
+#map .pin{cursor:pointer;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.28))}
+#map .pin:focus{outline:none}
+#map .pin:focus-visible circle.b{stroke:var(--blue)}
+#map .pin circle.b{stroke:#fff}
+#map .pin.Roja circle.b{fill:var(--red)} #map .pin.Amarilla circle.b{fill:var(--yellow)} #map .pin.gray circle.b{fill:var(--gray)}
+#map .pin text{fill:#fff;font-family:var(--font-rounded);font-weight:700;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+#map .pin.Amarilla text{fill:#1d1d1f}
+#map .pin.sel circle.b{stroke:var(--blue)}
+#map .halo{fill:none;stroke:var(--red);stroke-opacity:0}
+@media (prefers-reduced-motion:no-preference){#map .halo{animation:pulse 2.6s ease-out infinite;transform-box:fill-box;transform-origin:center}}
+@keyframes pulse{0%{stroke-opacity:.45;transform:scale(1)}100%{stroke-opacity:0;transform:scale(1.9)}}
+
+.mat{background:var(--material);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);box-shadow:var(--shadow)}
+.legend{position:absolute;top:66px;left:12px;width:min(264px,calc(100% - 84px));border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.lg-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.lg-head b{font-size:15px;font-weight:600;letter-spacing:-.02em}
+.lg-body{display:flex;flex-direction:column;gap:10px}
+.legend.collapsed{width:auto;padding:8px 8px 8px 12px}
+.legend.collapsed .lg-body{display:none}
+.keys{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px}
+.keys span{display:inline-flex;align-items:center;gap:6px}
+.iconbtn{width:28px;height:28px;border-radius:50%;border:0;background:var(--fill);color:var(--label-2);display:grid;place-items:center;cursor:pointer;padding:0;font-size:13px;flex:none}
+.iconbtn:hover{color:var(--label)}
+.iconbtn svg.ic{width:12px;height:12px;stroke-width:2.2}
+
+.ctrls{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.zgroup{display:flex;flex-direction:column;border-radius:12px;overflow:hidden}
+.zgroup button{width:44px;height:44px;border:0;background:transparent;color:var(--label);display:grid;place-items:center;cursor:pointer;padding:0}
+.zgroup button+button{border-top:.5px solid var(--sep)}
+.zgroup button:hover{background:var(--fill-2)}
+.zgroup button:active{background:var(--fill)}
+.zgroup svg.ic{width:18px;height:18px}
+.regsel{position:relative;border-radius:12px}
+.regsel select{appearance:none;-webkit-appearance:none;border:0;background:transparent;color:var(--label);font:500 13px var(--font);padding:0 30px 0 12px;height:44px;cursor:pointer;max-width:170px}
+.regsel svg{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--label-2);width:12px;height:12px}
+@media (max-width:600px){.ctrls{top:auto;bottom:12px}.regsel{display:none}}
+
+.tip{position:absolute;pointer-events:none;border-radius:10px;padding:8px 11px;font-size:13px;line-height:1.35;max-width:240px;z-index:5;color:var(--label)}
+.tip .caption{display:block}
+.maperr{position:absolute;inset:0;display:grid;place-items:center;color:var(--label-2);font-size:15px;padding:24px;text-align:center}
+.sheet{position:absolute;left:12px;right:68px;bottom:12px;border-radius:16px;padding:12px 14px;display:none;gap:4px;flex-direction:column}
+@media (max-width:980px){.sheet.on{display:flex}}
+.sheet .row{justify-content:space-between}
+
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tile{background:var(--card);border-radius:14px;padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.tile .k{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--label-2)}
+.tile .n{font:700 32px/1 var(--font-rounded);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.tile .s{font-size:12px;color:var(--label-2)}
+.tile.r .k,.tile.r .n{color:var(--red)}
+
+.list{background:var(--card);border-radius:14px;overflow:hidden}
+.li{display:flex;align-items:center;gap:12px;min-height:44px;padding:10px 16px;position:relative;width:100%;background:transparent;border:0;color:inherit;font:inherit;text-align:left;text-decoration:none}
+.li+.li::before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--sep)}
+button.li,a.li{cursor:pointer}
+button.li:hover,a.li:hover{background:var(--fill-2);text-decoration:none}
+button.li:active,a.li:active{background:var(--fill)}
+.li .main-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.li .t1{font-size:15px;font-weight:500;letter-spacing:-.015em}
+.li .t2{font-size:13px;color:var(--label-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.li .val{font:600 17px/1 var(--font-rounded);font-variant-numeric:tabular-nums;color:var(--label-2)}
+.li .chev{color:var(--label-3);width:8px;height:13px;stroke-width:2.2}
+.li.stack{flex-direction:column;align-items:stretch;gap:8px}
+.sym{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex:none;color:#fff}
+.sym.Roja{background:var(--red)} .sym.Amarilla{background:var(--yellow);color:#1d1d1f}
+.sym svg.ic{width:17px;height:17px;stroke-width:2}
+.when{font:600 22px/1.15 var(--font-rounded);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+.cap{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 9px 3px 8px;border-radius:999px;white-space:nowrap;line-height:1.35}
+.cap.Roja{background:var(--red-tint);color:var(--red)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cap.Roja,:root:not([data-theme="light"]) .chg.up,:root:not([data-theme="light"]) .sp.help{color:#ff8179}}
+:root[data-theme="dark"] .cap.Roja,:root[data-theme="dark"] .chg.up,:root[data-theme="dark"] .sp.help{color:#ff8179}
+.cap.Amarilla{background:var(--yellow-tint);color:var(--yellow-ink)}
+.cap.none{background:var(--green-tint);color:var(--green-ink)}
+.cap.unk{background:var(--fill);color:var(--label-2)}
+.cap.Roja .dot{background:var(--red)} .cap.Amarilla .dot{background:var(--yellow)} .cap.none .dot{background:var(--green)} .cap.unk .dot{background:var(--gray)}
+
+.tokens{display:flex;flex-wrap:wrap;gap:6px}
+.token{font-size:13px;padding:4px 10px;border-radius:999px;background:var(--fill-2);color:var(--label)}
+.token small{color:var(--label-2);font-size:12px}
+.empty{font-size:13px;color:var(--label-2)}
+
+.btn{font:600 15px/1 var(--font);letter-spacing:-.015em;border-radius:10px;padding:11px 16px;cursor:pointer;border:0;background:var(--fill);color:var(--blue);min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn:hover{background:color-mix(in srgb,var(--fill),var(--blue) 8%)}
+.btn.primary{background:var(--blue);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#6cb4ff}:root:not([data-theme="light"]) .btn.primary{background:#0a6fd8;color:#fff}:root:not([data-theme="light"]) .btn.danger,:root:not([data-theme="light"]) #btnClearPeople{color:#ff8179}}
+:root[data-theme="dark"] .btn{color:#6cb4ff}:root[data-theme="dark"] .btn.primary{background:#0a6fd8;color:#fff}:root[data-theme="dark"] .btn.danger,:root[data-theme="dark"] #btnClearPeople{color:#ff8179}
+.btn.primary:hover{background:color-mix(in srgb,var(--blue) 88%,#000)}
+.btn.plain{background:transparent;padding:8px 4px;min-height:0}
+.btn.sm{font-size:13px;padding:7px 12px;min-height:32px;border-radius:999px}
+.btn.danger{color:var(--red)}
+button:focus-visible,select:focus-visible,input:focus-visible,.drop:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent);outline-offset:1px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;cursor:pointer}
+.switch input{appearance:none;-webkit-appearance:none;width:42px;height:26px;border-radius:999px;background:var(--fill);position:relative;cursor:pointer;flex:none;margin:0;transition:background .2s}
+.switch input::after{content:"";position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2),0 0 0 .5px rgba(0,0,0,.04);transition:transform .2s}
+.switch input:checked{background:var(--green)}
+.switch input:checked::after{transform:translateX(16px)}
+
+.drop{border:1.5px dashed var(--label-3);border-radius:12px;padding:18px 14px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;display:flex;flex-direction:column;gap:4px;align-items:center}
+.drop:hover,.drop.over{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 6%,transparent)}
+.drop .ttl{font-weight:600;color:var(--blue);display:inline-flex;gap:6px;align-items:center}
+.drop input{display:none}
+.status{font-size:13px;color:var(--label-2)}
+.status.err{color:var(--red)}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:13px;padding:10px 12px;border-radius:10px;background:var(--yellow-tint);color:var(--label)}
+.note svg{color:var(--yellow-ink);margin-top:2px}
+.badge{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--fill);color:var(--label-2);white-space:nowrap}
+.badge.ex{background:var(--yellow-tint);color:var(--yellow-ink)}
+.badge.ok{background:var(--green-tint);color:var(--green-ink)}
+details>summary{cursor:pointer;color:var(--blue);font-size:15px;list-style:none;display:inline-flex;align-items:center;gap:6px}
+details>summary::-webkit-details-marker{display:none}
+details>summary svg.ic{transition:transform .2s;width:8px;height:12px;stroke-width:2.2}
+details[open]>summary svg.ic{transform:rotate(90deg)}
+.fmt table{border-collapse:collapse;margin-top:8px;font-size:12px;font-family:var(--font-mono)}
+.fmt td,.fmt th{border:.5px solid var(--sep);padding:4px 8px;text-align:left}
+.fmt code{font-family:var(--font-mono);font-size:12px}
+pre.code{margin:8px 0 0;padding:10px 12px;border-radius:10px;background:var(--card-2);color:var(--label);font:12px/1.5 var(--font-mono);overflow-x:auto;white-space:pre}
+
+.sec-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:16px}
+.acard{background:var(--card);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.acard .top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;background:var(--card-2);border-radius:10px;padding:10px 12px}
+.meta div{display:flex;flex-direction:column;gap:1px;min-width:0}
+.meta span{font-size:12px;color:var(--label-2)}
+.meta b{font-weight:500;font-size:13px;font-variant-numeric:tabular-nums}
+.acard .count{display:flex;align-items:baseline;gap:6px}
+.acard .count b{font:700 22px/1 var(--font-rounded)}
+
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;background:var(--fill);border-radius:9px;padding:2px;gap:2px;max-width:100%;overflow-x:auto}
+.seg button{border:0;background:transparent;color:var(--label);font:500 13px var(--font);padding:7px 12px;border-radius:7px;cursor:pointer;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04);font-weight:600}
+.search{position:relative;flex:1 1 240px;min-width:0}
+.search input{width:100%;border:0;background:var(--fill);border-radius:10px;padding:9px 12px 9px 34px;font:15px var(--font);color:var(--label);min-height:38px}
+.search input::placeholder{color:var(--label-2)}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--label-2);width:16px;height:16px}
+
+.tbl-wrap{overflow-x:auto;background:var(--card);border-radius:14px}
+table.t{border-collapse:collapse;width:100%;font-size:14px}
+table.t th{font-size:12px;font-weight:600;color:var(--label-2);text-align:left;padding:12px 16px 8px;white-space:nowrap}
+table.t td{padding:10px 16px;border-top:.5px solid var(--sep);vertical-align:middle}
+table.t td.nm{font-weight:500}
+.more{padding:12px 16px;border-top:.5px solid var(--sep);font-size:13px;color:var(--label-2)}
+
+.manage{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;margin-top:14px}
+form.add{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+form.add .full{grid-column:1/-1}
+label.f{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--label-2)}
+.field{font:15px var(--font);padding:10px 12px;border:0;border-radius:10px;background:var(--fill);color:var(--label);width:100%;min-width:0;min-height:44px}
+.al-x{border:0;background:transparent;color:var(--red);font:500 13px var(--font);cursor:pointer;padding:6px 4px}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,10px);border-radius:999px;padding:11px 18px;font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:20;color:var(--label)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+textarea.copybox{width:100%;min-height:140px;font:12px var(--font-mono);background:var(--card);color:var(--label);border:0;border-radius:12px;padding:12px}
+footer{font-size:12px;color:var(--label-2);max-width:92ch;line-height:1.5}
+footer a,.help-body p a,.hcard p a{text-decoration:underline;text-underline-offset:2px}
+
+/* computador: pestañas flotantes arriba */
+@media (min-width:761px){
+  nav.tabbar{display:flex;gap:2px;position:sticky;top:calc(10px + env(safe-area-inset-top,0px));z-index:25;align-self:center;padding:4px;border-radius:999px;
+    background:var(--material);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);box-shadow:var(--shadow),0 0 0 .5px var(--sep)}
+  .tabbar button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:999px;color:var(--label);font:500 14px var(--font);position:relative;letter-spacing:-.01em}
+  .tabbar button svg.ic{width:18px;height:18px;stroke-width:1.8;color:var(--label-2)}
+  .tabbar button:hover{background:var(--fill-2)}
+  .tabbar button[aria-current="page"]{background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04);color:var(--blue);font-weight:600}
+  .tabbar button[aria-current="page"] svg.ic{color:var(--blue)}
+  .tabbar button:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent)}
+  .tb-badge{min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--red);color:#fff;font:600 11px/18px var(--font-rounded);font-style:normal;text-align:center}
+  .tb-badge.y{background:var(--yellow);color:#1d1d1f}
+  .wrap [data-dtab]{display:none!important}
+  body[data-tab="mapa"] .wrap [data-dtab~="mapa"]:not([hidden]),body[data-tab="alertas"] .wrap [data-dtab~="alertas"]:not([hidden]),body[data-tab="contacto"] .wrap [data-dtab~="contacto"]:not([hidden]),
+  body[data-tab="oficinas"] .wrap [data-dtab~="oficinas"]:not([hidden]),body[data-tab="planilla"] .wrap [data-dtab~="planilla"]:not([hidden]){display:flex!important}
+  body[data-tab="mapa"] .wrap #tiles,body[data-tab="alertas"] .wrap #tiles{display:grid!important}
+  body[data-tab="planilla"] .wrap footer[data-dtab~="planilla"]:not([hidden]){display:block!important}
+  body:not([data-tab="mapa"]) .main{grid-template-columns:minmax(0,1fr)}
+  body:not([data-tab="mapa"]) .side{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;align-items:start}
+  body[data-tab="alertas"] .side{grid-template-columns:minmax(0,2fr) minmax(300px,1fr)}
+  body[data-tab="alertas"] #tiles{grid-template-columns:repeat(4,minmax(0,1fr))}
+  body[data-tab="contacto"] .side{grid-template-columns:minmax(0,1fr)}
+  body[data-tab="contacto"] .side:has(#follow:not([hidden])){grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  body[data-tab="contacto"] #btnContacts{grid-column:1/-1;min-height:52px;font-size:16px}
+  body[data-tab="oficinas"] .side,body[data-tab="planilla"] .side{max-width:760px;width:100%;margin:0 auto;grid-template-columns:minmax(0,1fr)}
+  body[data-tab="planilla"] section[data-dtab],body[data-tab="planilla"] footer{max-width:760px;width:100%;margin:0 auto}
+  .mapcard{height:min(820px,calc(100vh - 190px))}
+}
+@media (min-width:761px) and (max-width:980px){body[data-tab="alertas"] .side{grid-template-columns:minmax(0,1fr)} body[data-tab="alertas"] #tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* formato celular: pestañas */
+.tabbar{display:none}
+.mob-only{display:none}
+@media (max-width:760px){
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+  .wrap{gap:14px}
+  header.top{gap:8px;align-items:center;flex-wrap:nowrap}
+  header.top .t{gap:2px}
+  header.top h1{font-size:24px}
+  header.top .sub{display:none}
+  .brand img{height:28px}
+  #btnHelp{font-size:0;gap:0;padding:0;width:36px;height:36px;min-height:36px;border-radius:50%}
+  #btnHelp svg.ic{width:18px;height:18px}
+  #btnCompany span,#btnCompany{font-size:0;gap:0;padding:0;width:36px;height:36px;min-height:36px;border-radius:50%}
+  #btnCompany svg.ic{width:18px;height:18px}
+  .status-pill{display:none}
+  .main{gap:14px}
+  .side{gap:14px}
+  .wrap [data-tab]{display:none!important}
+  body[data-tab="mapa"] .wrap [data-tab~="mapa"]:not([hidden]),body[data-tab="alertas"] .wrap [data-tab~="alertas"]:not([hidden]),body[data-tab="contacto"] .wrap [data-tab~="contacto"]:not([hidden]),
+  body[data-tab="oficinas"] .wrap [data-tab~="oficinas"]:not([hidden]),body[data-tab="planilla"] .wrap [data-tab~="planilla"]:not([hidden]){display:flex!important}
+  body[data-tab="alertas"] .wrap #tiles{display:grid!important}
+  body[data-tab="planilla"] .wrap footer[data-tab~="planilla"]:not([hidden]){display:block!important}
+  body[data-tab="mapa"] .mapcard{height:calc(100dvh - 76px - 96px - env(safe-area-inset-bottom,0px) - env(safe-area-inset-top,0px));min-height:420px}
+  body[data-tab="mapa"] .wrap{gap:10px}
+  .sheet{right:68px}
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:25;
+    padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));
+    background:var(--material);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid var(--sep)}
+  .tabbar button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0;color:var(--label-2);font:500 10.5px var(--font);position:relative;-webkit-tap-highlight-color:transparent}
+  .tabbar button svg.ic{width:24px;height:24px;stroke-width:1.7}
+  .tabbar button[aria-current="page"]{color:var(--blue)}
+  .tabbar button:focus-visible{outline:2px solid var(--blue);border-radius:8px}
+  .tb-badge{position:absolute;top:0;left:calc(50% + 6px);min-width:17px;height:17px;padding:0 5px;border-radius:999px;background:var(--red);color:#fff;font:600 11px/17px var(--font-rounded);font-style:normal;text-align:center}
+  .tb-badge.y{background:var(--yellow);color:#1d1d1f}
+  .mob-only{display:flex}
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .acard{padding:14px}
+}
+
+/* avisos por correo */
+.rchips{display:flex;flex-wrap:wrap;gap:6px}
+.rchips button{border:0;background:var(--fill);color:var(--label);font:500 12.5px var(--font);padding:6px 10px;border-radius:999px;cursor:pointer}
+.rchips button[aria-pressed="true"]{background:var(--blue);color:#fff}
+form.li.stack{gap:10px}
+
+/* empresa y oficinas */
+.brand{display:none;align-items:center;gap:10px;margin-bottom:6px}
+.brand.has{display:flex}
+.brand img{height:36px;width:auto;max-width:180px;object-fit:contain;background:#fff;border-radius:8px;padding:4px 8px;box-shadow:0 0 0 .5px var(--sep)}
+.brand span{font-size:13px;font-weight:600;color:var(--label-2);text-transform:uppercase;letter-spacing:.06em}
+.sym.off{background:var(--blue)}
+.sym.off.Roja{box-shadow:0 0 0 2.5px var(--red)}
+.sym.off.Amarilla{box-shadow:0 0 0 2.5px var(--yellow)}
+.okey{width:10px;height:10px;border-radius:3px;background:var(--blue);display:inline-block}
+#map .office{cursor:pointer;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.3))}
+#map .office:focus{outline:none}
+#map .office .ob{fill:var(--blue);stroke:#fff}
+#map .office.Roja .ob{stroke:var(--red)} #map .office.Amarilla .ob{stroke:var(--yellow)}
+#map .office.sel .ob,#map .office:focus-visible .ob{stroke:var(--label)}
+#map .office .oi{fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.logo-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.logo-prev{width:180px;height:72px;border-radius:12px;background:#fff;box-shadow:inset 0 0 0 .5px var(--sep);display:grid;place-items:center;padding:8px;flex:none}
+.logo-prev img{max-width:100%;max-height:100%;object-fit:contain}
+.logo-prev .caption{color:#8e8e93}
+form.card.add{display:grid;grid-template-columns:1fr;gap:10px}
+
+/* grupos y búsqueda */
+.sect-row{display:flex;align-items:center;gap:6px}
+.minisel{position:relative;display:inline-flex;align-items:center}
+.minisel select{appearance:none;-webkit-appearance:none;border:0;background:var(--fill);color:var(--label);font:600 12.5px var(--font);text-transform:none;letter-spacing:0;padding:4px 24px 4px 9px;border-radius:999px;cursor:pointer}
+.minisel svg{position:absolute;right:8px;width:10px;height:10px;pointer-events:none;color:var(--label-2)}
+.gbars{display:flex;flex-direction:column;gap:4px}
+.gbar{all:unset;box-sizing:border-box;display:grid;grid-template-columns:minmax(70px,34%) 1fr auto;gap:10px;align-items:center;padding:7px 8px;border-radius:10px;cursor:pointer}
+.gbar:hover{background:var(--fill-2)}
+.gbar.on{background:color-mix(in srgb,var(--blue) 12%,transparent)}
+.gbar:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent)}
+.gl{font-size:13px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gt{display:flex;height:10px;border-radius:999px;background:var(--fill);overflow:hidden;min-width:6px}
+.gt i{display:block;height:100%}
+.gt i.r{background:var(--red)} .gt i.a{background:var(--yellow)}
+.gn{font-size:12px;color:var(--label-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.gn b{color:var(--label);font-weight:600}
+.fchip{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 8px 14px;border-radius:12px;background:color-mix(in srgb,var(--blue) 12%,var(--card));font-size:13px}
+.csearch{position:absolute;top:12px;left:12px;width:min(264px,calc(100% - 84px));height:44px;border-radius:12px;display:flex;align-items:center;gap:8px;padding:0 12px;color:var(--label-2)}
+.csearch svg.ic{width:16px;height:16px;flex:none}
+.csearch input{all:unset;flex:1;min-width:0;font:15px var(--font);color:var(--label)}
+.csearch input::placeholder{color:var(--label-2)}
+.csearch:focus-within{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent)}
+@media (max-width:600px){.csearch{width:calc(100% - 24px)}}
+
+/* novedades */
+.chg{display:inline-flex;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap;margin-top:3px;width:max-content}
+.chg.new{background:color-mix(in srgb,var(--blue) 14%,transparent);color:var(--blue)}
+.chg.up{background:var(--red-tint);color:var(--red)}
+.chg.down{background:var(--green-tint);color:var(--green-ink)}
+.chg.upd{background:var(--fill);color:var(--label-2)}
+.row .chg{margin-top:0}
+#map .pin .nb{fill:var(--blue);stroke:#fff}
+.sym.done{background:var(--gray)}
+.acard.cancelled{background:transparent;border:1px dashed var(--label-3)}
+details.tl>summary{font-size:13px}
+details.tl ol{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column}
+details.tl li{display:grid;grid-template-columns:14px 1fr;gap:10px;position:relative;padding-bottom:10px}
+details.tl li:not(:last-child)::before{content:"";position:absolute;left:6px;top:14px;bottom:0;border-left:1.5px solid var(--sep)}
+details.tl li b{font-size:13px;font-weight:600;display:block}
+details.tl .tl-dot{width:12px;height:12px;border-radius:50%;margin-top:3px;background:var(--gray);box-shadow:0 0 0 3px var(--card)}
+details.tl li.Roja .tl-dot{background:var(--red)} details.tl li.Amarilla .tl-dot{background:var(--yellow)}
+
+/* lista de contacto */
+.chipbar{display:flex;gap:6px;flex-wrap:wrap}
+.chipbar button{border:0;background:var(--fill);color:var(--label);font:500 13px var(--font);padding:6px 11px;border-radius:999px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chipbar button .n{font:600 12px var(--font-rounded);color:var(--label-2)}
+.chipbar button[aria-pressed="true"]{background:var(--label);color:var(--bg)}
+.chipbar button[aria-pressed="true"] .n{color:inherit;opacity:.75}
+.sp{display:inline-block;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.sp.pending{background:var(--fill);color:var(--label-2)}
+.sp.ok{background:var(--green-tint);color:var(--green-ink)}
+.sp.noans{background:var(--yellow-tint);color:var(--yellow-ink)}
+.sp.help{background:var(--red-tint);color:var(--red)}
+.crow-main{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:1px;min-width:0;border-radius:8px}
+.crow-main:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent);outline-offset:4px}
+.crow-main:hover .cname{color:var(--blue)}
+.cval a.tel{color:var(--label);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cval a.tel:hover{color:var(--blue)}
+.cval a.wa{font-size:12px;font-weight:600;color:#fff;background:#25d366;padding:4px 9px;border-radius:999px;text-decoration:none;flex:none}
+.cval.big a.wa{font-size:14px;padding:7px 12px}
+.cval.phone{font-weight:600}
+.cnote{font-size:13px;color:var(--label);font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cstate{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.bar.wide{width:100%;height:4px}
+.guide{display:flex;flex-direction:column;gap:14px;max-width:560px;margin:0 auto;width:100%;padding-top:4px}
+.g-head{display:flex;justify-content:space-between;align-items:center}
+.g-card{background:var(--card);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.g-name{font:700 28px/1.15 var(--font-display);letter-spacing:.003em}
+.g-contact{display:flex;flex-direction:column;gap:8px}
+.cval.big{font-size:19px;font-weight:600;gap:10px}
+.cval.big button{width:34px;height:34px}
+.cval.big button svg.ic{width:16px;height:16px}
+.g-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.act{border:0;border-radius:14px;min-height:64px;font:600 15px var(--font);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;color:#fff}
+.act svg.ic{width:20px;height:20px;stroke-width:2.2}
+.act.ok{background:var(--green)} .act.noans{background:var(--gray)} .act.help{background:var(--red)}
+.act:hover{filter:brightness(.95)} .act:active{transform:scale(.98)}
+.g-nav{display:flex;justify-content:space-between}
+.g-done{align-items:center;text-align:center}
+.g-check{width:64px;height:64px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center}
+.g-check svg.ic{width:32px;height:32px;stroke-width:2.6}
+.g-sum{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:100%}
+.g-sum div{background:var(--card-2);border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.g-sum b{font:700 24px/1 var(--font-rounded)}
+.g-sum span{font-size:12px;color:var(--label-2)}
+.g-sum .ok b{color:var(--green-ink)} .g-sum .noans b{color:var(--yellow-ink)} .g-sum .help b{color:var(--red)}
+.g-sum.sm b{font-size:20px}
+.overlay.guiding .dlg-tools{display:none}
+@media (max-width:600px){.overlay.guiding .dlg-foot{display:none}.guide{gap:10px}.g-card{padding:16px;gap:10px}}
+textarea.field{resize:vertical;min-height:60px;font:15px/1.4 var(--font)}
+@media (max-width:600px){.g-actions{grid-template-columns:1fr}.act{flex-direction:row;min-height:52px}.g-name{font-size:24px}.cstate{grid-column:2;align-items:flex-start;flex-direction:row;gap:8px}}
+.btn.block{width:100%}
+.btn .ct{font:600 13px/1 var(--font-rounded);background:rgba(255,255,255,.22);padding:3px 8px;border-radius:999px}
+.btn:disabled{opacity:.45;cursor:default}
+.overlay{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.32);display:flex;align-items:center;justify-content:center;
+  padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.dialog{background:var(--bg);border-radius:20px;width:min(920px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+@media (max-width:600px){.overlay{padding:0;align-items:flex-end}.dialog{border-radius:16px 16px 0 0;max-height:94%;height:94%}}
+.dlg-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:18px 20px 12px;background:var(--bg)}
+.dlg-head h2{font-size:22px}
+.dlg-tools{display:flex;gap:10px 14px;flex-wrap:wrap;align-items:center;padding:0 20px 12px}
+.dlg-body{overflow:auto;padding:0 20px 16px;display:flex;flex-direction:column;gap:16px;flex:1;min-height:0}
+.dlg-foot{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:12px 20px calc(14px + env(safe-area-inset-bottom,0px));border-top:.5px solid var(--sep);background:var(--material);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px)}
+.dlg-foot .row{gap:8px}
+.progress{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--label-2)}
+.bar{width:120px;height:6px;border-radius:999px;background:var(--fill);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--green);border-radius:999px;transition:width .25s}
+.cgroup-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:0 4px 6px}
+.cgroup-h b{font-size:15px;font-weight:600}
+.cgroup-h span.foot{flex-basis:100%}
+.crow{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:14px;align-items:center;padding:11px 16px;position:relative}
+.crow+.crow::before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--sep)}
+.crow.s-ok .cname{color:var(--label-2)}
+.chk{position:relative;width:24px;height:24px;flex:none;cursor:pointer}
+.chk input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.chk span{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--label-3);display:grid;place-items:center;transition:background .15s,border-color .15s}
+.chk input:checked+span{background:var(--green);border-color:var(--green)}
+.chk input:checked+span::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.2px 2.2px 0;transform:translateY(-1px) rotate(45deg)}
+.chk input:focus-visible+span{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent);outline-offset:2px}
+.cname{font-size:15px;font-weight:600;letter-spacing:-.015em}
+.csub{font-size:13px;color:var(--label-2);overflow:hidden;text-overflow:ellipsis}
+.cinfo{display:flex;flex-direction:column;gap:3px;align-items:flex-end;min-width:0}
+.cval svg.ic{color:var(--label-2)}
+.cval{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-variant-numeric:tabular-nums;user-select:text;-webkit-user-select:text;max-width:100%}
+.cval span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cval button{border:0;background:var(--fill);color:var(--blue);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;cursor:pointer;flex:none;padding:0}
+.cval button svg.ic{width:13px;height:13px}
+.cnone{font-size:12px;color:var(--label-3)}
+@media (max-width:600px){.crow{grid-template-columns:minmax(0,1fr)}.cinfo{align-items:flex-start}.cstate{align-items:flex-start}}
+.tip-note{font-size:13px;color:var(--label-2);display:flex;gap:8px;align-items:flex-start}
+.tip-note svg{margin-top:2px;flex:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* ayuda */
+.help-dlg{width:min(1040px,100%);height:min(820px,100%)}
+.help-wrap{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:0;flex:1;border-top:.5px solid var(--sep)}
+.help-nav{display:flex;flex-direction:column;gap:2px;padding:12px;border-right:.5px solid var(--sep);overflow:auto}
+.help-nav button{all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;font:500 14px var(--font);color:var(--label)}
+.help-nav button svg.ic{width:17px;height:17px;color:var(--blue)}
+.help-nav button:hover{background:var(--fill-2)}
+.help-nav button[aria-current="page"]{background:var(--blue);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .help-nav button[aria-current="page"]{background:#0a6fd8}}
+:root[data-theme="dark"] .help-nav button[aria-current="page"]{background:#0a6fd8}
+.help-nav button[aria-current="page"] svg.ic{color:#fff}
+.help-nav button:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent)}
+.help-body{overflow:auto;padding:20px 24px 28px;min-height:0}
+.help-body section{display:flex;flex-direction:column;gap:16px;max-width:720px}
+.h-big{font:700 24px/1.2 var(--font-display);letter-spacing:.005em}
+.hero-help{border-radius:18px;padding:22px;background:
+  radial-gradient(120% 140% at 100% 0%,color-mix(in srgb,var(--blue) 22%,transparent) 0%,transparent 55%),
+  radial-gradient(90% 120% at 0% 100%,color-mix(in srgb,var(--red) 14%,transparent) 0%,transparent 60%),var(--card)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;align-items:start;background:var(--card);border-radius:14px;padding:12px 14px}
+.steps.sm li{background:var(--card-2);padding:9px 12px;border-radius:10px;font-size:14px}
+.steps .n{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 14px var(--font-rounded)}
+.steps b{font-weight:600}
+.steps p{font-size:14px;color:var(--label-2);margin-top:2px}
+.shot{margin:0;display:flex;flex-direction:column;gap:6px}
+.shot img{width:100%;border-radius:14px;box-shadow:0 0 0 .5px var(--sep),0 10px 30px rgba(0,0,0,.12);background:var(--card)}
+.shot figcaption{font-size:12.5px;color:var(--label-2);text-align:center}
+.shot.phone img{max-width:260px;margin:0 auto;border-radius:28px;border:6px solid #1d1d1f}
+.cols2{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center}
+.legend-help{display:flex;flex-direction:column;gap:10px;font-size:14px}
+.legend-help h4,.hcard h4{margin:0;font:600 16px var(--font)}
+.legend-help p{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.hcard{background:var(--card);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.hcard p{font-size:14px}
+.hcard code{font-family:var(--font-mono);font-size:13px;background:var(--fill-2);padding:1px 5px;border-radius:5px}
+table.t.mini{font-size:12.5px} table.t.mini td,table.t.mini th{padding:7px 10px}
+.ticks{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.ticks li{position:relative;padding-left:24px}
+.ticks li::before{content:"";position:absolute;left:3px;top:5px;width:6px;height:10px;border:solid var(--green);border-width:0 2px 2px 0;transform:rotate(45deg)}
+details.faq{background:var(--card);border-radius:14px;padding:0}
+details.faq summary{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;color:var(--label);font-weight:600;font-size:15px}
+details.faq summary svg.ic{transform:rotate(90deg);color:var(--label-3)}
+details.faq[open] summary svg.ic{transform:rotate(-90deg)}
+details.faq p{padding:0 16px 14px;font-size:14px;color:var(--label-2)}
+@media (max-width:760px){
+  .help-wrap{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+  .help-nav{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:.5px solid var(--sep);padding:8px 12px}
+  .help-nav button{white-space:nowrap;padding:7px 11px;font-size:13px}
+  .help-body{padding:16px}
+  .cols2{grid-template-columns:minmax(0,1fr)}
+  .help-dlg{height:94%}
+}
+/* recorrido */
+.tour{position:fixed;inset:0;z-index:40}
+.tour-block{position:absolute;inset:0}
+.tour-spot{position:fixed;border-radius:14px;box-shadow:0 0 0 9999px rgba(0,0,0,.55),0 0 0 3px var(--blue);transition:all .3s ease;pointer-events:none}
+.tour-card{position:fixed;width:min(360px,calc(100vw - 32px));background:var(--card);color:var(--label);border-radius:16px;padding:16px;box-shadow:0 20px 50px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:8px;transition:top .3s ease,left .3s ease}
+.tour-card h3{font-size:18px}
+.tour-card p{font-size:14px;color:var(--label-2);line-height:1.45}
+.tour-dots{display:flex;gap:5px;flex-wrap:wrap}
+.tour-dots i{width:6px;height:6px;border-radius:50%;background:var(--fill)}
+.tour-dots i.on{background:var(--blue);width:16px;border-radius:3px}
+.welcome{position:fixed;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:30;width:min(360px,calc(100vw - 32px));border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
+@media (max-width:760px){.welcome{bottom:calc(84px + env(safe-area-inset-bottom,0px));left:16px;right:16px;width:auto}}
+@media (prefers-reduced-motion:reduce){.tour-spot,.tour-card{transition:none}}
+#btnHelp svg.ic{width:16px;height:16px}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--blue:#005cc8;--red:#d70015;--yellow-ink:#7a5300;--green-ink:#1a6e2e;--red-tint:rgba(215,0,21,.10)}}
+:root[data-theme="light"]{--blue:#005cc8;--red:#d70015;--yellow-ink:#7a5300;--green-ink:#1a6e2e;--red-tint:rgba(215,0,21,.10)}
+.row:has(> #btnHelp){flex-wrap:nowrap}
+table.t.mini td{white-space:nowrap}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3.5 2.8 19.5h18.4z"/><path d="M12 10v4.5M12 17.2v.1"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-scope" viewBox="0 0 24 24"><path d="M4 9V5a1 1 0 0 1 1-1h4M15 4h4a1 1 0 0 1 1 1v4M20 15v4a1 1 0 0 1-1 1h-4M9 20H5a1 1 0 0 1-1-1v-4"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 9 14"><path d="M1.5 1.5 7 7l-5.5 5.5"/></symbol>
+  <symbol id="i-down" viewBox="0 0 12 12"><path d="M2 4.5 6 8.5l4-4"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.3 3-5 6-5s5.4 1.7 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.2c2.3.2 3.9 1.7 4.5 4.3"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="m9 4-5 2v14l5-2 6 2 5-2V4l-5 2z"/><path d="M9 4v14M15 6v14"/></symbol>
+  <symbol id="i-down2" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.5 4.2-2 1.4a12 12 0 0 0 6.2 6.2l1.4-2 4.2 1.5v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="m4.5 7 7.5 6 7.5-6"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.8"/><circle cx="12" cy="17.2" r=".6" fill="currentColor"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M5 21V5.5L13 3v18M13 9l6 2v10M3 21h18M8.5 8v.01M8.5 11.5v.01M8.5 15v.01"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5M7 9.5l5-5 5 5M5 20h14"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <div class="t">
+      <div class="brand" id="brandBox"><img id="brandLogo" alt="" hidden><span id="brandName" hidden></span></div>
+      <h1>Alertas HSEC por Comuna</h1>
+      <p class="sub">Alertas Rojas y Amarillas oficiales de SENAPRED cruzadas con tu planilla de personas.</p>
+    </div>
+    <div class="row" style="gap:10px">
+      <button type="button" class="btn sm" id="btnHelp" aria-label="Ayuda y manual de uso"><svg class="ic"><use href="#i-help"/></svg>Ayuda</button>
+      <button type="button" class="btn sm" id="btnCompany"><svg class="ic"><use href="#i-building"/></svg>Mi empresa</button>
+      <span class="status-pill" id="statusPill"><span class="dot g"></span><span>SENAPRED</span></span>
+    </div>
+  </header>
+<nav class="tabbar" id="tabbar" aria-label="Secciones">
+  <button type="button" data-go="mapa"><svg class="ic"><use href="#i-map"/></svg><span>Mapa</span></button>
+  <button type="button" data-go="alertas"><svg class="ic"><use href="#i-bell"/></svg><span>Alertas</span><i class="tb-badge" id="tbAlerts" hidden></i></button>
+  <button type="button" data-go="contacto"><svg class="ic"><use href="#i-people"/></svg><span>Contacto</span><i class="tb-badge" id="tbContact" hidden></i></button>
+  <button type="button" data-go="oficinas"><svg class="ic"><use href="#i-building"/></svg><span>Oficinas</span><i class="tb-badge" id="tbOffices" hidden></i></button>
+  <button type="button" data-go="planilla"><svg class="ic"><use href="#i-doc"/></svg><span>Planilla</span></button>
+</nav>
+
+  <div class="main" role="main">
+    <div class="group" data-tab="mapa" data-dtab="mapa">
+      <div class="mapcard" id="mapcard">
+        <svg id="map" role="group" aria-label="Mapa de Chile por regiones con alertas SENAPRED"></svg>
+        <div class="legend mat" id="legend">
+          <div class="lg-head"><b>Leyenda</b><button type="button" class="iconbtn" id="lgToggle" aria-expanded="true" aria-label="Ocultar leyenda"><svg class="ic"><use href="#i-minus"/></svg></button></div>
+          <div class="lg-body">
+            <div class="keys"><span><i class="dot r"></i>Alerta Roja</span><span><i class="dot y"></i>Alerta Amarilla</span><span><i class="dot k"></i>Fuera de alerta</span><span><i class="okey"></i>Oficina</span></div>
+            <p class="foot">El número de cada círculo es la cantidad de personas de tu planilla en esa zona. Toca una región para acercarte.</p>
+            <label class="switch"><span>Mostrar personas fuera de alerta</span><input type="checkbox" id="showOthers" role="switch"></label>
+          </div>
+        </div>
+        <label class="csearch mat"><svg class="ic"><use href="#i-search"/></svg><input id="comSearch" list="comList" placeholder="Buscar comuna" aria-label="Buscar comuna en el mapa" autocomplete="off"><datalist id="comList"></datalist></label>
+        <div class="ctrls">
+          <div class="zgroup mat">
+            <button type="button" id="zIn" aria-label="Acercar"><svg class="ic"><use href="#i-plus"/></svg></button>
+            <button type="button" id="zOut" aria-label="Alejar"><svg class="ic"><use href="#i-minus"/></svg></button>
+            <button type="button" id="zAll" aria-label="Ver Chile completo" title="Chile completo"><svg class="ic"><use href="#i-scope"/></svg></button>
+          </div>
+          <div class="regsel mat"><select id="goRegion" aria-label="Ir a una región"><option value="">Ir a región</option></select><svg class="ic"><use href="#i-down"/></svg></div>
+        </div>
+        <div class="tip mat" id="tip" hidden></div>
+        <div class="sheet mat" id="sheet" aria-live="polite"></div>
+        <div class="maperr" id="mapErr" hidden></div>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="fchip" id="fchip" data-tab="mapa alertas contacto" data-dtab="mapa alertas contacto" hidden></div>
+      <div class="tiles" id="tiles" data-tab="alertas" data-dtab="mapa alertas"></div>
+      <button type="button" class="btn primary block" id="btnContacts" data-tab="contacto" data-dtab="contacto"><svg class="ic"><use href="#i-people"/></svg>Lista de contacto<span class="ct" id="contactCount">0</span></button>
+      <div class="group" id="follow" data-tab="contacto" data-dtab="contacto" hidden></div>
+      <div class="group" id="selGroup" data-tab="alertas" data-dtab="mapa">
+        <div class="sect" id="selTitle">Alertas vigentes</div>
+        <div class="list" id="selPanel" aria-live="polite"></div>
+        <div class="foot" id="selFoot" style="padding:6px 16px 0"></div>
+      </div>
+      <div class="group" id="officesBox" data-tab="oficinas" data-dtab="oficinas"><div class="sect" id="officesSect">Oficinas</div><div class="list" id="officesList"></div></div>
+      <div class="group" id="groupBox" data-tab="contacto" data-dtab="contacto" hidden>
+        <div class="sect sect-row"><span>Expuestas por</span><span class="minisel"><select id="groupSel" aria-label="Agrupar por columna"></select><svg class="ic"><use href="#i-down"/></svg></span></div>
+        <div class="card pad" id="groupChart"></div>
+        <div class="foot" style="padding:6px 16px 0">Toca una barra para ver solo ese grupo en el mapa, la lista y la Lista de contacto.</div>
+      </div>
+
+      <div class="group" data-tab="alertas" data-dtab="alertas" id="sourceBox">
+        <div class="sect">Fuente oficial</div>
+        <div class="list" id="source"></div>
+      </div>
+
+
+      <div class="group" id="subsBox" data-tab="alertas" data-dtab="alertas"><div class="sect sect-row" style="justify-content:space-between"><span>Avisos por correo</span><span id="subsCount" style="text-transform:none;letter-spacing:0"></span></div><div class="list" id="subsBody"></div><div class="foot" style="padding:6px 16px 0">Llega un correo cuando SENAPRED declara, sube de nivel o cancela una Alerta Roja o Amarilla. Revisión automática tres veces al día.</div></div>
+      <div class="group" data-tab="planilla" data-dtab="planilla" id="sheetBox">
+        <div class="sect">Planilla de personas</div>
+        <div class="card pad" style="display:flex;flex-direction:column;gap:12px">
+          <div class="row" style="justify-content:space-between"><h3 role="heading" aria-level="2">Tu planilla</h3><span class="badge ex" id="peopleTag">Ejemplo</span></div>
+          <label class="drop" id="dropPeople" tabindex="0">
+            <input type="file" id="filePeople" accept=".xlsx,.xls,.csv,.json,application/json">
+            <span class="ttl"><svg class="ic"><use href="#i-doc"/></svg>Elegir archivo</span>
+            <span class="caption">o arrástralo aquí · Excel (.xlsx, .xls), .csv o .json</span>
+          </label>
+          <p class="status" id="peopleStatus"></p>
+          <div id="peopleWarn"></div>
+          <p class="privacy"><svg class="ic"><use href="#i-lock"/></svg><span>Se lee solo en este navegador. No se envía ni se guarda, y el mapa muestra cantidades por comuna, nunca domicilios.</span></p>
+          <details>
+            <summary><svg class="ic"><use href="#i-chev"/></svg>Formato del archivo</summary>
+            <div class="fmt foot" style="margin-top:8px;display:flex;flex-direction:column;gap:10px">
+              <div><b>Excel o CSV.</b> Se lee la primera hoja. Necesita columnas <b>Nombre</b> y <b>Comuna</b>, sin importar mayúsculas ni tildes; puede haber filas de título antes. Otras columnas, como Área, aparecen en la lista.
+              <table><tr><th>Nombre</th><th>Comuna</th><th>Área</th></tr><tr><td>Ana Pérez</td><td>Puente Alto</td><td>Operaciones</td></tr><tr><td>Luis Soto</td><td>Arauco</td><td>Mantención</td></tr></table></div>
+              <div><b>JSON.</b> Una lista de personas con los campos <b>nombre</b> y <b>comuna</b>. También se acepta la lista dentro de un campo <code>personas</code>. Los demás campos aparecen como columnas.
+              <pre class="code">[
+  {"nombre": "Ana Pérez", "comuna": "Puente Alto", "area": "Operaciones"},
+  {"nombre": "Luis Soto", "comuna": "Arauco", "area": "Mantención"}
+]</pre></div>
+            </div>
+          </details>
+          <div class="row"><button type="button" class="btn sm" id="btnExample">Usar ejemplo</button><button type="button" class="btn sm danger" id="btnClearPeople">Quitar planilla</button></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <section class="group" style="gap:12px" aria-labelledby="rTitle" data-tab="alertas" data-dtab="alertas">
+    <div class="sec-head"><h2 id="rTitle">Detalle por alerta</h2><div class="row"><button type="button" class="btn sm" id="btnContacts2"><svg class="ic"><use href="#i-people"/></svg>Lista de contacto</button><button type="button" class="btn sm" id="btnCopy"><svg class="ic"><use href="#i-copy"/></svg>Copiar resumen</button></div></div>
+    <div class="cards" id="cards"></div>
+    <textarea class="copybox" id="copyBox" hidden readonly></textarea>
+  </section>
+
+  <section class="group" style="gap:12px" aria-labelledby="tTitle" data-tab="contacto" data-dtab="contacto">
+    <h2 id="tTitle">Personas</h2>
+    <div class="toolbar">
+      <div class="seg" id="seg" role="group" aria-label="Filtrar por estado">
+        <button type="button" data-f="all" aria-pressed="true">Todas</button>
+        <button type="button" data-f="Roja" aria-pressed="false">Roja</button>
+        <button type="button" data-f="Amarilla" aria-pressed="false">Amarilla</button>
+        <button type="button" data-f="none" aria-pressed="false">Sin alerta</button>
+        <button type="button" data-f="unk" aria-pressed="false">No reconocida</button>
+      </div>
+      <label class="search"><svg class="ic"><use href="#i-search"/></svg><input type="search" id="q" placeholder="Buscar nombre, comuna o región" aria-label="Buscar"></label>
+    </div>
+    <div class="tbl-wrap"><table class="t"><thead id="thead"></thead><tbody id="tbody"></tbody></table><div class="more" id="more" hidden></div></div>
+  </section>
+
+  <section data-tab="planilla" data-dtab="planilla">
+    <details id="manageBox">
+      <summary><svg class="ic"><use href="#i-chev"/></svg>Gestionar alertas en esta sesión</summary>
+      <div class="manage">
+        <div class="group">
+          <div class="sect">Alertas cargadas · <span id="alertTag"></span></div>
+          <div class="list" id="alertList"></div>
+          <div style="padding:10px 0 0"><button type="button" class="btn sm" id="btnReset">Volver a las alertas oficiales</button></div>
+        </div>
+        <div class="group">
+          <div class="sect">Agregar alerta verificada</div>
+          <div class="card pad" style="display:flex;flex-direction:column;gap:14px">
+            <form class="add" id="addForm">
+              <label class="f">Nivel<select class="field" id="fLevel"><option>Roja</option><option>Amarilla</option></select></label>
+              <label class="f">Declarada<input class="field" type="date" id="fDeclared"></label>
+              <label class="f full">Peligro<input class="field" type="text" id="fHazard" placeholder="Incendio forestal" required></label>
+              <label class="f full">Comunas, separadas por coma<input class="field" type="text" id="fCommunes" placeholder="Machalí, Rancagua" required></label>
+              <div class="full row"><button class="btn primary" type="submit">Agregar alerta</button></div>
+              <p class="full foot">Solo alertas oficiales SENAPRED. Un aviso de DMC o un Botón Rojo de CONAF no es una alerta SENAPRED. Los cambios no se guardan.</p>
+            </form>
+            <label class="drop" id="dropFeed" tabindex="0">
+              <input type="file" id="fileFeed" accept=".json,application/json">
+              <span class="ttl"><svg class="ic"><use href="#i-doc"/></svg>Cargar HSEC_RISK_ALERTS.json</span>
+              <span class="caption">Reemplaza las alertas solo en esta sesión</span>
+            </label>
+            <p class="status" id="feedStatus"></p>
+          </div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <footer data-tab="planilla" data-dtab="planilla">Fuente oficial: <a href="https://senapred.cl/alertas/" target="_blank" rel="noopener">senapred.cl/alertas</a>. Cartografía referencial de la Biblioteca del Congreso Nacional (BCN), vía react-chile-map (MIT); no apta para precisión geodésica. Esta herramienta no declara alertas: cruza las comunas de tu planilla con las alertas oficiales cargadas. Confirma siempre en el sitio oficial antes de tomar decisiones.</footer>
+</div>
+<div class="overlay" id="contactsDlg" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="cTitle">
+    <div class="dlg-head">
+      <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+        <h2 id="cTitle">Lista de contacto</h2>
+        <p class="foot" id="cSub"></p>
+      </div>
+      <button type="button" class="iconbtn" id="cClose" aria-label="Cerrar" style="width:32px;height:32px"><svg class="ic"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="dlg-tools">
+      <div class="row" style="justify-content:space-between;width:100%">
+        <div class="seg" id="cLevelSeg" role="group" aria-label="Filtrar por nivel">
+          <button type="button" data-f="all" aria-pressed="true">Todas</button>
+          <button type="button" data-f="Roja" aria-pressed="false">Roja</button>
+          <button type="button" data-f="Amarilla" aria-pressed="false">Amarilla</button>
+        </div>
+        <button type="button" class="btn primary sm" id="cStart"></button>
+      </div>
+      <div class="chipbar" id="cStat" role="group" aria-label="Filtrar por resultado"></div>
+      <div class="progress" id="cProgress"></div>
+    </div>
+    <div class="dlg-body" id="cBody"></div>
+    <div class="dlg-foot">
+      <p class="tip-note" id="cNote"><svg class="ic"><use href="#i-lock"/></svg><span>Contiene datos personales. Guarda o imprime la lista solo para el contacto HSEC.</span></p>
+      <div class="row">
+        <button type="button" class="btn sm" id="cCopy"><svg class="ic"><use href="#i-copy"/></svg>Copiar</button>
+        <button type="button" class="btn sm" id="cTsv"><svg class="ic"><use href="#i-copy"/></svg>Copiar para Excel</button>
+        <button type="button" class="btn sm" id="cXlsx" hidden><svg class="ic"><use href="#i-down2"/></svg>Excel</button>
+        <button type="button" class="btn sm primary" id="cPdf" hidden><svg class="ic"><use href="#i-down2"/></svg>PDF para imprimir</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="overlay" id="helpDlg" hidden>
+  <div class="dialog help-dlg" role="dialog" aria-modal="true" aria-labelledby="hTitle">
+    <div class="dlg-head">
+      <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><h2 id="hTitle">Ayuda</h2><p class="foot">Manual de uso de Alertas HSEC por Comuna</p></div>
+      <button type="button" class="iconbtn" id="hClose" aria-label="Cerrar" style="width:32px;height:32px"><svg class="ic"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="help-wrap">
+      <nav class="help-nav" id="hNav" aria-label="Temas de ayuda">
+        <button type="button" data-h="inicio" aria-current="page"><svg class="ic"><use href="#i-play"/></svg>Empezar</button>
+        <button type="button" data-h="nomina"><svg class="ic"><use href="#i-doc"/></svg>Preparar la nómina</button>
+        <button type="button" data-h="contacto"><svg class="ic"><use href="#i-phone"/></svg>Contactar personas</button>
+        <button type="button" data-h="oficinas"><svg class="ic"><use href="#i-building"/></svg>Oficinas y logo</button>
+        <button type="button" data-h="avisos"><svg class="ic"><use href="#i-mail"/></svg>Avisos por correo</button>
+        <button type="button" data-h="descargas"><svg class="ic"><use href="#i-down2"/></svg>Descargar e imprimir</button>
+        <button type="button" data-h="soporte"><svg class="ic"><use href="#i-mail"/></svg>Contactar</button>
+        <button type="button" data-h="faq"><svg class="ic"><use href="#i-help"/></svg>Preguntas frecuentes</button>
+      </nav>
+      <div class="help-body" id="hBody">
+
+        <section data-hs="inicio">
+          <div class="hero-help">
+            <div><h3 class="h-big">Te damos la bienvenida a Alertas HSEC</h3>
+              <p class="sub">Esta página cruza las Alertas Rojas y Amarillas oficiales de SENAPRED con la lista de personas de tu empresa, para saber en minutos quién está en una comuna con alerta y contactarlo.</p>
+              <div class="row" style="margin-top:12px"><button type="button" class="btn primary" data-tour-start><svg class="ic"><use href="#i-play"/></svg>Hacer el recorrido guiado (1 minuto)</button></div></div>
+          </div>
+          <ol class="steps">
+            <li><span class="n">1</span><div><b>Revisa el mapa</b><p>Las regiones con alerta se tiñen de rojo o amarillo. Cada círculo muestra cuántas personas de tu nómina hay en esa zona. Toca una región o un círculo para ver el detalle.</p></div></li>
+            <li><span class="n">2</span><div><b>Carga tu nómina</b><p>En la pestaña <b>Planilla</b>, toca <b>Elegir archivo</b> y selecciona tu Excel o JSON con nombre y comuna de cada persona. Se lee solo en tu navegador.</p></div></li>
+            <li><span class="n">3</span><div><b>Contacta a las personas</b><p>En <b>Contacto</b>, abre la <b>Lista de contacto</b> y usa <b>Empezar a contactar</b> para llamar o escribir a cada persona y registrar si está bien.</p></div></li>
+          </ol>
+          <figure class="shot"><img src="help/mapa.jpg" alt="Pantalla del mapa con regiones en alerta y círculos con personas" loading="lazy"><figcaption>El mapa: regiones en alerta, círculos con personas y el panel de detalle.</figcaption></figure>
+          <div class="cols2">
+            <figure class="shot phone"><img src="help/movil.jpg" alt="La página en un celular, con la barra de pestañas abajo" loading="lazy"><figcaption>En el celular, las secciones están en la barra de abajo.</figcaption></figure>
+            <div class="legend-help">
+              <h4>Qué significa cada color</h4>
+              <p><span class="cap Roja"><i class="dot"></i>Alerta Roja</span> SENAPRED moviliza todos los recursos: situación grave en curso.</p>
+              <p><span class="cap Amarilla"><i class="dot"></i>Alerta Amarilla</span> Riesgo que puede crecer; se alistan recursos.</p>
+              <p><span class="chg new">Nueva · hoy</span> La alerta se declaró en los últimos 7 días.</p>
+              <p><span class="chg up">Subió a Roja</span> <span class="chg down">Bajó a Amarilla</span> Cambió de nivel en los últimos 7 días.</p>
+              <p><i class="okey"></i> Oficina de tu empresa (borde rojo o amarillo si está en una comuna con alerta).</p>
+              <p class="foot">Solo SENAPRED declara alertas. Los avisos de la DMC o el Botón Rojo de CONAF no se muestran como alertas.</p>
+            </div>
+          </div>
+        </section>
+
+        <section data-hs="nomina" hidden>
+          <h3 class="h-big">Preparar la nómina</h3>
+          <p class="sub">Necesitas un archivo con, al menos, el <b>nombre</b> y la <b>comuna</b> de cada persona. Puede ser Excel (.xlsx o .xls), CSV o JSON.</p>
+          <div class="hcard"><h4>Opción 1 · Excel</h4>
+            <p>La primera fila debe tener los títulos de las columnas. Solo <b>Nombre</b> y <b>Comuna</b> son obligatorias; las demás son opcionales y aparecen en la lista.</p>
+            <div class="tbl-wrap"><table class="t mini"><thead><tr><th>Nombre</th><th>Comuna</th><th>Área</th><th>Teléfono</th><th>Correo</th></tr></thead>
+              <tbody><tr><td>Ana Pérez</td><td>Puente Alto</td><td>Operaciones</td><td>+56 9 1234 5678</td><td>ana.perez@empresa.cl</td></tr>
+              <tr><td>Luis Soto</td><td>Arauco</td><td>Mantención</td><td>+56 9 2345 6789</td><td>luis.soto@empresa.cl</td></tr></tbody></table></div>
+            <div class="row"><button type="button" class="btn sm" data-copytpl="tsv"><svg class="ic"><use href="#i-copy"/></svg>Copiar plantilla para Excel</button><span class="foot">Pégala en una hoja nueva de Excel (celda A1) y reemplaza los ejemplos.</span></div>
+          </div>
+          <div class="hcard"><h4>Opción 2 · JSON</h4>
+            <p>Útil si la lista sale de un sistema (Workday, SAP, una base de datos). Es una lista de personas con los campos <code>nombre</code> y <code>comuna</code>.</p>
+            <pre class="code">[
+  {"nombre": "Ana Pérez", "comuna": "Puente Alto", "area": "Operaciones",
+   "telefono": "+56 9 1234 5678", "correo": "ana.perez@empresa.cl"},
+  {"nombre": "Luis Soto", "comuna": "Arauco", "area": "Mantención"}
+]</pre>
+            <div class="row"><button type="button" class="btn sm" data-copytpl="json"><svg class="ic"><use href="#i-copy"/></svg>Copiar plantilla JSON</button><span class="foot">Comillas dobles, y sin coma después del último elemento.</span></div>
+          </div>
+          <div class="hcard"><h4>Columnas que la página entiende</h4>
+            <ul class="ticks">
+              <li><b>Nombre</b> (obligatoria) · también sirve Persona, Trabajador o Colaborador.</li>
+              <li><b>Comuna</b> (obligatoria) · una por persona, con su nombre oficial. No importan mayúsculas ni tildes.</li>
+              <li><b>Teléfono</b> · también Celular, Fono o WhatsApp. Aparece con botón para copiar y abrir WhatsApp.</li>
+              <li><b>Correo</b> · también Email o Mail.</li>
+              <li><b>Área, Turno, Faena…</b> · cualquier columna con pocos valores distintos crea el gráfico <b>Expuestas por</b> para filtrar.</li>
+            </ul>
+          </div>
+          <div class="hcard"><h4>Cargar el archivo</h4>
+            <ol class="steps sm">
+              <li><span class="n">1</span><div>Ve a la pestaña <b>Planilla</b>.</div></li>
+              <li><span class="n">2</span><div>Toca <b>Elegir archivo</b> o arrástralo al recuadro.</div></li>
+              <li><span class="n">3</span><div>Revisa el aviso amarillo: si alguna comuna no se reconoce, corrígela en tu archivo y vuelve a cargarlo.</div></li>
+            </ol>
+            <figure class="shot"><img src="help/planilla.jpg" alt="Tarjeta para cargar la planilla de personas" loading="lazy"><figcaption>Al cargar tu archivo, las personas de ejemplo desaparecen y se muestran solo las tuyas.</figcaption></figure>
+            <button type="button" class="btn sm" data-goto="planilla">Ir a Planilla</button>
+          </div>
+        </section>
+
+        <section data-hs="contacto" hidden>
+          <h3 class="h-big">Contactar a las personas</h3>
+          <p class="sub">La Lista de contacto reúne solo a las personas que están en comunas con Alerta Roja o Amarilla, agrupadas por alerta, con la Roja primero.</p>
+          <ol class="steps">
+            <li><span class="n">1</span><div><b>Abre la Lista de contacto</b><p>Botón azul en la pestaña <b>Contacto</b>. El número indica cuántas personas están en alerta.</p></div></li>
+            <li><span class="n">2</span><div><b>Toca “Empezar a contactar”</b><p>Verás una persona a la vez, con su teléfono, WhatsApp y correo.</p></div></li>
+            <li><span class="n">3</span><div><b>Registra el resultado</b><p><b>Está bien</b>, <b>No contesta</b> o <b>Necesita apoyo</b>. Puedes escribir una nota. Al terminar verás un resumen y podrás volver a llamar a quienes no contestaron.</p></div></li>
+            <li><span class="n">4</span><div><b>Guarda el registro</b><p>Descarga el <b>PDF para imprimir</b> o el <b>Excel</b>, o usa <b>Copiar para Excel</b>. Los resultados se pierden al recargar la página.</p></div></li>
+          </ol>
+          <figure class="shot"><img src="help/contacto.jpg" alt="Contacto guiado mostrando una persona con botones Está bien, No contesta y Necesita apoyo" loading="lazy"><figcaption>El contacto guiado, una persona a la vez.</figcaption></figure>
+          <button type="button" class="btn sm" data-goto="contacto">Ir a Contacto</button>
+        </section>
+
+        <section data-hs="oficinas" hidden>
+          <h3 class="h-big">Oficinas y logo</h3>
+          <p class="sub">Agrega las oficinas de tu empresa para saber si alguna queda en una comuna con alerta, y tu logo para el encabezado y el PDF.</p>
+          <ol class="steps">
+            <li><span class="n">1</span><div><b>Abre “Mi empresa”</b><p>Botón con el ícono de edificio, arriba a la derecha.</p></div></li>
+            <li><span class="n">2</span><div><b>Nombre y logo</b><p>Escribe el nombre de la empresa y toca <b>Subir logo</b> (PNG, JPG o SVG).</p></div></li>
+            <li><span class="n">3</span><div><b>Agrega oficinas</b><p>Nombre, dirección y comuna (elígela de la lista). Aparecen en el mapa con un ícono azul de edificio.</p></div></li>
+            <li><span class="n">4</span><div><b>Comparte la configuración</b><p><b>Exportar configuración</b> crea un archivo que tu equipo carga con <b>Importar</b> para tener las mismas oficinas y logo.</p></div></li>
+          </ol>
+          <figure class="shot"><img src="help/oficinas.jpg" alt="Lista de oficinas con su estado de alerta" loading="lazy"><figcaption>Las oficinas en alerta aparecen primero.</figcaption></figure>
+          <button type="button" class="btn sm" data-company>Abrir Mi empresa</button>
+        </section>
+
+        <section data-hs="avisos" hidden>
+          <h3 class="h-big">Avisos por correo</h3>
+          <p class="sub">Llega un correo cada vez que SENAPRED declara, sube o baja de nivel, o cancela una Alerta Roja o Amarilla en las regiones elegidas.</p>
+          <ul class="ticks">
+            <li>La tarjeta <b>Avisos por correo</b> está en la pestaña <b>Alertas</b>.</li>
+            <li>Quien administra la página inscribe los correos y elige las regiones de cada uno.</li>
+            <li>Para inscribirte, pide a quien administra esta página que agregue tu correo.</li>
+            <li>La revisión es automática tres veces al día (cerca de las 8:00, 14:00 y 20:00).</li>
+            <li>Los correos nunca incluyen nombres ni datos de las nóminas.</li>
+          </ul>
+          <button type="button" class="btn sm" data-goto="alertas">Ir a Alertas</button>
+        </section>
+
+        <section data-hs="descargas" hidden>
+          <h3 class="h-big">Descargar e imprimir</h3>
+          <div class="hcard"><h4>Dentro de Claude</h4><p>En la Lista de contacto usa <b>PDF para imprimir</b> (hoja horizontal, con casillas y espacio para notas) o <b>Excel</b>.</p></div>
+          <div class="hcard"><h4>Si el botón no aparece</h4><p>Algunos visores no permiten que una página genere archivos. En ese caso usa <b>Copiar para Excel</b>:</p>
+            <ol class="steps sm">
+              <li><span class="n">1</span><div>En la Lista de contacto, toca <b>Copiar para Excel</b>.</div></li>
+              <li><span class="n">2</span><div>Abre Excel o Google Sheets y pega en la celda A1 (Ctrl+V o ⌘V).</div></li>
+              <li><span class="n">3</span><div>Imprime o guarda como PDF desde Excel (Archivo → Imprimir / Guardar como PDF).</div></li>
+            </ol></div>
+          <div class="hcard"><h4>Cuida los archivos descargados</h4><p>Los PDF y Excel contienen datos personales y quedan guardados en tu equipo. Compártelos solo por canales internos y elimínalos cuando ya no se usen.</p></div>
+        </section>
+
+        <section data-hs="soporte" hidden>
+          <h3 class="h-big">Contactar a quien administra la página</h3>
+          <p class="sub">¿Tienes una duda, encontraste un problema o quieres sugerir algo? Escribe aquí y el mensaje llega directo a quien administra esta página. Tu dirección de correo solo la ve ella.</p>
+          <div id="msgBox"><div class="hcard"><span class="foot">Cargando…</span></div></div>
+          <p class="foot">Los mensajes se revisan y reenvían por correo tres veces al día, junto con la revisión de alertas. No escribas datos personales de terceros (nombres, teléfonos o direcciones de tu nómina) en el mensaje.</p>
+        </section>
+        <section data-hs="faq" hidden>
+          <h3 class="h-big">Preguntas frecuentes</h3>
+          <details class="faq"><summary>¿Mi nómina se sube a algún servidor?<svg class="ic"><use href="#i-chev"/></svg></summary><p>No. El archivo se lee solo en tu navegador y se borra al cerrar o recargar la página. Nadie más puede verlo. Las oficinas y el logo se guardan solo en tu navegador.</p></details>
+          <details class="faq"><summary>¿Por qué veo “Persona Ejemplo”?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Son 12 personas ficticias para mostrar cómo funciona la página. Desaparecen al cargar tu nómina y vuelven si recargas la página sin cargarla.</p></details>
+          <details class="faq"><summary>¿Cada cuánto se actualizan las alertas?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Una revisión automática lee la página oficial de SENAPRED tres veces al día. La fecha del indicador “SENAPRED” cambia solo cuando hay un cambio oficial. Ante cualquier decisión, confirma en senapred.cl/alertas.</p></details>
+          <details class="faq"><summary>¿Por qué una comuna aparece como “no reconocida”?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Suele ser un error de escritura o una abreviatura (por ejemplo “Pte. Alto”). Escribe el nombre oficial completo; no importan mayúsculas ni tildes. Esas personas no se cruzan con ninguna alerta hasta corregirlas.</p></details>
+          <details class="faq"><summary>¿Qué diferencia hay con los avisos de la DMC o el Botón Rojo de CONAF?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Solo SENAPRED declara Alertas Amarillas y Rojas. Los avisos meteorológicos de la DMC y el Botón Rojo de CONAF son información preventiva y no se muestran como alertas en esta página.</p></details>
+          <details class="faq"><summary>¿Las personas aparecen en su domicilio en el mapa?<svg class="ic"><use href="#i-chev"/></svg></summary><p>No. El mapa solo muestra cantidades por comuna, nunca direcciones.</p></details>
+          <details class="faq"><summary>¿Quién puede ver mi nómina si la página está en internet?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Nadie. El código de la página es público, pero tu archivo nunca se sube: el navegador lo lee en tu propio computador y lo olvida al cerrar la pestaña. En el repositorio no hay ni puede haber datos de personas.</p></details>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="tour" id="tour" hidden>
+  <div class="tour-block" id="tourBlock"></div>
+  <div class="tour-spot" id="tourSpot"></div>
+  <div class="tour-card" id="tourCard" role="dialog" aria-live="polite" aria-labelledby="tourTitle">
+    <div class="row" style="justify-content:space-between"><span class="caption" id="tourStep"></span><button type="button" class="btn plain" id="tourSkip" style="font-size:13px">Salir</button></div>
+    <h3 id="tourTitle"></h3>
+    <p id="tourText"></p>
+    <div class="tour-dots" id="tourDots"></div>
+    <div class="row" style="justify-content:space-between"><button type="button" class="btn sm" id="tourPrev">Anterior</button><button type="button" class="btn sm primary" id="tourNext">Siguiente</button></div>
+  </div>
+</div>
+<div class="welcome mat" id="welcome" hidden role="dialog" aria-labelledby="wTitle">
+  <div style="display:flex;gap:12px;align-items:flex-start"><span class="sym" style="background:var(--blue)"><svg class="ic"><use href="#i-help"/></svg></span>
+    <div style="min-width:0"><b id="wTitle">¿Primera vez aquí?</b><p class="foot">Haz el recorrido de 1 minuto para conocer la página.</p></div></div>
+  <div class="row" style="justify-content:flex-end"><button type="button" class="btn sm" id="wNo">Ahora no</button><button type="button" class="btn sm primary" id="wYes">Ver recorrido</button></div>
+</div>
+<div class="overlay" id="companyDlg" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="coTitle" style="width:min(640px,100%)">
+    <div class="dlg-head">
+      <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><h2 id="coTitle">Mi empresa</h2><p class="foot">Se guarda en este navegador. Exporta la configuración para compartirla con tu equipo.</p></div>
+      <button type="button" class="iconbtn" id="coClose" aria-label="Cerrar" style="width:32px;height:32px"><svg class="ic"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="dlg-body" style="padding-top:4px">
+      <div class="group"><div class="sect">Empresa</div>
+        <div class="card pad" style="display:flex;flex-direction:column;gap:14px">
+          <label class="f">Nombre de la empresa<input class="field" id="coName" type="text" maxlength="80" placeholder="Ej.: NTT DATA Chile" autocomplete="organization"></label>
+          <div class="logo-row"><div class="logo-prev" id="coLogoPrev"></div>
+            <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+              <label class="btn sm" style="cursor:pointer"><svg class="ic"><use href="#i-upload"/></svg>Subir logo<input type="file" id="coLogo" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden></label>
+              <button type="button" class="btn sm danger" id="coLogoDel" hidden>Quitar logo</button>
+              <span class="caption">PNG, JPG o SVG. Se muestra en el encabezado y en el PDF.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="group"><div class="sect">Oficinas</div>
+        <div class="list" id="coList"></div>
+      </div>
+      <div class="group"><div class="sect">Agregar oficina</div>
+        <form class="card pad add" id="coAdd" autocomplete="off">
+          <label class="f full">Nombre de la oficina<input class="field" id="ofName" type="text" maxlength="80" placeholder="Ej.: Casa matriz, Oficina Concepción" required></label>
+          <label class="f full">Dirección<input class="field" id="ofAddr" type="text" maxlength="160" placeholder="Ej.: Av. Apoquindo 1234, piso 5"></label>
+          <label class="f full">Comuna<input class="field" id="ofCom" type="text" list="comList" maxlength="60" placeholder="Escribe y elige de la lista" required></label>
+          <div class="full row"><button class="btn primary" type="submit">Agregar oficina</button><p class="status" id="coStatus" role="status"></p></div>
+          <p class="full foot">El mapa ubica la oficina en su comuna; la dirección se muestra en su ficha.</p>
+        </form>
+      </div>
+    </div>
+    <div class="dlg-foot">
+      <div class="row"><button type="button" class="btn sm" id="coExport"><svg class="ic"><use href="#i-down2"/></svg>Exportar configuración</button>
+        <label class="btn sm" style="cursor:pointer"><svg class="ic"><use href="#i-upload"/></svg>Importar<input type="file" id="coImport" accept=".json,application/json" hidden></label></div>
+      <button type="button" class="btn sm primary" id="coDone">Listo</button>
+    </div>
+  </div>
+</div>
+<div class="toast mat" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha384-vtjasyidUo0kW94K5MXDXntzOJpQgBKXmE7e2Ga4LG0skTTLeBi97eFAXsqewJjw" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(function(){
+const FALLBACK = {"generatedAt": "2026-11-04T16:39:00-03:00", "source": "SENAPRED", "mode": "verified_snapshot", "note": "Feed operativo HSEC. Solo Alertas Amarillas y Rojas SENAPRED. Distingue fecha oficial y verificacion. history = boletines oficiales de cada alerta; recentChanges = cancelaciones oficiales de los ultimos 14 dias.", "alerts": [{"id": "SENAPRED-BIOBIO-ARAUCO-REMOCION-20261020", "level": "Roja", "hazard": "Remoción en masa", "region": "Región del Biobío", "communes": ["Arauco"], "source": "SENAPRED - Alerta Roja oficial", "detail": "Monitoreo de Alerta Roja por remoción en masa en sector Villa El Mirador.", "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09", "officialDeclaredAt": "20-10-2026 21:43", "officialUpdatedAt": "29-10-2026 13:30", "verifiedAt": "04-11-2026 16:39", "history": [{"at": "20-10-2026 21:43", "level": "Roja", "action": "Se declara Alerta Roja"}, {"at": "21-10-2026 13:40", "level": "Roja", "action": "Monitoreo"}, {"at": "29-10-2026 13:30", "level": "Roja", "action": "Monitoreo"}]}, {"id": "SENAPRED-RM-REMOCION-20261013", "level": "Amarilla", "hazard": "Remoción en masa", "region": "Región Metropolitana", "communes": ["San José de Maipo", "Puente Alto", "Pirque", "La Florida", "Peñalolén", "La Reina", "Las Condes", "Lo Barnechea", "Vitacura", "Colina"], "source": "SENAPRED - Alerta Amarilla oficial", "detail": "Alerta Roja declarada el 08-10-2026 y cancelada el 13-10-2026 12:21, cuando se declaró Alerta Amarilla.", "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22", "officialDeclaredAt": "13-10-2026 12:21", "officialUpdatedAt": "14-10-2026 11:59", "verifiedAt": "04-11-2026 16:39", "history": [{"at": "08-10-2026 18:49", "level": "Roja", "action": "Se declara Alerta Roja"}, {"at": "08-10-2026 19:39", "level": "Roja", "action": "Monitoreo"}, {"at": "08-10-2026 20:21", "level": "Roja", "action": "Monitoreo"}, {"at": "08-10-2026 23:01", "level": "Roja", "action": "Monitoreo"}, {"at": "09-10-2026 02:25", "level": "Roja", "action": "Monitoreo"}, {"at": "09-10-2026 10:21", "level": "Roja", "action": "Monitoreo"}, {"at": "10-10-2026 15:00", "level": "Roja", "action": "Monitoreo"}, {"at": "12-10-2026 18:07", "level": "Roja", "action": "Monitoreo"}, {"at": "13-10-2026 12:21", "level": "Amarilla", "action": "Se cancela Alerta Roja y se declara Alerta Amarilla"}, {"at": "14-10-2026 11:59", "level": "Amarilla", "action": "Monitoreo"}]}, {"id": "SENAPRED-BIOBIO-ALTOBIOBIO-CRECIDA-20260924", "level": "Amarilla", "hazard": "Crecida del Embalse Ralco", "region": "Región del Biobío", "communes": ["Alto Biobío"], "source": "SENAPRED - Alerta Amarilla oficial", "detail": "Alerta Amarilla por crecida asociada a vertimientos controlados del Embalse Ralco.", "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44", "officialDeclaredAt": "24-09-2026 19:25", "officialUpdatedAt": "", "verifiedAt": "04-11-2026 16:39", "history": [{"at": "24-09-2026 19:25", "level": "Amarilla", "action": "Se declara Alerta Amarilla"}]}, {"id": "SENAPRED-ANTOFAGASTA-SANITARIA-20260619", "level": "Amarilla", "hazard": "Alteración sanitaria (mosquito Aedes aegypti)", "region": "Región de Antofagasta", "communes": ["Antofagasta"], "source": "SENAPRED - Alerta Amarilla oficial", "detail": "Alerta Amarilla por focos activos del vector Aedes aegypti.", "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06", "officialDeclaredAt": "19-06-2026 19:57", "officialUpdatedAt": "", "verifiedAt": "04-11-2026 16:39", "history": [{"at": "19-06-2026 19:57", "level": "Amarilla", "action": "Se declara Alerta Amarilla"}]}], "recentChanges": [{"at": "02-11-2026 17:15", "type": "cancelled", "level": "Amarilla", "hazard": "Evento meteorológico", "region": "Región de Coquimbo", "communes": ["Río Hurtado", "Salamanca", "Vicuña"], "detail": "SENAPRED canceló la Alerta Amarilla y declaró Alerta Temprana Preventiva regional por viento.", "officialUrl": "https://senapred.cl/alertas/"}]};
+const EXAMPLE = {cols:["Nombre","Comuna","Área","Teléfono","Correo"],rows:[
+  ["Persona Ejemplo 1","Puente Alto","Operaciones","+56 9 0000 0001","persona1@example.com"],["Persona Ejemplo 2","Las Condes","Oficina central","+56 9 0000 0002","persona2@example.com"],
+  ["Persona Ejemplo 3","Arauco","Mantención","+56 9 0000 0003","persona3@example.com"],["Persona Ejemplo 4","Alto Biobío","Terreno","+56 9 0000 0004","persona4@example.com"],
+  ["Persona Ejemplo 5","Machalí","Operaciones","+56 9 0000 0005","persona5@example.com"],["Persona Ejemplo 6","Rancagua","Administración","+56 9 0000 0006","persona6@example.com"],
+  ["Persona Ejemplo 7","Peñalolén","Soporte","+56 9 0000 0007","persona7@example.com"],["Persona Ejemplo 8","Concepción","Terreno","","persona8@example.com"],
+  ["Persona Ejemplo 9","lo barnechea","Oficina central","+56 9 0000 0009","persona9@example.com"],["Persona Ejemplo 10","Santiago","Administración","","persona10@example.com"],
+  ["Persona Ejemplo 11","Antofagasta","Terreno","+56 9 0000 0011","persona11@example.com"],["Persona Ejemplo 12","Puente Alto","Terreno","+56 9 0000 0012","persona12@example.com"]]};
+
+const $ = id=>document.getElementById(id);
+const esc = s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmtN = n=>Number(n).toLocaleString("es-CL");
+const plural=(n,a,b)=>fmtN(n)+" "+(n===1?a:b);
+const norm = s=>String(s??"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase()
+  .replace(/^\s*comuna\s+de\s+/,"").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+const ALIAS = {"aisen":"aysen","coihaique":"coyhaique","la calera":"calera","puerto natales":"natales","paiguano":"paihuano",
+  "trehuaco":"treguaco","llay llay":"llaillay","til til":"tiltil","marchihue":"marchigue","santiago centro":"santiago",
+  "rapa nui":"isla de pascua","quinta tilcoco":"quinta de tilcoco","alto bio bio":"alto biobio","chol chol":"cholchol",
+  "san pedro atacama":"san pedro de atacama"};
+const key = s=>{const k=norm(s); return ALIAS[k]||k;};
+const RANK = {Roja:2,Amarilla:1};
+const OFFMAP = {"isla de pascua":{n:"Isla de Pascua",r:"05"},"juan fernandez":{n:"Juan Fernández",r:"05"},"antartica":{n:"Antártica",r:"12"}};
+const place = k=>COM.get(k)||OFFMAP[k]||null;
+const LVL = {Roja:"Roja",Amarilla:"Amarilla",none:"Sin alerta",unk:"No reconocida"};
+const ZONES=[["NORTE",["15","01","02","03","04"]],["CENTRO",["05","13","06","07"]],["SUR",["16","08","09","14","10"]],["AUSTRAL",["11","12"]]];
+const ICON = (id,cls)=>'<svg class="ic'+(cls?' '+cls:'')+'"><use href="#'+id+'"/></svg>';
+const cap = lv=>'<span class="cap '+lv+'"><i class="dot"></i>'+(lv==="Roja"||lv==="Amarilla"?"Alerta "+lv:LVL[lv])+'</span>';
+const isSenapred = u=>/^https:\/\/(www\.)?senapred\.cl\//.test(u||"");
+const parseD=s=>{const m=/^(\d{2})-(\d{2})-(\d{4})(?:\s+(\d{1,2}):(\d{2}))?/.exec(String(s||"").trim());return m?new Date(+m[3],+m[2]-1,+m[1],+(m[4]||0),+(m[5]||0)).getTime():NaN;};
+const DAY=864e5, RECENT=7*DAY;
+const ago=t=>{const d=Math.floor((Date.now()-t)/DAY);return d<=0?"hoy":d===1?"ayer":"hace "+d+" días";};
+function changeOf(a){
+  const h=(a.history||[]).map(e=>({...e,t:parseD(e.at)})).filter(e=>!isNaN(e.t)).sort((x,y)=>x.t-y.t), now=Date.now();
+  if(!h.length){const t=parseD(a.officialUpdatedAt||a.officialDeclaredAt); return !isNaN(t)&&now-t<RECENT?{kind:"upd",label:"Actualizada",t}:null;}
+  if(now-h[0].t<RECENT) return {kind:"new",label:"Nueva",t:h[0].t};
+  for(let i=h.length-1;i>0;i--){ if(h[i].level!==h[i-1].level){ if(now-h[i].t<RECENT){const up=RANK[h[i].level]>RANK[h[i-1].level];return {kind:up?"up":"down",label:(up?"Subió a ":"Bajó a ")+h[i].level,t:h[i].t};} break; } }
+  const last=h[h.length-1]; return now-last.t<RECENT?{kind:"upd",label:"Actualizada",t:last.t}:null;
+}
+const chg=a=>{const c=changeOf(a);return c?'<span class="chg '+c.kind+'">'+esc(c.label)+' · '+ago(c.t)+'</span>':'';};
+function timeline(a){
+  const h=(a.history||[]).map(e=>({...e,t:parseD(e.at)})).sort((x,y)=>(y.t||0)-(x.t||0)); if(!h.length) return "";
+  return '<details class="tl"><summary>'+ICON("i-chev")+'Historial oficial · '+plural(h.length,"boletín","boletines")+'</summary><ol>'+
+    h.map(e=>'<li class="'+(e.level==="Roja"||e.level==="Amarilla"?e.level:"")+'"><span class="tl-dot"></span><div><b>'+esc(e.action||"Boletín")+'</b>'+(e.level?'<span class="caption">Alerta '+esc(e.level)+' · '+esc(e.at)+'</span>':'<span class="caption">'+esc(e.at)+'</span>')+'</div></li>').join("")+'</ol></details>';
+}
+const recentCancels=()=>(feed.recentChanges||[]).filter(c=>{const t=parseD(c.at);return !isNaN(t)&&Date.now()-t<14*DAY;});
+const cancelLi=c=>'<div class="li"><span class="sym done">'+ICON("i-check")+'</span><span class="main-t"><span class="t1">Cancelada · Alerta '+esc(c.level||"")+(c.hazard?' por '+esc(c.hazard.toLowerCase()):'')+'</span><span class="t2">'+esc((c.communes||[]).join(", ")||c.region||"")+' · '+ago(parseD(c.at))+'</span></span></div>';
+
+const clone=o=>JSON.parse(JSON.stringify(o));
+let feed = clone(FALLBACK), feedOrigin="fallback";
+let people = {cols:EXAMPLE.cols.slice(),rows:EXAMPLE.rows.map(r=>r.slice()),example:true,name:""};
+let M = null;
+const COM = new Map(), REG = new Map();
+let sel = null, showOthers = false, tableFilter="all", R = null, groupFilter = null, groupCol = -1;
+
+try{document.documentElement.lang="es";}catch(_){}
+function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("on"),2200);}
+function fmtDate(iso){const d=new Date(iso);if(!iso||isNaN(d))return "sin fecha";const p=n=>String(n).padStart(2,"0");
+  return p(d.getDate())+"-"+p(d.getMonth()+1)+"-"+d.getFullYear()+" "+p(d.getHours())+":"+p(d.getMinutes());}
+
+/* ============ datos ============ */
+function validFeed(f){
+  if(!f||!Array.isArray(f.alerts)) throw new Error("El archivo no tiene el campo “alerts”.");
+  const alerts=f.alerts.filter(a=>a&&(a.level==="Roja"||a.level==="Amarilla")&&Array.isArray(a.communes)&&a.communes.length);
+  if(!alerts.length&&f.alerts.length) throw new Error("Ninguna alerta tiene nivel Roja o Amarilla con comunas.");
+  return {generatedAt:f.generatedAt||"",source:f.source||"SENAPRED",mode:f.mode||"",note:f.note||"",alerts,recentChanges:Array.isArray(f.recentChanges)?f.recentChanges.filter(c=>c&&c.at):[]};
+}
+async function loadOfficial(){
+  try{const r=await fetch("alerts.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;feed=validFeed(await r.json());feedOrigin="official";}
+  catch(e){if(feedOrigin!=="official"){feed=clone(FALLBACK);feedOrigin="fallback";}}
+  render();
+}
+async function loadMap(){
+  try{const r=await fetch("mapdata.json");if(!r.ok)throw 0;M=await r.json();buildMap();}
+  catch(e){const m=$("mapErr");m.hidden=false;m.textContent="No se pudo cargar el mapa. La lista y las alertas funcionan normalmente.";}
+}
+const lvMax=al=>al.reduce((m,a)=>RANK[a.level]>(RANK[m]||0)?a.level:m,"none");
+function compute(){
+  const byCom=new Map();
+  feed.alerts.forEach(a=>a.communes.forEach(c=>{const k=key(c);if(!byCom.has(k))byCom.set(k,[]);byCom.get(k).push(a);}));
+  const allPersons=people.rows.map((row,idx)=>{
+    const k=key(row[1]); const info=place(k); const al=byCom.get(k)||[];
+    return {idx,row,k,known:!!k&&(!!info||!M),region:info?info.r:null,alerts:al,level:lvMax(al)};
+  });
+  const persons=groupFilter?allPersons.filter(p=>(p.row[groupFilter.col]||"").trim()===groupFilter.val):allPersons;
+  const countByCom=new Map(), othersByCom=new Map(), othersByReg=new Map();
+  for(const p of persons){
+    countByCom.set(p.k,(countByCom.get(p.k)||0)+1);
+    if(p.level==="none"&&p.region){othersByCom.set(p.k,(othersByCom.get(p.k)||0)+1);othersByReg.set(p.region,(othersByReg.get(p.region)||0)+1);}
+  }
+  const regLevel=new Map(), comLevel=new Map();
+  for(const [k,al] of byCom){
+    const lv=lvMax(al); comLevel.set(k,lv);
+    const info=place(k); if(info){const cur=regLevel.get(info.r); if(!cur||RANK[lv]>RANK[cur]) regLevel.set(info.r,lv);}
+  }
+  const alertInfo=feed.alerts.map((a,i)=>{
+    const ks=a.communes.map(key); const found=ks.map(k=>COM.get(k)).filter(Boolean);
+    return {i,a,ks,found,regs:[...new Set(ks.map(place).filter(Boolean).map(f=>f.r))],missing:M?a.communes.filter((c,j)=>!place(ks[j])):[],ppl:persons.filter(p=>p.alerts.includes(a))};
+  });
+  const ordered=alertInfo.slice().sort((x,y)=>RANK[y.a.level]-RANK[x.a.level]||y.ppl.length-x.ppl.length);
+  return {byCom,allPersons,persons,countByCom,othersByCom,othersByReg,regLevel,comLevel,alertInfo,ordered};
+}
+
+/* ============ planilla ============ */
+function parseSheet(rows){
+  rows=rows.filter(r=>r&&r.some(c=>String(c??"").trim()!==""));
+  if(!rows.length) throw new Error("La planilla está vacía.");
+  let hi=-1,ni=-1,ci=-1;
+  for(let i=0;i<Math.min(rows.length,10);i++){
+    const h=rows[i].map(norm);
+    let c=h.findIndex(x=>x==="comuna"); if(c<0) c=h.findIndex(x=>x.includes("comuna"));
+    const n=h.findIndex(x=>/nombre|persona|trabajador|colaborador|empleado/.test(x));
+    if(c>-1){hi=i;ci=c;ni=n>-1?n:(c===0?1:0);break;}
+  }
+  if(hi<0) throw new Error("No se encontró una columna “Comuna”. Revisa que la fila de encabezados tenga Nombre y Comuna.");
+  const header=rows[hi].map(x=>String(x??"").trim());
+  const extra=header.map((_,i)=>i).filter(i=>i!==ni&&i!==ci&&header[i]&&!/^(n[°º.]?|#|item|nro\.?)$/i.test(header[i]));
+  const cols=[header[ni]||"Nombre",header[ci]||"Comuna",...extra.map(i=>header[i])];
+  const out=[];
+  for(const r of rows.slice(hi+1)){
+    const name=String(r[ni]??"").trim(), com=String(r[ci]??"").trim();
+    if(!name&&!com) continue;
+    out.push([name||"(sin nombre)",com,...extra.map(i=>String(r[i]??"").trim())]);
+  }
+  if(!out.length) throw new Error("Hay encabezados, pero ninguna fila con datos.");
+  return {cols,rows:out};
+}
+function jsonToRows(data){
+  const arr0=Array.isArray(data)?data:(data&&typeof data==="object"?(data.personas||data.people||data.trabajadores||data.colaboradores||data.data||data.rows):null);
+  if(!Array.isArray(arr0)) throw new Error('El JSON debe ser una lista de personas, por ejemplo [{"nombre":"Ana Pérez","comuna":"Puente Alto"}].');
+  const arr=arr0.filter(o=>o&&typeof o==="object"&&!Array.isArray(o));
+  if(!arr.length) throw new Error("El JSON no tiene personas con campos nombre y comuna.");
+  const cols=new Map(); // clave normalizada -> nombre visible
+  for(const o of arr) for(const k of Object.keys(o)){const nk=norm(k); if(nk&&!cols.has(nk)&&cols.size<40) cols.set(nk,k);}
+  if(![...cols.keys()].some(k=>k.includes("comuna"))) throw new Error('Falta el campo "comuna" en las personas del JSON.');
+  const cell=v=>v==null||typeof v==="object"?"":String(v);
+  const nks=[...cols.keys()];
+  return [nks.map(k=>cols.get(k)),...arr.map(o=>{const m=new Map();for(const k of Object.keys(o)){const nk=norm(k);if(!m.has(nk))m.set(nk,o[k]);}return nks.map(k=>cell(m.get(k)));})];
+}
+function loadedPeople(p,file){people={...p,example:false,name:file.name}; sel=null; groupFilter=null; groupCol=-1; resetContacts(); render(); toast(plural(p.rows.length,"persona cargada","personas cargadas"));}
+function readPeople(file){
+  const st=$("peopleStatus"); st.className="status"; st.textContent="Leyendo "+file.name+"…";
+  if(/\.json$/i.test(file.name)||file.type==="application/json"){
+    file.text().then(t=>{try{loadedPeople(parseSheet(jsonToRows(JSON.parse(t))),file);}
+      catch(e){st.className="status err";st.textContent=e instanceof SyntaxError?"El archivo no es un JSON válido. Revisa comas y comillas.":(e.message||"No se pudo leer el archivo.");}},
+      ()=>{st.className="status err";st.textContent="No se pudo leer el archivo.";});
+    return;
+  }
+  if(typeof XLSX==="undefined"){st.className="status err";st.textContent="No se pudo cargar el lector de Excel. Revisa la conexión y vuelve a abrir la página.";return;}
+  const fr=new FileReader();
+  fr.onload=()=>{try{
+      const wb=XLSX.read(new Uint8Array(fr.result),{type:"array"});
+      const p=parseSheet(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,defval:"",raw:false}));
+      loadedPeople(p,file);
+    }catch(e){st.className="status err";st.textContent=e.message||"No se pudo leer el archivo.";}};
+  fr.onerror=()=>{st.className="status err";st.textContent="No se pudo leer el archivo.";};
+  fr.readAsArrayBuffer(file);
+}
+function readFeed(file){
+  const st=$("feedStatus"); st.className="status";
+  const fr=new FileReader();
+  fr.onload=()=>{try{feed=validFeed(JSON.parse(fr.result));feed.mode="manual";sel=null;render();st.textContent="Se cargaron "+plural(feed.alerts.length,"alerta","alertas")+" para esta sesión.";toast("Alertas reemplazadas en esta sesión");}
+    catch(e){st.className="status err";st.textContent=e instanceof SyntaxError?"El archivo no es un JSON válido.":e.message;}};
+  fr.readAsText(file);
+}
+
+/* ============ mapa ============ */
+const NS="http://www.w3.org/2000/svg", svg=$("map");
+const mk=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;};
+let BASE, VB, gOver;
+function buildMap(){
+  BASE={x:-110,y:-4,w:590,h:M.H+8}; VB={...BASE};
+  svg.textContent="";
+  const gR=mk("g",{},svg), gC=mk("g",{},svg); gOver=mk("g",{},svg);
+  for(const r of M.regions){
+    REG.set(r.code,{...r,el:mk("path",{d:r.d,class:"region","data-r":r.code},gR)});
+    const o=document.createElement("option");o.value=r.code;o.textContent=r.name;$("goRegion").appendChild(o);
+  }
+  for(const c of M.communes) COM.set(key(c.n),{...c,el:mk("path",{d:c.d,class:"commune"},gC)});
+  buildComList();
+  setVB(VB,true);
+  if(typeof renderSubs==="function") renderSubs();
+}
+const upp=()=>{const m=svg.getScreenCTM();return m&&m.a?1/m.a:BASE.h/700;};
+const zoom=()=>BASE.w/VB.w;
+let ovQueued=false;
+function queueOverlay(){if(ovQueued)return;ovQueued=true;requestAnimationFrame(()=>{ovQueued=false;drawOverlay();});}
+function setVB(v,now){
+  const w=Math.min(BASE.w*1.15,Math.max(BASE.w/40,v.w)), h=w*BASE.h/BASE.w;
+  const cx=Math.min(BASE.x+BASE.w,Math.max(BASE.x,v.x+v.w/2)), cy=Math.min(BASE.y+BASE.h,Math.max(BASE.y,v.y+v.h/2));
+  VB={x:cx-w/2,y:cy-h/2,w,h};
+  svg.setAttribute("viewBox",VB.x+" "+VB.y+" "+VB.w+" "+VB.h);
+  svg.style.setProperty("--cl-op",Math.max(0,Math.min(1,(zoom()-1.8)/2)).toFixed(2));
+  if(now) drawOverlay(); else queueOverlay();
+}
+let anim=0;
+function animateTo(t){
+  cancelAnimationFrame(anim);
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches){setVB(t,true);return;}
+  const s={...VB},t0=performance.now(),D=420;
+  const step=n=>{const p=Math.min(1,(n-t0)/D),e=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+    setVB({x:s.x+(t.x-s.x)*e,y:s.y+(t.y-s.y)*e,w:s.w+(t.w-s.w)*e,h:s.h+(t.h-s.h)*e}); if(p<1)anim=requestAnimationFrame(step);};
+  anim=requestAnimationFrame(step);
+}
+function fitBox(b,pad){
+  const bw=(b[2]-b[0])*pad, bh=(b[3]-b[1])*pad;
+  const box=svg.getBoundingClientRect(); const ar=(box.width/box.height)||.5, baseAr=BASE.w/BASE.h;
+  const hv=Math.max(bh,bw/ar); let w,h; if(ar>=baseAr){h=hv;w=h*baseAr;}else{w=hv*ar;h=w/baseAr;}
+  return {x:(b[0]+b[2])/2-w/2,y:(b[1]+b[3])/2-h/2,w,h};
+}
+function toSvg(px,py){const p=svg.createSVGPoint();p.x=px;p.y=py;const m=svg.getScreenCTM();return m?p.matrixTransform(m.inverse()):{x:0,y:0};}
+function zoomRect(f,px,py){const pt=toSvg(px,py);return {x:pt.x-(pt.x-VB.x)/f,y:pt.y-(pt.y-VB.y)/f,w:VB.w/f,h:VB.h/f};}
+
+function pinEl(x,y,r,level,label,data,aria,pulse,selected,badge){
+  const g=mk("g",{class:"pin "+level+(selected?" sel":""),transform:"translate("+x+","+y+")",tabindex:"0",role:"button","aria-label":aria},gOver);
+  for(const k in data) g.dataset[k]=data[k];
+  if(pulse) mk("circle",{class:"halo",r:r*1.2,"stroke-width":r*.32},g);
+  mk("circle",{class:"b",r:selected?r*1.12:r,"stroke-width":r*.17},g);
+  if(label!==""&&label!=null){const s=String(label);mk("text",{"font-size":r*(s.length>3?.62:s.length>2?.78:.98)},g).textContent=s;}
+  if(badge) mk("circle",{class:"nb",cx:r*.74,cy:-r*.74,r:r*.3,"stroke-width":r*.12},g);
+}
+function drawOverlay(){
+  if(!M||!R||!gOver) return;
+  const u=upp(), z=zoom(), detail=z>=2.6;
+  gOver.textContent="";
+  if(z<1.7){
+    const ys=[]; let last=-1e9;
+    for(const r of M.regions){let y=r.c[1]; if(y-last<15*u) y=last+15*u; ys.push(y); last=y;}
+    const lx=M.W+16;
+    M.regions.forEach((r,i)=>{
+      const lv=R.regLevel.get(r.code)||"";
+      mk("path",{class:"leader",d:"M"+r.c[0]+","+r.c[1]+" L"+(lx-5*u)+","+ys[i]},gOver);
+      mk("text",{class:"rlabel "+lv,x:lx,y:ys[i],"font-size":11.5*u,"dominant-baseline":"middle"},gOver).textContent=r.name;
+    });
+    for(const [nm,codes] of ZONES){
+      const y=codes.map(c=>REG.get(c).c[1]).reduce((a,b)=>a+b,0)/codes.length;
+      const x=Math.min(...codes.map(c=>REG.get(c).b[0]))-10*u;
+      mk("text",{class:"zlabel",x,y,"font-size":10*u,"dominant-baseline":"middle","text-anchor":"end"},gOver).textContent=nm;
+    }
+  }else{
+    for(const r of M.regions){
+      const lv=R.regLevel.get(r.code)||"";
+      mk("text",{class:"rlabel "+lv,x:r.c[0],y:r.c[1]-18*u,"font-size":12.5*u,"text-anchor":"middle","paint-order":"stroke",stroke:"var(--land)","stroke-width":3*u,"stroke-linejoin":"round"},gOver).textContent=r.name;
+    }
+  }
+  if(showOthers){
+    const src=detail?R.othersByCom:R.othersByReg;
+    for(const [gk,n] of src){
+      const it=detail?COM.get(gk):REG.get(gk); if(!it) continue;
+      pinEl(it.c[0]+(detail?0:12*u),it.c[1]+(detail?0:12*u),9*u,"gray",n,detail?{com:gk}:{reg:gk},(detail?it.n:it.name)+": "+plural(n,"persona fuera de alerta","personas fuera de alerta"));
+    }
+  }
+  if(!detail){
+    const placed=[];
+    for(const ai of R.ordered){
+      if(!ai.found.length) continue;
+      let x=ai.found.reduce((s,f)=>s+f.c[0],0)/ai.found.length, y=ai.found.reduce((s,f)=>s+f.c[1],0)/ai.found.length;
+      const r=(12+Math.min(6,Math.sqrt(ai.ppl.length)*1.6))*u;
+      for(let k=0;k<6;k++){const hit=placed.find(p=>Math.hypot(p.x-x,p.y-y)<(p.r+r)*1.02);if(!hit)break;x=hit.x+(hit.r+r)*.9;y=hit.y+(hit.r+r)*.55;}
+      placed.push({x,y,r});
+      pinEl(x,y,r,ai.a.level,ai.ppl.length,{alert:String(ai.i)},"Alerta "+ai.a.level+", "+ai.a.hazard+": "+plural(ai.ppl.length,"persona expuesta","personas expuestas"),ai.a.level==="Roja",sel&&sel.type==="alert"&&sel.id===ai.i,(c=>!!c&&c.kind!=="upd")(changeOf(ai.a)));
+    }
+  }else{
+    const items=[...R.comLevel].map(([k,lv])=>({k,lv,info:COM.get(k),n:R.countByCom.get(k)||0})).filter(x=>x.info).sort((a,b)=>b.n-a.n);
+    const taken=[], hit=r=>taken.some(t=>r[0]<t[2]&&r[2]>t[0]&&r[1]<t[3]&&r[3]>t[1]);
+    for(const it of items.slice().reverse()){
+      const r=(it.n?10.5:5)*u, [x,y]=it.info.c;
+      pinEl(x,y,r,it.lv,it.n||"",{com:it.k},it.info.n+", Alerta "+it.lv+": "+plural(it.n,"persona","personas"),it.lv==="Roja"&&it.n>0,sel&&sel.type==="commune"&&sel.id===it.k);
+    }
+    for(const it of items){const r=(it.n?10.5:5)*u;taken.push([it.info.c[0]-r,it.info.c[1]-r,it.info.c[0]+r,it.info.c[1]+r]);}
+    if(z>=3.2) for(const it of items){
+      const fs=11.5*u, w=it.info.n.length*fs*.56, [x,y]=it.info.c, ty=y+((it.n?10.5:5)+13)*u;
+      const box=[x-w/2,ty-fs*.8,x+w/2,ty+fs*.3]; if(hit(box)) continue; taken.push(box);
+      mk("text",{class:"clabel",x,y:ty,"font-size":fs,"text-anchor":"middle","stroke-width":3*u},gOver).textContent=it.info.n;
+    }
+  }
+  // oficinas
+  if(company.offices.length){
+    const cnt=new Map();
+    for(const o of company.offices){
+      const p=officePlace(o); if(!p.info) continue;
+      const n=cnt.get(p.k)||0; cnt.set(p.k,n+1);
+      const sz=(detail?20:16)*u, lv=officeLevel(o);
+      const ox=p.info.c[0]-(detail?24:19)*u-n*sz*.75, oy=p.info.c[1]-(detail?8:5)*u;
+      const g=mk("g",{class:"office "+lv+(sel&&sel.type==="office"&&sel.id===o.id?" sel":""),transform:"translate("+ox+","+oy+")",tabindex:"0",role:"button","aria-label":"Oficina "+o.name+(lv!=="none"?", en comuna con Alerta "+lv:", sin alerta")},gOver);
+      g.dataset.office=o.id;
+      mk("rect",{class:"ob",x:-sz/2,y:-sz/2,width:sz,height:sz,rx:sz*.28,"stroke-width":sz*(lv==="none"?.1:.17)},g);
+      mk("path",{class:"oi",d:"M5 21V5.5L13 3v18M13 9l6 2v10M3 21h18",transform:"translate("+(-sz*.33)+","+(-sz*.33)+") scale("+(sz*.66/24)+")"},g);
+      if(z>=4.5) mk("text",{class:"clabel",x:ox,y:oy-sz*.85,"font-size":11*u,"text-anchor":"middle","stroke-width":3*u},gOver).textContent=o.name;
+    }
+  }
+}
+function styleMap(){
+  if(!M) return;
+  for(const [code,r] of REG) r.el.setAttribute("class","region "+(R.regLevel.get(code)||"")+(sel&&sel.type==="region"&&sel.id===code?" sel":""));
+  const offK=sel&&sel.type==="office"?(o=>o?key(o.comuna):null)(company.offices.find(o=>o.id===sel.id)):null;
+  for(const [k,c] of COM) c.el.setAttribute("class","commune "+(R.comLevel.get(k)||"")+((sel&&sel.type==="commune"&&sel.id===k)||k===offK?" sel":""));
+  drawOverlay();
+}
+
+const ptrs=new Map(); let dragMoved=false, pinchD=0, lastPt=null, clickTimer=0;
+svg.addEventListener("pointerdown",e=>{ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});dragMoved=false;lastPt={x:e.clientX,y:e.clientY};
+  if(ptrs.size===2){const [a,b]=[...ptrs.values()];pinchD=Math.hypot(a.x-b.x,a.y-b.y);}});
+svg.addEventListener("pointermove",e=>{
+  if(!ptrs.has(e.pointerId)){if(e.pointerType==="mouse")hover(e);return;}
+  ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(ptrs.size===1){
+    const dx=e.clientX-lastPt.x, dy=e.clientY-lastPt.y;
+    if(!dragMoved&&Math.hypot(dx,dy)<5) return;
+    if(!dragMoved){dragMoved=true;try{svg.setPointerCapture(e.pointerId);}catch(_){} svg.classList.add("dragging");$("tip").hidden=true;}
+    const u=upp(); lastPt={x:e.clientX,y:e.clientY}; cancelAnimationFrame(anim);
+    setVB({x:VB.x-dx*u,y:VB.y-dy*u,w:VB.w,h:VB.h});
+  }else if(ptrs.size===2){
+    const [a,b]=[...ptrs.values()]; const d=Math.hypot(a.x-b.x,a.y-b.y);
+    if(pinchD){dragMoved=true;cancelAnimationFrame(anim);setVB(zoomRect(d/pinchD,(a.x+b.x)/2,(a.y+b.y)/2));} pinchD=d;
+  }
+});
+const endPtr=e=>{ptrs.delete(e.pointerId);if(ptrs.size<2)pinchD=0;if(!ptrs.size)svg.classList.remove("dragging");if(ptrs.size===1)lastPt=[...ptrs.values()][0];};
+svg.addEventListener("pointerup",endPtr);svg.addEventListener("pointercancel",endPtr);
+svg.addEventListener("pointerleave",()=>{$("tip").hidden=true;});
+svg.addEventListener("wheel",e=>{e.preventDefault();cancelAnimationFrame(anim);setVB(zoomRect(Math.exp(-e.deltaY*.0016),e.clientX,e.clientY));},{passive:false});
+svg.addEventListener("dblclick",e=>{e.preventDefault();clearTimeout(clickTimer);animateTo(zoomRect(2,e.clientX,e.clientY));});
+svg.addEventListener("click",e=>{
+  if(dragMoved){dragMoved=false;return;}
+  const of=e.target.closest(".office"); if(of){selectOffice(of.dataset.office,false);return;}
+  const pin=e.target.closest(".pin"), reg=e.target.closest(".region");
+  if(pin){selectPin(pin.dataset);return;}
+  clearTimeout(clickTimer);
+  if(reg&&e.detail<2){const code=reg.dataset.r;clickTimer=setTimeout(()=>selectRegion(code,true),240);}
+});
+svg.addEventListener("keydown",e=>{const of=e.target.closest&&e.target.closest(".office");if(of&&(e.key==="Enter"||e.key===" ")){e.preventDefault();selectOffice(of.dataset.office,false);return;}
+  const pin=e.target.closest&&e.target.closest(".pin");if(pin&&(e.key==="Enter"||e.key===" ")){e.preventDefault();selectPin(pin.dataset);}});
+function selectPin(d){
+  if(d.alert!=null){
+    const ai=R.alertInfo[+d.alert]; sel={type:"alert",id:+d.alert};
+    if(ai&&ai.found.length&&BASE){const b=ai.found.reduce((m,f)=>[Math.min(m[0],f.c[0]),Math.min(m[1],f.c[1]),Math.max(m[2],f.c[0]),Math.max(m[3],f.c[1])],[1e9,1e9,-1e9,-1e9]);
+      const cx=(b[0]+b[2])/2,cy=(b[1]+b[3])/2,hw=Math.max(45,(b[2]-b[0])/2+24),hh=Math.max(45,(b[3]-b[1])/2+24);animateTo(fitBox([cx-hw,cy-hh,cx+hw,cy+hh],1.25));}
+  }else if(d.com){sel={type:"commune",id:d.com};}
+  else if(d.reg){selectRegion(d.reg,true);return;}
+  styleMap();renderSelection();
+}
+function selectRegion(code,zoomTo){
+  sel={type:"region",id:code}; const r=REG.get(code);
+  if(zoomTo&&r) animateTo(fitBox(r.b,1.3));
+  $("goRegion").value=code; styleMap(); renderSelection();
+}
+function hover(e){
+  const tip=$("tip"); if(!R) return;
+  const pin=e.target.closest&&e.target.closest(".pin"), reg=e.target.closest&&e.target.closest(".region"), of=e.target.closest&&e.target.closest(".office");
+  let h="";
+  if(of){const o=company.offices.find(x=>x.id===of.dataset.office);if(o){const lv=officeLevel(o);h="<b>"+esc(o.name)+"</b><span class='caption'>"+esc([o.address,o.comuna].filter(Boolean).join(" · "))+"</span><span class='caption'>"+(lv!=="none"?"Comuna con Alerta "+lv:"Sin alerta")+"</span>";}}
+  else if(pin){
+    const d=pin.dataset;
+    if(d.alert!=null){const ai=R.alertInfo[+d.alert];h="<b>"+esc(ai.a.hazard)+"</b><span class='caption'>Alerta "+esc(ai.a.level)+" · "+plural(ai.ppl.length,"persona expuesta","personas expuestas")+"</span>";}
+    else if(d.com){const c=COM.get(d.com);const lv=R.comLevel.get(d.com);const n=lv?(R.countByCom.get(d.com)||0):(R.othersByCom.get(d.com)||0);
+      h="<b>"+esc(c.n)+"</b><span class='caption'>"+(lv?"Alerta "+lv+" · ":"Fuera de alerta · ")+plural(n,"persona","personas")+"</span>";}
+    else if(d.reg){const r=REG.get(d.reg);h="<b>"+esc(r.name)+"</b><span class='caption'>"+plural(R.othersByReg.get(d.reg)||0,"persona fuera de alerta","personas fuera de alerta")+"</span>";}
+  }else if(reg){const r=REG.get(reg.dataset.r);const lv=R.regLevel.get(r.code);h="<b>"+esc(r.full)+"</b><span class='caption'>"+(lv?"Con Alerta "+lv:"Sin Alertas Amarillas ni Rojas")+"</span>";}
+  if(!h){tip.hidden=true;return;}
+  tip.innerHTML=h; tip.hidden=false;
+  const box=$("mapcard").getBoundingClientRect();
+  let x=e.clientX-box.left+14, y=e.clientY-box.top+16;
+  if(x+tip.offsetWidth>box.width-8) x=e.clientX-box.left-tip.offsetWidth-12;
+  if(y+tip.offsetHeight>box.height-8) y=e.clientY-box.top-tip.offsetHeight-12;
+  tip.style.left=x+"px"; tip.style.top=y+"px";
+}
+function zoomBy(f){if(!BASE)return;const w=VB.w/f,h=VB.h/f;animateTo({x:VB.x+(VB.w-w)/2,y:VB.y+(VB.h-h)/2,w,h});}
+$("zIn").onclick=()=>zoomBy(1.8);
+$("zOut").onclick=()=>zoomBy(1/1.8);
+$("zAll").onclick=()=>{if(BASE)animateTo({...BASE});sel=null;$("goRegion").value="";if(R){styleMap();renderSelection();}};
+$("goRegion").onchange=e=>{if(e.target.value)selectRegion(e.target.value,true);else $("zAll").click();};
+$("showOthers").onchange=e=>{showOthers=e.target.checked;drawOverlay();};
+$("lgToggle").onclick=()=>{const l=$("legend"),c=l.classList.toggle("collapsed"),b=$("lgToggle");
+  b.innerHTML=ICON(c?"i-plus":"i-minus");b.setAttribute("aria-expanded",String(!c));b.setAttribute("aria-label",c?"Mostrar leyenda":"Ocultar leyenda");};
+let rsz;window.addEventListener("resize",()=>{clearTimeout(rsz);rsz=setTimeout(drawOverlay,120);});
+
+/* ============ panel lateral ============ */
+function renderTiles(){
+  const nR=feed.alerts.filter(a=>a.level==="Roja").length, nA=feed.alerts.length-nR;
+  const exp=R.persons.filter(p=>p.level!=="none").length;
+  const comms=new Set(feed.alerts.flatMap(a=>a.communes.map(key))).size;
+  $("tiles").innerHTML=
+    '<div class="tile"><span class="k">'+ICON("i-bell")+'Alertas vigentes</span><span class="n">'+fmtN(feed.alerts.length)+'</span><span class="s">'+plural(nR,"Roja","Rojas")+' · '+plural(nA,"Amarilla","Amarillas")+'</span></div>'+
+    '<div class="tile '+(exp?'r':'')+'"><span class="k">'+ICON("i-people")+'Personas expuestas</span><span class="n">'+fmtN(exp)+'</span><span class="s">de '+fmtN(R.persons.length)+(groupFilter?' del grupo':' en la planilla')+'</span></div>'+
+    '<div class="tile"><span class="k">'+ICON("i-pin")+'Comunas</span><span class="n">'+fmtN(comms)+'</span><span class="s">con alerta</span></div>'+
+    '<div class="tile"><span class="k">'+ICON("i-map")+'Regiones</span><span class="n">'+fmtN(R.regLevel.size)+'</span><span class="s">con alerta</span></div>';
+  const manual=feed.mode==="manual", stale=feedOrigin!=="official"&&!manual;
+  $("source").innerHTML='<div class="li stack"><div class="row" style="justify-content:space-between"><span class="foot">Última actualización con cambios</span><span class="badge '+(manual||stale?'ex':'ok')+'">'+(manual?'Editado en sesión':stale?'Sin conexión al feed':'Verificado')+'</span></div>'+
+    '<span class="when">'+esc(fmtDate(feed.generatedAt))+'</span>'+
+    '<span class="foot">Se revisa automáticamente tres veces al día. La fecha cambia solo cuando SENAPRED publica un cambio oficial.</span></div>'+
+    '<a class="li" href="https://senapred.cl/alertas/" target="_blank" rel="noopener"><span class="main-t"><span class="t1" style="color:var(--blue)">Ver alertas en senapred.cl</span></span>'+ICON("i-chev","chev")+'</a>';
+  $("statusPill").innerHTML='<span class="dot '+(stale?'y':'g')+'"></span><span>SENAPRED · <b>'+esc(fmtDate(feed.generatedAt))+'</b></span>';
+}
+function tokens(list,max){
+  max=max||60; if(!list.length) return '<p class="empty">Nadie de la planilla.</p>';
+  return '<div class="tokens">'+list.slice(0,max).map(p=>'<span class="token">'+esc(p.row[0])+' <small>'+esc(p.row[1])+'</small></span>').join("")+
+    (list.length>max?'<span class="token"><small>y '+fmtN(list.length-max)+' más en la lista</small></span>':'')+'</div>';
+}
+function alertLi(ai){
+  const regs=ai.regs.map(c=>REG.get(c)?.name).filter(Boolean).join(", ")||ai.a.region||"";
+  return '<button type="button" class="li" data-alert="'+ai.i+'"><span class="sym '+ai.a.level+'">'+ICON("i-warn")+'</span><span class="main-t"><span class="t1">'+esc(ai.a.hazard)+'</span><span class="t2">Alerta '+esc(ai.a.level)+(regs?' · '+esc(regs):'')+'</span>'+(changeOf(ai.a)?chg(ai.a):'')+'</span><span class="val" title="Personas expuestas">'+fmtN(ai.ppl.length)+'</span>'+ICON("i-chev","chev")+'</button>';
+}
+function backLi(label,attr){return '<button type="button" class="li" '+attr+'><span class="main-t"><span class="t1" style="color:var(--blue)">‹ '+esc(label)+'</span></span></button>';}
+function metaGrid(a){
+  return '<div class="meta"><div><span>Declarada</span><b>'+esc(a.officialDeclaredAt||"—")+'</b></div><div><span>Última act. oficial</span><b>'+esc(a.officialUpdatedAt||"No informada")+'</b></div>'+(a.verifiedAt?'<div><span>Verificada</span><b>'+esc(a.verifiedAt)+'</b></div>':'')+'</div>';
+}
+function renderSelection(){
+  const P=$("selPanel"), T=$("selTitle"), F=$("selFoot"); let h="", foot="";
+  if(sel&&sel.type==="alert"&&!R.alertInfo[sel.id]) sel=null;
+  if(sel&&sel.type==="commune"&&!COM.get(sel.id)) sel=null;
+  if(sel&&sel.type==="region"&&!REG.get(sel.id)) sel=null;
+  if(sel&&sel.type==="office"&&!company.offices.find(o=>o.id===sel.id)) sel=null;
+  if(!sel){
+    T.textContent="Alertas vigentes";
+    h=R.ordered.length?R.ordered.map(alertLi).join(""):'<div class="li"><span class="empty">No hay Alertas Amarillas ni Rojas cargadas.</span></div>';
+    h+=recentCancels().map(cancelLi).join("");
+    foot="El número es la cantidad de personas expuestas. Toca una alerta o una región del mapa para ver el detalle.";
+  }else if(sel.type==="alert"){
+    const ai=R.alertInfo[sel.id], a=ai.a; T.textContent="Alerta";
+    h=backLi("Alertas vigentes","data-back")+
+      '<div class="li stack"><div class="row">'+cap(a.level)+chg(a)+'</div><h3>'+esc(a.hazard)+'</h3><p class="foot">'+esc(a.communes.join(" · "))+'</p>'+metaGrid(a)+timeline(a)+
+      (isSenapred(a.officialUrl)?'<a href="'+esc(a.officialUrl)+'" target="_blank" rel="noopener">Ver ficha en SENAPRED</a>':'')+'</div>'+
+      '<div class="li stack"><span class="t1"><b>'+plural(ai.ppl.length,"persona expuesta","personas expuestas")+'</b></span>'+tokens(ai.ppl)+'</div>';
+  }else if(sel.type==="region"){
+    const r=REG.get(sel.id), lv=R.regLevel.get(sel.id); T.textContent="Región";
+    const ais=R.ordered.filter(ai=>ai.regs.includes(sel.id));
+    const inReg=R.persons.filter(p=>p.region===sel.id), exp=inReg.filter(p=>p.level!=="none"), out=inReg.filter(p=>p.level==="none");
+    h=backLi("Alertas vigentes","data-back")+
+      '<div class="li stack"><div class="row">'+cap(lv||"none")+'</div><h3>'+esc(r.full)+'</h3><p class="foot">'+plural(inReg.length,"persona","personas")+' de la planilla en la región · '+fmtN(exp.length)+' en comunas con alerta</p></div>'+
+      (ais.length?ais.map(alertLi).join(""):'<div class="li"><span class="empty">Sin Alertas Amarillas ni Rojas vigentes en esta región.</span></div>')+
+      (exp.length?'<div class="li stack"><span class="t1"><b>Expuestas</b></span>'+tokens(exp)+'</div>':'')+
+      (out.length?'<div class="li stack"><details><summary>'+ICON("i-chev")+'Fuera de alerta ('+fmtN(out.length)+')</summary><div style="margin-top:8px">'+tokens(out)+'</div></details></div>':'');
+  }else if(sel.type==="office"){
+    T.textContent="Oficina"; h=officeSelectionHtml(company.offices.find(o=>o.id===sel.id));
+  }else if(sel.type==="commune"){
+    const c=COM.get(sel.id), lv=R.comLevel.get(sel.id), r=REG.get(c.r); T.textContent="Comuna";
+    const ppl=R.persons.filter(p=>p.k===sel.id), ais=R.ordered.filter(ai=>ai.ks.includes(sel.id));
+    h=backLi(r?r.name:"Región",'data-back-region="'+esc(c.r)+'"')+
+      '<div class="li stack"><div class="row">'+cap(lv||"none")+'</div><h3>'+esc(c.n)+'</h3><p class="foot">'+esc(r?r.full:"")+'</p></div>'+
+      ais.map(alertLi).join("")+
+      '<div class="li stack"><span class="t1"><b>'+plural(ppl.length,"persona en la comuna","personas en la comuna")+'</b></span>'+tokens(ppl)+'</div>';
+  }
+  if(sel) h='<button type="button" class="li mob-only" data-showmap><span class="sym" style="background:var(--blue)">'+ICON("i-map")+'</span><span class="main-t"><span class="t1" style="color:var(--blue)">Ver en el mapa</span></span>'+ICON("i-chev","chev")+'</button>'+h;
+  P.innerHTML=h; F.textContent=foot; F.hidden=!foot;
+  renderSheet();
+}
+function renderSheet(){
+  const S=$("sheet"); let t="",s="",lv="none";
+  if(sel&&sel.type==="alert"){const ai=R.alertInfo[sel.id];t=ai.a.hazard;lv=ai.a.level;s=plural(ai.ppl.length,"persona expuesta","personas expuestas");}
+  else if(sel&&sel.type==="region"){const r=REG.get(sel.id);t=r.name;lv=R.regLevel.get(sel.id)||"none";s=plural(R.persons.filter(p=>p.region===sel.id&&p.level!=="none").length,"persona expuesta","personas expuestas");}
+  else if(sel&&sel.type==="office"){const o=company.offices.find(x=>x.id===sel.id);if(o){t=o.name;lv=officeLevel(o);s=o.comuna+(lv==="none"?" · sin alerta":"");}}
+  else if(sel&&sel.type==="commune"){const c=COM.get(sel.id);t=c.n;lv=R.comLevel.get(sel.id)||"none";s=plural(R.countByCom.get(sel.id)||0,"persona","personas");}
+  if(!t){S.classList.remove("on");S.innerHTML="";return;}
+  S.innerHTML='<div class="row">'+cap(lv)+'<button type="button" class="iconbtn" data-close aria-label="Cerrar">'+ICON("i-x")+'</button></div><h3>'+esc(t)+'</h3><div class="row"><span class="foot">'+s+'</span><button type="button" class="btn plain" data-detail>Ver detalle</button></div>';
+  S.classList.add("on");
+}
+$("sheet").addEventListener("click",e=>{
+  if(e.target.closest("[data-close]")){$("zAll").click();return;}
+  if(e.target.closest("[data-detail]")){ if(isMobile()){setTab("alertas");return;} $("selGroup").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"}); }
+});
+$("selPanel").addEventListener("click",e=>{
+  if(e.target.closest("[data-showmap]")){setTab("mapa");return;}
+  if(e.target.closest("[data-back]")){$("zAll").click();return;}
+  const br=e.target.closest("[data-back-region]"); if(br){selectRegion(br.dataset.backRegion,true);return;}
+  const li=e.target.closest(".li[data-alert]"); if(li) selectPin({alert:li.dataset.alert});
+});
+
+/* ============ grupos (área, turno…) ============ */
+function groupCandidates(){
+  const cc=contactCols();
+  return people.cols.map((c,i)=>i).filter(i=>i>=2&&!cc.phones.includes(i)&&!cc.emails.includes(i)).filter(i=>{
+    const v=new Set(people.rows.map(r=>String(r[i]||"").trim()).filter(Boolean)); return v.size>=2&&v.size<=15;});
+}
+function renderGroups(){
+  const box=$("groupBox"), cands=groupCandidates(), f=$("fchip");
+  if(groupFilter){f.hidden=false;f.innerHTML='<span>Mostrando solo <b>'+esc(people.cols[groupFilter.col])+': '+esc(groupFilter.val)+'</b></span><button type="button" class="btn plain" id="fclear">Quitar filtro</button>';}
+  else{f.hidden=true;f.innerHTML="";}
+  if(!cands.length){box.hidden=true;return;}
+  box.hidden=false;
+  if(!cands.includes(groupCol)) groupCol=cands[0];
+  $("groupSel").innerHTML=cands.map(i=>'<option value="'+i+'"'+(i===groupCol?' selected':'')+'>'+esc(people.cols[i])+'</option>').join("");
+  const st=new Map();
+  for(const p of R.allPersons){const v=String(p.row[groupCol]||"").trim()||"(sin dato)";const o=st.get(v)||{v,tot:0,r:0,a:0};o.tot++;if(p.level==="Roja")o.r++;else if(p.level==="Amarilla")o.a++;st.set(v,o);}
+  const rows=[...st.values()].sort((x,y)=>(y.r+y.a)-(x.r+x.a)||y.tot-x.tot).slice(0,12), max=Math.max(...rows.map(o=>o.tot),1);
+  $("groupChart").innerHTML='<div class="gbars">'+rows.map(o=>{const on=!!groupFilter&&groupFilter.col===groupCol&&groupFilter.val===o.v, ex=o.r+o.a;
+    return '<button type="button" class="gbar'+(on?' on':'')+'" data-v="'+esc(o.v)+'" aria-pressed="'+on+'"><span class="gl">'+esc(o.v)+'</span><span class="gt" style="width:'+Math.max(6,o.tot/max*100)+'%">'+
+      (o.r?'<i class="r" style="width:'+(o.r/o.tot*100)+'%"></i>':'')+(o.a?'<i class="a" style="width:'+(o.a/o.tot*100)+'%"></i>':'')+'</span><span class="gn"><b>'+fmtN(ex)+'</b> de '+fmtN(o.tot)+'</span></button>';}).join("")+'</div>';
+}
+$("groupSel").onchange=e=>{groupCol=+e.target.value;groupFilter=null;sel=null;render();};
+$("groupChart").addEventListener("click",e=>{const b=e.target.closest(".gbar");if(!b)return;const v=b.dataset.v;
+  groupFilter=(groupFilter&&groupFilter.col===groupCol&&groupFilter.val===v)?null:{col:groupCol,val:v};sel=null;guide=null;render();});
+$("fchip").addEventListener("click",e=>{if(e.target.closest("#fclear")){groupFilter=null;sel=null;render();}});
+function buildComList(){
+  const names=[...new Set([...[...COM.values()].map(c=>c.n),...Object.values(OFFMAP).map(o=>o.n)])].sort((a,b)=>a.localeCompare(b,"es"));
+  $("comList").innerHTML=names.map(n=>'<option value="'+esc(n)+'">').join("");
+}
+function goCommune(v){
+  const k=key(v); if(!k) return;
+  const c=COM.get(k);
+  if(c){sel={type:"commune",id:k};const r=60;animateTo(fitBox([c.c[0]-r/2,c.c[1]-r/2,c.c[0]+r/2,c.c[1]+r/2],1));styleMap();renderSelection();$("comSearch").blur();return;}
+  if(OFFMAP[k]){toast(OFFMAP[k].n+" no aparece en el mapa continental");return;}
+  toast("No se encontró la comuna “"+v+"”");
+}
+$("comSearch").addEventListener("change",e=>goCommune(e.target.value));
+$("comSearch").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();goCommune(e.target.value);}});
+
+/* ============ render ============ */
+function render(){
+  R=compute();
+  renderTiles();
+  const tag=$("peopleTag"); tag.textContent=people.example?"Ejemplo":people.rows.length?plural(people.rows.length,"persona","personas"):"Vacía"; tag.className="badge"+(people.example?" ex":"");
+  const st=$("peopleStatus"); st.className="status";
+  st.textContent=people.example?"Se muestran 12 personas ficticias. Sube tu planilla para reemplazarlas.":people.name?"Archivo: "+people.name:"No hay planilla cargada.";
+  const unk=R.persons.filter(p=>!p.known), unkNames=[...new Set(unk.map(p=>p.row[1]||"(vacía)"))];
+  $("peopleWarn").innerHTML=unk.length?'<p class="note">'+ICON("i-warn")+'<span><b>'+plural(unk.length,"fila con comuna no reconocida","filas con comuna no reconocida")+':</b> '+esc(unkNames.slice(0,6).join(", "))+(unkNames.length>6?"…":"")+'. Corrige la ortografía para que se crucen con las alertas.</span></p>':'';
+  $("alertTag").textContent=plural(feed.alerts.length,"alerta","alertas");
+  $("alertList").innerHTML=feed.alerts.length?feed.alerts.map((a,i)=>
+    '<div class="li"><span class="sym '+a.level+'">'+ICON("i-warn")+'</span><span class="main-t"><span class="t1">'+esc(a.hazard)+'</span><span class="t2">'+esc(a.communes.join(", "))+'</span></span><button class="al-x" type="button" data-del="'+i+'" aria-label="Quitar alerta '+esc(a.hazard)+'">Quitar</button></div>').join("")
+    :'<div class="li"><span class="empty">No hay alertas cargadas.</span></div>';
+  $("cards").innerHTML=R.ordered.map(ai=>{const a=ai.a;
+    const regs=ai.regs.map(c=>REG.get(c)?.full).filter(Boolean).join(", ")||a.region||"";
+    return '<article class="acard"><div class="top"><div class="row" style="gap:6px">'+cap(a.level)+chg(a)+'</div><span class="count"><b class="tnum">'+fmtN(ai.ppl.length)+'</b><span class="foot">'+(ai.ppl.length===1?"persona expuesta":"personas expuestas")+'</span></span></div>'+
+      '<div><h3>'+esc(a.hazard)+'</h3><p class="foot" style="margin-top:2px">'+(regs?esc(regs)+' · ':'')+esc(a.communes.join(", "))+'</p></div>'+
+      (a.detail?'<p style="font-size:14px">'+esc(a.detail)+'</p>':'')+metaGrid(a)+timeline(a)+
+      (ai.missing.length?'<p class="note">'+ICON("i-warn")+'<span>Comunas no ubicadas en el mapa: '+esc(ai.missing.join(", "))+'</span></p>':'')+
+      tokens(ai.ppl,40)+
+      '<div class="row" style="justify-content:space-between"><button type="button" class="btn sm" data-cardmap="'+ai.i+'">'+ICON("i-map")+'Ver en el mapa</button>'+(isSenapred(a.officialUrl)?'<a href="'+esc(a.officialUrl)+'" target="_blank" rel="noopener">Ver ficha en SENAPRED</a>':'')+'</div></article>';
+  }).join("")+recentCancels().map(c=>'<article class="acard cancelled"><div class="top"><span class="cap unk"><i class="dot"></i>Cancelada · Alerta '+esc(c.level||"")+'</span><span class="foot">'+esc(c.at)+' · '+ago(parseD(c.at))+'</span></div><div><h3>'+esc(c.hazard||"Alerta cancelada")+'</h3><p class="foot" style="margin-top:2px">'+esc([c.region].concat(c.communes||[]).filter(Boolean).join(" · "))+'</p></div>'+(c.detail?'<p style="font-size:14px">'+esc(c.detail)+'</p>':'')+'</article>').join("")||'<p class="empty">No hay alertas cargadas.</p>';
+  renderGroups(); renderOffices(); renderTable(); styleMap(); renderSelection();
+  const nExp=R.persons.filter(p=>p.level!=="none").length;
+  $("contactCount").textContent=fmtN(nExp); $("btnContacts").disabled=!nExp; $("btnContacts2").disabled=!nExp;
+  if(!$("contactsDlg").hidden){guide=null;renderContacts();}
+  renderFollow();
+  if(typeof updateTabBadges==="function") updateTabBadges();
+}
+const TABLE_MAX=500;
+function renderTable(){
+  const q=norm($("q").value);
+  $("thead").innerHTML='<tr><th>Nombre</th><th>Comuna</th>'+people.cols.slice(2).map(c=>'<th>'+esc(c)+'</th>').join("")+'<th>Región</th><th>Estado</th><th>Peligro</th></tr>';
+  const rows=R.persons.map(p=>({...p,st:!p.known?"unk":p.level,rn:p.region&&REG.get(p.region)?REG.get(p.region).name:""}))
+    .filter(x=>(tableFilter==="all"||x.st===tableFilter)&&(!q||norm(x.row.join(" ")+" "+x.rn).includes(q)))
+    .sort((a,b)=>(RANK[b.level]||0)-(RANK[a.level]||0)||(a.st==="unk")-(b.st==="unk"));
+  $("tbody").innerHTML=rows.length?rows.slice(0,TABLE_MAX).map(x=>'<tr><td class="nm">'+esc(x.row[0])+'</td><td>'+esc(x.row[1]||"—")+'</td>'+x.row.slice(2).map(c=>'<td>'+esc(c)+'</td>').join("")+
+    '<td>'+esc(x.rn||"—")+'</td><td>'+cap(x.st)+'</td><td>'+esc(x.alerts.map(a=>a.hazard).join("; ")||"—")+'</td></tr>').join("")
+    :'<tr><td colspan="'+(people.cols.length+3)+'" class="empty">Ninguna persona coincide con el filtro.</td></tr>';
+  const m=$("more"); m.hidden=rows.length<=TABLE_MAX; m.textContent="Se muestran las primeras "+fmtN(TABLE_MAX)+" de "+fmtN(rows.length)+". Usa la búsqueda para encontrar a alguien.";
+}
+
+/* ============ eventos ============ */
+function wireDrop(dropId,inputId,fn){
+  const d=$(dropId), inp=$(inputId);
+  inp.addEventListener("change",()=>{if(inp.files[0])fn(inp.files[0]);inp.value="";});
+  d.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();inp.click();}});
+  ["dragenter","dragover"].forEach(ev=>d.addEventListener(ev,e=>{e.preventDefault();d.classList.add("over");}));
+  ["dragleave","drop"].forEach(ev=>d.addEventListener(ev,e=>{e.preventDefault();d.classList.remove("over");}));
+  d.addEventListener("drop",e=>{const f=e.dataTransfer.files[0];if(f)fn(f);});
+}
+wireDrop("dropPeople","filePeople",readPeople);
+wireDrop("dropFeed","fileFeed",readFeed);
+$("btnExample").onclick=()=>{people={cols:EXAMPLE.cols.slice(),rows:EXAMPLE.rows.map(r=>r.slice()),example:true,name:""};sel=null;groupFilter=null;groupCol=-1;resetContacts();render();};
+$("btnClearPeople").onclick=()=>{people={cols:["Nombre","Comuna"],rows:[],example:false,name:""};sel=null;groupFilter=null;groupCol=-1;resetContacts();render();};
+$("btnReset").onclick=async()=>{$("feedStatus").textContent="";feedOrigin="fallback";sel=null;await loadOfficial();toast("Alertas oficiales cargadas");};
+$("alertList").addEventListener("click",e=>{
+  const b=e.target.closest("[data-del]"); if(!b) return;
+  if(b.dataset.armed!=="1"){b.dataset.armed="1";b.textContent="Confirmar";setTimeout(()=>{if(b.isConnected){b.dataset.armed="";b.textContent="Quitar";}},3000);return;}
+  feed.alerts.splice(+b.dataset.del,1);feed.mode="manual";sel=null;render();toast("Alerta quitada en esta sesión");
+});
+$("addForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const communes=$("fCommunes").value.split(/[,;\n]/).map(s=>s.trim()).filter(Boolean);
+  const hazard=$("fHazard").value.trim(); if(!communes.length||!hazard) return;
+  const d=$("fDeclared").value, dd=d?d.split("-").reverse().join("-"):"";
+  const now=new Date(), pad=n=>String(n).padStart(2,"0");
+  feed.alerts.push({id:"MANUAL-"+now.getTime(),level:$("fLevel").value,hazard,communes,source:"SENAPRED - ingresada manualmente",
+    officialUrl:"https://senapred.cl/alertas/",officialDeclaredAt:dd,officialUpdatedAt:"",
+    verifiedAt:pad(now.getDate())+"-"+pad(now.getMonth()+1)+"-"+now.getFullYear()+" "+pad(now.getHours())+":"+pad(now.getMinutes())});
+  feed.mode="manual"; e.target.reset(); render(); toast("Alerta agregada en esta sesión");
+  const miss=communes.filter(c=>M&&!place(key(c))); $("feedStatus").className="status"+(miss.length?" err":""); $("feedStatus").textContent=miss.length?"Comunas no reconocidas: "+miss.join(", "):"";
+});
+$("q").addEventListener("input",renderTable);
+$("seg").addEventListener("click",e=>{const b=e.target.closest("button[data-f]");if(!b)return;tableFilter=b.dataset.f;
+  $("seg").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderTable();});
+$("cards").addEventListener("click",e=>{const b=e.target.closest("[data-cardmap]");if(!b)return;setTab("mapa");requestAnimationFrame(()=>selectPin({alert:b.dataset.cardmap}));});
+$("btnCopy").onclick=()=>{
+  const lines=["Resumen HSEC — alertas SENAPRED al "+fmtDate(feed.generatedAt),""];
+  R.ordered.forEach(ai=>{
+    lines.push("ALERTA "+ai.a.level.toUpperCase()+" · "+ai.a.hazard+" ("+ai.a.communes.join(", ")+")");
+    lines.push(ai.ppl.length?ai.ppl.map(x=>"  - "+x.row[0]+" ("+x.row[1]+")").join("\n"):"  Sin personas en estas comunas");
+    lines.push("");
+  });
+  lines.push("Confirmar vigencia en https://senapred.cl/alertas/");
+  const text=lines.join("\n"), box=$("copyBox");
+  const fallback=()=>{box.hidden=false;box.value=text;box.focus();box.select();toast("Selecciona y copia el texto");};
+  try{navigator.clipboard.writeText(text).then(()=>{box.hidden=true;toast("Resumen copiado");},fallback);}catch(err){fallback();}
+};
+
+/* ============ lista de contacto ============ */
+const cstatus=new Map();   // idx -> {s:'ok'|'noans'|'help', t}
+const cnote=new Map();     // idx -> texto
+const CS={ok:"Está bien",noans:"No contesta",help:"Necesita apoyo",pending:"Pendiente"};
+let cLevel="all", cStatus="all", DL=null, lastFocus=null, guide=null;
+const JSPDF_URL="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js", JSPDF_SRI="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk";
+const AUTOTABLE_URL="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js", AUTOTABLE_SRI="sha384-fCAW/rDWORTbQXSiB7mOg0QtQ5c+r0f544y6XoKjuVva0nMBlCpNUjiFeG5iMdS3";
+function resetContacts(){cstatus.clear();cnote.clear();guide=null;}
+function contactCols(){
+  const r={phones:[],emails:[],extra:[]};
+  people.cols.forEach((c,i)=>{ if(i<2) return; const n=norm(c);
+    if(/(^| )(telefono|fono|celular|movil|whatsapp|tel)( |$)/.test(n)) r.phones.push(i);
+    else if(/(^| )(correo|email|e mail|mail)( |$)/.test(n)) r.emails.push(i);
+    else r.extra.push(i); });
+  r.phone=r.phones.length?0:-1; r.email=r.emails.length?0:-1;
+  r.tel=row=>{for(const i of r.phones) if(row[i]) return row[i]; return "";};
+  r.mail=row=>{for(const i of r.emails) if(row[i]) return row[i]; return "";};
+  return r;
+}
+function contactGroups(){
+  const seen=new Set(), out=[];
+  for(const ai of R.ordered){
+    const m=ai.ppl.filter(p=>!seen.has(p.idx)); m.forEach(p=>seen.add(p.idx));
+    if(m.length) out.push({ai,members:m});
+  }
+  return out;
+}
+const stOf=idx=>cstatus.get(idx)?.s||"pending";
+const pill=idx=>{const s=stOf(idx);return '<span class="sp '+s+'">'+CS[s]+'</span>';};
+const passStatus=p=>cStatus==="all"||stOf(p.idx)===cStatus;
+const levelGroups=()=>contactGroups().filter(g=>cLevel==="all"||g.ai.a.level===cLevel);
+const visibleGroups=()=>levelGroups().map(g=>({...g,members:g.members.filter(passStatus)})).filter(g=>g.members.length);
+function counts(groups){const c={all:0,pending:0,ok:0,noans:0,help:0};for(const g of groups)for(const p of g.members){c.all++;c[stOf(p.idx)]++;}return c;}
+function stamp(t){const d=t?new Date(t):new Date(),p=n=>String(n).padStart(2,"0");return {file:d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+"_"+p(d.getHours())+p(d.getMinutes()),text:p(d.getDate())+"-"+p(d.getMonth()+1)+"-"+d.getFullYear()+" "+p(d.getHours())+":"+p(d.getMinutes()),hm:p(d.getHours())+":"+p(d.getMinutes())};}
+function waLink(v){let d=String(v||"").replace(/\D/g,"");if(d.length===9&&d[0]==="9")d="56"+d;return /^569\d{8}$/.test(d)?"https://wa.me/"+d:"";}
+function telHref(v){const d=String(v||"").replace(/[^\d+]/g,"");return d.replace(/\D/g,"").length>=8?"tel:"+d:"";}
+const phoneVal=(v,big)=>{if(!v)return "";const t=telHref(v),w=waLink(v);
+  return '<span class="cval phone'+(big?' big':'')+'"><svg class="ic"><use href="#i-phone"/></svg>'+(t?'<a href="'+esc(t)+'" class="tel">'+esc(v)+'</a>':'<span>'+esc(v)+'</span>')+
+    '<button type="button" data-copy="'+esc(v)+'" aria-label="Copiar teléfono"><svg class="ic"><use href="#i-copy"/></svg></button>'+
+    (w?'<a class="wa" href="'+esc(w)+'" target="_blank" rel="noopener" aria-label="Abrir WhatsApp con '+esc(v)+'">WhatsApp</a>':'')+'</span>';};
+const contactVal=(v,icon,label,big)=>v?'<span class="cval'+(big?' big':'')+'"><svg class="ic"><use href="#'+icon+'"/></svg><span>'+esc(v)+'</span><button type="button" data-copy="'+esc(v)+'" aria-label="Copiar '+label+'"><svg class="ic"><use href="#i-copy"/></svg></button></span>':'';
+
+function renderContacts(){
+  const lg=levelGroups(), c=counts(lg), all=counts(contactGroups());
+  $("cSub").textContent=plural(all.all,"persona","personas")+" en comunas con Alerta Roja o Amarilla · alertas SENAPRED al "+fmtDate(feed.generatedAt);
+  const done=all.ok+all.noans+all.help;
+  $("cProgress").innerHTML='<span class="bar"><i style="width:'+(all.all?Math.round(done/all.all*100):0)+'%"></i></span><span>'+fmtN(done)+' de '+fmtN(all.all)+' con resultado</span>';
+  const sb=[["all","Todas",c.all],["pending","Pendientes",c.pending],["ok","Está bien",c.ok],["noans","No contesta",c.noans],["help","Necesita apoyo",c.help]];
+  $("cStat").innerHTML=sb.map(([k,l,n])=>'<button type="button" data-s="'+k+'" aria-pressed="'+(cStatus===k)+'">'+l+' <span class="n">'+fmtN(n)+'</span></button>').join("");
+  $("cStart").disabled=!c.all; $("cStart").innerHTML=ICON("i-play")+(c.pending===c.all?"Empezar a contactar":c.pending?"Seguir contactando":"Revisar una a una");
+  if(guide){renderGuide();return;}
+  $("contactsDlg").classList.remove("guiding");
+  const cc=contactCols(), groups=visibleGroups();
+  let h="";
+  if(cc.phone<0) h+='<p class="note">'+ICON("i-warn")+'<span>Tu archivo no trae teléfonos. Agrega una columna o campo <b>telefono</b> a cada persona para verlo aquí, llamar o escribir por WhatsApp, y tenerlo en el PDF y el Excel.</span></p>';
+  else{const miss=lg.flatMap(g=>g.members).filter(p=>!cc.tel(p.row)).length; if(miss) h+='<p class="note">'+ICON("i-warn")+'<span>'+plural(miss,"persona no tiene","personas no tienen")+' teléfono en el archivo.</span></p>';}
+  h+=groups.map(g=>{const a=g.ai.a;
+    return '<section><div class="cgroup-h">'+cap(a.level)+'<b>'+esc(a.hazard)+'</b><span class="foot">'+esc(a.communes.join(", "))+'</span></div><div class="list">'+
+      g.members.map(p=>{const s=stOf(p.idx), note=cnote.get(p.idx), sub=[p.row[1]].concat(cc.extra.map(i=>p.row[i]).filter(Boolean)).join(" · ");
+        const info=(cc.phone>=0?(phoneVal(cc.tel(p.row))||'<span class="cnone">Sin teléfono</span>'):'')+contactVal(cc.mail(p.row),"i-mail","correo");
+        return '<div class="crow s-'+s+'"><button type="button" class="crow-main" data-open="'+p.idx+'" aria-label="Contactar a '+esc(p.row[0])+'"><span class="cname">'+esc(p.row[0])+'</span><span class="csub">'+esc(sub)+'</span>'+(note?'<span class="cnote">'+esc(note)+'</span>':'')+'</button>'+
+          '<div class="cinfo">'+(info||'<span class="cnone">Sin datos de contacto</span>')+'</div><div class="cstate">'+pill(p.idx)+(cstatus.get(p.idx)?'<span class="caption">'+stamp(cstatus.get(p.idx).t).hm+'</span>':'')+'</div></div>';
+      }).join("")+'</div></section>';}).join("");
+  if(!groups.length) h+='<p class="empty" style="padding:20px 4px">'+(c.all?"No hay personas con este filtro.":"No hay personas en comunas con alerta.")+'</p>';
+  $("cBody").innerHTML=h;
+}
+function startGuide(fromIdx,onlyStatus){
+  let q=levelGroups().flatMap(g=>g.members.map(p=>p.idx));
+  if(onlyStatus) q=q.filter(i=>stOf(i)===onlyStatus);
+  if(!q.length) return;
+  let pos=fromIdx!=null?q.indexOf(fromIdx):q.findIndex(i=>stOf(i)==="pending");
+  if(pos<0) pos=0;
+  guide={queue:q,pos}; renderContacts();
+}
+function renderGuide(){
+  $("contactsDlg").classList.add("guiding");
+  const q=guide.queue, n=q.length, cc=contactCols();
+  if(guide.pos>=n){
+    const c={ok:0,noans:0,help:0,pending:0}; q.forEach(i=>c[stOf(i)]++);
+    $("cBody").innerHTML='<div class="guide"><article class="g-card g-done"><div class="g-check">'+ICON("i-check")+'</div><h2>Ronda terminada</h2><p class="sub">'+plural(n,"persona revisada","personas revisadas")+'</p>'+
+      '<div class="g-sum"><div class="ok"><b>'+c.ok+'</b><span>Está bien</span></div><div class="noans"><b>'+c.noans+'</b><span>No contesta</span></div><div class="help"><b>'+c.help+'</b><span>Necesita apoyo</span></div><div><b>'+c.pending+'</b><span>Pendientes</span></div></div>'+
+      '<div class="row" style="justify-content:center">'+(c.noans?'<button type="button" class="btn sm" data-g="retry">Volver a llamar a quienes no contestan</button>':'')+(c.pending?'<button type="button" class="btn sm" data-g="pend">Seguir con pendientes</button>':'')+
+      '<button type="button" class="btn sm" data-g="list">Ver lista</button></div></article></div>';
+    return;
+  }
+  const idx=q[guide.pos], p=R.persons.find(x=>x.idx===idx);
+  if(!p){guide.pos++;return renderGuide();}
+  const ai=R.ordered.find(a=>a.ppl.includes(p)), a=ai?ai.a:null, s=stOf(idx);
+  const tel=cc.tel(p.row), mail=cc.mail(p.row), extra=cc.extra.map(i=>p.row[i]).filter(Boolean);
+  $("cBody").innerHTML='<div class="guide">'+
+    '<div class="g-head"><button type="button" class="btn plain" data-g="list">‹ Lista</button><span class="foot">Persona '+(guide.pos+1)+' de '+n+'</span></div>'+
+    '<span class="bar wide"><i style="width:'+Math.round(guide.pos/n*100)+'%"></i></span>'+
+    '<article class="g-card">'+
+      (a?'<div class="row">'+cap(a.level)+'<span class="foot">'+esc(a.hazard)+'</span></div>':'')+
+      '<h2 class="g-name">'+esc(p.row[0])+'</h2>'+
+      '<p class="sub">'+esc([p.row[1]].concat(extra).join(" · "))+'</p>'+
+      '<div class="g-contact">'+(tel?phoneVal(tel,true):'<p class="note">'+ICON("i-warn")+'<span>Esta persona no tiene teléfono en el archivo.</span></p>')+contactVal(mail,"i-mail","correo",true)+'</div>'+
+      '<label class="f"><span>Nota <span class="caption">(opcional)</span></span><textarea id="gNote" class="field" rows="2" placeholder="Ej.: está en casa de un familiar, sin daños">'+esc(cnote.get(idx)||"")+'</textarea></label>'+
+      (s!=="pending"?'<p class="foot">Resultado actual: '+pill(idx)+' · '+stamp(cstatus.get(idx).t).hm+'</p>':'')+
+    '</article>'+
+    '<div class="g-actions">'+
+      '<button type="button" class="act ok" data-set="ok">'+ICON("i-check")+'Está bien</button>'+
+      '<button type="button" class="act noans" data-set="noans">'+ICON("i-phone")+'No contesta</button>'+
+      '<button type="button" class="act help" data-set="help">'+ICON("i-warn")+'Necesita apoyo</button>'+
+    '</div>'+
+    '<div class="g-nav"><button type="button" class="btn sm" data-g="prev"'+(guide.pos?'':' disabled')+'>Anterior</button><button type="button" class="btn sm" data-g="next">Omitir</button></div>'+
+  '</div>';
+}
+function setStatus(idx,s){
+  const n=$("gNote"); if(n){const v=n.value.trim(); if(v) cnote.set(idx,v); else cnote.delete(idx);}
+  cstatus.set(idx,{s,t:Date.now()});
+  renderFollow();
+}
+function openContacts(fromIdx){
+  lastFocus=document.activeElement; $("contactsDlg").hidden=false; document.body.style.overflow="hidden";
+  if(fromIdx!=null) startGuide(fromIdx); else renderContacts();
+  $("cClose").focus();
+}
+function closeContacts(){ const n=$("gNote"); if(n&&guide){const idx=guide.queue[guide.pos];const v=n.value.trim(); if(v) cnote.set(idx,v);}
+  guide=null; $("contactsDlg").hidden=true; document.body.style.overflow=""; renderFollow(); if(lastFocus&&lastFocus.focus) lastFocus.focus(); }
+function renderFollow(){
+  const box=$("follow"); if(!R) return;
+  const groups=contactGroups(), c=counts(groups);
+  if(c.ok+c.noans+c.help===0){box.hidden=true;return;}
+  const help=groups.flatMap(g=>g.members).filter(p=>stOf(p.idx)==="help");
+  box.hidden=false;
+  box.innerHTML='<div class="sect">Seguimiento de contacto</div><div class="list"><div class="li stack"><div class="g-sum sm"><div class="ok"><b>'+c.ok+'</b><span>Está bien</span></div><div class="noans"><b>'+c.noans+'</b><span>No contesta</span></div><div class="help"><b>'+c.help+'</b><span>Apoyo</span></div><div><b>'+c.pending+'</b><span>Pendientes</span></div></div></div>'+
+    help.map(p=>'<button type="button" class="li" data-follow="'+p.idx+'"><span class="sym Roja">'+ICON("i-warn")+'</span><span class="main-t"><span class="t1">'+esc(p.row[0])+'</span><span class="t2">'+esc(cnote.get(p.idx)||p.row[1])+'</span></span>'+ICON("i-chev","chev")+'</button>').join("")+
+    '</div><div class="foot" style="padding:6px 16px 0">Se pierde al recargar la página. Descarga la lista para conservar el registro.</div>';
+}
+$("follow").addEventListener("click",e=>{const b=e.target.closest("[data-follow]");if(b)openContacts(+b.dataset.follow);});
+$("btnContacts").onclick=()=>openContacts(); $("btnContacts2").onclick=()=>openContacts();
+$("cClose").onclick=closeContacts;
+$("cStart").onclick=()=>startGuide();
+$("contactsDlg").addEventListener("click",e=>{if(e.target===$("contactsDlg"))closeContacts();});
+document.addEventListener("keydown",e=>{
+  if($("contactsDlg").hidden) return;
+  if(e.key==="Escape"){closeContacts();return;}
+  if(e.key==="Tab"){const f=[...$("contactsDlg").querySelectorAll("button:not([hidden]):not(:disabled),input,textarea")].filter(x=>x.offsetParent!==null);
+    if(!f.length)return; const i=f.indexOf(document.activeElement);
+    if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus();} else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus();}}
+});
+function copyText(text,okMsg){
+  const fb=()=>{const t=document.createElement("textarea");t.value=text;t.setAttribute("readonly","");t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();
+    let ok=false;try{ok=document.execCommand("copy");}catch(_){} t.remove(); toast(ok?okMsg:"No se pudo copiar; selecciona el texto manualmente");};
+  try{navigator.clipboard.writeText(text).then(()=>toast(okMsg),fb);}catch(_){fb();}
+}
+$("cBody").addEventListener("click",e=>{
+  const cp=e.target.closest("button[data-copy]"); if(cp){copyText(cp.dataset.copy,"Copiado");return;}
+  const op=e.target.closest("[data-open]"); if(op){startGuide(+op.dataset.open);return;}
+  const st=e.target.closest("[data-set]"); if(st&&guide){const idx=guide.queue[guide.pos];setStatus(idx,st.dataset.set);guide.pos++;renderContacts();
+    const first=$("cBody").querySelector(".act.ok,[data-g='list']"); if(first) first.focus(); return;}
+  const g=e.target.closest("[data-g]"); if(!g) return;
+  const act=g.dataset.g;
+  if(act==="list"){const n=$("gNote");if(n&&guide&&guide.pos<guide.queue.length){const v=n.value.trim();if(v)cnote.set(guide.queue[guide.pos],v);}guide=null;renderContacts();}
+  else if(act==="prev"&&guide){guide.pos=Math.max(0,guide.pos-1);renderContacts();}
+  else if(act==="next"&&guide){const n=$("gNote");if(n){const v=n.value.trim();if(v)cnote.set(guide.queue[guide.pos],v);}guide.pos++;renderContacts();}
+  else if(act==="retry"){guide=null;startGuide(null,"noans");}
+  else if(act==="pend"){guide=null;startGuide(null,"pending");}
+});
+$("cLevelSeg").addEventListener("click",e=>{const b=e.target.closest("button[data-f]");if(!b)return;cLevel=b.dataset.f;guide=null;
+  $("cLevelSeg").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderContacts();});
+$("cStat").addEventListener("click",e=>{const b=e.target.closest("button[data-s]");if(!b)return;cStatus=b.dataset.s;guide=null;renderContacts();});
+function exportRows(){
+  const cc=contactCols(), rows=[];
+  for(const g of visibleGroups()) for(const p of g.members){
+    const st=cstatus.get(p.idx);
+    const o={"Estado contacto":CS[stOf(p.idx)],"Hora":st?stamp(st.t).hm:"","Nivel":"Alerta "+g.ai.a.level,"Peligro":g.ai.a.hazard,"Nombre":p.row[0],"Comuna":p.row[1],
+      "Región":p.region&&REG.get(p.region)?REG.get(p.region).name:""};
+    if(cc.phone>=0) o["Teléfono"]=cc.tel(p.row);
+    if(cc.email>=0) o["Correo"]=cc.mail(p.row);
+    cc.extra.forEach(i=>{o[people.cols[i]]=p.row[i]||"";});
+    o["Nota"]=cnote.get(p.idx)||""; rows.push(o);
+  }
+  return rows;
+}
+$("cCopy").onclick=()=>{
+  const cc=contactCols(), L=["Lista de contacto HSEC"+(company.name?" · "+company.name:"")+" — "+stamp().text,"Alertas SENAPRED al "+fmtDate(feed.generatedAt),""];
+  for(const g of visibleGroups()){
+    L.push("ALERTA "+g.ai.a.level.toUpperCase()+" · "+g.ai.a.hazard+" ("+g.ai.a.communes.join(", ")+")");
+    for(const p of g.members){const parts=[p.row[0],p.row[1]];if(cc.tel(p.row))parts.push(cc.tel(p.row));if(cc.mail(p.row))parts.push(cc.mail(p.row));
+      const nt=cnote.get(p.idx);
+      L.push("  ["+CS[stOf(p.idx)]+"] "+parts.join(" · ")+(nt?" — "+nt:""));}
+    L.push("");
+  }
+  copyText(L.join("\n"),"Lista copiada");
+};
+const TOPLEVEL=(()=>{try{return window.top===window.self;}catch(_){return false;}})();
+const MIME={pdf:"application/pdf",xlsx:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",json:"application/json",csv:"text/csv"};
+function browserDownload(filename,data){
+  try{
+    const ext=filename.split(".").pop().toLowerCase();
+    const blob=data instanceof Blob?data:new Blob([data],{type:MIME[ext]||"application/octet-stream"});
+    const url=URL.createObjectURL(blob), a=document.createElement("a");
+    a.href=url; a.download=filename; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),60000);
+    toast("Descarga iniciada: "+filename); return true;
+  }catch(_){toast("Este navegador no permitió la descarga; usa “Copiar para Excel”");return false;}
+}
+async function saveFile(filename,data){
+  if(!DL){ if(TOPLEVEL){browserDownload(filename,data);return;} toast("Las descargas no están disponibles aquí; usa “Copiar para Excel”");return;}
+  try{const r=await DL.save({filename,data}); if(r&&r.status==="saved") toast("Archivo guardado");}
+  catch(e){const c=e&&e.code;
+    if(c==="declined") return;
+    if(c==="rate_limited"){toast("Ya hay una descarga pendiente de confirmar");return;}
+    if(["unavailable","not_granted","capability_disabled","capability_removed"].includes(c)){DL=null;updateDl();}
+    toast("No se pudo guardar el archivo");}
+}
+const safeCell=v=>{const t=String(v??"").replace(/[\t\r\n]+/g," ").trim();return /^[=+\-@]/.test(t)?"'"+t:t;};
+$("cTsv").onclick=()=>{
+  const rows=exportRows(); if(!rows.length){toast("No hay personas para copiar");return;}
+  const cols=Object.keys(rows[0]), clean=safeCell;
+  const tsv=[cols.join("\t")].concat(rows.map(r=>cols.map(c=>clean(r[c])).join("\t"))).join("\n");
+  copyText(tsv,"Lista copiada: pégala en Excel (Ctrl+V)");
+};
+$("cXlsx").onclick=async()=>{
+  if(typeof XLSX==="undefined"){toast("No se pudo cargar el generador de Excel");return;}
+  const rows=exportRows(); if(!rows.length){toast("No hay personas para exportar");return;}
+  const ws=XLSX.utils.json_to_sheet(rows.map(r=>{const o={};for(const k in r)o[k]=safeCell(r[k]);return o;}));
+  ws["!cols"]=Object.keys(rows[0]).map(k=>({wch:Math.min(46,Math.max(k.length+2,...rows.map(r=>String(r[k]||"").length+2)))}));
+  ws["!autofilter"]={ref:ws["!ref"]};
+  const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,"Contactos");
+  await saveFile("Lista_contacto_HSEC_"+stamp().file+".xlsx",XLSX.write(wb,{bookType:"xlsx",type:"array"}));
+};
+function loadScript(src,integrity){return new Promise((res,rej)=>{const s=document.createElement("script");s.src=src;if(integrity){s.integrity=integrity;s.crossOrigin="anonymous";s.referrerPolicy="no-referrer";}s.onload=res;s.onerror=()=>rej(new Error("load"));document.head.appendChild(s);});}
+async function ensurePdf(){
+  if(!(window.jspdf&&window.jspdf.jsPDF)) await loadScript(JSPDF_URL,JSPDF_SRI);
+  if(!window.jspdf.jsPDF.API.autoTable) await loadScript(AUTOTABLE_URL,AUTOTABLE_SRI);
+}
+$("cPdf").onclick=async()=>{
+  const btn=$("cPdf"); const groups=visibleGroups(); if(!groups.length){toast("No hay personas para exportar");return;}
+  btn.disabled=true;
+  try{await ensurePdf();}catch(e){btn.disabled=false;toast("No se pudo cargar el generador de PDF");return;}
+  try{
+    const {jsPDF}=window.jspdf, cc=contactCols(), st=stamp();
+    const doc=new jsPDF({orientation:"landscape",unit:"pt",format:"a4"});
+    const W=doc.internal.pageSize.getWidth(), H=doc.internal.pageSize.getHeight(), M=36;
+    const c=counts(groups);
+    doc.setFont("helvetica","bold");doc.setFontSize(18);doc.setTextColor(29,29,31);doc.text("Lista de contacto HSEC"+(company.name?" · "+company.name:""),M,48);
+    if(company.logo&&company.logoW&&company.logoH){try{const lw=Math.min(140,30*company.logoW/company.logoH),lh=lw*company.logoH/company.logoW;doc.addImage(company.logo,"PNG",W-M-lw,24,lw,lh);}catch(_){}}
+    doc.setFont("helvetica","normal");doc.setFontSize(9.5);doc.setTextColor(110,110,115);
+    doc.text("Generada el "+st.text+"  ·  Alertas SENAPRED al "+fmtDate(feed.generatedAt)+"  ·  "+plural(c.all,"persona","personas")+"  ·  Está bien "+c.ok+" · No contesta "+c.noans+" · Necesita apoyo "+c.help+" · Pendientes "+c.pending,M,64);
+    const head=["Estado","Nombre","Comuna"]; if(cc.phone>=0)head.push("Teléfono"); if(cc.email>=0)head.push("Correo");
+    const ex=cc.extra.slice(0,2); ex.forEach(i=>head.push(people.cols[i])); head.push("Nota / observaciones");
+    const COL={ok:[36,138,61],noans:[110,110,115],help:[215,0,21]};
+    let y=80;
+    for(const g of groups){
+      const a=g.ai.a, red=a.level==="Roja";
+      const body=g.members.map(p=>{const s=stOf(p.idx);const r=[s==="pending"?"":CS[s],p.row[0],p.row[1]];if(cc.phone>=0)r.push(cc.tel(p.row));if(cc.email>=0)r.push(cc.mail(p.row));ex.forEach(i=>r.push(p.row[i]||""));r.push(cnote.get(p.idx)||"");return r;});
+      doc.autoTable({startY:y,margin:{left:M,right:M,top:40,bottom:40},theme:"grid",
+        head:[[{content:"ALERTA "+a.level.toUpperCase()+"  ·  "+a.hazard+"  ·  "+a.communes.join(", "),colSpan:head.length,
+               styles:{fillColor:red?[255,59,48]:[255,204,0],textColor:red?[255,255,255]:[29,29,31],fontStyle:"bold",fontSize:10}}],head],
+        body,
+        styles:{font:"helvetica",fontSize:9,cellPadding:{top:6,bottom:6,left:6,right:6},lineColor:[210,210,215],lineWidth:.5,textColor:[29,29,31],valign:"middle"},
+        headStyles:{fillColor:[242,242,247],textColor:[90,90,95],fontStyle:"bold"},
+        columnStyles:{0:{cellWidth:78,fontStyle:"bold"},[head.length-1]:{cellWidth:170}},
+        didParseCell:d=>{if(d.section==="body"&&d.column.index===0){const s=Object.keys(CS).find(k=>CS[k]===d.cell.raw);if(s&&COL[s])d.cell.styles.textColor=COL[s];}},
+        didDrawCell:d=>{if(d.section==="body"&&d.column.index===0&&d.cell.raw===""){const s=10,x=d.cell.x+8,yy=d.cell.y+d.cell.height/2-s/2;
+          doc.setDrawColor(120,120,125);doc.setLineWidth(.8);doc.rect(x,yy,s,s);}}
+      });
+      y=doc.lastAutoTable.finalY+18;
+    }
+    const n=doc.getNumberOfPages();
+    for(let i=1;i<=n;i++){doc.setPage(i);doc.setFont("helvetica","normal");doc.setFontSize(8);doc.setTextColor(130,130,135);
+      doc.text("Contiene datos personales · Uso interno HSEC · Confirmar vigencia en senapred.cl/alertas",M,H-20);
+      doc.text("Página "+i+" de "+n,W-M,H-20,{align:"right"});}
+    await saveFile("Lista_contacto_HSEC_"+st.file+".pdf",doc.output("arraybuffer"));
+  }catch(e){toast("No se pudo generar el PDF");}
+  finally{btn.disabled=false;}
+};
+function updateDl(){ const ok=!!DL||TOPLEVEL; $("cPdf").hidden=!ok; $("cXlsx").hidden=!ok; if($("coExport")) $("coExport").hidden=!ok; }
+(async()=>{try{if(window.claude&&typeof window.claude.use==="function") DL=await window.claude.use("downloads");}catch(_){DL=null;} updateDl();})();
+
+/* ============ mi empresa: nombre, logo y oficinas ============ */
+const CO_KEY="hsec_company_v1";
+let company={name:"",logo:"",logoW:0,logoH:0,offices:[]};
+function loadCompany(){try{const s=localStorage.getItem(CO_KEY);if(s){const c=JSON.parse(s);if(c&&typeof c==="object")company=sanitizeCompany(c);}}catch(_){}}
+function saveCompany(){try{localStorage.setItem(CO_KEY,JSON.stringify(company));return true;}catch(_){toast("No se pudo guardar en este navegador; la configuración durará hasta recargar");return false;}}
+function sanitizeCompany(c){
+  const logo=typeof c.logo==="string"&&/^data:image\/(png|jpeg);base64,/.test(c.logo)&&c.logo.length<1.5e6?c.logo:"";
+  return {name:String(c.name||"").slice(0,80),logo,logoW:+c.logoW||0,logoH:+c.logoH||0,
+    offices:(Array.isArray(c.offices)?c.offices:[]).slice(0,200).map(o=>({id:String(o.id||Math.random().toString(36).slice(2)),name:String(o.name||"").slice(0,80),address:String(o.address||"").slice(0,160),comuna:String(o.comuna||"").slice(0,60)})).filter(o=>o.name&&o.comuna)};
+}
+const officePlace=o=>{const k=key(o.comuna);return {k,info:COM.get(k)||null,off:OFFMAP[k]||null};};
+const officeLevel=o=>R?(R.comLevel.get(key(o.comuna))||"none"):"none";
+function renderBrand(){
+  const img=$("brandLogo"), nm=$("brandName");
+  if(company.logo){img.src=company.logo;img.hidden=false;img.alt="Logo de "+(company.name||"la empresa");}else{img.hidden=true;img.removeAttribute("src");}
+  nm.textContent=company.name||""; nm.hidden=!company.name;
+  $("brandBox").classList.toggle("has",!!(company.logo||company.name));
+}
+function officeLi(o){
+  const lv=officeLevel(o), p=officePlace(o), reg=p.info?REG.get(p.info.r):null;
+  return '<button type="button" class="li" data-office="'+esc(o.id)+'"><span class="sym off '+lv+'">'+ICON("i-building")+'</span><span class="main-t"><span class="t1">'+esc(o.name)+'</span><span class="t2">'+esc([o.address,o.comuna].filter(Boolean).join(" · "))+'</span></span>'+
+    (lv!=="none"?cap(lv):'<span class="sp ok">Sin alerta</span>')+ICON("i-chev","chev")+'</button>';
+}
+function renderOffices(){
+  const box=$("officesBox"), list=$("officesList");
+  renderBrand();
+  if(!company.offices.length){
+    list.innerHTML='<div class="li stack"><p class="foot">Agrega las oficinas de tu empresa para ver en el mapa si alguna queda en una comuna con alerta.</p><button type="button" class="btn sm" data-co-open>'+ICON("i-plus")+'Agregar oficinas y logo</button></div>';
+    $("officesSect").textContent="Oficinas"; return;
+  }
+  const inAlert=company.offices.filter(o=>officeLevel(o)!=="none");
+  $("officesSect").textContent="Oficinas"+(company.name?" de "+company.name:"")+" · "+(inAlert.length?inAlert.length+" en alerta":"ninguna en alerta");
+  const sorted=company.offices.slice().sort((a,b)=>(RANK[officeLevel(b)]||0)-(RANK[officeLevel(a)]||0)||a.name.localeCompare(b.name,"es"));
+  if(typeof updateTabBadges==="function") setTimeout(updateTabBadges,0);
+  list.innerHTML=sorted.map(officeLi).join("")+'<button type="button" class="li" data-co-open><span class="main-t"><span class="t1" style="color:var(--blue)">Administrar oficinas y logo</span></span>'+ICON("i-chev","chev")+'</button>';
+}
+$("officesList").addEventListener("click",e=>{
+  if(e.target.closest("[data-co-open]")){openCompany();return;}
+  const b=e.target.closest("[data-office]"); if(b) selectOffice(b.dataset.office,true);
+});
+function selectOffice(id,zoomTo){
+  const o=company.offices.find(x=>x.id===id); if(!o) return;
+  sel={type:"office",id}; const p=officePlace(o);
+  if(zoomTo&&p.info&&BASE){const r=70;animateTo(fitBox([p.info.c[0]-r/2,p.info.c[1]-r/2,p.info.c[0]+r/2,p.info.c[1]+r/2],1));}
+  styleMap(); renderSelection();
+  if(document.body.dataset.tab!=="mapa") setTab("mapa");
+}
+function officeSelectionHtml(o){
+  const lv=officeLevel(o), p=officePlace(o), reg=p.info?REG.get(p.info.r):(p.off?REG.get(p.off.r):null), k=p.k;
+  const ais=R.ordered.filter(ai=>ai.ks.includes(k)), ppl=R.persons.filter(x=>x.k===k);
+  return backLi("Alertas vigentes","data-back")+
+    '<div class="li stack"><div class="row">'+cap(lv)+'</div><div class="row" style="gap:12px;flex-wrap:nowrap"><span class="sym off '+lv+'" style="width:40px;height:40px">'+ICON("i-building")+'</span><div style="min-width:0"><h3>'+esc(o.name)+'</h3><p class="foot">'+esc(company.name||"Oficina")+'</p></div></div>'+
+    '<div class="meta"><div><span>Dirección</span><b>'+esc(o.address||"—")+'</b></div><div><span>Comuna</span><b>'+esc(p.info?p.info.n:o.comuna)+'</b></div><div><span>Región</span><b>'+esc(reg?reg.name:"—")+'</b></div></div>'+
+    (p.off?'<p class="foot">Esta comuna no se dibuja en el mapa continental.</p>':'')+
+    (lv==="none"?'<p class="foot">La comuna de esta oficina no tiene Alertas Amarillas ni Rojas vigentes.</p>':'')+'</div>'+
+    ais.map(alertLi).join("")+
+    (ppl.length?'<div class="li stack"><span class="t1"><b>'+plural(ppl.length,"persona de la planilla","personas de la planilla")+' en '+esc(p.info?p.info.n:o.comuna)+'</b></span>'+tokens(ppl)+'</div>':'');
+}
+
+/* diálogo */
+let coLast=null;
+function openCompany(){coLast=document.activeElement;$("companyDlg").hidden=false;document.body.style.overflow="hidden";renderCompanyDlg();$("coName").focus();}
+function closeCompany(){$("companyDlg").hidden=true;document.body.style.overflow="";if(coLast&&coLast.focus)coLast.focus();}
+function renderCompanyDlg(){
+  $("coName").value=company.name;
+  const pv=$("coLogoPrev");
+  if(company.logo){pv.innerHTML='<img src="'+company.logo+'" alt="Logo actual">';$("coLogoDel").hidden=false;}
+  else{pv.innerHTML='<span class="caption">Sin logo</span>';$("coLogoDel").hidden=true;}
+  $("coList").innerHTML=company.offices.length?company.offices.map(o=>{const p=officePlace(o);
+    return '<div class="li"><span class="sym off '+officeLevel(o)+'">'+ICON("i-building")+'</span><span class="main-t"><span class="t1">'+esc(o.name)+'</span><span class="t2">'+esc([o.address,o.comuna].filter(Boolean).join(" · "))+(p.info||p.off?'':' · comuna no reconocida')+'</span></span><button type="button" class="al-x" data-del-office="'+esc(o.id)+'" aria-label="Quitar oficina '+esc(o.name)+'">Quitar</button></div>';}).join("")
+    :'<div class="li"><span class="empty">Todavía no hay oficinas.</span></div>';
+  $("coExport").hidden=!(DL||TOPLEVEL);
+}
+$("btnCompany").onclick=openCompany;
+$("coClose").onclick=closeCompany; $("coDone").onclick=closeCompany;
+$("companyDlg").addEventListener("click",e=>{if(e.target===$("companyDlg"))closeCompany();});
+document.addEventListener("keydown",e=>{if(!$("companyDlg").hidden&&e.key==="Escape")closeCompany();});
+$("coName").addEventListener("change",e=>{company.name=e.target.value.trim().slice(0,80);saveCompany();renderOffices();});
+$("coLogo").addEventListener("change",e=>{const f=e.target.files[0];e.target.value="";if(f)setLogo(f);});
+$("coLogoDel").onclick=()=>{company.logo="";company.logoW=company.logoH=0;saveCompany();renderCompanyDlg();renderOffices();toast("Logo quitado");};
+function setLogo(file){
+  if(!/^image\//.test(file.type)&&!/\.(png|jpe?g|svg|webp|gif)$/i.test(file.name)){toast("El logo debe ser una imagen PNG, JPG o SVG");return;}
+  if(file.size>5e6){toast("El logo pesa más de 5 MB; usa una imagen más liviana");return;}
+  const url=URL.createObjectURL(file), img=new Image();
+  img.onload=()=>{
+    let w=img.naturalWidth||600,h=img.naturalHeight||200; const sc=Math.min(1,600/w,200/h); w=Math.max(1,Math.round(w*sc)); h=Math.max(1,Math.round(h*sc));
+    const cv=document.createElement("canvas"); cv.width=w; cv.height=h; const cx=cv.getContext("2d"); cx.drawImage(img,0,0,w,h);
+    URL.revokeObjectURL(url);
+    try{company.logo=cv.toDataURL("image/png");company.logoW=w;company.logoH=h;}catch(_){toast("No se pudo procesar el logo");return;}
+    saveCompany(); renderCompanyDlg(); renderOffices(); toast("Logo actualizado");
+  };
+  img.onerror=()=>{URL.revokeObjectURL(url);toast("No se pudo leer la imagen del logo");};
+  img.src=url;
+}
+$("coAdd").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=$("ofName").value.trim(), address=$("ofAddr").value.trim(), comuna=$("ofCom").value.trim(), st=$("coStatus");
+  if(!name||!comuna){st.className="status err";st.textContent="Escribe al menos el nombre de la oficina y su comuna.";return;}
+  const k=key(comuna), info=COM.get(k)||OFFMAP[k];
+  if(M&&!info){st.className="status err";st.textContent="No se reconoce la comuna “"+comuna+"”. Elígela de la lista sugerida.";return;}
+  company.offices.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),name:name.slice(0,80),address:address.slice(0,160),comuna:info?info.n:comuna});
+  saveCompany(); e.target.reset(); st.className="status"; st.textContent="Oficina “"+name+"” agregada."; $("ofName").focus();
+  renderCompanyDlg(); renderOffices(); drawOverlay(); renderTiles();
+});
+$("coList").addEventListener("click",e=>{const b=e.target.closest("[data-del-office]");if(!b)return;
+  if(b.dataset.armed!=="1"){b.dataset.armed="1";b.textContent="Confirmar";setTimeout(()=>{if(b.isConnected){b.dataset.armed="";b.textContent="Quitar";}},3000);return;}
+  company.offices=company.offices.filter(o=>o.id!==b.dataset.delOffice); if(sel&&sel.type==="office"&&sel.id===b.dataset.delOffice) sel=null;
+  saveCompany(); renderCompanyDlg(); renderOffices(); drawOverlay(); renderSelection(); renderTiles();});
+$("coExport").onclick=()=>saveFile("configuracion_empresa_HSEC.json",JSON.stringify({type:"hsec-company-config",version:1,...company},null,2));
+$("coImport").addEventListener("change",e=>{const f=e.target.files[0];e.target.value="";if(!f)return;
+  f.text().then(t=>{try{const c=JSON.parse(t); if(!c||(c.type&&c.type!=="hsec-company-config"))throw new Error("x");
+      const n=sanitizeCompany(c); if(!n.name&&!n.logo&&!n.offices.length) throw new Error("x");
+      company=n; saveCompany(); renderCompanyDlg(); renderOffices(); drawOverlay(); renderTiles(); toast("Configuración importada: "+plural(n.offices.length,"oficina","oficinas"));}
+    catch(_){const st=$("coStatus");st.className="status err";st.textContent="El archivo no es una configuración válida de Alertas HSEC.";}});});
+function buildOfficeComList(){const dl=$("comList2");if(dl)dl.innerHTML=$("comList").innerHTML;}
+
+
+loadCompany();
+/* ============ avisos por correo ============ */
+const SUBS="subs";
+let SDB=null, SUSER=null, subsMode="loading", subsList=[], mySub=null, myId=null, subsUnsub=null, subsRegions=new Set();
+const EMAIL_RE=/^[^\s@,;<>"]+@[^\s@,;<>"]+\.[a-z]{2,}$/i;
+function regionChips(selected,attr){
+  if(!M) return '';
+  return '<div class="rchips" '+attr+'>'+'<button type="button" data-r="" aria-pressed="'+(!selected.size)+'">Todas</button>'+
+    M.regions.map(r=>'<button type="button" data-r="'+r.code+'" aria-pressed="'+selected.has(r.code)+'">'+esc(r.name)+'</button>').join("")+'</div>';
+}
+const regText=rs=>!rs||!rs.length?"Todas las regiones":rs.map(c=>REG.get(c)?.name||c).join(", ");
+function renderSubs(){
+  const box=$("subsBody"); if(!box) return;
+  let h="";
+  if(subsMode==="loading"){h='<div class="li"><span class="foot">Cargando…</span></div>';}
+  else if(subsMode==="none"){
+    h='<div class="li stack"><p class="foot">Los avisos por correo se administran en la versión interna de esta página. Pide a quien la administra que inscriba tu correo.</p></div>';
+  }else if(subsMode==="admin"){
+    h=(subsList.length?subsList.map(s=>'<div class="li"><span class="sym" style="background:var(--blue)">'+ICON("i-mail")+'</span><span class="main-t"><span class="t1">'+esc(s.email)+'</span><span class="t2">'+esc(regText(s.regions))+(s.source==="self"?' · se inscribió solo':'')+'</span></span><button type="button" class="al-x" data-delsub="'+esc(s.id)+'" aria-label="Quitar '+esc(s.email)+'">Quitar</button></div>').join("")
+       :'<div class="li"><span class="empty">Todavía no hay correos inscritos.</span></div>')+
+      '<form class="li stack" id="subForm" autocomplete="off"><label class="f">Correo a inscribir<input class="field" id="subEmail" type="email" maxlength="120" placeholder="nombre@empresa.cl" required></label>'+
+      '<span class="foot">Regiones de interés</span>'+regionChips(subsRegions,'id="subRegs"')+
+      '<div class="row"><button class="btn primary sm" type="submit">Inscribir correo</button><span class="status" id="subStatus" role="status"></span></div>'+
+      '<p class="foot">Solo tú (y quienes editen la página) ven esta lista. Inscribe solo correos de personas que aceptaron recibir avisos.</p></form>';
+  }else if(subsMode==="self"){
+    if(mySub){
+      h='<div class="li"><span class="sym" style="background:var(--green)">'+ICON("i-check")+'</span><span class="main-t"><span class="t1">Recibes avisos en '+esc(mySub.email)+'</span><span class="t2">'+esc(regText(mySub.regions))+'</span></span><button type="button" class="al-x" id="subCancel">Cancelar</button></div>';
+    }else{
+      h='<form class="li stack" id="subForm" autocomplete="off"><label class="f">Tu correo<input class="field" id="subEmail" type="email" maxlength="120" placeholder="nombre@empresa.cl" required></label>'+
+        '<span class="foot">Regiones de interés</span>'+regionChips(subsRegions,'id="subRegs"')+
+        '<div class="row"><button class="btn primary sm" type="submit">Recibir avisos</button><span class="status" id="subStatus" role="status"></span></div>'+
+        '<p class="foot">Tu correo queda guardado de forma privada: solo la administradora de la página lo ve.</p></form>';
+    }
+  }
+  box.innerHTML=h;
+  const n=$("subsCount"); if(n) n.textContent=subsMode==="admin"?plural(subsList.length,"inscrito","inscritos"):"";
+}
+async function initSubs(){
+  try{
+    if(!(window.claude&&typeof window.claude.use==="function")) throw 0;
+    [SDB,SUSER]=await Promise.all([window.claude.use("db"),window.claude.use("user")]);
+    if(!SDB||!SUSER) throw 0;
+    myId=await SUSER.id();
+    const admin=await SUSER.canEdit();
+    if(admin){
+      subsMode="admin"; renderSubs();
+      const t=setTimeout(()=>{if(subsMode==="admin"&&!subsList.length)renderSubs();},10000);
+      subsUnsub=SDB.collection(SUBS).onSnapshot(qs=>{clearTimeout(t);subsList=qs.docs.filter(d=>d.exists).map(d=>({id:d.id,...d.data()})).sort((a,b)=>String(a.email).localeCompare(String(b.email)));renderSubs();},
+        ()=>{clearTimeout(t);subsMode="none";renderSubs();});
+      return;
+    }
+    const w=await SUSER.can("data.write");
+    if(!myId||w===false) throw 0;
+    subsMode="self"; renderSubs();
+    SDB.collection(SUBS).doc(myId).onSnapshot(d=>{mySub=d.exists?{id:d.id,...d.data()}:null;renderSubs();},()=>{subsMode="none";renderSubs();});
+  }catch(_){subsMode="none";renderSubs();}
+}
+$("subsBody").addEventListener("click",async e=>{
+  const chip=e.target.closest(".rchips button");
+  if(chip){const r=chip.dataset.r; if(!r) subsRegions.clear(); else if(subsRegions.has(r)) subsRegions.delete(r); else subsRegions.add(r);
+    chip.parentElement.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.r?subsRegions.has(b.dataset.r):!subsRegions.size)));return;}
+  const del=e.target.closest("[data-delsub]");
+  if(del){ if(del.dataset.armed!=="1"){del.dataset.armed="1";del.textContent="Confirmar";setTimeout(()=>{if(del.isConnected){del.dataset.armed="";del.textContent="Quitar";}},3000);return;}
+    try{await SDB.collection(SUBS).doc(del.dataset.delsub).delete();toast("Correo quitado");}catch(_){toast("No se pudo quitar el correo");} return;}
+  if(e.target.closest("#subCancel")){try{await SDB.collection(SUBS).doc(myId).delete();toast("Ya no recibirás avisos");}catch(_){toast("No se pudo cancelar la inscripción");}}
+});
+$("subsBody").addEventListener("submit",async e=>{
+  if(e.target.id!=="subForm") return; e.preventDefault();
+  const em=$("subEmail").value.trim().toLowerCase(), st=$("subStatus");
+  if(!EMAIL_RE.test(em)){st.className="status err";st.textContent="Revisa el correo.";return;}
+  if(subsMode==="admin"&&subsList.some(s=>String(s.email).toLowerCase()===em)){st.className="status err";st.textContent="Ese correo ya está inscrito.";return;}
+  const data={email:em,regions:[...subsRegions].sort(),createdAt:new Date().toISOString(),source:subsMode==="admin"?"admin":"self"};
+  try{
+    if(subsMode==="admin") await SDB.collection(SUBS).doc("a_"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)).set(data);
+    else await SDB.collection(SUBS).doc(myId).set(data);
+    subsRegions.clear(); toast(subsMode==="admin"?"Correo inscrito":"Listo, recibirás avisos por correo");
+  }catch(err){st.className="status err";st.textContent="No se pudo guardar. Puede que tu acceso a esta página no permita inscribirse.";}
+});
+
+/* ============ formato celular ============ */
+const TABS=["mapa","alertas","contacto","oficinas","planilla"];
+const isMobile=()=>matchMedia("(max-width:760px)").matches;
+function setTab(t,push){
+  if(!TABS.includes(t)) t="mapa";
+  document.body.dataset.tab=t;
+  $("tabbar").querySelectorAll("button").forEach(b=>{if(b.dataset.go===t)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");});
+  if(push!==false){try{if(location.hash!=="#"+t)history.replaceState(null,"","#"+t);}catch(_){}}
+  if(t==="mapa") requestAnimationFrame(()=>{if(BASE)setVB(VB,true);});
+  window.scrollTo(0,0);
+}
+$("tabbar").addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)setTab(b.dataset.go);});
+window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(TABS.includes(h))setTab(h,false);});
+function updateTabBadges(){
+  if(!R) return;
+  const nR=feed.alerts.filter(a=>a.level==="Roja").length, n=feed.alerts.length, ta=$("tbAlerts");
+  ta.hidden=!n; ta.textContent=n; ta.className="tb-badge"+(nR?"":" y");
+  const tc=$("tbContact"), pend=contactGroups().flatMap(g=>g.members).filter(p=>stOf(p.idx)==="pending").length;
+  tc.hidden=!pend; tc.textContent=pend;
+  const to=$("tbOffices"), oa=company.offices.filter(o=>officeLevel(o)!=="none").length;
+  to.hidden=!oa; to.textContent=oa;
+}
+/* ============ ayuda y recorrido guiado ============ */
+const HELP_KEY="hsec_help_seen_v1";
+let hLast=null;
+function openHelp(topic){hLast=document.activeElement;$("helpDlg").hidden=false;document.body.style.overflow="hidden";showHelp(topic||"inicio");$("hClose").focus();}
+function closeHelp(){$("helpDlg").hidden=true;document.body.style.overflow="";if(hLast&&hLast.focus)hLast.focus();}
+function showHelp(t){
+  $("hNav").querySelectorAll("button").forEach(b=>{if(b.dataset.h===t)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");});
+  $("hBody").querySelectorAll("section[data-hs]").forEach(s=>s.hidden=s.dataset.hs!==t);
+  $("hBody").scrollTop=0;
+}
+$("btnHelp").onclick=()=>openHelp();
+$("hClose").onclick=closeHelp;
+$("helpDlg").addEventListener("click",e=>{if(e.target===$("helpDlg"))closeHelp();});
+$("hNav").addEventListener("click",e=>{const b=e.target.closest("[data-h]");if(b)showHelp(b.dataset.h);});
+$("hBody").addEventListener("click",e=>{
+  if(e.target.closest("[data-tour-start]")){closeHelp();startTour();return;}
+  const g=e.target.closest("[data-goto]"); if(g){closeHelp();setTab(g.dataset.goto);return;}
+  if(e.target.closest("[data-company]")){closeHelp();openCompany();return;}
+  const c=e.target.closest("[data-copytpl]");
+  if(c){
+    if(c.dataset.copytpl==="tsv") copyText(["Nombre\tComuna\tÁrea\tTeléfono\tCorreo","Ana Pérez\tPuente Alto\tOperaciones\t+56 9 1234 5678\tana.perez@empresa.cl","Luis Soto\tArauco\tMantención\t+56 9 2345 6789\tluis.soto@empresa.cl"].join("\n"),"Plantilla copiada: pégala en Excel");
+    else copyText(JSON.stringify([{nombre:"Ana Pérez",comuna:"Puente Alto",area:"Operaciones",telefono:"+56 9 1234 5678",correo:"ana.perez@empresa.cl"},{nombre:"Luis Soto",comuna:"Arauco",area:"Mantención",telefono:"+56 9 2345 6789",correo:"luis.soto@empresa.cl"}],null,2),"Plantilla JSON copiada");
+  }
+});
+document.addEventListener("keydown",e=>{if(!$("helpDlg").hidden&&e.key==="Escape")closeHelp();});
+
+/* ============ mensajes de contacto ============ */
+const MSGS="msgs";
+let MDB=null, msgMode="loading", msgInbox=[], myMsg=null, msgMe=null, msgSending=false;
+const SUBJECTS=["Duda sobre cómo usar la página","Problema o error en la página","Sugerencia de mejora","Quiero usarla en mi empresa","Otro"];
+function fmtWhen(iso){const d=new Date(iso);return isNaN(d)?"":d.toLocaleString("es-CL",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"});}
+function renderMsgs(){
+  const box=$("msgBox"); if(!box) return;
+  let h="";
+  if(msgMode==="loading") h='<div class="hcard"><span class="foot">Cargando…</span></div>';
+  else if(msgMode==="admin"){
+    h='<div class="hcard"><h4>Mensajes recibidos'+(msgInbox.length?' · '+msgInbox.length:'')+'</h4>'+
+      (msgInbox.length?msgInbox.map(m=>'<div class="li stack" style="background:var(--card-2);border-radius:12px;padding:12px">'+
+        '<div class="row" style="justify-content:space-between;gap:8px"><b>'+esc(m.subject||"Mensaje")+'</b><span class="foot">'+esc(fmtWhen(m.at))+'</span></div>'+
+        '<p style="font-size:14px;white-space:pre-wrap">'+esc(m.text||"")+'</p>'+
+        '<div class="row" style="justify-content:space-between;gap:8px"><span class="foot">'+esc(m.name||"Sin nombre")+(m.email?' · '+esc(m.email):'')+'</span>'+
+        (m.email?'<a class="btn sm" href="mailto:'+esc(encodeURIComponent(m.email).replace(/%40/g,"@"))+'?subject='+encodeURIComponent("Re: "+(m.subject||"tu mensaje"))+'">Responder</a>':'')+
+        '</div></div>').join("")
+        :'<p class="foot">Todavía no hay mensajes. Cuando alguien te escriba desde esta página, aparecerá aquí y también te llegará por correo.</p>')+
+      '</div>'+
+      '<div class="hcard"><h4>Enviar un mensaje de prueba</h4>'+msgForm()+'</div>';
+  }else if(msgMode==="self"){
+    h='<div class="hcard">'+msgForm()+'</div>'+
+      (myMsg&&myMsg.items&&myMsg.items.length?'<div class="hcard"><h4>Lo que ya enviaste</h4>'+myMsg.items.slice().reverse().map(m=>
+        '<div class="li stack" style="background:var(--card-2);border-radius:12px;padding:10px 12px"><div class="row" style="justify-content:space-between;gap:8px"><b style="font-size:14px">'+esc(m.subject||"Mensaje")+'</b><span class="foot">'+esc(fmtWhen(m.at))+'</span></div><p class="foot" style="white-space:pre-wrap">'+esc(m.text||"")+'</p></div>').join("")+'</div>':'');
+  }else{
+    h='<div class="hcard"><h4>Escribe tu mensaje</h4>'+
+      '<p>Escribe tu mensaje y usa <b>Copiar mensaje</b> para enviarlo a quien administra esta página por tu canal interno (correo o chat de la empresa).</p>'+msgForm(true)+'</div>';
+  }
+  box.innerHTML=h;
+}
+function msgForm(copyOnly){
+  return '<form id="msgForm" class="li stack" autocomplete="on" style="background:transparent;padding:0">'+
+    '<label class="f">Tu nombre<input class="field" id="mName" maxlength="80" placeholder="Nombre y apellido" autocomplete="name"></label>'+
+    '<label class="f">Tu correo<input class="field" id="mMail" type="email" maxlength="120" placeholder="nombre@empresa.cl" autocomplete="email"'+(copyOnly?'':' required')+'></label>'+
+    '<label class="f">Asunto<select class="field" id="mSubj">'+SUBJECTS.map(x=>'<option>'+esc(x)+'</option>').join("")+'</select></label>'+
+    '<label class="f">Mensaje<textarea class="field" id="mText" rows="5" maxlength="2000" required placeholder="Cuéntame en qué te puedo ayudar"></textarea></label>'+
+    '<div class="row">'+(copyOnly?'':'<button class="btn primary sm" type="submit">Enviar mensaje</button>')+
+    '<button class="btn sm" type="button" id="mCopy"><svg class="ic"><use href="#i-copy"/></svg>Copiar mensaje</button>'+
+    '<span class="status" id="mStatus" role="status"></span></div></form>';
+}
+async function initMsgs(){
+  try{
+    if(!(window.claude&&typeof window.claude.use==="function")) throw 0;
+    const [db,us]=await Promise.all([window.claude.use("db"),window.claude.use("user")]);
+    if(!db||!us) throw 0;
+    MDB=db; msgMe=await us.id();
+    if(await us.canEdit()){
+      msgMode="admin"; renderMsgs();
+      const t=setTimeout(()=>{if(msgMode==="admin"&&!msgInbox.length)renderMsgs();},10000);
+      MDB.collection(MSGS).onSnapshot(qs=>{clearTimeout(t);
+        msgInbox=qs.docs.filter(d=>d.exists).flatMap(d=>{const v=d.data()||{};return (v.items||[]).map(it=>({...it,name:v.name,email:v.email}));})
+          .sort((a,b)=>String(b.at).localeCompare(String(a.at))).slice(0,100);
+        renderMsgs();},()=>{clearTimeout(t);msgMode="none";renderMsgs();});
+      return;
+    }
+    const w=await us.can("data.write"); if(!msgMe||w===false) throw 0;
+    msgMode="self"; renderMsgs();
+    MDB.collection(MSGS).doc(msgMe).onSnapshot(d=>{myMsg=d.exists?d.data():null;renderMsgs();},()=>{msgMode="none";renderMsgs();});
+  }catch(_){msgMode="none";renderMsgs();}
+}
+function msgText(){
+  const n=($("mName")||{}).value||"", e=($("mMail")||{}).value||"", su=($("mSubj")||{}).value||"", tx=($("mText")||{}).value||"";
+  return {name:n.trim().slice(0,80),email:e.trim().slice(0,120),subject:su,text:tx.trim().slice(0,2000)};
+}
+$("hBody").addEventListener("click",e=>{
+  if(!e.target.closest("#mCopy")) return;
+  const m=msgText(); if(!m.text){toast("Escribe el mensaje primero");return;}
+  copyText("Mensaje sobre Alertas HSEC por Comuna\nAsunto: "+m.subject+"\nDe: "+(m.name||"(sin nombre)")+(m.email?" · "+m.email:"")+"\n\n"+m.text,"Mensaje copiado");
+});
+$("hBody").addEventListener("submit",async e=>{
+  if(e.target.id!=="msgForm") return; e.preventDefault();
+  if(msgSending) return;
+  const st=$("mStatus"), m=msgText();
+  if(!m.text){st.className="status err";st.textContent="Escribe tu mensaje.";return;}
+  if(!EMAIL_RE.test(m.email)){st.className="status err";st.textContent="Revisa tu correo para poder responderte.";return;}
+  if(!MDB||!msgMe){st.className="status err";st.textContent="No se pudo enviar desde aquí; usa “Copiar mensaje”.";return;}
+  msgSending=true; st.className="status"; st.textContent="Enviando…";
+  try{
+    const doc=MDB.collection(MSGS).doc(msgMe);
+    let prev=[]; try{const d=await doc.get(); if(d&&d.exists) prev=(d.data()||{}).items||[];}catch(_){}
+    const items=prev.concat([{at:new Date().toISOString(),subject:m.subject,text:m.text}]).slice(-20);
+    await doc.set({name:m.name,email:m.email,items,updatedAt:new Date().toISOString(),notified:false});
+    $("mText").value=""; st.className="status ok"; st.textContent="";
+    toast("Mensaje enviado. Te responderán a tu correo.");
+  }catch(err){st.className="status err";st.textContent="No se pudo enviar. Intenta de nuevo o usa “Copiar mensaje”.";}
+  msgSending=false;
+});
+
+const TOUR=[
+  {sel:"#tabbar",tab:"mapa",title:"Navega por secciones",text:"La página está ordenada en cinco secciones: Mapa, Alertas, Contacto, Oficinas y Planilla. Los números rojos indican lo que requiere atención."},
+  {sel:"#mapcard",tab:"mapa",title:"El mapa de alertas",text:"Las regiones con alerta se tiñen de rojo o amarillo. Cada círculo muestra cuántas personas de tu nómina están en esa zona. Toca una región o un círculo para ver el detalle; usa la rueda o los dedos para acercarte."},
+  {sel:".csearch",tab:"mapa",title:"Busca una comuna",text:"Escribe el nombre de una comuna y el mapa se acerca hasta ahí, con sus alertas y personas."},
+  {sel:"#tiles",tab:"alertas",title:"Resumen en números",text:"Alertas vigentes, personas expuestas, comunas y regiones con alerta. Se actualiza solo al cargar tu nómina."},
+  {sel:"#cards",tab:"alertas",desk:true,title:"Detalle de cada alerta",text:"Cada tarjeta muestra el nivel, las comunas, las fechas oficiales, el historial de boletines y las personas expuestas. “Ver en el mapa” te lleva directo a ella."},
+  {sel:"#selGroup",tab:"alertas",mob:true,title:"Alertas vigentes",text:"Toca una alerta para ver sus comunas, fechas oficiales, historial y personas expuestas."},
+  {sel:"#sheetBox",tab:"planilla",title:"Carga tu nómina",text:"Toca “Elegir archivo” y selecciona tu Excel o JSON con nombre y comuna. Se lee solo en tu navegador: nadie más la ve. Las personas de ejemplo desaparecen al cargarla."},
+  {sel:"#btnContacts",tab:"contacto",title:"Contacta a las personas",text:"La Lista de contacto reúne a quienes están en comunas con alerta. Usa “Empezar a contactar” para llamar o escribir a cada uno y registrar si está bien. Desde ahí descargas el PDF o el Excel."},
+  {sel:"#officesBox",tab:"oficinas",title:"Tus oficinas",text:"Agrega las oficinas de tu empresa y tu logo desde “Mi empresa”. Las oficinas en comunas con alerta aparecen primero y se marcan en el mapa."},
+  {sel:"#subsBox",tab:"alertas",title:"Avisos por correo",text:"Inscribe correos para recibir un aviso cada vez que SENAPRED declare, cambie o cancele una Alerta Roja o Amarilla."},
+  {sel:"#btnHelp",tab:null,title:"¿Necesitas ayuda?",text:"Aquí encuentras el manual completo, plantillas para tu nómina y preguntas frecuentes. Puedes repetir este recorrido cuando quieras."}
+];
+let tourSteps=[], tourI=0;
+const visibleEl=sel=>[...document.querySelectorAll(sel)].find(el=>{const r=el.getBoundingClientRect();return r.width>0&&r.height>0&&!el.closest("[hidden]");});
+function startTour(){
+  $("welcome").hidden=true; try{localStorage.setItem(HELP_KEY,"1");}catch(_){}
+  const mob=isMobile(); tourSteps=TOUR.filter(s=>!(s.desk&&mob)&&!(s.mob&&!mob));
+  tourI=0; $("tour").hidden=false; showStep();
+}
+function endTour(){$("tour").hidden=true;setTab("mapa");}
+function showStep(){
+  const s=tourSteps[tourI]; if(!s){endTour();return;}
+  if(s.tab&&document.body.dataset.tab!==s.tab) setTab(s.tab);
+  setTimeout(()=>{
+    const el=visibleEl(s.sel);
+    if(!el){ tourI+= (tourI<tourSteps.length-1?1:0); if(tourI===tourSteps.length-1&&!visibleEl(tourSteps[tourI].sel)){endTour();return;} showStep(); return; }
+    const r0=el.getBoundingClientRect();
+    if(r0.top<70||r0.bottom>innerHeight-90) el.scrollIntoView({block:r0.height>innerHeight*.6?"start":"center",behavior:"auto"});
+    $("tourStep").textContent="Paso "+(tourI+1)+" de "+tourSteps.length;
+    $("tourTitle").textContent=s.title; $("tourText").textContent=s.text;
+    $("tourDots").innerHTML=tourSteps.map((_,i)=>'<i class="'+(i===tourI?'on':'')+'"></i>').join("");
+    $("tourPrev").disabled=tourI===0; $("tourNext").textContent=tourI===tourSteps.length-1?"Terminar":"Siguiente";
+    placeTour(el); $("tourNext").focus();
+  },160);
+}
+function placeTour(el){
+  const r=el.getBoundingClientRect(), pad=8, sp=$("tourSpot"), card=$("tourCard");
+  const top=Math.max(4,r.top-pad), left=Math.max(4,r.left-pad), h=Math.min(innerHeight-8,r.height+pad*2), w=Math.min(innerWidth-8,r.width+pad*2);
+  Object.assign(sp.style,{top:top+"px",left:left+"px",width:w+"px",height:h+"px"});
+  const cw=card.offsetWidth, ch=card.offsetHeight, m=12;
+  let ct, cl;
+  if(isMobile()){ cl=16; ct=(top+h+ch+m<innerHeight-80)?top+h+m:(top-ch-m>8?top-ch-m:innerHeight-ch-90); }
+  else{
+    if(top+h+ch+m<innerHeight) {ct=top+h+m; cl=Math.min(Math.max(16,left),innerWidth-cw-16);}
+    else if(top-ch-m>0){ct=top-ch-m; cl=Math.min(Math.max(16,left),innerWidth-cw-16);}
+    else if(left+w+cw+m<innerWidth){cl=left+w+m; ct=Math.min(Math.max(16,top),innerHeight-ch-16);}
+    else {cl=Math.max(16,left-cw-m); ct=Math.min(Math.max(16,top),innerHeight-ch-16);}
+  }
+  Object.assign(card.style,{top:ct+"px",left:cl+"px"});
+}
+$("tourNext").onclick=()=>{if(tourI>=tourSteps.length-1){endTour();return;}tourI++;showStep();};
+$("tourPrev").onclick=()=>{if(tourI>0){tourI--;showStep();}};
+$("tourSkip").onclick=endTour;
+$("tourBlock").onclick=()=>{};
+window.addEventListener("resize",()=>{if(!$("tour").hidden){const s=tourSteps[tourI];const el=s&&visibleEl(s.sel);if(el)placeTour(el);}});
+document.addEventListener("keydown",e=>{if($("tour").hidden)return;if(e.key==="Escape")endTour();else if(e.key==="ArrowRight")$("tourNext").click();else if(e.key==="ArrowLeft")$("tourPrev").click();});
+$("wYes").onclick=startTour;
+initMsgs();
+$("wNo").onclick=()=>{$("welcome").hidden=true;try{localStorage.setItem(HELP_KEY,"1");}catch(_){}};
+(function(){let seen=false;try{seen=!!localStorage.getItem(HELP_KEY);}catch(_){seen=true;}
+  if(!seen&&!/(^|[#&])notour/.test(location.hash)) setTimeout(()=>{if($("tour").hidden)$("welcome").hidden=false;},1800);})();
+
+setTab(TABS.includes(location.hash.slice(1))?location.hash.slice(1):"mapa",false);
+if(matchMedia("(max-width:600px)").matches) $("lgToggle").click();
+render();
+loadMap().then(loadOfficial);
+initSubs();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+name: Actualizar alertas SENAPRED
+
+# Revisa el sitio oficial de SENAPRED y actualiza alerts.json solo si hay cambios.
+# Horario: 07:58, 13:58 y 19:58 de Chile continental (UTC-3).
+on:
+  schedule:
+    - cron: "58 10,16,22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: alertas-senapred
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar el navegador que lee SENAPRED
+        run: |
+          python -m pip install --upgrade pip
+          pip install "playwright==1.47.0"
+          python -m playwright install --with-deps chromium
+
+      - name: Leer SENAPRED
+        run: |
+          python tools/senapred_scraper.py \
+            --previous alerts.json \
+            --comunas tools/comunas_cl.json \
+            --out candidato.json
+
+      - name: Aplicar los cambios si los hay
+        id: aplicar
+        run: python tools/aplicar_cambios.py alerts.json candidato.json
+
+      - name: Guardar en el repositorio
+        if: steps.aplicar.outputs.changed == 'true'
+        run: |
+          rm -f candidato.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add alerts.json
+          git commit -m "Alertas SENAPRED actualizadas automaticamente"
+          git push
