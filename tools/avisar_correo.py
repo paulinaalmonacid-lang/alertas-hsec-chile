@@ -176,9 +176,31 @@ def main():
 
     enviados, omitidos, fallidos = 0, 0, []
     contexto = ssl.create_default_context()
-    with smtplib.SMTP(servidor, puerto, timeout=60) as s:
-        s.starttls(context=contexto)
-        s.login(usuario, clave)
+    try:
+        conexion = smtplib.SMTP(servidor, puerto, timeout=60)
+    except Exception as e:
+        print("No se pudo conectar a %s:%s (%s)." % (servidor, puerto, type(e).__name__))
+        print("Revisa SMTP_SERVIDOR y SMTP_PUERTO en Settings > Secrets and variables > Actions > Variables.")
+        sys.exit(1)
+    with conexion as s:
+        try:
+            s.starttls(context=contexto)
+        except Exception as e:
+            print("El servidor de correo no acepto la conexion segura (%s)." % type(e).__name__)
+            print("Revisa SMTP_SERVIDOR y SMTP_PUERTO: para iCloud son smtp.mail.me.com y 587.")
+            sys.exit(1)
+        try:
+            s.login(usuario, clave)
+        except smtplib.SMTPAuthenticationError:
+            print("El servidor de correo rechazo el usuario o la clave.")
+            print("Si usas iCloud, SMTP_CLAVE tiene que ser una contrasena especifica para apps")
+            print("(appleid.apple.com > Inicio de sesion y seguridad), no la contrasena de tu cuenta,")
+            print("y SMTP_USUARIO tiene que ser la misma direccion que la genero.")
+            print("Revisa tambien que no se haya copiado con espacios al principio o al final.")
+            sys.exit(1)
+        except Exception as e:
+            print("No se pudo iniciar sesion en el correo (%s)." % type(e).__name__)
+            sys.exit(1)
         for correo, codigos in gente:
             if prueba:
                 suyos = None
