@@ -46,6 +46,24 @@ El lector está en `tools/senapred_scraper.py`. Reglas que respeta:
 - Nunca infiere cancelaciones: si una alerta desaparece del listado sin cancelación oficial, se conserva y queda advertida.
 - Nunca inventa fechas: usa las que publica SENAPRED.
 
+## Avisos por correo
+
+Cuando la revisión detecta un cambio oficial, escribe a las personas inscritas. El envío lo hace `tools/avisar_correo.py` dentro de la misma tarea automática, así que no depende de ningún servicio externo.
+
+La configuración vive en **Settings → Secrets and variables → Actions**, nunca en el código:
+
+| Secreto | Qué es |
+|---|---|
+| `SMTP_USUARIO` | El correo desde el que se envía, por ejemplo `nombre@icloud.com` |
+| `SMTP_CLAVE` | Una **contraseña de aplicación**, nunca la contraseña normal de la cuenta |
+| `DESTINATARIOS` | Los correos que reciben los avisos, separados por comas o saltos de línea |
+
+Para que alguien reciba solo ciertas regiones, se escribe su correo seguido de una barra vertical y los códigos: `persona@empresa.cl|08,13` avisa solo de Biobío y Metropolitana. Sin barra, recibe todas.
+
+Si el correo de salida no es de iCloud, se agregan dos *variables* (no secretos) en la misma pantalla: `SMTP_SERVIDOR` y `SMTP_PUERTO`. Para Gmail son `smtp.gmail.com` y `587`.
+
+Mientras los secretos no existan, la revisión funciona igual: detecta los cambios, los guarda y deja anotado en el registro que no había a quién avisar.
+
 ## Publicar los cambios
 
 El sitio se publica con GitHub Pages desde la rama `main`. Cualquier cambio en `index.html` o `alerts.json` queda en línea en un par de minutos.
@@ -61,6 +79,7 @@ El sitio se publica con GitHub Pages desde la rama `main`. Cualquier cambio en `
 | `tools/senapred_scraper.py` | Lector del sitio de SENAPRED |
 | `tools/comunas_cl.json` | Las 346 comunas con su región y provincia |
 | `tools/aplicar_cambios.py` | Decide si hubo cambio oficial y marca la fecha |
+| `tools/avisar_correo.py` | Escribe a las personas inscritas cuando hay un cambio |
 
 ## Créditos y límites
 
