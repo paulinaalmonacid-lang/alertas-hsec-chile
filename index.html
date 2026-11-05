@@ -554,7 +554,7 @@ details.faq p{padding:0 16px 14px;font-size:14px;color:var(--label-2)}
 .tour-dots{display:flex;gap:5px;flex-wrap:wrap}
 .tour-dots i{width:6px;height:6px;border-radius:50%;background:var(--fill)}
 .tour-dots i.on{background:var(--blue);width:16px;border-radius:3px}
-.welcome{position:fixed;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:30;width:min(360px,calc(100vw - 32px));border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.welcome{position:fixed;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:25;width:min(360px,calc(100vw - 32px));border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
 @media (max-width:760px){.welcome{bottom:calc(84px + env(safe-area-inset-bottom,0px));left:16px;right:16px;width:auto}}
 @media (prefers-reduced-motion:reduce){.tour-spot,.tour-card{transition:none}}
 #btnHelp svg.ic{width:16px;height:16px}
@@ -2084,7 +2084,7 @@ function updateTabBadges(){
 /* ============ ayuda y recorrido guiado ============ */
 const HELP_KEY="hsec_help_seen_v1";
 let hLast=null;
-function openHelp(topic){hLast=document.activeElement;$("helpDlg").hidden=false;document.body.style.overflow="hidden";showHelp(topic||"inicio");$("hClose").focus();}
+function openHelp(topic){hLast=document.activeElement;$("welcome").hidden=true;try{localStorage.setItem(HELP_KEY,"1");}catch(_){}$("helpDlg").hidden=false;document.body.style.overflow="hidden";showHelp(topic||"inicio");$("hClose").focus();}
 function closeHelp(){$("helpDlg").hidden=true;document.body.style.overflow="";if(hLast&&hLast.focus)hLast.focus();}
 function showHelp(t){
   $("hNav").querySelectorAll("button").forEach(b=>{if(b.dataset.h===t)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");});
