@@ -6,8 +6,8 @@
 <title>Alertas HSEC por Comuna</title>
 <meta name="description" content="Cruza las Alertas Rojas y Amarillas oficiales de SENAPRED con la nómina de personas de tu empresa. La nómina se lee solo en tu navegador: no se sube a ningún servidor.">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f6f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070b16" media="(prefers-color-scheme: dark)">
 <meta name="referrer" content="no-referrer">
 <meta property="og:title" content="Alertas HSEC por Comuna">
 <meta property="og:description" content="Alertas SENAPRED cruzadas con tu nómina, sin subir datos de nadie.">
@@ -19,37 +19,39 @@
 <style>
 /* Layout: estilo Apple HIG — título grande, mapa en tarjeta redondeada con controles en material translúcido, barra lateral de listas agrupadas; debajo tarjetas de alerta y lista de personas */
 :root{
-  --bg:#f2f2f7; --card:#ffffff; --card-2:#f2f2f7;
-  --label:#1d1d1f; --label-2:rgba(55,55,61,.78); --label-3:rgba(60,60,67,.46);
-  --sep:rgba(60,60,67,.16); --fill:rgba(118,118,128,.12); --fill-2:rgba(118,118,128,.08);
-  --blue:#007aff; --red:#ff3b30; --yellow:#ffcc00; --yellow-ink:#9a6a00; --green:#34c759; --green-ink:#248a3d; --gray:#8e8e93;
-  --red-tint:rgba(255,59,48,.12); --yellow-tint:rgba(255,204,0,.20); --green-tint:rgba(52,199,89,.14);
-  --reg-y:#fff8db; --reg-r:#ffeceb; --com-y:#ffe58f; --com-r:#ffb8b3;
-  --sea:#dbe8f3; --land:#ffffff; --land-hover:#eef3f9; --region-line:#b8c2ce; --commune-line:#d6dce4;
-  --material:rgba(255,255,255,.76); --shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.06);
+  /* Paleta institucional: azul marino profundo sobre lienzo frio, datos en verde mar.
+     Los rojos y amarillos de alerta se mantienen: son senales de seguridad, no decoracion. */
+  --bg:#f6f6f8; --card:#ffffff; --card-2:#f1f2f6;
+  --label:#111a4a; --label-2:#5b6070; --label-3:#8b8f9c;
+  --sep:#e3e4e8; --fill:rgba(17,26,74,.07); --fill-2:rgba(17,26,74,.045);
+  --blue:#111a4a; --red:#d70015; --yellow:#ffcc00; --yellow-ink:#7a5300; --green:#2f9e7a; --green-ink:#0f6657; --gray:#6c7079;
+  --red-tint:rgba(215,0,21,.10); --yellow-tint:rgba(255,204,0,.22); --green-tint:rgba(47,158,122,.13);
+  --reg-y:#fff6d6; --reg-r:#ffe9e6; --com-y:#ffe08a; --com-r:#f7b3ac;
+  --sea:#eceef5; --land:#ffffff; --land-hover:#f0f2f8; --region-line:#c3c7d4; --commune-line:#dcdfe8;
+  --material:rgba(255,255,255,.78); --shadow:0 1px 3px rgba(17,26,74,.08),0 8px 24px rgba(17,26,74,.07);
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI Variable Text","Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
   --font-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
   --font-rounded:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
   --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#000000; --card:#1c1c1e; --card-2:#2c2c2e;
-  --label:#f5f5f7; --label-2:rgba(235,235,245,.62); --label-3:rgba(235,235,245,.3);
-  --sep:rgba(84,84,88,.55); --fill:rgba(118,118,128,.24); --fill-2:rgba(118,118,128,.16);
-  --blue:#0a84ff; --red:#ff453a; --yellow:#ffd60a; --yellow-ink:#ffd60a; --green:#30d158; --green-ink:#30d158; --gray:#8e8e93;
-  --red-tint:rgba(255,69,58,.22); --yellow-tint:rgba(255,214,10,.16); --green-tint:rgba(48,209,88,.16);
-  --reg-y:#38341f; --reg-r:#3e2a2a; --com-y:#6b5d1c; --com-r:#7a3530;
-  --sea:#0d1824; --land:#2c2c2e; --land-hover:#3a3a3c; --region-line:#55555a; --commune-line:#3d3d41;
-  --material:rgba(44,44,46,.74); --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35); color-scheme:dark}}
+  --bg:#070b16; --card:#121829; --card-2:#1b2237;
+  --label:#eef0f7; --label-2:#a3a9bd; --label-3:#767d93;
+  --sep:rgba(160,170,200,.22); --fill:rgba(150,165,215,.16); --fill-2:rgba(150,165,215,.10);
+  --blue:#93a7ff; --red:#ff5a4e; --yellow:#ffd60a; --yellow-ink:#ffd60a; --green:#44b48b; --green-ink:#5fd3a8; --gray:#8b90a0;
+  --red-tint:rgba(255,90,78,.20); --yellow-tint:rgba(255,214,10,.16); --green-tint:rgba(68,180,139,.18);
+  --reg-y:#3a3420; --reg-r:#44242a; --com-y:#6b5d1c; --com-r:#86353a;
+  --sea:#0d1426; --land:#1b2237; --land-hover:#28304a; --region-line:#4b5472; --commune-line:#333b56;
+  --material:rgba(18,24,41,.80); --shadow:0 1px 2px rgba(0,0,0,.5),0 8px 24px rgba(0,0,0,.45); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#000000; --card:#1c1c1e; --card-2:#2c2c2e;
-  --label:#f5f5f7; --label-2:rgba(235,235,245,.62); --label-3:rgba(235,235,245,.3);
-  --sep:rgba(84,84,88,.55); --fill:rgba(118,118,128,.24); --fill-2:rgba(118,118,128,.16);
-  --blue:#0a84ff; --red:#ff453a; --yellow:#ffd60a; --yellow-ink:#ffd60a; --green:#30d158; --green-ink:#30d158; --gray:#8e8e93;
-  --red-tint:rgba(255,69,58,.22); --yellow-tint:rgba(255,214,10,.16); --green-tint:rgba(48,209,88,.16);
-  --reg-y:#38341f; --reg-r:#3e2a2a; --com-y:#6b5d1c; --com-r:#7a3530;
-  --sea:#0d1824; --land:#2c2c2e; --land-hover:#3a3a3c; --region-line:#55555a; --commune-line:#3d3d41;
-  --material:rgba(44,44,46,.74); --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35); color-scheme:dark}
+  --bg:#070b16; --card:#121829; --card-2:#1b2237;
+  --label:#eef0f7; --label-2:#a3a9bd; --label-3:#767d93;
+  --sep:rgba(160,170,200,.22); --fill:rgba(150,165,215,.16); --fill-2:rgba(150,165,215,.10);
+  --blue:#93a7ff; --red:#ff5a4e; --yellow:#ffd60a; --yellow-ink:#ffd60a; --green:#44b48b; --green-ink:#5fd3a8; --gray:#8b90a0;
+  --red-tint:rgba(255,90,78,.20); --yellow-tint:rgba(255,214,10,.16); --green-tint:rgba(68,180,139,.18);
+  --reg-y:#3a3420; --reg-r:#44242a; --com-y:#6b5d1c; --com-r:#86353a;
+  --sea:#0d1426; --land:#1b2237; --land-hover:#28304a; --region-line:#4b5472; --commune-line:#333b56;
+  --material:rgba(18,24,41,.80); --shadow:0 1px 2px rgba(0,0,0,.5),0 8px 24px rgba(0,0,0,.45); color-scheme:dark}
 [hidden]{display:none!important}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--label);font:15px/1.47 var(--font);letter-spacing:-.009em;-webkit-font-smoothing:antialiased;
@@ -173,8 +175,8 @@ button.li:active,a.li:active{background:var(--fill)}
 
 .cap{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 9px 3px 8px;border-radius:999px;white-space:nowrap;line-height:1.35}
 .cap.Roja{background:var(--red-tint);color:var(--red)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cap.Roja,:root:not([data-theme="light"]) .chg.up,:root:not([data-theme="light"]) .sp.help{color:#ff8179}}
-:root[data-theme="dark"] .cap.Roja,:root[data-theme="dark"] .chg.up,:root[data-theme="dark"] .sp.help{color:#ff8179}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cap.Roja,:root:not([data-theme="light"]) .chg.up,:root:not([data-theme="light"]) .sp.help{color:#ff8a80}}
+:root[data-theme="dark"] .cap.Roja,:root[data-theme="dark"] .chg.up,:root[data-theme="dark"] .sp.help{color:#ff8a80}
 .cap.Amarilla{background:var(--yellow-tint);color:var(--yellow-ink)}
 .cap.none{background:var(--green-tint);color:var(--green-ink)}
 .cap.unk{background:var(--fill);color:var(--label-2)}
@@ -188,8 +190,8 @@ button.li:active,a.li:active{background:var(--fill)}
 .btn{font:600 15px/1 var(--font);letter-spacing:-.015em;border-radius:10px;padding:11px 16px;cursor:pointer;border:0;background:var(--fill);color:var(--blue);min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
 .btn:hover{background:color-mix(in srgb,var(--fill),var(--blue) 8%)}
 .btn.primary{background:var(--blue);color:#fff}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#6cb4ff}:root:not([data-theme="light"]) .btn.primary{background:#0a6fd8;color:#fff}:root:not([data-theme="light"]) .btn.danger,:root:not([data-theme="light"]) #btnClearPeople{color:#ff8179}}
-:root[data-theme="dark"] .btn{color:#6cb4ff}:root[data-theme="dark"] .btn.primary{background:#0a6fd8;color:#fff}:root[data-theme="dark"] .btn.danger,:root[data-theme="dark"] #btnClearPeople{color:#ff8179}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#93a7ff}:root:not([data-theme="light"]) .btn.primary{background:#32418c;color:#fff}:root:not([data-theme="light"]) .btn.danger,:root:not([data-theme="light"]) #btnClearPeople{color:#ff8a80}}
+:root[data-theme="dark"] .btn{color:#93a7ff}:root[data-theme="dark"] .btn.primary{background:#32418c;color:#fff}:root[data-theme="dark"] .btn.danger,:root[data-theme="dark"] #btnClearPeople{color:#ff8a80}
 .btn.primary:hover{background:color-mix(in srgb,var(--blue) 88%,#000)}
 .btn.plain{background:transparent;padding:8px 4px;min-height:0}
 .btn.sm{font-size:13px;padding:7px 12px;min-height:32px;border-radius:999px}
@@ -500,8 +502,8 @@ textarea.field{resize:vertical;min-height:60px;font:15px/1.4 var(--font)}
 .help-nav button svg.ic{width:17px;height:17px;color:var(--blue)}
 .help-nav button:hover{background:var(--fill-2)}
 .help-nav button[aria-current="page"]{background:var(--blue);color:#fff}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .help-nav button[aria-current="page"]{background:#0a6fd8}}
-:root[data-theme="dark"] .help-nav button[aria-current="page"]{background:#0a6fd8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .help-nav button[aria-current="page"]{background:#32418c}}
+:root[data-theme="dark"] .help-nav button[aria-current="page"]{background:#32418c}
 .help-nav button[aria-current="page"] svg.ic{color:#fff}
 .help-nav button:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent)}
 .help-body{overflow:auto;padding:20px 24px 28px;min-height:0}
@@ -558,8 +560,6 @@ details.faq p{padding:0 16px 14px;font-size:14px;color:var(--label-2)}
 @media (max-width:760px){.welcome{bottom:calc(84px + env(safe-area-inset-bottom,0px));left:16px;right:16px;width:auto}}
 @media (prefers-reduced-motion:reduce){.tour-spot,.tour-card{transition:none}}
 #btnHelp svg.ic{width:16px;height:16px}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--blue:#005cc8;--red:#d70015;--yellow-ink:#7a5300;--green-ink:#1a6e2e;--red-tint:rgba(215,0,21,.10)}}
-:root[data-theme="light"]{--blue:#005cc8;--red:#d70015;--yellow-ink:#7a5300;--green-ink:#1a6e2e;--red-tint:rgba(215,0,21,.10)}
 .row:has(> #btnHelp){flex-wrap:nowrap}
 table.t.mini td{white-space:nowrap}
 </style>
