@@ -16,7 +16,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "04-11-2026 22:59",
+      "verifiedAt": "05-11-2026 15:35",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -48,7 +48,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "04-11-2026 22:59",
+      "verifiedAt": "05-11-2026 15:35",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -70,7 +70,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "04-11-2026 22:59",
+      "verifiedAt": "05-11-2026 15:35",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -101,7 +101,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22",
       "officialDeclaredAt": "13-10-2026 12:21",
       "officialUpdatedAt": "14-10-2026 11:59",
-      "verifiedAt": "04-11-2026 22:59",
+      "verifiedAt": "05-11-2026 15:35",
       "history": [
         {
           "at": "08-10-2026 18:49",
@@ -156,21 +156,443 @@
       ]
     }
   ],
-  "recentChanges": [
+  "recentChanges": [],
+  "preventive": [
     {
-      "at": "02-11-2026 17:15",
-      "type": "cancelled",
-      "level": "Amarilla",
-      "hazard": "Evento meteorológico",
+      "at": "05-11-2026 15:25",
+      "hazard": "Viento",
+      "region": "",
+      "communes": [],
+      "regions": [],
+      "detail": "Monitoreo Alerta Temprana Preventiva para las comunas Huasco y Freirina por viento",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-diego-de-almagro-copiapo-tierra-amarilla-vallenar-huasco-freirina-y-alto-del-carmen-por-viento-2026-11-01-14-11-51"
+    },
+    {
+      "at": "05-11-2026 14:22",
+      "hazard": "Viento",
       "region": "Región de Coquimbo",
       "communes": [
+        "Andacollo",
+        "Los Vilos",
+        "Canela",
+        "Ovalle",
+        "Coquimbo",
+        "La Serena",
+        "Combarbalá",
+        "Punitaqui",
+        "Paihuano",
+        "Illapel",
+        "La Higuera",
+        "Monte Patria",
         "Río Hurtado",
         "Salamanca",
         "Vicuña"
       ],
-      "detail": "Se cancela Alerta Amarilla para las comunas de Río Hurtado, Salamanca y Vicuña por evento meteorológico y declara Alerta Temprana Preventiva para la Región de Coquimbo por viento",
+      "regions": [
+        "04"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Coquimbo por viento",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-la-higuera-paihuano-vicuna-rio-hurtado-monte-patria-combarbala-illapel-y-salamanca-por-tormentas-electricas-2026-10-27-17-03-31"
+    },
+    {
+      "at": "05-11-2026 14:19",
+      "hazard": "Evento meteorológico",
+      "region": "Región de Los Lagos",
+      "communes": [
+        "San Pablo",
+        "Puqueldón",
+        "Fresia",
+        "Llanquihue",
+        "Osorno",
+        "Purranque",
+        "Puyehue",
+        "Cochamó",
+        "Ancud",
+        "Quellón",
+        "Queilén",
+        "Chonchi",
+        "Puerto Montt",
+        "Río Negro",
+        "Castro",
+        "Dalcahue",
+        "Quemchi",
+        "San Juan de la Costa",
+        "Calbuco",
+        "Chaitén",
+        "Los Muermos",
+        "Maullín",
+        "Quinchao",
+        "Curaco de Vélez",
+        "Puerto Octay",
+        "Frutillar",
+        "Puerto Varas",
+        "Hualaihué",
+        "Palena",
+        "Futaleufú"
+      ],
+      "regions": [
+        "10"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Los Lagos por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-los-lagos-por-evento-meteorologico-2026-11-02-16-27-15"
+    },
+    {
+      "at": "05-11-2026 13:46",
+      "hazard": "Tormentas eléctricas",
+      "region": "Región de Los Ríos",
+      "communes": [
+        "La Unión",
+        "Los Lagos",
+        "Máfil",
+        "Paillaco",
+        "Lanco",
+        "Panguipulli",
+        "Río Bueno",
+        "Mariquina",
+        "Corral",
+        "Valdivia",
+        "Lago Ranco",
+        "Futrono"
+      ],
+      "regions": [
+        "14"
+      ],
+      "detail": "Se declara Alerta Temprana Preventiva para la Región de Los Ríos por tormentas eléctricas",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-los-rios-por-tormentas-electricas-2026-11-05-13-47-01"
+    },
+    {
+      "at": "05-11-2026 13:30",
+      "hazard": "Tormentas eléctricas",
+      "region": "Región de La Araucanía",
+      "communes": [
+        "Cholchol",
+        "Cunco",
+        "Freire",
+        "Galvarino",
+        "Nueva Imperial",
+        "Perquenco",
+        "Pitrufquén",
+        "Temuco",
+        "Teodoro Schmidt",
+        "Vilcún",
+        "Angol",
+        "Collipulli",
+        "Curacautín",
+        "Ercilla",
+        "Los Sauces",
+        "Lumaco",
+        "Purén",
+        "Renaico",
+        "Traiguén",
+        "Victoria",
+        "Gorbea",
+        "Lautaro",
+        "Lonquimay",
+        "Carahue",
+        "Toltén",
+        "Loncoche",
+        "Curarrehue",
+        "Saavedra",
+        "Villarrica",
+        "Pucón",
+        "Padre Las Casas",
+        "Melipeuco"
+      ],
+      "regions": [
+        "09"
+      ],
+      "detail": "Se declara Alerta Temprana Preventiva para la Región de La Araucanía por tormentas eléctricas",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-la-araucania-por-tormentas-electricas-2026-11-05-13-32-11"
+    },
+    {
+      "at": "05-11-2026 13:25",
+      "hazard": "Evento meteorológico",
+      "region": "Región de Arica y Parinacota",
+      "communes": [
+        "Camarones",
+        "Putre",
+        "General Lagos"
+      ],
+      "regions": [
+        "15"
+      ],
+      "detail": "Se modifica evento de Alerta Temprana Preventiva para la provincia de Parinacota y la comuna de Camarones por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-provincia-de-parinacota-y-la-comuna-de-camarones-por-viento-2026-10-27-16-57-22"
+    },
+    {
+      "at": "04-11-2026 15:45",
+      "hazard": "Evento meteorológico",
+      "region": "Región de O'Higgins",
+      "communes": [
+        "Marchigüe",
+        "Codegua",
+        "Coinco",
+        "Coltauco",
+        "Graneros",
+        "Malloa",
+        "Peumo",
+        "Pichidegua",
+        "Rancagua",
+        "Requínoa",
+        "Mostazal",
+        "San Vicente",
+        "Nancagua",
+        "Peralillo",
+        "Placilla",
+        "Pumanque",
+        "Paredones",
+        "Pichilemu",
+        "Litueche",
+        "Navidad",
+        "La Estrella",
+        "Doñihue",
+        "Olivar",
+        "Rengo",
+        "Santa Cruz",
+        "Palmilla",
+        "Quinta de Tilcoco",
+        "Machalí",
+        "Las Cabras",
+        "Chimbarongo",
+        "Lolol",
+        "Chépica",
+        "San Fernando"
+      ],
+      "regions": [
+        "06"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de O’Higgins por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-ohiggins-por-evento-meteorologico-2026-10-30-06-42-18"
+    },
+    {
+      "at": "03-11-2026 15:31",
+      "hazard": "Evento meteorológico",
+      "region": "Región del Maule",
+      "communes": [
+        "Curepto",
+        "Empedrado",
+        "Pencahue",
+        "Linares",
+        "Longaví",
+        "Talca",
+        "Chanco",
+        "Pelluhue",
+        "Constitución",
+        "Licantén",
+        "Vichuquén",
+        "Cauquenes",
+        "Río Claro",
+        "Pelarco",
+        "San Javier",
+        "Villa Alegre",
+        "Yerbas Buenas",
+        "Maule",
+        "San Rafael",
+        "Sagrada Familia",
+        "Retiro",
+        "Curicó",
+        "Molina",
+        "Colbún",
+        "San Clemente",
+        "Hualañé",
+        "Rauco",
+        "Teno",
+        "Romeral",
+        "Parral"
+      ],
+      "regions": [
+        "07"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región del Maule por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-del-maule-por-tormentas-electricas-2026-10-29-16-34-51"
+    },
+    {
+      "at": "03-11-2026 10:09",
+      "hazard": "Evento meteorológico",
+      "region": "Región de Ñuble",
+      "communes": [
+        "Bulnes",
+        "Chillán Viejo",
+        "Chillán",
+        "Yungay",
+        "Quillón",
+        "San Carlos",
+        "Treguaco",
+        "Ranquil",
+        "Portezuelo",
+        "Cobquecura",
+        "Quirihue",
+        "Coelemu",
+        "Ninhue",
+        "Pinto",
+        "San Ignacio",
+        "Pemuco",
+        "San Nicolás",
+        "San Fabián",
+        "Ñiquén",
+        "El Carmen",
+        "Coihueco"
+      ],
+      "regions": [
+        "16"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Ñuble por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-uble-por-evento-meteorologico-2026-11-02-17-41-09"
+    },
+    {
+      "at": "02-11-2026 18:08",
+      "hazard": "Evento zoosanitario",
+      "region": "Región de Arica y Parinacota",
+      "communes": [
+        "Putre",
+        "Camarones",
+        "Arica",
+        "General Lagos"
+      ],
+      "regions": [
+        "15"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Arica y Parinacota por evento zoosanitario",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-arica-y-parinacota-por-evento-zoosanitario-2026-06-03-13-37-19"
+    },
+    {
+      "at": "01-11-2026 03:23",
+      "hazard": "Crecida",
+      "region": "Región de Coquimbo",
+      "communes": [
+        "Río Hurtado",
+        "Monte Patria",
+        "Paihuano",
+        "Vicuña",
+        "Illapel",
+        "Salamanca"
+      ],
+      "regions": [
+        "04"
+      ],
+      "detail": "Se modifica cobertura de Alerta Temprana Preventiva para las comunas de Río Hurtado, Monte Patria, Paihuano, Vicuña, Illapel y Salamanca por crecida",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-paihuannio-y-vicuna-por-crecida-2026-10-02-16-43-21"
+    },
+    {
+      "at": "01-11-2026 00:02",
+      "hazard": "Calor",
+      "region": "",
+      "communes": [],
+      "regions": [],
+      "detail": "Se declara Alerta Temprana Preventiva Nacional por calor",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-nacional-por-calor-2026-11-01-19-51-37"
+    },
+    {
+      "at": "29-10-2026 19:34",
+      "hazard": "Alteración sanitaria",
+      "region": "Región de Valparaíso",
+      "communes": [
+        "Rinconada",
+        "Cabildo",
+        "Petorca",
+        "Panquehue",
+        "Olmué",
+        "Cartagena",
+        "Catemu",
+        "Llaillay",
+        "San Felipe",
+        "Santa María",
+        "Villa Alemana",
+        "Santo Domingo",
+        "San Antonio",
+        "El Tabo",
+        "El Quisco",
+        "Algarrobo",
+        "Casablanca",
+        "Valparaíso",
+        "Viña del Mar",
+        "Concón",
+        "Quintero",
+        "Puchuncaví",
+        "Zapallar",
+        "Papudo",
+        "La Ligua",
+        "Juan Fernández",
+        "Isla de Pascua",
+        "Limache",
+        "Quillota",
+        "Calera",
+        "Nogales",
+        "Calle Larga",
+        "La Cruz",
+        "Putaendo",
+        "San Esteban",
+        "Los Andes",
+        "Hijuelas",
+        "Quilpué"
+      ],
+      "regions": [
+        "05"
+      ],
+      "detail": "Se modifica cobertura de Alerta Temprana Preventiva para la Región de Valparaíso por alteración sanitaria",
+      "officialUrl": "https://senapred.cl/alerta/se-modifica-cobertura-de-alerta-temprana-preventiva-para-la-region-de-valparaiso-por-alteracion-sanitaria-2026-03-03-08-31-11"
+    },
+    {
+      "at": "28-10-2026 19:16",
+      "hazard": "Actividad del Complejo Volcánico Nevados de Chillán",
+      "region": "Región de Ñuble",
+      "communes": [
+        "Pinto",
+        "Coihueco"
+      ],
+      "regions": [
+        "16"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para las comunas de Pinto y Coihueco por actividad del Complejo Volcánico Nevados de Chillán",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-pinto-y-coihueco-por-actividad-del-complejo-volcanico-nevados-de-chillan-2026-06-15-18-49-10"
+    },
+    {
+      "at": "20-10-2026 18:10",
+      "hazard": "Actividad del Volcán Villarrica",
+      "region": "Región de La Araucanía, Región de Los Ríos",
+      "communes": [
+        "Villarrica",
+        "Pucón",
+        "Curarrehue",
+        "Panguipulli"
+      ],
+      "regions": [
+        "09",
+        "14"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para las comunas de Villarrica, Pucón y Curarrehue en la Región de La Araucanía y para la comuna de Panguipulli en la Región de Los Ríos por actividad del Volcán Villarrica",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-villarrica-pucon-y-curarrehue-en-la-region-de-la-araucania-y-para-la-comuna-de-panguipulli-en-la-region-de-los-rios-por-actividad-del-volcan-villarrica-2026-09-04-19-28-53"
+    },
+    {
+      "at": "19-10-2026 21:15",
+      "hazard": "Crecida",
+      "region": "Región de Atacama",
+      "communes": [
+        "Alto del Carmen",
+        "Freirina",
+        "Huasco",
+        "Vallenar"
+      ],
+      "regions": [
+        "03"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Provincia de Huasco por crecida",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-comuna-de-alto-del-carmen-por-crecida-2026-09-26-02-27-03"
+    },
+    {
+      "at": "16-10-2026 14:58",
+      "hazard": "Remoción en masa",
+      "region": "Región de Los Ríos",
+      "communes": [
+        "Corral",
+        "Valdivia"
+      ],
+      "regions": [
+        "14"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para las comunas de Corral y Valdivia por remoción en masa",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-corral-por-remocion-en-masa"
     }
   ],
-  "generatedAt": "2026-11-04T22:59:54-03:00"
+  "generatedAt": "2026-11-05T15:35:09-03:00"
 }
