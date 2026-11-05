@@ -170,9 +170,18 @@ def main():
             print("Hubo %d cambio(s) oficial(es); no se envio ningun correo." % len(cambios))
         return
 
-    servidor = os.environ.get("SMTP_SERVIDOR", "smtp.mail.me.com").strip()
-    puerto = int(os.environ.get("SMTP_PUERTO", "587"))
-    pagina = os.environ.get("PAGINA_URL", "https://senapred.cl/alertas/").strip()
+    # GitHub Actions entrega las variables que no existen como texto vacio, no
+    # como ausentes: por eso no sirve el valor por defecto de os.environ.get.
+    def ajuste(nombre, defecto):
+        return (os.environ.get(nombre) or "").strip() or defecto
+
+    servidor = ajuste("SMTP_SERVIDOR", "smtp.mail.me.com")
+    try:
+        puerto = int(ajuste("SMTP_PUERTO", "587"))
+    except ValueError:
+        print("SMTP_PUERTO no es un numero; se usa 587.")
+        puerto = 587
+    pagina = ajuste("PAGINA_URL", "https://senapred.cl/alertas/")
 
     enviados, omitidos, fallidos = 0, 0, []
     contexto = ssl.create_default_context()
