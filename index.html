@@ -824,7 +824,8 @@ table.t.mini td{white-space:nowrap}
     </div>
     <div class="dlg-body" id="cBody"></div>
     <div class="dlg-foot">
-      <p class="tip-note" id="cNote"><svg class="ic"><use href="#i-lock"/></svg><span>Contiene datos personales. Guarda o imprime la lista solo para el contacto HSEC.</span></p>
+      <p class="tip-note" id="cNote"><svg class="ic"><use href="#i-lock"/></svg><span>Contiene datos personales. Guarda o imprime la lista solo para el contacto HSEC, y bórrala cuando ya no se use.</span></p>
+      <div id="cMin"></div>
       <div class="row">
         <button type="button" class="btn sm" id="cCopy"><svg class="ic"><use href="#i-copy"/></svg>Copiar</button>
         <button type="button" class="btn sm" id="cTsv"><svg class="ic"><use href="#i-copy"/></svg>Copiar para Excel</button>
@@ -1703,7 +1704,7 @@ const CS={ok:"Está bien",noans:"No contesta",help:"Necesita apoyo",pending:"Pen
 let cLevel="all", cStatus="all", DL=null, lastFocus=null, guide=null;
 const JSPDF_URL="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js", JSPDF_SRI="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk";
 const AUTOTABLE_URL="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js", AUTOTABLE_SRI="sha384-fCAW/rDWORTbQXSiB7mOg0QtQ5c+r0f544y6XoKjuVva0nMBlCpNUjiFeG5iMdS3";
-function resetContacts(){cstatus.clear();cnote.clear();guide=null;}
+function resetContacts(){cstatus.clear();cnote.clear();guide=null;extraOn=new Set();}
 /* ===== El avance del contacto sobrevive a una recarga =====
    Se guarda en este navegador, identificado por nombre y comuna (no por posicion
    en la planilla), para que siga sirviendo aunque se vuelva a cargar el archivo.
@@ -1743,12 +1744,21 @@ function sincronizarContacto(){
     if(g.n) cnote.set(i,g.n);
   });
 }
+// Ley 21.719: los datos tratados deben ser los necesarios para la finalidad.
+// La finalidad aqui es CONTACTAR a una persona expuesta, asi que el PDF y el
+// Excel no deben llevarse identificadores ni datos que no sirven para llamarla.
+// Se excluyen por defecto y la administradora puede reincorporarlos a conciencia.
+const RE_SENSIBLE=/(^|\b)(rut|run|cedula|carnet|dni|pasaporte|identidad|direccion|domicilio|calle|nacimiento|edad|sexo|genero|nacionalidad|afp|isapre|fonasa|prevision|salud|licencia|enfermedad|discapacidad|sueldo|renta|remuneracion|salario|banco|cuenta|estado civil|religion|sindicato|contrato|finiquito)(\b|$)/;
+const esSensible=c=>RE_SENSIBLE.test(norm(c));
+let extraOn=new Set();   // columnas sensibles que se decidio incluir igual
 function contactCols(){
   const r={phones:[],emails:[],extra:[]};
   people.cols.forEach((c,i)=>{ if(i<2||i===people.workCol) return; const n=norm(c);
     if(/(^| )(telefono|fono|celular|movil|whatsapp|tel)( |$)/.test(n)) r.phones.push(i);
     else if(/(^| )(correo|email|e mail|mail)( |$)/.test(n)) r.emails.push(i);
+    else if(esSensible(c)&&!extraOn.has(i)) (r.sensibles=r.sensibles||[]).push(i);
     else r.extra.push(i); });
+  r.sensibles=r.sensibles||[];
   r.phone=r.phones.length?0:-1; r.email=r.emails.length?0:-1;
   r.tel=row=>{for(const i of r.phones) if(row[i]) return row[i]; return "";};
   r.mail=row=>{for(const i of r.emails) if(row[i]) return row[i]; return "";};
@@ -1804,6 +1814,10 @@ function renderContacts(){
   $("cProgress").innerHTML='<span class="bar"><i style="width:'+(all.all?Math.round(done/all.all*100):0)+'%"></i></span><span>'+fmtN(done)+' de '+fmtN(all.all)+' con resultado</span>';
   const sb=[["all","Todas",c.all],["pending","Pendientes",c.pending],["ok","Está bien",c.ok],["noans","No contesta",c.noans],["help","Necesita apoyo",c.help]];
   $("cStat").innerHTML=sb.map(([k,l,n])=>'<button type="button" data-s="'+k+'" aria-pressed="'+(cStatus===k)+'">'+l+' <span class="n">'+fmtN(n)+'</span></button>').join("");
+  const sen=contactCols().sensibles||[], mn=$("cMin");
+  mn.innerHTML=!sen.length?"":'<p class="tip-note" style="margin-top:6px"><svg class="ic"><use href="#i-lock"/></svg><span>'+
+    'No se incluyen en el PDF ni en el Excel: <b>'+esc(sen.map(i=>people.cols[i]).join(", "))+'</b>, porque no se necesitan para contactar. '+
+    '<button type="button" class="al-x" id="cIncluir">Incluir igual</button></span></p>';
   $("cStart").disabled=!c.all; $("cStart").innerHTML=ICON("i-play")+(c.pending===c.all?"Empezar a contactar":c.pending?"Seguir contactando":"Revisar una a una");
   if(guide){renderGuide();return;}
   $("contactsDlg").classList.remove("guiding");
@@ -1860,6 +1874,9 @@ function renderGuide(){
   if(!p){guide.pos++;return renderGuide();}
   const ai=R.ordered.find(a=>a.ppl.includes(p)), a=ai?ai.a:null, s=stOf(idx);
   const tel=cc.tel(p.row), mail=cc.mail(p.row), extra=cc.extra.map(i=>p.row[i]).filter(Boolean);
+  const ji=people.cols.findIndex((c,i)=>i>=2&&/^(jefatura|jefe|jefa|supervisor|supervisora|supervision|contacto de emergencia|emergencia|responsable|lider|encargado|encargada)/.test(norm(c)));
+  const jefe=ji>=0?String(p.row[ji]||"").trim():"";
+
   $("cBody").innerHTML='<div class="guide">'+
     '<div class="g-head"><button type="button" class="btn plain" data-g="list">‹ Lista</button><span class="foot">Persona '+(guide.pos+1)+' de '+n+'</span></div>'+
     '<span class="bar wide"><i style="width:'+Math.round(guide.pos/n*100)+'%"></i></span>'+
@@ -1868,6 +1885,7 @@ function renderGuide(){
       '<h2 class="g-name">'+esc(p.row[0])+'</h2>'+
       '<p class="sub">'+esc([p.row[1]].concat(extra).join(" · "))+'</p>'+
       '<div class="g-contact">'+(tel?phoneVal(tel,true):'<p class="note">'+ICON("i-warn")+'<span>Esta persona no tiene teléfono en el archivo.</span></p>')+contactVal(mail,"i-mail","correo",true)+'</div>'+
+      (jefe?'<p class="foot" style="display:flex;gap:6px;align-items:center">'+ICON("i-people")+'<span>Si necesita apoyo, avisar a <b>'+esc(jefe)+'</b></span></p>':'')+
       '<label class="f"><span>Nota <span class="caption">(opcional)</span></span><textarea id="gNote" class="field" rows="2" placeholder="Ej.: está en casa de un familiar, sin daños">'+esc(cnote.get(idx)||"")+'</textarea></label>'+
       (s!=="pending"?'<p class="foot">Resultado actual: '+pill(idx)+' · '+stamp(cstatus.get(idx).t).hm+'</p>':'')+
     '</article>'+
@@ -1938,6 +1956,12 @@ $("cSaved").addEventListener("click",e=>{
   const b=e.target.closest("#cForget"); if(!b) return;
   if(b.dataset.armed!=="1"){b.dataset.armed="1";b.textContent="Confirmar";setTimeout(()=>{if(b.isConnected){b.dataset.armed="";b.textContent="Borrar avance";}},3000);return;}
   olvidarContacto(); renderContacts(); renderFollow(); render(); toast("Avance borrado");
+});
+$("cMin").addEventListener("click",e=>{
+  const b=e.target.closest("#cIncluir"); if(!b) return;
+  if(b.dataset.armed!=="1"){b.dataset.armed="1";b.textContent="Confirmar: quedarán en el archivo";setTimeout(()=>{if(b.isConnected){b.dataset.armed="";b.textContent="Incluir igual";}},4000);return;}
+  people.cols.forEach((c,i)=>{ if(i>=2&&esSensible(c)) extraOn.add(i); });
+  renderContacts(); toast("Esas columnas quedarán en el PDF y el Excel");
 });
 $("cStat").addEventListener("click",e=>{const b=e.target.closest("button[data-s]");if(!b)return;cStatus=b.dataset.s;guide=null;renderContacts();});
 function exportRows(){
