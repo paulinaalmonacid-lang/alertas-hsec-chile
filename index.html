@@ -619,7 +619,7 @@ table.t.mini td{white-space:nowrap}
           <div class="lg-head"><b>Leyenda</b><button type="button" class="iconbtn" id="lgToggle" aria-expanded="true" aria-label="Ocultar leyenda"><svg class="ic"><use href="#i-minus"/></svg></button></div>
           <div class="lg-body">
             <div class="keys"><span><i class="dot r"></i>Alerta Roja</span><span><i class="dot y"></i>Alerta Amarilla</span><span><i class="dot k"></i>Fuera de alerta</span><span><i class="okey"></i>Oficina</span></div>
-            <p class="foot">El número de cada círculo es la cantidad de personas de tu planilla en esa zona. Toca una región para acercarte.</p>
+            <p class="foot"><span id="lgNum">Cada círculo marca una comuna con alerta. Al cargar tu nómina, muestra cuántas personas tienes en esa zona.</span> Toca una región para acercarte.</p>
             <label class="switch"><span>Mostrar personas fuera de alerta</span><input type="checkbox" id="showOthers" role="switch"></label>
           </div>
         </div>
@@ -686,7 +686,7 @@ table.t.mini td{white-space:nowrap}
 ]</pre></div>
             </div>
           </details>
-          <div class="row"><button type="button" class="btn sm" id="btnExample">Usar ejemplo</button><button type="button" class="btn sm danger" id="btnClearPeople">Quitar planilla</button></div>
+          <div class="row"><button type="button" class="btn sm" id="btnExample">Ver con datos de ejemplo</button><button type="button" class="btn sm danger" id="btnClearPeople">Quitar planilla</button></div>
         </div>
       </div>
     </aside>
@@ -1044,7 +1044,8 @@ const cancelLi=c=>'<div class="li"><span class="sym done">'+ICON("i-check")+'</s
 
 const clone=o=>JSON.parse(JSON.stringify(o));
 let feed = clone(FALLBACK), feedOrigin="fallback";
-let people = {cols:EXAMPLE.cols.slice(),rows:EXAMPLE.rows.map(r=>r.slice()),example:true,name:""};
+const PLANILLA_VACIA = () => ({cols:["Nombre","Comuna"],rows:[],example:false,name:""});
+let people = PLANILLA_VACIA();
 let M = null;
 const COM = new Map(), REG = new Map();
 let sel = null, showOthers = false, tableFilter="all", R = null, groupFilter = null, groupCol = -1;
@@ -1254,14 +1255,14 @@ function drawOverlay(){
       const r=(12+Math.min(6,Math.sqrt(ai.ppl.length)*1.6))*u;
       for(let k=0;k<6;k++){const hit=placed.find(p=>Math.hypot(p.x-x,p.y-y)<(p.r+r)*1.02);if(!hit)break;x=hit.x+(hit.r+r)*.9;y=hit.y+(hit.r+r)*.55;}
       placed.push({x,y,r});
-      pinEl(x,y,r,ai.a.level,ai.ppl.length,{alert:String(ai.i)},"Alerta "+ai.a.level+", "+ai.a.hazard+": "+plural(ai.ppl.length,"persona expuesta","personas expuestas"),ai.a.level==="Roja",sel&&sel.type==="alert"&&sel.id===ai.i,(c=>!!c&&c.kind!=="upd")(changeOf(ai.a)));
+      pinEl(x,y,r,ai.a.level,people.rows.length?ai.ppl.length:"",{alert:String(ai.i)},"Alerta "+ai.a.level+", "+ai.a.hazard+(people.rows.length?": "+plural(ai.ppl.length,"persona expuesta","personas expuestas"):""),ai.a.level==="Roja",sel&&sel.type==="alert"&&sel.id===ai.i,(c=>!!c&&c.kind!=="upd")(changeOf(ai.a)));
     }
   }else{
     const items=[...R.comLevel].map(([k,lv])=>({k,lv,info:COM.get(k),n:R.countByCom.get(k)||0})).filter(x=>x.info).sort((a,b)=>b.n-a.n);
     const taken=[], hit=r=>taken.some(t=>r[0]<t[2]&&r[2]>t[0]&&r[1]<t[3]&&r[3]>t[1]);
     for(const it of items.slice().reverse()){
       const r=(it.n?10.5:5)*u, [x,y]=it.info.c;
-      pinEl(x,y,r,it.lv,it.n||"",{com:it.k},it.info.n+", Alerta "+it.lv+": "+plural(it.n,"persona","personas"),it.lv==="Roja"&&it.n>0,sel&&sel.type==="commune"&&sel.id===it.k);
+      pinEl(x,y,r,it.lv,people.rows.length?(it.n||""):"",{com:it.k},it.info.n+", Alerta "+it.lv+(people.rows.length?": "+plural(it.n,"persona","personas"):""),it.lv==="Roja"&&it.n>0,sel&&sel.type==="commune"&&sel.id===it.k);
     }
     for(const it of items){const r=(it.n?10.5:5)*u;taken.push([it.info.c[0]-r,it.info.c[1]-r,it.info.c[0]+r,it.info.c[1]+r]);}
     if(z>=3.2) for(const it of items){
@@ -1377,7 +1378,7 @@ function renderTiles(){
   const comms=new Set(feed.alerts.flatMap(a=>a.communes.map(key))).size;
   $("tiles").innerHTML=
     '<div class="tile"><span class="k">'+ICON("i-bell")+'Alertas vigentes</span><span class="n">'+fmtN(feed.alerts.length)+'</span><span class="s">'+plural(nR,"Roja","Rojas")+' · '+plural(nA,"Amarilla","Amarillas")+'</span></div>'+
-    '<div class="tile '+(exp?'r':'')+'"><span class="k">'+ICON("i-people")+'Personas expuestas</span><span class="n">'+fmtN(exp)+'</span><span class="s">de '+fmtN(R.persons.length)+(groupFilter?' del grupo':' en la planilla')+'</span></div>'+
+    '<div class="tile '+(exp?'r':'')+'"><span class="k">'+ICON("i-people")+'Personas expuestas</span><span class="n">'+(R.persons.length?fmtN(exp):'—')+'</span><span class="s">'+(R.persons.length?'de '+fmtN(R.persons.length)+(groupFilter?' del grupo':' en la planilla'):'carga tu nómina')+'</span></div>'+
     '<div class="tile"><span class="k">'+ICON("i-pin")+'Comunas</span><span class="n">'+fmtN(comms)+'</span><span class="s">con alerta</span></div>'+
     '<div class="tile"><span class="k">'+ICON("i-map")+'Regiones</span><span class="n">'+fmtN(R.regLevel.size)+'</span><span class="s">con alerta</span></div>';
   const manual=feed.mode==="manual", stale=feedOrigin!=="official"&&!manual;
@@ -1504,7 +1505,7 @@ $("comSearch").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefau
 function render(){
   R=compute();
   renderTiles();
-  const tag=$("peopleTag"); tag.textContent=people.example?"Ejemplo":people.rows.length?plural(people.rows.length,"persona","personas"):"Vacía"; tag.className="badge"+(people.example?" ex":"");
+  const tag=$("peopleTag"); tag.textContent=people.example?"Ejemplo":people.rows.length?plural(people.rows.length,"persona","personas"):"Sin cargar"; tag.className="badge"+(people.example?" ex":"");
   const st=$("peopleStatus"); st.className="status";
   st.textContent=people.example?"Se muestran 12 personas ficticias. Sube tu planilla para reemplazarlas.":people.name?"Archivo: "+people.name:"No hay planilla cargada.";
   const unk=R.persons.filter(p=>!p.known), unkNames=[...new Set(unk.map(p=>p.row[1]||"(vacía)"))];
@@ -1538,7 +1539,7 @@ function renderTable(){
     .sort((a,b)=>(RANK[b.level]||0)-(RANK[a.level]||0)||(a.st==="unk")-(b.st==="unk"));
   $("tbody").innerHTML=rows.length?rows.slice(0,TABLE_MAX).map(x=>'<tr><td class="nm">'+esc(x.row[0])+'</td><td>'+esc(x.row[1]||"—")+'</td>'+x.row.slice(2).map(c=>'<td>'+esc(c)+'</td>').join("")+
     '<td>'+esc(x.rn||"—")+'</td><td>'+cap(x.st)+'</td><td>'+esc(x.alerts.map(a=>a.hazard).join("; ")||"—")+'</td></tr>').join("")
-    :'<tr><td colspan="'+(people.cols.length+3)+'" class="empty">Ninguna persona coincide con el filtro.</td></tr>';
+    :'<tr><td colspan="'+(people.cols.length+3)+'" class="empty">'+(people.rows.length?"Ninguna persona coincide con el filtro.":"Todavía no has cargado tu nómina. Ve a la pestaña Planilla y elige tu archivo de Excel o JSON.")+'</td></tr>';
   const m=$("more"); m.hidden=rows.length<=TABLE_MAX; m.textContent="Se muestran las primeras "+fmtN(TABLE_MAX)+" de "+fmtN(rows.length)+". Usa la búsqueda para encontrar a alguien.";
 }
 
@@ -1553,8 +1554,8 @@ function wireDrop(dropId,inputId,fn){
 }
 wireDrop("dropPeople","filePeople",readPeople);
 wireDrop("dropFeed","fileFeed",readFeed);
-$("btnExample").onclick=()=>{people={cols:EXAMPLE.cols.slice(),rows:EXAMPLE.rows.map(r=>r.slice()),example:true,name:""};sel=null;groupFilter=null;groupCol=-1;resetContacts();render();};
-$("btnClearPeople").onclick=()=>{people={cols:["Nombre","Comuna"],rows:[],example:false,name:""};sel=null;groupFilter=null;groupCol=-1;resetContacts();render();};
+$("btnExample").onclick=()=>{people={cols:EXAMPLE.cols.slice(),rows:EXAMPLE.rows.map(r=>r.slice()),example:true,name:""};sel=null;groupFilter=null;groupCol=-1;resetContacts();render();toast("Personas ficticias, solo para probar la página");};
+$("btnClearPeople").onclick=()=>{people=PLANILLA_VACIA();sel=null;groupFilter=null;groupCol=-1;resetContacts();render();toast("Planilla vacía");};
 $("btnReset").onclick=async()=>{$("feedStatus").textContent="";feedOrigin="fallback";sel=null;await loadOfficial();toast("Alertas oficiales cargadas");};
 $("alertList").addEventListener("click",e=>{
   const b=e.target.closest("[data-del]"); if(!b) return;
