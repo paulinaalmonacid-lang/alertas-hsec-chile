@@ -1,4 +1,5 @@
 {
+  "generatedAt": "2026-11-04T16:39:00-03:00",
   "source": "SENAPRED",
   "mode": "verified_snapshot",
   "note": "Feed operativo HSEC. Solo Alertas Amarillas y Rojas SENAPRED. Distingue fecha oficial y verificacion. history = boletines oficiales de cada alerta; recentChanges = cancelaciones oficiales de los ultimos 14 dias.",
@@ -14,68 +15,24 @@
       "source": "SENAPRED - Alerta Roja oficial",
       "detail": "Monitoreo de Alerta Roja por remoción en masa en sector Villa El Mirador.",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
-      "officialDeclaredAt": "21-10-2026 00:43",
-      "officialUpdatedAt": "29-10-2026 16:30",
-      "verifiedAt": "04-11-2026 21:52",
+      "officialDeclaredAt": "20-10-2026 21:43",
+      "officialUpdatedAt": "29-10-2026 13:30",
+      "verifiedAt": "04-11-2026 16:39",
       "history": [
         {
-          "at": "21-10-2026 00:43",
+          "at": "20-10-2026 21:43",
           "level": "Roja",
           "action": "Se declara Alerta Roja"
         },
         {
-          "at": "21-10-2026 16:40",
+          "at": "21-10-2026 13:40",
           "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
+          "action": "Monitoreo"
         },
         {
-          "at": "29-10-2026 16:30",
+          "at": "29-10-2026 13:30",
           "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
-        }
-      ]
-    },
-    {
-      "id": "SENAPRED-ANTOFAGASTA-SANITARIA-20260619",
-      "level": "Amarilla",
-      "hazard": "Alteración sanitaria (mosquito Aedes aegypti)",
-      "region": "Región de Antofagasta",
-      "communes": [
-        "Antofagasta"
-      ],
-      "source": "SENAPRED - Alerta Amarilla oficial",
-      "detail": "Alerta Amarilla por focos activos del vector Aedes aegypti.",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
-      "officialDeclaredAt": "19-06-2026 23:57",
-      "officialUpdatedAt": "",
-      "verifiedAt": "04-11-2026 21:52",
-      "history": [
-        {
-          "at": "19-06-2026 23:57",
-          "level": "Amarilla",
-          "action": "Se declara Alerta Amarilla"
-        }
-      ]
-    },
-    {
-      "id": "SENAPRED-BIOBIO-ALTOBIOBIO-CRECIDA-20260924",
-      "level": "Amarilla",
-      "hazard": "Crecida del Embalse Ralco",
-      "region": "Región del Biobío",
-      "communes": [
-        "Alto Biobío"
-      ],
-      "source": "SENAPRED - Alerta Amarilla oficial",
-      "detail": "Alerta Amarilla por crecida asociada a vertimientos controlados del Embalse Ralco.",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
-      "officialDeclaredAt": "24-09-2026 22:25",
-      "officialUpdatedAt": "",
-      "verifiedAt": "04-11-2026 21:52",
-      "history": [
-        {
-          "at": "24-09-2026 22:25",
-          "level": "Amarilla",
-          "action": "Se declara Alerta Amarilla"
+          "action": "Monitoreo"
         }
       ]
     },
@@ -99,66 +56,110 @@
       "source": "SENAPRED - Alerta Amarilla oficial",
       "detail": "Alerta Roja declarada el 08-10-2026 y cancelada el 13-10-2026 12:21, cuando se declaró Alerta Amarilla.",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22",
-      "officialDeclaredAt": "13-10-2026 15:21",
-      "officialUpdatedAt": "14-10-2026 14:59",
-      "verifiedAt": "04-11-2026 21:52",
+      "officialDeclaredAt": "13-10-2026 12:21",
+      "officialUpdatedAt": "14-10-2026 11:59",
+      "verifiedAt": "04-11-2026 16:39",
       "history": [
         {
-          "at": "08-10-2026 21:49",
+          "at": "08-10-2026 18:49",
           "level": "Roja",
           "action": "Se declara Alerta Roja"
         },
         {
-          "at": "08-10-2026 22:39",
+          "at": "08-10-2026 19:39",
           "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
+          "action": "Monitoreo"
         },
         {
-          "at": "08-10-2026 23:21",
+          "at": "08-10-2026 20:21",
           "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
+          "action": "Monitoreo"
         },
         {
-          "at": "09-10-2026 02:01",
+          "at": "08-10-2026 23:01",
           "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
+          "action": "Monitoreo"
         },
         {
-          "at": "09-10-2026 05:25",
+          "at": "09-10-2026 02:25",
           "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
+          "action": "Monitoreo"
         },
         {
-          "at": "09-10-2026 13:21",
+          "at": "09-10-2026 10:21",
           "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
+          "action": "Monitoreo"
         },
         {
-          "at": "10-10-2026 18:00",
+          "at": "10-10-2026 15:00",
           "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
+          "action": "Monitoreo"
         },
         {
-          "at": "12-10-2026 21:07",
+          "at": "12-10-2026 18:07",
           "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
+          "action": "Monitoreo"
         },
         {
-          "at": "13-10-2026 15:21",
+          "at": "13-10-2026 12:21",
           "level": "Amarilla",
-          "action": "Se cancela Alerta Roja y declara Alerta Amarilla"
+          "action": "Se cancela Alerta Roja y se declara Alerta Amarilla"
         },
         {
-          "at": "14-10-2026 14:59",
+          "at": "14-10-2026 11:59",
           "level": "Amarilla",
-          "action": "Monitoreo Alerta Amarilla"
+          "action": "Monitoreo"
+        }
+      ]
+    },
+    {
+      "id": "SENAPRED-BIOBIO-ALTOBIOBIO-CRECIDA-20260924",
+      "level": "Amarilla",
+      "hazard": "Crecida del Embalse Ralco",
+      "region": "Región del Biobío",
+      "communes": [
+        "Alto Biobío"
+      ],
+      "source": "SENAPRED - Alerta Amarilla oficial",
+      "detail": "Alerta Amarilla por crecida asociada a vertimientos controlados del Embalse Ralco.",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
+      "officialDeclaredAt": "24-09-2026 19:25",
+      "officialUpdatedAt": "",
+      "verifiedAt": "04-11-2026 16:39",
+      "history": [
+        {
+          "at": "24-09-2026 19:25",
+          "level": "Amarilla",
+          "action": "Se declara Alerta Amarilla"
+        }
+      ]
+    },
+    {
+      "id": "SENAPRED-ANTOFAGASTA-SANITARIA-20260619",
+      "level": "Amarilla",
+      "hazard": "Alteración sanitaria (mosquito Aedes aegypti)",
+      "region": "Región de Antofagasta",
+      "communes": [
+        "Antofagasta"
+      ],
+      "source": "SENAPRED - Alerta Amarilla oficial",
+      "detail": "Alerta Amarilla por focos activos del vector Aedes aegypti.",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
+      "officialDeclaredAt": "19-06-2026 19:57",
+      "officialUpdatedAt": "",
+      "verifiedAt": "04-11-2026 16:39",
+      "history": [
+        {
+          "at": "19-06-2026 19:57",
+          "level": "Amarilla",
+          "action": "Se declara Alerta Amarilla"
         }
       ]
     }
   ],
   "recentChanges": [
     {
-      "at": "02-11-2026 20:15",
+      "at": "02-11-2026 17:15",
       "type": "cancelled",
       "level": "Amarilla",
       "hazard": "Evento meteorológico",
@@ -168,9 +169,8 @@
         "Salamanca",
         "Vicuña"
       ],
-      "detail": "Se cancela Alerta Amarilla para las comunas de Río Hurtado, Salamanca y Vicuña por evento meteorológico y declara Alerta Temprana Preventiva para la Región de Coquimbo por viento",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-la-higuera-paihuano-vicuna-rio-hurtado-monte-patria-combarbala-illapel-y-salamanca-por-tormentas-electricas-2026-10-27-17-03-31"
+      "detail": "SENAPRED canceló la Alerta Amarilla y declaró Alerta Temprana Preventiva regional por viento.",
+      "officialUrl": "https://senapred.cl/alertas/"
     }
-  ],
-  "generatedAt": "2026-11-04T21:52:46-03:00"
+  ]
 }

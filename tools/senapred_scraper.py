@@ -164,7 +164,10 @@ def scrape(max_pages=60, timeout=30000):
     items, pages = {}, 0
     with sync_playwright() as p:
         b = p.chromium.launch()
-        pg = b.new_page(viewport={"width": 1200, "height": 1600}, locale="es-CL")
+        # SENAPRED muestra las fechas en la hora local del navegador: fijamos la de Chile
+        # continental para que el resultado no dependa de donde se ejecute el lector.
+        pg = b.new_page(viewport={"width": 1200, "height": 1600}, locale="es-CL",
+                        timezone_id="America/Santiago")
         pg.goto(LIST_URL, wait_until="domcontentloaded", timeout=timeout)
         pg.wait_for_function("document.querySelectorAll('a[href*=\"/alerta/\"]').length>0", timeout=timeout)
         last_sig = None

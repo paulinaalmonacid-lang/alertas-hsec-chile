@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+env:
+  # SENAPRED publica en hora de Chile continental; el servidor de GitHub usa UTC.
+  TZ: America/Santiago
+
 concurrency:
   group: alertas-senapred
   cancel-in-progress: false
