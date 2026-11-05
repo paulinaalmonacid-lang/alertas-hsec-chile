@@ -643,6 +643,16 @@ details.faq p{padding:0 16px 14px;font-size:14px;color:var(--label-2)}
 .row:has(> #btnHelp){flex-wrap:nowrap}
 table.t.mini td{white-space:nowrap}
 
+/* ============ Sismos ============ */
+.sis-m{flex:none;width:44px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--fill);color:var(--label);
+  font:700 16px/1 var(--font-rounded);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.sis-m.medio{background:color-mix(in srgb,var(--yellow) 30%,transparent);color:#7a5a00}
+.sis-m.fuerte{background:var(--red);color:#fff}
+.sis-li .t1{font-weight:600}
+.sis-exp{font:600 15px var(--font-rounded);font-variant-numeric:tabular-nums;color:var(--red)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sis-m.medio{color:var(--yellow)}}
+:root[data-theme="dark"] .sis-m.medio{color:var(--yellow)}
+
 /* ============ Clima ============ */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .clima{position:relative;display:flex;flex-direction:column;gap:14px;isolation:isolate;
@@ -741,6 +751,8 @@ table.t.mini td{white-space:nowrap}
   .clima.foto .cl-card,.clima.foto .cl-find,.clima.foto .cl-btn{background:rgba(16,26,44,.88)}
 }
 </style>
+
+<script type="application/json" id="geoCom">{"Algarrobo":[-33.3695,-71.6765],"Alhué":[-34.023,-71.2107],"Alto Biobío":[-37.9,-71.4],"Alto Hospicio":[-20.2687,-70.1049],"Alto del Carmen":[-28.7595,-70.4865],"Ancud":[-41.8707,-73.8162],"Andacollo":[-30.2345,-71.0853],"Angol":[-37.7952,-72.7164],"Antofagasta":[-23.6509,-70.3975],"Antuco":[-37.3301,-71.6747],"Arauco":[-37.2463,-73.3175],"Arica":[-18.4755,-70.3006],"Aysén":[-45.403,-72.6918],"Buin":[-33.7326,-70.7428],"Bulnes":[-36.7423,-72.2985],"Cabildo":[-32.4313,-71.0717],"Cabo de Hornos":[-54.934,-67.616],"Cabrero":[-37.0339,-72.4047],"Calama":[-22.4567,-68.9237],"Calbuco":[-41.7734,-73.1305],"Caldera":[-27.0681,-70.8192],"Calera":[-32.7868,-71.198],"Calera de Tango":[-33.6167,-70.8],"Calle Larga":[-32.8547,-70.626],"Camarones":[-19.01,-69.8669],"Camiña":[-19.3129,-69.4261],"Canela":[-31.5833,-70.85],"Carahue":[-38.7112,-73.161],"Cartagena":[-33.5538,-71.6076],"Casablanca":[-33.3171,-71.4031],"Castro":[-42.4721,-73.7732],"Catemu":[-32.6333,-71.0333],"Cauquenes":[-35.9671,-72.3225],"Cañete":[-37.8,-73.3833],"Cerrillos":[-33.5,-70.717],"Cerro Navia":[-33.422,-70.74],"Chaitén":[-42.916,-72.7063],"Chanco":[-35.7367,-72.5331],"Chañaral":[-26.343,-70.6165],"Chiguayante":[-36.9256,-73.0284],"Chile Chico":[-46.541,-71.7237],"Chillán":[-36.6066,-72.1034],"Chillán Viejo":[-36.623,-72.1319],"Chimbarongo":[-34.7125,-71.0434],"Cholchol":[-38.6018,-72.8457],"Chonchi":[-42.6239,-73.775],"Chépica":[-34.7273,-71.2729],"Cisnes":[-44.742,-72.692],"Cobquecura":[-36.1325,-72.794],"Cochamó":[-41.4975,-72.3079],"Cochrane":[-47.2557,-72.5695],"Codegua":[-34.0356,-70.6688],"Coelemu":[-36.4874,-72.7032],"Coihueco":[-36.6279,-71.8307],"Coinco":[-34.2669,-70.9484],"Colbún":[-35.6949,-71.4057],"Colchane":[-19.2759,-68.6376],"Colina":[-33.2044,-70.6747],"Collipulli":[-37.9545,-72.4344],"Coltauco":[-34.2885,-71.0837],"Combarbalá":[-31.1786,-71.003],"Concepción":[-36.827,-73.0498],"Conchalí":[-33.3704,-70.635],"Concón":[-32.922,-71.5162],"Constitución":[-35.3332,-72.4116],"Contulmo":[-38.0156,-73.2299],"Copiapó":[-27.3674,-70.3322],"Coquimbo":[-29.9533,-71.3395],"Coronel":[-37.0339,-73.1402],"Corral":[-39.8873,-73.431],"Coyhaique":[-45.5752,-72.0662],"Cunco":[-38.9318,-72.0315],"Curacautín":[-38.4406,-71.8892],"Curacaví":[-33.3976,-71.1271],"Curaco de Vélez":[-42.4389,-73.6012],"Curanilahue":[-37.4779,-73.3449],"Curarrehue":[-39.3602,-71.5875],"Curepto":[-35.0917,-72.0196],"Curicó":[-34.9828,-71.2394],"Dalcahue":[-42.3785,-73.6501],"Diego de Almagro":[-26.3902,-70.0456],"Doñihue":[-34.2263,-70.9648],"El Bosque":[-33.5667,-70.7],"El Carmen":[-36.8983,-72.0261],"El Monte":[-33.6797,-70.9848],"El Quisco":[-33.3977,-71.6939],"El Tabo":[-33.4555,-71.6668],"Empedrado":[-35.5916,-72.2776],"Ercilla":[-38.0632,-72.3743],"Estación Central":[-33.461,-70.698],"Florida":[-36.824,-72.661],"Freire":[-38.9525,-72.6265],"Freirina":[-28.5092,-71.0812],"Fresia":[-41.1536,-73.421],"Frutillar":[-41.1216,-73.0581],"Futaleufú":[-43.1849,-71.8672],"Futrono":[-40.1295,-72.3854],"Galvarino":[-38.4136,-72.7815],"General Lagos":[-17.6536,-69.6346],"Gorbea":[-39.1016,-72.676],"Graneros":[-34.0686,-70.7275],"Guaitecas":[-43.898,-73.745],"Hijuelas":[-32.7983,-71.1463],"Hualaihué":[-42.0167,-72.6861],"Hualañé":[-34.9754,-71.8025],"Hualpén":[-36.7891,-73.1017],"Hualqui":[-36.9727,-72.9356],"Huara":[-19.9963,-69.772],"Huasco":[-28.466,-71.2228],"Huechuraba":[-33.37,-70.64],"Illapel":[-31.6335,-71.1697],"Independencia":[-33.4117,-70.6665],"Iquique":[-20.2133,-70.1503],"Isla de Maipo":[-33.7468,-70.8977],"La Cisterna":[-33.55,-70.6833],"La Cruz":[-32.8275,-71.2263],"La Estrella":[-34.2065,-71.6542],"La Florida":[-33.5383,-70.5545],"La Granja":[-33.5845,-70.5785],"La Higuera":[-29.5119,-71.2019],"La Ligua":[-32.4524,-71.2311],"La Pintana":[-33.5833,-70.6342],"La Reina":[-33.4416,-70.5442],"La Serena":[-29.9059,-71.2501],"La Unión":[-40.2931,-73.0817],"Lago Ranco":[-40.3227,-72.4805],"Lago Verde":[-44.2403,-71.8495],"Laguna Blanca":[-52.5,-71.3],"Laja":[-37.2841,-72.7111],"Lampa":[-33.2863,-70.8756],"Lanco":[-39.4525,-72.7712],"Las Cabras":[-34.2903,-71.3062],"Las Condes":[-33.4164,-70.5641],"Lautaro":[-38.5307,-72.4365],"Lebu":[-37.6082,-73.6536],"Licantén":[-34.9846,-71.9855],"Limache":[-33.0133,-71.2608],"Linares":[-35.8467,-71.5931],"Litueche":[-34.1175,-71.7265],"Llaillay":[-32.8404,-70.9562],"Llanquihue":[-41.256,-73.0065],"Lo Barnechea":[-33.3607,-70.5124],"Lo Espejo":[-33.5307,-70.6959],"Lo Prado":[-33.4443,-70.7255],"Lolol":[-34.737,-71.6107],"Loncoche":[-39.3671,-72.6309],"Longaví":[-35.965,-71.6836],"Lonquimay":[-38.4539,-71.3705],"Los Alamos":[-37.628,-73.4601],"Los Andes":[-32.8337,-70.5983],"Los Angeles":[-37.4697,-72.3537],"Los Lagos":[-39.8635,-72.8091],"Los Muermos":[-41.3956,-73.4624],"Los Sauces":[-37.9812,-72.8339],"Los Vilos":[-31.9129,-71.5005],"Lota":[-37.0899,-73.1577],"Lumaco":[-38.1649,-72.9055],"Machalí":[-34.1808,-70.6493],"Macul":[-33.5,-70.5667],"Maipú":[-33.5142,-70.7651],"Malloa":[-34.4397,-70.9418],"Marchigüe":[-34.3975,-71.6194],"Mariquina":[-39.543,-72.952],"María Elena":[-22.3445,-69.6618],"María Pinto":[-33.5172,-71.122],"Maule":[-35.5225,-71.6889],"Maullín":[-41.6178,-73.5983],"Mejillones":[-23.1,-70.447],"Melipeuco":[-38.8524,-71.6933],"Melipilla":[-33.6891,-71.2153],"Molina":[-35.1143,-71.2823],"Monte Patria":[-30.695,-70.9577],"Mostazal":[-33.983,-70.705],"Mulchén":[-37.7189,-72.241],"Máfil":[-39.665,-72.9516],"Nacimiento":[-37.5025,-72.6731],"Nancagua":[-34.6519,-71.1972],"Natales":[-51.7299,-72.506],"Navidad":[-33.9553,-71.8318],"Negrete":[-37.5867,-72.5283],"Ninhue":[-36.3942,-72.3987],"Nogales":[-32.7167,-71.2333],"Nueva Imperial":[-38.7445,-72.9502],"O'Higgins":[-48.468,-72.561],"Olivar":[-34.2097,-70.8194],"Ollagüe":[-21.225,-68.2535],"Olmué":[-32.9958,-71.1914],"Osorno":[-40.574,-73.1335],"Ovalle":[-30.6011,-71.199],"Padre Hurtado":[-33.5684,-70.8058],"Padre Las Casas":[-38.7608,-72.5982],"Paihuano":[-30.0288,-70.5171],"Paillaco":[-40.0682,-72.8794],"Paine":[-33.808,-70.7411],"Palena":[-43.6188,-71.8043],"Palmilla":[-34.5926,-71.3637],"Panguipulli":[-39.6435,-72.3327],"Panquehue":[-32.7714,-70.8361],"Papudo":[-32.508,-71.4436],"Paredones":[-34.6481,-71.8992],"Parral":[-36.1431,-71.826],"Pedro Aguirre Cerda":[-33.487,-70.672],"Pelarco":[-35.3844,-71.4451],"Pelluhue":[-35.8147,-72.5757],"Pemuco":[-36.9779,-72.0961],"Pencahue":[-35.3935,-71.8005],"Penco":[-36.7407,-72.9953],"Peralillo":[-34.478,-71.4804],"Perquenco":[-38.4218,-72.3773],"Petorca":[-32.2523,-70.9348],"Peumo":[-34.3869,-71.1756],"Peñaflor":[-33.6063,-70.8765],"Peñalolén":[-33.4684,-70.5341],"Pica":[-20.4913,-69.3312],"Pichidegua":[-34.355,-71.2883],"Pichilemu":[-34.3833,-72.0],"Pinto":[-36.7036,-71.8923],"Pirque":[-33.6364,-70.5736],"Pitrufquén":[-38.9864,-72.6372],"Placilla":[-34.6343,-71.1103],"Portezuelo":[-36.5286,-72.4283],"Porvenir":[-53.296,-70.3663],"Pozo Almonte":[-20.2558,-69.7863],"Primavera":[-52.738,-69.35],"Providencia":[-33.4311,-70.6045],"Puchuncaví":[-32.7257,-71.4151],"Pucón":[-39.2822,-71.9543],"Pudahuel":[-33.44,-70.76],"Puente Alto":[-33.6117,-70.5758],"Puerto Montt":[-41.4693,-72.9424],"Puerto Octay":[-40.9744,-72.8834],"Puerto Varas":[-41.3195,-72.9854],"Pumanque":[-34.6023,-71.6541],"Punitaqui":[-30.8345,-71.2586],"Punta Arenas":[-53.1628,-70.9092],"Puqueldón":[-42.6,-73.6746],"Purranque":[-40.913,-73.1591],"Purén":[-38.0334,-73.0714],"Putaendo":[-32.6264,-70.7184],"Putre":[-18.1982,-69.5607],"Puyehue":[-40.6895,-72.3454],"Queilén":[-42.889,-73.4742],"Quellón":[-43.1182,-73.6166],"Quemchi":[-42.15,-73.4833],"Quilaco":[-37.6837,-71.9995],"Quilicura":[-33.368,-70.7139],"Quilleco":[-37.4702,-71.9816],"Quillota":[-32.8834,-71.2488],"Quillón":[-36.7455,-72.4748],"Quilpué":[-33.0475,-71.4425],"Quinchao":[-42.5358,-73.427],"Quinta Normal":[-33.4419,-70.679],"Quinta de Tilcoco":[-34.3555,-70.9653],"Quintero":[-32.7859,-71.5322],"Quirihue":[-36.28,-72.5412],"Rancagua":[-34.1691,-70.7405],"Ranquil":[-36.6538,-72.5604],"Rauco":[-34.9255,-71.3172],"Recoleta":[-33.4064,-70.6395],"Renaico":[-37.6714,-72.5841],"Renca":[-33.4019,-70.7062],"Rengo":[-34.4064,-70.8583],"Requínoa":[-34.2856,-70.8168],"Retiro":[-36.0517,-71.7577],"Rinconada":[-32.84,-70.71],"Romeral":[-34.9613,-71.1235],"Río Bueno":[-40.3349,-72.9556],"Río Claro":[-35.1864,-71.2963],"Río Hurtado":[-30.283,-70.7],"Río Ibáñez":[-46.29,-71.93],"Río Negro":[-40.7964,-73.2155],"Río Verde":[-52.6,-71.5],"Saavedra":[-38.787,-73.3971],"Sagrada Familia":[-34.9992,-71.3842],"Salamanca":[-31.7792,-70.9639],"San Antonio":[-33.5947,-71.6075],"San Bernardo":[-33.5922,-70.6996],"San Carlos":[-36.4248,-71.958],"San Clemente":[-35.5378,-71.487],"San Esteban":[-32.7987,-70.5807],"San Fabián":[-36.5195,-71.5861],"San Felipe":[-32.7498,-70.7258],"San Fernando":[-34.5812,-70.9895],"San Gregorio":[-52.55,-70.2],"San Ignacio":[-36.7997,-72.0315],"San Javier":[-35.5952,-71.7292],"San Joaquín":[-33.5,-70.6167],"San José de Maipo":[-33.6391,-70.3532],"San Juan de la Costa":[-40.5247,-73.3922],"San Miguel":[-33.4917,-70.6571],"San Nicolás":[-36.5012,-72.2155],"San Pablo":[-40.4135,-73.0109],"San Pedro":[-33.8935,-71.4578],"San Pedro de Atacama":[-22.9111,-68.2011],"San Pedro de la Paz":[-36.839,-73.1003],"San Rafael":[-35.3062,-71.5191],"San Ramón":[-33.45,-70.5],"San Rosendo":[-37.2639,-72.724],"San Vicente":[-34.4333,-71.0833],"Santa Bárbara":[-37.6682,-72.0225],"Santa Cruz":[-34.6388,-71.3658],"Santa Juana":[-37.1751,-72.9433],"Santa María":[-32.7473,-70.6567],"Santiago":[-33.4569,-70.6483],"Santo Domingo":[-33.6362,-71.6272],"Sierra Gorda":[-22.8043,-69.3268],"Talagante":[-33.6639,-70.9273],"Talca":[-35.4232,-71.6497],"Talcahuano":[-36.7249,-73.1168],"Taltal":[-25.4071,-70.4855],"Temuco":[-38.7363,-72.5974],"Teno":[-34.8706,-71.1622],"Teodoro Schmidt":[-38.9944,-73.0893],"Tierra Amarilla":[-27.4663,-70.2626],"Tiltil":[-33.0831,-70.9292],"Timaukel":[-53.7257,-69.9926],"Tirúa":[-38.3418,-73.4915],"Tocopilla":[-22.092,-70.1979],"Toltén":[-39.2075,-73.2099],"Tomé":[-36.6176,-72.9559],"Torres del Paine":[-50.9826,-72.4988],"Tortel":[-47.801,-73.5368],"Traiguén":[-38.2496,-72.6703],"Treguaco":[-36.4324,-72.6697],"Tucapel":[-37.2908,-71.9493],"Valdivia":[-39.8142,-73.2459],"Vallenar":[-28.5762,-70.7594],"Valparaíso":[-33.036,-71.6296],"Vichuquén":[-34.8833,-71.9924],"Victoria":[-38.2329,-72.3329],"Vicuña":[-30.0354,-70.7127],"Vilcún":[-38.6688,-72.2257],"Villa Alegre":[-35.673,-71.7443],"Villa Alemana":[-33.0482,-71.3729],"Villarrica":[-39.2857,-72.2279],"Vitacura":[-33.3923,-70.5828],"Viña del Mar":[-33.0246,-71.5518],"Yerbas Buenas":[-35.7482,-71.5853],"Yumbel":[-37.0982,-72.5608],"Yungay":[-37.1198,-72.0198],"Zapallar":[-32.5539,-71.4577],"Ñiquén":[-36.2356,-72.0624],"Ñuñoa":[-33.4474,-70.5828]}</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
@@ -869,6 +881,7 @@ table.t.mini td{white-space:nowrap}
       </div>
 
 
+      <div class="group" id="sisBox" data-tab="alertas" data-dtab="alertas" hidden><div class="sect sect-row" style="justify-content:space-between"><span>Sismos recientes</span><span class="caption" id="sisCount"></span></div><div class="list" id="sisList"></div><p class="foot" style="padding:6px 16px 0" id="sisPie"></p></div>
       <div class="group" id="prevBox" data-tab="alertas" data-dtab="alertas" hidden><div class="sect sect-row" style="justify-content:space-between"><span>Avisos preventivos</span><span class="caption" id="prevCount"></span></div>
         <div class="list" id="prevList"></div>
         <p class="foot" style="padding:0 2px">No son Alertas Amarillas ni Rojas. Son avisos previos de SENAPRED, muchos por pronósticos de la Dirección Meteorológica o riesgo de incendio, que suelen anticipar una alerta formal. No cuentan como personas expuestas ni aparecen en la lista de contacto.</p>
@@ -1140,7 +1153,9 @@ table.t.mini td{white-space:nowrap}
         <section data-hs="faq" hidden>
           <h3 class="h-big">Preguntas frecuentes</h3>
           <details class="faq"><summary>¿Mi nómina se sube a algún servidor?<svg class="ic"><use href="#i-chev"/></svg></summary><p>No. El archivo se lee solo en tu navegador y se borra al cerrar o recargar la página. Nadie más puede verlo. Las oficinas y el logo se guardan solo en tu navegador.</p></details>
-          <details class="faq"><summary>¿Por qué veo “Persona Ejemplo”?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Son 12 personas ficticias para mostrar cómo funciona la página. Desaparecen al cargar tu nómina y vuelven si recargas la página sin cargarla.</p></details>
+          <details class="faq"><summary>¿Por qué veo “Persona Ejemplo”?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Solo si tocaste “Ver con datos de ejemplo” en Planilla. Son 12 personas ficticias para probar la página sin usar datos reales. La página parte siempre vacía y se limpian al cargar tu nómina o al recargar.</p></details>
+          <details class="faq"><summary>¿De dónde salen los sismos?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Del USGS, el servicio geológico de Estados Unidos, que publica los sismos del mundo en abierto y al instante. Los pide tu navegador cada vez que abres Alertas. No son alertas de SENAPRED: un sismo aparece aunque nadie haya declarado nada, que es justamente para lo que sirve. El radio que se muestra depende de la magnitud, es referencial y no mide daño; el número a la derecha es cuánta gente tuya vive o trabaja dentro de ese radio.</p></details>
+          <details class="faq"><summary>¿De dónde sale el clima y para qué sirve?<svg class="ic"><use href="#i-chev"/></svg></summary><p>De Open-Meteo, un servicio abierto de pronóstico. Muestra el tiempo de ahora y siete días para la comuna que busques, y avisa si esa comuna tiene una alerta vigente. Es referencial: para decisiones operativas usa el pronóstico oficial de la Dirección Meteorológica de Chile. El fondo que elijas se guarda solo en tu dispositivo.</p></details>
           <details class="faq"><summary>¿Cada cuánto se actualizan las alertas?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Una revisión automática lee la página oficial de SENAPRED tres veces al día. La fecha del indicador “SENAPRED” cambia solo cuando hay un cambio oficial. Ante cualquier decisión, confirma en senapred.cl/alertas.</p></details>
           <details class="faq"><summary>¿Por qué una comuna aparece como “no reconocida”?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Suele ser un error de escritura o una abreviatura (por ejemplo “Pte. Alto”). Escribe el nombre oficial completo; no importan mayúsculas ni tildes. Esas personas no se cruzan con ninguna alerta hasta corregirlas.</p></details>
           <details class="faq"><summary>¿Qué diferencia hay con los avisos de la DMC o el Botón Rojo de CONAF?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Solo SENAPRED declara Alertas Amarillas y Rojas. Los avisos meteorológicos de la DMC y el Botón Rojo de CONAF son información preventiva y no se muestran como alertas en esta página.</p></details>
@@ -1769,6 +1784,7 @@ function render(){
   R=compute();
   renderTiles();
   renderPreventive();
+  renderSismos();
   const tag=$("peopleTag"); tag.textContent=people.example?"Ejemplo":people.rows.length?plural(people.rows.length,"persona","personas"):"Sin cargar"; tag.className="badge"+(people.example?" ex":"");
   const st=$("peopleStatus"); st.className="status";
   st.textContent=people.example?"Se muestran 12 personas ficticias. Sube tu planilla para reemplazarlas.":people.name?"Archivo: "+people.name:"No hay planilla cargada.";
@@ -2461,6 +2477,105 @@ $("subsBody").addEventListener("submit",async e=>{
   }catch(err){st.className="status err";st.textContent="No se pudo guardar. Puede que tu acceso a esta página no permita inscribirse.";}
 });
 
+/* ============ Sismos ============ */
+/* Los sismos no son alertas SENAPRED: es el dato crudo del USGS, que publica
+   los eventos en abierto y al instante. Sirven para saber a quien tienes cerca
+   del epicentro mientras SENAPRED todavia no declara nada. El radio es
+   referencial por magnitud y no mide dano. */
+let GEOK=null, sismos=null, sisPidiendo=false, sisTodo=false, sisHora=0;
+const SIS_URL=()=>"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minlatitude=-57&maxlatitude=-17&minlongitude=-77&maxlongitude=-65&minmagnitude=4&orderby=time&limit=80&starttime="+new Date(Date.now()-7*864e5).toISOString().slice(0,10);
+const sisRadio=m=> m>=7?400 : m>=6?250 : m>=5.5?150 : m>=4.5?100 : 50;
+function geoK(){
+  if(GEOK) return GEOK;
+  GEOK=new Map();
+  try{
+    const crudo=JSON.parse($("geoCom").textContent);
+    for(const n in crudo) GEOK.set(key(n),{n,lat:crudo[n][0],lon:crudo[n][1]});
+  }catch(_){}
+  return GEOK;
+}
+function distKm(la1,lo1,la2,lo2){
+  const t=Math.PI/180, R=6371;
+  const a=Math.sin((la2-la1)*t/2)**2+Math.cos(la1*t)*Math.cos(la2*t)*Math.sin((lo2-lo1)*t/2)**2;
+  return 2*R*Math.asin(Math.min(1,Math.sqrt(a)));
+}
+function sisCerca(q){
+  const r=sisRadio(q.mag), out=[];
+  for(const [k,c] of geoK()){ const d=distKm(q.lat,q.lon,c.lat,c.lon); if(d<=r) out.push({k,n:c.n,d}); }
+  out.sort((a,b)=>a.d-b.d);
+  return out;
+}
+function sisPersonas(cercanas){
+  if(!R||!people.rows.length) return [];
+  const ks=new Set(cercanas.map(c=>c.k));
+  return R.persons.filter(p=>ks.has(p.k)||(p.kw&&ks.has(p.kw)));
+}
+async function cargarSismos(forzar){
+  if(sisPidiendo||(!forzar&&sismos&&Date.now()-sisHora<10*60*1000)) return;
+  sisPidiendo=true;
+  try{
+    const r=await fetch(SIS_URL(),{cache:"no-store"});
+    if(!r.ok) throw new Error("usgs");
+    const j=await r.json();
+    sismos=(j.features||[]).map(f=>({
+      mag:+(f.properties.mag||0), at:f.properties.time, prof:f.geometry.coordinates[2]||0,
+      lat:f.geometry.coordinates[1], lon:f.geometry.coordinates[0]
+    })).filter(q=>q.mag>=4).sort((a,b)=>b.at-a.at);
+    // Se deja resuelto que comunas quedan dentro del radio: el calculo recorre
+    // las 343 comunas por sismo y no conviene repetirlo en cada redibujo.
+    sismos.forEach(q=>{ q.cerca=sisCerca(q); });
+    sisHora=Date.now();
+  }catch(_){ if(!sismos) sismos=false; }
+  sisPidiendo=false;
+  renderSismos();
+}
+function sisCuando(ms){
+  const min=Math.round((Date.now()-ms)/60000);
+  if(min<1) return "recién";
+  if(min<60) return "hace "+min+" min";
+  const h=Math.round(min/60);
+  if(h<24) return "hace "+h+" h";
+  return "hace "+plural(Math.round(h/24),"día","días");
+}
+function renderSismos(){
+  const box=$("sisBox"), lista=$("sisList"); if(!box) return;
+  if(sismos===false){
+    box.hidden=false; $("sisCount").textContent="";
+    lista.innerHTML='<div class="li"><span class="main-t"><span class="t1">No se pudo leer el servicio de sismos</span><span class="t2">Revisa tu conexión. El dato viene del USGS, en vivo.</span></span></div>';
+    $("sisPie").textContent=""; return;
+  }
+  if(!sismos){ box.hidden=true; return; }
+  // Por defecto solo lo que importa aca: sismos con comunas chilenas dentro
+  // del radio, o grandes aunque el epicentro quede lejos.
+  const propios=sismos.filter(q=>(q.cerca&&q.cerca.length)||q.mag>=5.5);
+  const base=sisTodo?sismos:propios;
+  const ps=base.slice(0,sisTodo?20:5);
+  box.hidden=!ps.length;
+  if(!ps.length) return;
+  $("sisCount").textContent=plural(base.length,"sismo","sismos")+" · 7 días";
+  const hayGente=people.rows.length>0;
+  lista.innerHTML=ps.map(q=>{
+    const cerca=q.cerca||sisCerca(q), gente=sisPersonas(cerca);
+    const ref=!cerca.length?"en el mar o fuera de Chile"
+      :cerca[0].d<12?("en "+esc(cerca[0].n))
+      :("a "+Math.round(cerca[0].d)+" km de "+esc(cerca[0].n));
+    const cls=q.mag>=6?"fuerte":q.mag>=5?"medio":"";
+    return '<div class="li sis-li">'+
+      '<span class="sis-m '+cls+'" aria-hidden="true">'+q.mag.toFixed(1)+'</span>'+
+      '<span class="main-t"><span class="t1">Sismo de magnitud '+q.mag.toFixed(1)+', '+ref+'</span>'+
+      '<span class="t2">'+sisCuando(q.at)+' · '+Math.round(q.prof)+' km de profundidad'+
+        (cerca.length?' · radio referencial '+sisRadio(q.mag)+' km':'')+'</span></span>'+
+      (gente.length?'<span class="sis-exp" title="Personas de tu planilla en esas comunas">'+fmtN(gente.length)+'</span>':'')+
+      '</div>';
+  }).join("")+
+  ((base.length>ps.length||(!sisTodo&&sismos.length>propios.length))
+    ? '<button type="button" class="li" id="sisMas"><span class="main-t"><span class="t1" style="color:var(--blue)">'+(sisTodo?"Ver solo los que te tocan":"Ver todos los sismos del país, desde magnitud 4")+'</span></span></button>'
+    : "");
+  $("sisPie").textContent=(hayGente?"El número es cuántas personas tuyas viven o trabajan dentro del radio. ":"")+
+    "Dato del USGS, en vivo, no de SENAPRED. El radio es referencial por magnitud y no mide daño: sirve para ver a quién tienes cerca del epicentro mientras no hay una alerta declarada.";
+}
+$("sisList").addEventListener("click",e=>{ if(e.target.closest("#sisMas")){ sisTodo=!sisTodo; renderSismos(); } });
+
 /* ============ Clima ============ */
 const CL_LUGAR="hsec_clima_lugar_v1", CL_FONDO="hsec_clima_fondo_v1", CL_CACHE="hsec_clima_datos_v1";
 const WMO={0:["Despejado","sun"],1:["Mayormente despejado","sun"],2:["Parcialmente nublado","cloudsun"],3:["Nublado","cloud"],
@@ -2631,6 +2746,7 @@ function setTab(t,push){
   if(push!==false){try{if(location.hash!=="#"+t)history.replaceState(null,"","#"+t);}catch(_){}}
   if(t==="mapa") requestAnimationFrame(()=>{if(BASE)setVB(VB,true);});
   if(t==="clima") clCargar();
+  if(t==="alertas") cargarSismos();
   window.scrollTo(0,0);
 }
 $("tabbar").addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)setTab(b.dataset.go);});
@@ -2850,6 +2966,7 @@ $("wNo").onclick=()=>{$("welcome").hidden=true;try{localStorage.setItem(HELP_KEY
   if(!seen&&!/(^|[#&])notour/.test(location.hash)) setTimeout(()=>{if($("tour").hidden)$("welcome").hidden=false;},1800);})();
 
 clInit();
+cargarSismos();
 setTab(TABS.includes(location.hash.slice(1))?location.hash.slice(1):"mapa",false);
 if(matchMedia("(max-width:600px)").matches) $("lgToggle").click();
 render();

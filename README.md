@@ -1,6 +1,6 @@
 # Alertas HSEC por Comuna
 
-Cruza las **Alertas Rojas y Amarillas oficiales de SENAPRED** con la nómina de personas de una empresa, para saber en minutos quién está en una comuna con alerta y poder contactarlo.
+Cruza las **Alertas Rojas y Amarillas oficiales de SENAPRED** con la nómina de personas de una empresa, para saber en minutos quién está en una comuna con alerta y poder contactarlo. Muestra además los **sismos recientes** con la gente que quedó cerca del epicentro y el **clima** de cualquier comuna.
 
 Hecho para equipos de HSEC (Salud, Seguridad, Medio Ambiente y Comunidades) en Chile.
 
@@ -52,6 +52,15 @@ Además de las Alertas Amarillas y Rojas, la página muestra aparte las **Alerta
 
 Nunca se mezclan con las alertas: no cuentan como personas expuestas, no pintan el mapa ni entran en la lista de contacto. Viven en `alerts.json` bajo `preventive` y se consideran vigentes mientras el último estado publicado siga declarándolas y no pasen 30 días.
 
+## Sismos y clima
+
+Dos fuentes que **no** son SENAPRED y que la página pide directamente desde el navegador de quien la abre, sin pasar por este repositorio:
+
+- **Sismos**, del [USGS](https://earthquake.usgs.gov/fdsnws/event/1/) (servicio geológico de Estados Unidos), que publica los eventos en abierto y al instante. Se muestran los últimos 7 días desde magnitud 4 dentro de Chile. Para cada sismo se calculan las comunas dentro de un radio referencial según la magnitud (50 km bajo M4,5; 100, 150, 250 y 400 km hacia arriba) y, si hay nómina cargada, cuántas personas viven o trabajan ahí. **El radio no mide daño**: sirve para ver a quién se tiene cerca del epicentro mientras SENAPRED todavía no declara nada.
+- **Clima**, de [Open-Meteo](https://open-meteo.com/): condiciones actuales y pronóstico de 7 días para la comuna que se busque, más un aviso si esa comuna tiene alerta vigente. Referencial; lo oficial es la [Dirección Meteorológica de Chile](https://www.meteochile.gob.cl/).
+
+Las coordenadas de las 343 comunas del mapa están en `comunas_geo.json` y van embebidas en la página, así que el cálculo de cercanía funciona sin conexión.
+
 ## Avisos por correo
 
 Cuando la revisión detecta un cambio oficial, escribe a las personas inscritas. El envío lo hace `tools/avisar_correo.py` dentro de la misma tarea automática, así que no depende de ningún servicio externo.
@@ -84,6 +93,7 @@ El sitio se publica con GitHub Pages desde la rama `main`. Cualquier cambio en `
 | `help/` | Capturas que usa el manual |
 | `tools/senapred_scraper.py` | Lector del sitio de SENAPRED |
 | `tools/comunas_cl.json` | Las 346 comunas con su región y provincia |
+| `comunas_geo.json` | Latitud y longitud de las 343 comunas del mapa (sismos) |
 | `tools/aplicar_cambios.py` | Decide si hubo cambio oficial y marca la fecha |
 | `tools/avisar_correo.py` | Escribe a las personas inscritas cuando hay un cambio |
 
