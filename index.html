@@ -731,7 +731,7 @@ table.t.mini td{white-space:nowrap}
             <summary><svg class="ic"><use href="#i-chev"/></svg>Formato del archivo</summary>
             <div class="fmt foot" style="margin-top:8px;display:flex;flex-direction:column;gap:10px">
               <div><b>Excel o CSV.</b> Se lee la primera hoja. Necesita columnas <b>Nombre</b> y <b>Comuna</b>, sin importar mayúsculas ni tildes; puede haber filas de título antes. Otras columnas, como Área, aparecen en la lista.
-              <table><tr><th>Nombre</th><th>Comuna</th><th>Área</th></tr><tr><td>Ana Pérez</td><td>Puente Alto</td><td>Operaciones</td></tr><tr><td>Luis Soto</td><td>Arauco</td><td>Mantención</td></tr></table></div>
+              <table><tr><th>Nombre</th><th>Comuna</th><th>Comuna de trabajo</th><th>Área</th></tr><tr><td>Ana Pérez</td><td>Puente Alto</td><td>Arauco</td><td>Operaciones</td></tr><tr><td>Luis Soto</td><td>Arauco</td><td>Mantención</td></tr></table></div>
               <div><b>JSON.</b> Una lista de personas con los campos <b>nombre</b> y <b>comuna</b>. También se acepta la lista dentro de un campo <code>personas</code>. Los demás campos aparecen como columnas.
               <pre class="code">[
   {"nombre": "Ana Pérez", "comuna": "Puente Alto", "area": "Operaciones"},
@@ -883,10 +883,10 @@ table.t.mini td{white-space:nowrap}
           <h3 class="h-big">Preparar la nómina</h3>
           <p class="sub">Necesitas un archivo con, al menos, el <b>nombre</b> y la <b>comuna</b> de cada persona. Puede ser Excel (.xlsx o .xls), CSV o JSON.</p>
           <div class="hcard"><h4>Opción 1 · Excel</h4>
-            <p>La primera fila debe tener los títulos de las columnas. Solo <b>Nombre</b> y <b>Comuna</b> son obligatorias; las demás son opcionales y aparecen en la lista.</p>
-            <div class="tbl-wrap"><table class="t mini"><thead><tr><th>Nombre</th><th>Comuna</th><th>Área</th><th>Teléfono</th><th>Correo</th></tr></thead>
-              <tbody><tr><td>Ana Pérez</td><td>Puente Alto</td><td>Operaciones</td><td>+56 9 1234 5678</td><td>ana.perez@empresa.cl</td></tr>
-              <tr><td>Luis Soto</td><td>Arauco</td><td>Mantención</td><td>+56 9 2345 6789</td><td>luis.soto@empresa.cl</td></tr></tbody></table></div>
+            <p>La primera fila debe tener los títulos de las columnas. Solo <b>Nombre</b> y <b>Comuna</b> son obligatorias; las demás son opcionales y aparecen en la lista. Si alguien trabaja en una comuna distinta de donde vive, agrega <b>Comuna de trabajo</b> y déjala vacía para quienes no la necesiten.</p>
+            <div class="tbl-wrap"><table class="t mini"><thead><tr><th>Nombre</th><th>Comuna</th><th>Comuna de trabajo</th><th>Área</th><th>Teléfono</th></tr></thead>
+              <tbody><tr><td>Ana Pérez</td><td>Puente Alto</td><td>Arauco</td><td>Operaciones</td><td>+56 9 1234 5678</td></tr>
+              <tr><td>Luis Soto</td><td>Arauco</td><td></td><td>Mantención</td><td>+56 9 2345 6789</td></tr></tbody></table></div>
             <div class="row"><button type="button" class="btn sm" data-copytpl="tsv"><svg class="ic"><use href="#i-copy"/></svg>Copiar plantilla para Excel</button><span class="foot">Pégala en una hoja nueva de Excel (celda A1) y reemplaza los ejemplos.</span></div>
           </div>
           <div class="hcard"><h4>Opción 2 · JSON</h4>
@@ -904,7 +904,8 @@ table.t.mini td{white-space:nowrap}
               <li><b>Comuna</b> (obligatoria) · una por persona, con su nombre oficial. No importan mayúsculas ni tildes.</li>
               <li><b>Teléfono</b> · también Celular, Fono o WhatsApp. Aparece con botón para copiar y abrir WhatsApp.</li>
               <li><b>Correo</b> · también Email o Mail.</li>
-              <li><b>Área, Turno, Faena…</b> · cualquier columna con pocos valores distintos crea el gráfico <b>Expuestas por</b> para filtrar.</li>
+              <li><b>Comuna de trabajo</b> · opcional pero muy útil. También sirve <i>Faena</i>, <i>Obra</i>, <i>Proyecto</i>, <i>Sede</i> o <i>Lugar de trabajo</i>. Si la persona trabaja en una comuna distinta de donde vive, la página cruza <b>las dos</b> y te dice si está expuesta donde vive, donde trabaja, o en ambas.</li>
+              <li><b>Área, Turno…</b> · cualquier columna con pocos valores distintos crea el gráfico <b>Expuestas por</b> para filtrar.</li>
             </ul>
           </div>
           <div class="hcard"><h4>Cargar el archivo</h4>
@@ -1129,15 +1130,28 @@ const lvMax=al=>al.reduce((m,a)=>RANK[a.level]>(RANK[m]||0)?a.level:m,"none");
 function compute(){
   const byCom=new Map();
   feed.alerts.forEach(a=>a.communes.forEach(c=>{const k=key(c);if(!byCom.has(k))byCom.set(k,[]);byCom.get(k).push(a);}));
+  const wc=people.workCol>1?people.workCol:-1;
   const allPersons=people.rows.map((row,idx)=>{
-    const k=key(row[1]); const info=place(k); const al=byCom.get(k)||[];
-    return {idx,row,k,known:!!k&&(!!info||!M),region:info?info.r:null,alerts:al,level:lvMax(al)};
+    const k=key(row[1]), info=place(k), alR=byCom.get(k)||[];
+    const kw=wc>=0?key(row[wc]):"", infoW=kw?place(kw):null, alW=kw&&kw!==k?(byCom.get(kw)||[]):[];
+    const al=alW.length?[...new Set(alR.concat(alW))]:alR;
+    // "por" dice por que esta expuesta: donde vive, donde trabaja, o ambas.
+    const por=alR.length&&alW.length?"ambas":alW.length?"faena":alR.length?"residencia":"";
+    // Se le cuenta en la comuna donde esta expuesta; si lo esta en las dos,
+    // en la de mayor nivel y, a igual nivel, en la faena, que es donde esta.
+    const kExp=alW.length&&(!alR.length||RANK[lvMax(alW)]>=RANK[lvMax(alR)])?kw:k;
+    return {idx,row,k,kw,kExp,por,
+      known:(!!k&&(!!info||!M))||(!!kw&&(!!infoW||!M)),
+      knownR:!!k&&(!!info||!M), knownW:!!kw&&(!!infoW||!M),
+      region:info?info.r:(infoW?infoW.r:null), regionW:infoW?infoW.r:null,
+      alerts:al,level:lvMax(al)};
   });
+
   const persons=groupFilter?allPersons.filter(p=>(p.row[groupFilter.col]||"").trim()===groupFilter.val):allPersons;
   const countByCom=new Map(), othersByCom=new Map(), othersByReg=new Map();
   for(const p of persons){
-    countByCom.set(p.k,(countByCom.get(p.k)||0)+1);
-    if(p.level==="none"&&p.region){othersByCom.set(p.k,(othersByCom.get(p.k)||0)+1);othersByReg.set(p.region,(othersByReg.get(p.region)||0)+1);}
+    countByCom.set(p.kExp,(countByCom.get(p.kExp)||0)+1);
+    if(p.level==="none"&&p.region){othersByCom.set(p.kExp,(othersByCom.get(p.kExp)||0)+1);othersByReg.set(p.region,(othersByReg.get(p.region)||0)+1);}
   }
   const regLevel=new Map(), comLevel=new Map();
   for(const [k,al] of byCom){
@@ -1149,10 +1163,18 @@ function compute(){
     return {i,a,ks,found,regs:[...new Set(ks.map(place).filter(Boolean).map(f=>f.r))],missing:M?a.communes.filter((c,j)=>!place(ks[j])):[],ppl:persons.filter(p=>p.alerts.includes(a))};
   });
   const ordered=alertInfo.slice().sort((x,y)=>RANK[y.a.level]-RANK[x.a.level]||y.ppl.length-x.ppl.length);
-  return {byCom,allPersons,persons,countByCom,othersByCom,othersByReg,regLevel,comLevel,alertInfo,ordered};
+  return {byCom,wc,allPersons,persons,countByCom,othersByCom,othersByReg,regLevel,comLevel,alertInfo,ordered};
 }
 
 /* ============ planilla ============ */
+// norm() quita el prefijo "comuna de" porque sirve para nombres de comuna,
+// asi que los encabezados se normalizan aparte.
+const normCab = s=>String(s??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]/g,"");
+const RE_FAENA=/^(comunade(trabajo|faena|labor(al)?)|comuna(trabajo|faena)|lugarde?trabajo|faena|obra|proyecto|sede|sucursal|instalacion)$/;
+function buscarFaena(cols){
+  for(let i=2;i<cols.length;i++){ if(RE_FAENA.test(normCab(cols[i]))) return i; }
+  return -1;
+}
 function parseSheet(rows){
   rows=rows.filter(r=>r&&r.some(c=>String(c??"").trim()!==""));
   if(!rows.length) throw new Error("La planilla está vacía.");
@@ -1174,7 +1196,7 @@ function parseSheet(rows){
     out.push([name||"(sin nombre)",com,...extra.map(i=>String(r[i]??"").trim())]);
   }
   if(!out.length) throw new Error("Hay encabezados, pero ninguna fila con datos.");
-  return {cols,rows:out};
+  return {cols,rows:out,workCol:buscarFaena(cols)};
 }
 function jsonToRows(data){
   const arr0=Array.isArray(data)?data:(data&&typeof data==="object"?(data.personas||data.people||data.trabajadores||data.colaboradores||data.data||data.rows):null);
@@ -1426,6 +1448,7 @@ $("lgToggle").onclick=()=>{const l=$("legend"),c=l.classList.toggle("collapsed")
 let rsz;window.addEventListener("resize",()=>{clearTimeout(rsz);rsz=setTimeout(drawOverlay,120);});
 
 /* ============ panel lateral ============ */
+const PORQUE={residencia:"Donde vive",faena:"Donde trabaja",ambas:"Vive y trabaja"};
 function renderPreventive(){
   const box=$("prevBox"), lista=$("prevList"); if(!box) return;
   const ps=(feed.preventive||[]).slice(0,12);
@@ -1613,13 +1636,15 @@ function render(){
 const TABLE_MAX=500;
 function renderTable(){
   const q=norm($("q").value);
-  $("thead").innerHTML='<tr><th>Nombre</th><th>Comuna</th>'+people.cols.slice(2).map(c=>'<th>'+esc(c)+'</th>').join("")+'<th>Región</th><th>Estado</th><th>Peligro</th></tr>';
+  const hayFaena=!!(R&&R.wc>=0);
+  $("thead").innerHTML='<tr><th>Nombre</th><th>Comuna</th>'+people.cols.slice(2).map(c=>'<th>'+esc(c)+'</th>').join("")+'<th>Región</th><th>Estado</th>'+(hayFaena?'<th>Expuesta por</th>':'')+'<th>Peligro</th></tr>';
+
   const rows=R.persons.map(p=>({...p,st:!p.known?"unk":p.level,rn:p.region&&REG.get(p.region)?REG.get(p.region).name:""}))
     .filter(x=>(tableFilter==="all"||x.st===tableFilter)&&(!q||norm(x.row.join(" ")+" "+x.rn).includes(q)))
     .sort((a,b)=>(RANK[b.level]||0)-(RANK[a.level]||0)||(a.st==="unk")-(b.st==="unk"));
   $("tbody").innerHTML=rows.length?rows.slice(0,TABLE_MAX).map(x=>'<tr><td class="nm">'+esc(x.row[0])+'</td><td>'+esc(x.row[1]||"—")+'</td>'+x.row.slice(2).map(c=>'<td>'+esc(c)+'</td>').join("")+
-    '<td>'+esc(x.rn||"—")+'</td><td>'+cap(x.st)+'</td><td>'+esc(x.alerts.map(a=>a.hazard).join("; ")||"—")+'</td></tr>').join("")
-    :'<tr><td colspan="'+(people.cols.length+3)+'" class="empty">'+(people.rows.length?"Ninguna persona coincide con el filtro.":"Todavía no has cargado tu nómina. Ve a la pestaña Planilla y elige tu archivo de Excel o JSON.")+'</td></tr>';
+    '<td>'+esc(x.rn||"—")+'</td><td>'+cap(x.st)+'</td>'+(hayFaena?'<td>'+esc(x.level!=="none"?(PORQUE[x.por]||"—"):"—")+'</td>':'')+'<td>'+esc(x.alerts.map(a=>a.hazard).join("; ")||"—")+'</td></tr>').join("")
+    :'<tr><td colspan="'+(people.cols.length+3+(hayFaena?1:0))+'" class="empty">'+(people.rows.length?"Ninguna persona coincide con el filtro.":"Todavía no has cargado tu nómina. Ve a la pestaña Planilla y elige tu archivo de Excel o JSON.")+'</td></tr>';
   const m=$("more"); m.hidden=rows.length<=TABLE_MAX; m.textContent="Se muestran las primeras "+fmtN(TABLE_MAX)+" de "+fmtN(rows.length)+". Usa la búsqueda para encontrar a alguien.";
 }
 
@@ -1720,7 +1745,7 @@ function sincronizarContacto(){
 }
 function contactCols(){
   const r={phones:[],emails:[],extra:[]};
-  people.cols.forEach((c,i)=>{ if(i<2) return; const n=norm(c);
+  people.cols.forEach((c,i)=>{ if(i<2||i===people.workCol) return; const n=norm(c);
     if(/(^| )(telefono|fono|celular|movil|whatsapp|tel)( |$)/.test(n)) r.phones.push(i);
     else if(/(^| )(correo|email|e mail|mail)( |$)/.test(n)) r.emails.push(i);
     else r.extra.push(i); });
@@ -1800,7 +1825,11 @@ function renderContacts(){
   }
   h+=groups.map(g=>{const a=g.ai.a;
     return '<section><div class="cgroup-h">'+cap(a.level)+'<b>'+esc(a.hazard)+'</b><span class="foot">'+esc(a.communes.join(", "))+'</span></div><div class="list">'+
-      g.members.map(p=>{const s=stOf(p.idx), note=cnote.get(p.idx), sub=[p.row[1]].concat(cc.extra.map(i=>p.row[i]).filter(Boolean)).join(" · ");
+      g.members.map(p=>{const s=stOf(p.idx), note=cnote.get(p.idx);
+        const faena=R.wc>=0?String(p.row[R.wc]||"").trim():"";
+        const donde=p.por==="faena"&&faena?"Faena: "+faena:p.por==="ambas"&&faena?p.row[1]+" · Faena: "+faena:p.row[1];
+        const sub=[donde].concat(cc.extra.map(i=>p.row[i]).filter(Boolean)).join(" · ");
+
         const info=(cc.phone>=0?(phoneVal(cc.tel(p.row))||'<span class="cnone">Sin teléfono</span>'):'')+contactVal(cc.mail(p.row),"i-mail","correo");
         return '<div class="crow s-'+s+'"><button type="button" class="crow-main" data-open="'+p.idx+'" aria-label="Contactar a '+esc(p.row[0])+'"><span class="cname">'+esc(p.row[0])+'</span><span class="csub">'+esc(sub)+'</span>'+(note?'<span class="cnote">'+esc(note)+'</span>':'')+'</button>'+
           '<div class="cinfo">'+(info||'<span class="cnone">Sin datos de contacto</span>')+'</div><div class="cstate">'+pill(p.idx)+(cstatus.get(p.idx)?'<span class="caption">'+stamp(cstatus.get(p.idx).t).hm+'</span>':'')+'</div></div>';
@@ -1917,6 +1946,7 @@ function exportRows(){
     const st=cstatus.get(p.idx);
     const o={"Estado contacto":CS[stOf(p.idx)],"Hora":st?stamp(st.t).hm:"","Nivel":"Alerta "+g.ai.a.level,"Peligro":g.ai.a.hazard,"Nombre":p.row[0],"Comuna":p.row[1],
       "Región":p.region&&REG.get(p.region)?REG.get(p.region).name:""};
+    if(R.wc>=0){o["Comuna de trabajo"]=p.row[R.wc]||""; o["Expuesta por"]=PORQUE[p.por]||"";}
     if(cc.phone>=0) o["Teléfono"]=cc.tel(p.row);
     if(cc.email>=0) o["Correo"]=cc.mail(p.row);
     cc.extra.forEach(i=>{o[people.cols[i]]=p.row[i]||"";});
@@ -1925,6 +1955,7 @@ function exportRows(){
   for(const p of porRevisar()){
     const o={"Estado contacto":"Pendiente","Hora":"","Nivel":"Revisar comuna","Peligro":"Comuna no reconocida",
       "Nombre":p.row[0],"Comuna":p.row[1]||"","Región":""};
+    if(R.wc>=0){o["Comuna de trabajo"]=p.row[R.wc]||""; o["Expuesta por"]="";}
     if(cc.phone>=0) o["Teléfono"]=cc.tel(p.row);
     if(cc.email>=0) o["Correo"]=cc.mail(p.row);
     cc.extra.forEach(i=>{o[people.cols[i]]=p.row[i]||"";});
@@ -2281,8 +2312,8 @@ $("hBody").addEventListener("click",e=>{
   if(e.target.closest("[data-company]")){closeHelp();openCompany();return;}
   const c=e.target.closest("[data-copytpl]");
   if(c){
-    if(c.dataset.copytpl==="tsv") copyText(["Nombre\tComuna\tÁrea\tTeléfono\tCorreo","Ana Pérez\tPuente Alto\tOperaciones\t+56 9 1234 5678\tana.perez@empresa.cl","Luis Soto\tArauco\tMantención\t+56 9 2345 6789\tluis.soto@empresa.cl"].join("\n"),"Plantilla copiada: pégala en Excel");
-    else copyText(JSON.stringify([{nombre:"Ana Pérez",comuna:"Puente Alto",area:"Operaciones",telefono:"+56 9 1234 5678",correo:"ana.perez@empresa.cl"},{nombre:"Luis Soto",comuna:"Arauco",area:"Mantención",telefono:"+56 9 2345 6789",correo:"luis.soto@empresa.cl"}],null,2),"Plantilla JSON copiada");
+    if(c.dataset.copytpl==="tsv") copyText(["Nombre\tComuna\tComuna de trabajo\tÁrea\tTeléfono\tCorreo","Ana Pérez\tPuente Alto\tArauco\tOperaciones\t+56 9 1234 5678\tana.perez@empresa.cl","Luis Soto\tArauco\t\tMantención\t+56 9 2345 6789\tluis.soto@empresa.cl"].join("\n"),"Plantilla copiada: pégala en Excel");
+    else copyText(JSON.stringify([{nombre:"Ana Pérez",comuna:"Puente Alto","comuna de trabajo":"Arauco",area:"Operaciones",telefono:"+56 9 1234 5678",correo:"ana.perez@empresa.cl"},{nombre:"Luis Soto",comuna:"Arauco",area:"Mantención",telefono:"+56 9 2345 6789",correo:"luis.soto@empresa.cl"}],null,2),"Plantilla JSON copiada");
   }
 });
 document.addEventListener("keydown",e=>{if(!$("helpDlg").hidden&&e.key==="Escape")closeHelp();});
