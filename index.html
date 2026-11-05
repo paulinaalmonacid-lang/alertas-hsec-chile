@@ -644,6 +644,11 @@ details.faq p{padding:0 16px 14px;font-size:14px;color:var(--label-2)}
 table.t.mini td{white-space:nowrap}
 
 /* ============ Sismos ============ */
+.colmap{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.colmap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.colmap-grid .f{gap:5px}
+.colmap-grid .minisel{width:100%}
+.colmap-grid .minisel select{width:100%}
 .sis-m{flex:none;width:44px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--fill);color:var(--label);
   font:700 16px/1 var(--font-rounded);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 .sis-m.medio{background:color-mix(in srgb,var(--yellow) 30%,transparent);color:#7a5a00}
@@ -899,11 +904,12 @@ table.t.mini td{white-space:nowrap}
           </label>
           <p class="status" id="peopleStatus"></p>
           <div id="peopleWarn"></div>
+          <div id="colMap" hidden></div>
           <p class="privacy"><svg class="ic"><use href="#i-lock"/></svg><span>Se lee solo en este navegador. No se envía ni se guarda, y el mapa muestra cantidades por comuna, nunca domicilios.</span></p>
           <details>
             <summary><svg class="ic"><use href="#i-chev"/></svg>Formato del archivo</summary>
             <div class="fmt foot" style="margin-top:8px;display:flex;flex-direction:column;gap:10px">
-              <div><b>Excel o CSV.</b> Se lee la primera hoja. Necesita columnas <b>Nombre</b> y <b>Comuna</b>, sin importar mayúsculas ni tildes; puede haber filas de título antes. Otras columnas, como Área, aparecen en la lista.
+              <div><b>Excel o CSV.</b> Se lee la primera hoja. Necesita columnas <b>Nombre</b> y <b>Comuna</b>, sin importar mayúsculas ni tildes; puede haber filas de título antes. Otras columnas, como Área, aparecen en la lista. Si el archivo trae varias columnas de comuna —por ejemplo <i>Comuna</i> de la oficina y <i>comuna_residencia</i>— la página elige mirando cuáles contienen comunas de verdad, y en <b>Qué columna es cada cosa</b> puedes corregirla. Lo que decidas se recuerda para ese mismo archivo.
               <table><tr><th>Nombre</th><th>Comuna</th><th>Comuna de trabajo</th><th>Área</th></tr><tr><td>Ana Pérez</td><td>Puente Alto</td><td>Arauco</td><td>Operaciones</td></tr><tr><td>Luis Soto</td><td>Arauco</td><td>Mantención</td></tr></table></div>
               <div><b>JSON.</b> Una lista de personas con los campos <b>nombre</b> y <b>comuna</b>. También se acepta la lista dentro de un campo <code>personas</code>. Los demás campos aparecen como columnas.
               <pre class="code">[
@@ -1154,6 +1160,7 @@ table.t.mini td{white-space:nowrap}
           <h3 class="h-big">Preguntas frecuentes</h3>
           <details class="faq"><summary>¿Mi nómina se sube a algún servidor?<svg class="ic"><use href="#i-chev"/></svg></summary><p>No. El archivo se lee solo en tu navegador y se borra al cerrar o recargar la página. Nadie más puede verlo. Las oficinas y el logo se guardan solo en tu navegador.</p></details>
           <details class="faq"><summary>¿Por qué veo “Persona Ejemplo”?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Solo si tocaste “Ver con datos de ejemplo” en Planilla. Son 12 personas ficticias para probar la página sin usar datos reales. La página parte siempre vacía y se limpian al cargar tu nómina o al recargar.</p></details>
+          <details class="faq"><summary>El mapa me muestra a todos expuestos, ¿por qué?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Casi siempre es porque se está leyendo la columna equivocada. Si tu archivo trae la comuna de la oficina y la de la casa, revisa en Planilla el recuadro <b>Qué columna es cada cosa</b> y deja en <b>Comuna donde vive</b> la de residencia. Si además todos figuran expuestos por la oficina y en realidad trabajan a distancia, pon <b>Comuna donde trabaja</b> en <i>Ninguna</i>: así solo cuenta dónde vive cada persona. Al revés, si la faena es lo que importa, déjala puesta: quien vive y trabaja en comunas distintas aparece expuesto por las dos.</p></details>
           <details class="faq"><summary>¿De dónde salen los sismos?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Del USGS, el servicio geológico de Estados Unidos, que publica los sismos del mundo en abierto y al instante. Los pide tu navegador cada vez que abres Alertas. No son alertas de SENAPRED: un sismo aparece aunque nadie haya declarado nada, que es justamente para lo que sirve. El radio que se muestra depende de la magnitud, es referencial y no mide daño; el número a la derecha es cuánta gente tuya vive o trabaja dentro de ese radio.</p></details>
           <details class="faq"><summary>¿De dónde sale el clima y para qué sirve?<svg class="ic"><use href="#i-chev"/></svg></summary><p>De Open-Meteo, un servicio abierto de pronóstico. Muestra el tiempo de ahora y siete días para la comuna que busques, y avisa si esa comuna tiene una alerta vigente. Es referencial: para decisiones operativas usa el pronóstico oficial de la Dirección Meteorológica de Chile. El fondo que elijas se guarda solo en tu dispositivo.</p></details>
           <details class="faq"><summary>¿Cada cuánto se actualizan las alertas?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Una revisión automática lee la página oficial de SENAPRED tres veces al día. La fecha del indicador “SENAPRED” cambia solo cuando hay un cambio oficial. Ante cualquier decisión, confirma en senapred.cl/alertas.</p></details>
@@ -1351,28 +1358,140 @@ function buscarFaena(cols){
   for(let i=2;i<cols.length;i++){ if(RE_FAENA.test(normCab(cols[i]))) return i; }
   return -1;
 }
-function parseSheet(rows){
-  rows=rows.filter(r=>r&&r.some(c=>String(c??"").trim()!==""));
-  if(!rows.length) throw new Error("La planilla está vacía.");
-  let hi=-1,ni=-1,ci=-1;
-  for(let i=0;i<Math.min(rows.length,10);i++){
-    const h=rows[i].map(norm);
-    let c=h.findIndex(x=>x==="comuna"); if(c<0) c=h.findIndex(x=>x.includes("comuna"));
-    const n=h.findIndex(x=>/nombre|persona|trabajador|colaborador|empleado/.test(x));
-    if(c>-1){hi=i;ci=c;ni=n>-1?n:(c===0?1:0);break;}
+/* La eleccion de columnas se recuerda por archivo: la firma es la lista de
+   encabezados, asi que la misma planilla del mes siguiente abre ya mapeada. */
+const COLS_KEY="hsec_columnas_v1";
+const firmaCols=header=>header.map(normCab).join("|").slice(0,400);
+function recordarMapa(header){
+  try{
+    const g=JSON.parse(localStorage.getItem(COLS_KEY)||"{}");
+    const m=g[firmaCols(header)];
+    return m&&typeof m.ci==="number"?m:null;
+  }catch(_){ return null; }
+}
+function guardarMapa(header,mapa){
+  try{
+    const g=JSON.parse(localStorage.getItem(COLS_KEY)||"{}");
+    g[firmaCols(header)]=mapa;
+    const claves=Object.keys(g); if(claves.length>12) delete g[claves[0]];
+    localStorage.setItem(COLS_KEY,JSON.stringify(g));
+  }catch(_){}
+}
+function olvidarMapa(header){
+  try{
+    const g=JSON.parse(localStorage.getItem(COLS_KEY)||"{}");
+    delete g[firmaCols(header)]; localStorage.setItem(COLS_KEY,JSON.stringify(g));
+  }catch(_){}
+}
+function renderColMap(){
+  const box=$("colMap"), raw=people.raw;
+  if(!raw||!raw.header){ box.hidden=true; box.innerHTML=""; return; }
+  box.hidden=false;
+  const m=people.mapa||{ni:-1,ci:-1,wi:-1};
+  const op=(sel,permiteNada)=>(permiteNada?'<option value="-1"'+(sel<0?' selected':'')+'>Ninguna</option>':'')+
+    raw.header.map((h,i)=>'<option value="'+i+'"'+(i===sel?' selected':'')+'>'+esc(h||("Columna "+(i+1)))+'</option>').join("");
+  const pct=i=>i<0?"":'<span class="caption">'+Math.round(puntajeComuna(raw.filas,i)*100)+'% son comunas reconocidas</span>';
+  box.innerHTML='<div class="card pad colmap"><div class="row" style="justify-content:space-between">'+
+      '<h3 role="heading" aria-level="3">Qué columna es cada cosa</h3>'+
+      '<button type="button" class="btn plain" id="colAuto">Detectar de nuevo</button></div>'+
+    '<p class="foot">La página cruza las alertas con la comuna donde vive cada persona. Si tu archivo trae varias columnas de comuna, elige aquí cuál es cuál.</p>'+
+    '<div class="colmap-grid">'+
+      '<label class="f"><span>Nombre</span><span class="minisel"><select id="colN">'+op(m.ni,false)+'</select><svg class="ic"><use href="#i-down"/></svg></span></label>'+
+      '<label class="f"><span>Comuna donde vive</span><span class="minisel"><select id="colC">'+op(m.ci,false)+'</select><svg class="ic"><use href="#i-down"/></svg></span>'+pct(m.ci)+'</label>'+
+      '<label class="f"><span>Comuna donde trabaja <span class="caption">(opcional)</span></span><span class="minisel"><select id="colW">'+op(m.wi,true)+'</select><svg class="ic"><use href="#i-down"/></svg></span>'+pct(m.wi)+'</label>'+
+    '</div></div>';
+}
+function aplicarMapa(mapa,recordar){
+  try{
+    const nuevo=construirPlanilla(people.raw,mapa);
+    people={...people,...nuevo,example:false};
+    if(recordar!==false) guardarMapa(people.raw.header,people.mapa);
+    sel=null; groupFilter=null; groupCol=-1; resetContacts(); render();
+    toast("Columnas actualizadas");
+  }catch(e){ toast(e.message||"No se pudo usar esa columna"); }
+}
+$("colMap").addEventListener("change",()=>{
+  if(!people.raw) return;
+  aplicarMapa({ni:+$("colN").value, ci:+$("colC").value, wi:+$("colW").value});
+});
+$("colMap").addEventListener("click",e=>{
+  if(!e.target.closest("#colAuto")||!people.raw) return;
+  olvidarMapa(people.raw.header);
+  aplicarMapa(detectarColumnas(people.raw.header,people.raw.filas),false);
+});
+
+// Cuantas filas de una columna son comunas de verdad. Es el desempate que
+// importa: un archivo real puede traer "Comuna", "comuna_residencia" y
+// "ubicacion_trabajo", y solo mirando el encabezado se elige mal.
+function puntajeComuna(filas,i){
+  if(i<0) return 0;
+  const n=Math.min(filas.length,200); if(!n) return 0;
+  let ok=0,con=0;
+  for(let k=0;k<n;k++){
+    const v=String(filas[k][i]??"").trim(); if(!v) continue;
+    con++; if(place(key(v))) ok++;
   }
-  if(hi<0) throw new Error("No se encontró una columna “Comuna”. Revisa que la fila de encabezados tenga Nombre y Comuna.");
-  const header=rows[hi].map(x=>String(x??"").trim());
+  return con?ok/con:0;
+}
+const RE_RESID=/comuna.*(residencia|domicilio|vive|particular|habitual)|(residencia|domicilio).*comuna|^(residencia|domicilio)$/;
+const RE_TRAB=/comuna.*(trabajo|faena|labor|obra|sede|sucursal|instalacion)|(lugar|ubicacion|sitio|centro).*(trabajo|faena)|^(faena|obra|proyecto|sede|sucursal|instalacion)$/;
+function detectarColumnas(header,filas){
+  const h=header.map(normCab);
+  const buscar=re=>h.findIndex(x=>re.test(x));
+  let ni=buscar(/^(nombre|nombrecompleto|persona|trabajador|colaborador|empleado)/);
+  if(ni<0) ni=buscar(/nombre|persona|trabajador|colaborador|empleado/);
+  // Candidatas a comuna: las que lo dicen en el encabezado, mas las que no lo
+  // dicen pero traen comunas en los datos.
+  const dice=h.map((x,i)=>({i,x})).filter(o=>o.x.includes("comuna")||RE_RESID.test(o.x)||RE_TRAB.test(o.x)).map(o=>o.i);
+  const cand=[...new Set(dice.concat(h.map((_,i)=>i).filter(i=>i!==ni&&puntajeComuna(filas,i)>=.6)))];
+  const pt=new Map(cand.map(i=>[i,puntajeComuna(filas,i)]));
+  const utiles=cand.filter(i=>pt.get(i)>=.35||!M);
+  const elegir=re=>{
+    const c=utiles.filter(i=>re.test(h[i]));
+    return c.length?c.sort((a,b)=>pt.get(b)-pt.get(a))[0]:-1;
+  };
+  let ci=elegir(RE_RESID);
+  let wi=elegir(RE_TRAB);
+  const sueltas=utiles.filter(i=>i!==ci&&i!==wi).sort((a,b)=>pt.get(b)-pt.get(a));
+  if(ci<0) ci=sueltas.length?sueltas.shift():(dice.length?dice[0]:-1);
+  // Si la residencia venia marcada aparte, una columna "Comuna" a secas suele
+  // ser la del trabajo; si no sirve ninguna, se queda sin columna de faena.
+  if(wi<0&&sueltas.length) wi=sueltas[0];
+  if(wi===ci) wi=-1;
+  if(ni<0) ni=(ci===0?1:0);
+  return {ni,ci,wi};
+}
+function construirPlanilla(raw,mapa){
+  const {header,filas}=raw; let {ni,ci,wi}=mapa;
+  if(ci<0) throw new Error("No se encontró una columna “Comuna”. Revisa que la fila de encabezados tenga Nombre y Comuna.");
+  if(ni<0||ni===ci) ni=(ci===0?1:0);
   const extra=header.map((_,i)=>i).filter(i=>i!==ni&&i!==ci&&header[i]&&!/^(n[°º.]?|#|item|nro\.?)$/i.test(header[i]));
   const cols=[header[ni]||"Nombre",header[ci]||"Comuna",...extra.map(i=>header[i])];
   const out=[];
-  for(const r of rows.slice(hi+1)){
+  for(const r of filas){
     const name=String(r[ni]??"").trim(), com=String(r[ci]??"").trim();
     if(!name&&!com) continue;
     out.push([name||"(sin nombre)",com,...extra.map(i=>String(r[i]??"").trim())]);
   }
   if(!out.length) throw new Error("Hay encabezados, pero ninguna fila con datos.");
-  return {cols,rows:out,workCol:buscarFaena(cols)};
+  let workCol=-1;
+  if(wi>=0&&wi!==ci&&wi!==ni){ const pos=extra.indexOf(wi); if(pos>=0) workCol=2+pos; }
+  if(workCol<0&&wi<0) workCol=buscarFaena(cols);
+  return {cols,rows:out,workCol,raw,mapa:{ni,ci,wi}};
+}
+function parseSheet(rows){
+  rows=rows.filter(r=>r&&r.some(c=>String(c??"").trim()!==""));
+  if(!rows.length) throw new Error("La planilla está vacía.");
+  let hi=-1;
+  for(let i=0;i<Math.min(rows.length,10);i++){
+    const h=rows[i].map(normCab);
+    if(h.some(x=>x.includes("comuna")||RE_RESID.test(x))){hi=i;break;}
+  }
+  if(hi<0) throw new Error("No se encontró una columna “Comuna”. Revisa que la fila de encabezados tenga Nombre y Comuna.");
+  const header=rows[hi].map(x=>String(x??"").trim());
+  const filas=rows.slice(hi+1);
+  const raw={header,filas};
+  return construirPlanilla(raw,recordarMapa(header)||detectarColumnas(header,filas));
 }
 function jsonToRows(data){
   const arr0=Array.isArray(data)?data:(data&&typeof data==="object"?(data.personas||data.people||data.trabajadores||data.colaboradores||data.data||data.rows):null);
@@ -1793,6 +1912,7 @@ function render(){
   people.rows.forEach(row=>{const k=claveDe(row); if(vistos.has(k)) repetidos.add(row[0]); else vistos.add(k);});
   const avisoDup=repetidos.size?'<p class="note">'+ICON("i-warn")+'<span><b>'+(repetidos.size===1?"1 persona repetida":repetidos.size+" personas repetidas")+'</b> en el archivo: '+esc([...repetidos].slice(0,6).join(", "))+(repetidos.size>6?" y "+(repetidos.size-6)+" más":"")+'. Se cuentan y se contactan dos veces. Quita las filas duplicadas.</span></p>':"";
 
+  renderColMap();
   $("peopleWarn").innerHTML=avisoDup+(unk.length?'<p class="note">'+ICON("i-warn")+'<span><b>'+plural(unk.length,"fila con comuna no reconocida","filas con comuna no reconocida")+':</b> '+esc(unkNames.slice(0,6).join(", "))+(unkNames.length>6?"…":"")+'. Corrige la ortografía para que se crucen con las alertas.</span></p>':'');
   $("alertTag").textContent=plural(feed.alerts.length,"alerta","alertas");
   $("alertList").innerHTML=feed.alerts.length?feed.alerts.map((a,i)=>
