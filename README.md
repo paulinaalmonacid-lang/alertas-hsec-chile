@@ -46,6 +46,12 @@ El lector está en `tools/senapred_scraper.py`. Reglas que respeta:
 - Nunca infiere cancelaciones: si una alerta desaparece del listado sin cancelación oficial, se conserva y queda advertida.
 - Nunca inventa fechas: usa las que publica SENAPRED.
 
+## Avisos preventivos
+
+Además de las Alertas Amarillas y Rojas, la página muestra aparte las **Alertas Tempranas Preventivas** que declara SENAPRED. Son avisos previos —muchos por pronósticos de la Dirección Meteorológica o riesgo de incendio— que suelen anticipar una alerta formal.
+
+Nunca se mezclan con las alertas: no cuentan como personas expuestas, no pintan el mapa ni entran en la lista de contacto. Viven en `alerts.json` bajo `preventive` y se consideran vigentes mientras el último estado publicado siga declarándolas y no pasen 30 días.
+
 ## Avisos por correo
 
 Cuando la revisión detecta un cambio oficial, escribe a las personas inscritas. El envío lo hace `tools/avisar_correo.py` dentro de la misma tarea automática, así que no depende de ningún servicio externo.

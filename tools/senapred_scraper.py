@@ -216,6 +216,31 @@ def scrape(max_pages=60, timeout=30000):
     return list(items.values()), fichas, pages
 
 
+def preventivas(items, places, now, dias=30):
+    """Alertas Tempranas Preventivas vigentes segun el listado de SENAPRED.
+
+    El titulo de cada item refleja su ULTIMO estado: si todavia dice que se
+    declara una Temprana Preventiva, sigue vigente; si dice que se cancela, no.
+    Son avisos previos, nunca Alertas Amarillas ni Rojas, y van aparte."""
+    out = []
+    for it in items:
+        t = norm(it["title"])
+        if "temprana preventiva" not in t or t.startswith("se cancela"):
+            continue
+        d = ts(it["at"])
+        if not d or (now - d).days > dias:
+            continue
+        communes, regs, _ = places.resolve(it["title"])
+        out.append({
+            "at": it["at"], "hazard": hazard_of(it["title"]) or "Evento",
+            "region": ", ".join(REG_NAME[r] for r in regs),
+            "communes": communes, "regions": regs,
+            "detail": it["title"], "officialUrl": it["url"],
+        })
+    out.sort(key=lambda x: ts(x["at"]) or dt.datetime.min, reverse=True)
+    return out
+
+
 def build(items, fichas, places, previous, now):
     prev_alerts = previous.get("alerts", []) if previous else []
     prev_by_url = {a.get("officialUrl"): a for a in prev_alerts}
@@ -305,6 +330,12 @@ def events(prev, alerts, cancels, places):
     return ev
 
 
+def diff_preventivas(prev, atp):
+    antes = {(x.get("at"), tuple(sorted(x.get("communes", [])))) for x in (prev or {}).get("preventive", [])}
+    ahora = {(x["at"], tuple(sorted(x["communes"]))) for x in atp}
+    return antes != ahora
+
+
 def diff(prev, alerts, cancels):
     out = []
     pa = {a.get("officialUrl"): a for a in (prev or {}).get("alerts", [])}
@@ -348,12 +379,17 @@ def main():
     if not items:
         print("ERROR: el listado de SENAPRED vino vacío. No se modifica nada."); sys.exit(2)
     alerts, cancels, warnings = build(items, fichas, places, previous, now)
+    prev_atp = preventivas(items, places, now)
     feed = {"source": "SENAPRED", "mode": "verified_snapshot",
-            "note": (previous or {}).get("note", "Feed operativo HSEC."), "alerts": alerts, "recentChanges": cancels}
+            "note": (previous or {}).get("note", "Feed operativo HSEC."),
+            "alerts": alerts, "recentChanges": cancels, "preventive": prev_atp}
     json.dump(feed, open(a.out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Páginas del listado leídas: %d · ítems: %d · fichas abiertas: %d" % (pages, len(items), len(fichas)))
-    print("Alertas vigentes: %d (%d Rojas) · cancelaciones recientes: %d" % (len(alerts), sum(x["level"] == "Roja" for x in alerts), len(cancels)))
+    print("Alertas vigentes: %d (%d Rojas) · cancelaciones recientes: %d · avisos preventivos: %d"
+          % (len(alerts), sum(x["level"] == "Roja" for x in alerts), len(cancels), len(prev_atp)))
     ch = diff(previous, alerts, cancels)
+    if diff_preventivas(previous, prev_atp):
+        ch.append("CAMBIO EN AVISOS PREVENTIVOS (Alertas Tempranas Preventivas): %d vigentes" % len(prev_atp))
     if a.changes_out:
         ev = events(previous, alerts, cancels, places)
         json.dump(ev, open(a.changes_out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)

@@ -1,0 +1,34 @@
+name: Mantener activas las revisiones
+
+# GitHub apaga las tareas programadas de un repositorio publico cuando pasan
+# 60 dias sin actividad, y no avisa. Esta tarea deja una marca una vez al mes
+# para que el reloj nunca llegue a esos 60 dias y las alertas sigan corriendo.
+on:
+  schedule:
+    - cron: "17 9 3 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  marcar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dejar la marca de actividad
+        run: |
+          mkdir -p .github
+          {
+            echo "Marca automatica para que GitHub no apague las revisiones de SENAPRED."
+            echo "GitHub deshabilita las tareas programadas tras 60 dias sin actividad."
+            echo ""
+            echo "Ultima marca: $(TZ=America/Santiago date '+%d-%m-%Y %H:%M') (hora de Chile)"
+          } > .github/ultima-actividad.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/ultima-actividad.txt
+          git commit -m "Marca mensual de actividad" || { echo "Sin cambios que registrar."; exit 0; }
+          git push

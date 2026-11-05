@@ -1,0 +1,4 @@
+Marca automatica para que GitHub no apague las revisiones de SENAPRED.
+GitHub deshabilita las tareas programadas tras 60 dias sin actividad.
+
+Ultima marca: 04-11-2026 23:05 (hora de Chile)

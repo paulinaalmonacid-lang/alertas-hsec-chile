@@ -600,6 +600,14 @@ details.faq p{padding:0 16px 14px;font-size:14px;color:var(--label-2)}
 @media (max-width:760px){.welcome{bottom:calc(84px + env(safe-area-inset-bottom,0px));left:16px;right:16px;width:auto}}
 @media (prefers-reduced-motion:reduce){.tour-spot,.tour-card{transition:none}}
 #btnHelp svg.ic{width:16px;height:16px}
+.prev-li{display:flex;gap:10px;align-items:flex-start;padding:11px 14px;border-bottom:.5px solid var(--sep)}
+.prev-li:last-child{border-bottom:0}
+.prev-li .sym{flex:none;width:28px;height:28px;border-radius:9px;background:var(--fill);color:var(--label-2);display:grid;place-items:center}
+.prev-li .sym svg.ic{width:15px;height:15px}
+.prev-t{min-width:0;display:flex;flex-direction:column;gap:2px;flex:1}
+.prev-t b{font-size:14px;font-weight:600;line-height:1.3}
+.prev-t .m{font-size:12.5px;color:var(--label-2)}
+.prev-n{flex:none;font:600 12px var(--font);color:var(--label-2);background:var(--fill-2);padding:3px 8px;border-radius:999px;white-space:nowrap}
 .row:has(> #btnHelp){flex-wrap:nowrap}
 table.t.mini td{white-space:nowrap}
 </style>
@@ -700,6 +708,11 @@ table.t.mini td{white-space:nowrap}
         <div class="list" id="source"></div>
       </div>
 
+
+      <div class="group" id="prevBox" data-tab="alertas" data-dtab="alertas" hidden><div class="sect sect-row" style="justify-content:space-between"><span>Avisos preventivos</span><span class="caption" id="prevCount"></span></div>
+        <div class="list" id="prevList"></div>
+        <p class="foot" style="padding:0 2px">No son Alertas Amarillas ni Rojas. Son avisos previos de SENAPRED, muchos por pronósticos de la Dirección Meteorológica o riesgo de incendio, que suelen anticipar una alerta formal. No cuentan como personas expuestas ni aparecen en la lista de contacto.</p>
+      </div>
 
       <div class="group" id="subsBox" data-tab="alertas" data-dtab="alertas"><div class="sect sect-row" style="justify-content:space-between"><span>Avisos por correo</span><span id="subsCount" style="text-transform:none;letter-spacing:0"></span></div><div class="list" id="subsBody"></div><div class="foot" style="padding:6px 16px 0">Llega un correo cuando SENAPRED declara, sube de nivel o cancela una Alerta Roja o Amarilla. Revisión automática tres veces al día.</div></div>
       <div class="group" data-tab="planilla" data-dtab="planilla" id="sheetBox">
@@ -807,6 +820,7 @@ table.t.mini td{white-space:nowrap}
       </div>
       <div class="chipbar" id="cStat" role="group" aria-label="Filtrar por resultado"></div>
       <div class="progress" id="cProgress"></div>
+      <div id="cSaved" hidden></div>
     </div>
     <div class="dlg-body" id="cBody"></div>
     <div class="dlg-foot">
@@ -1100,7 +1114,7 @@ function validFeed(f){
   if(!f||!Array.isArray(f.alerts)) throw new Error("El archivo no tiene el campo “alerts”.");
   const alerts=f.alerts.filter(a=>a&&(a.level==="Roja"||a.level==="Amarilla")&&Array.isArray(a.communes)&&a.communes.length);
   if(!alerts.length&&f.alerts.length) throw new Error("Ninguna alerta tiene nivel Roja o Amarilla con comunas.");
-  return {generatedAt:f.generatedAt||"",source:f.source||"SENAPRED",mode:f.mode||"",note:f.note||"",alerts,recentChanges:Array.isArray(f.recentChanges)?f.recentChanges.filter(c=>c&&c.at):[]};
+  return {generatedAt:f.generatedAt||"",source:f.source||"SENAPRED",mode:f.mode||"",note:f.note||"",alerts,recentChanges:Array.isArray(f.recentChanges)?f.recentChanges.filter(c=>c&&c.at):[],preventive:Array.isArray(f.preventive)?f.preventive.filter(x=>x&&x.at):[]};
 }
 async function loadOfficial(){
   try{const r=await fetch("alerts.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;feed=validFeed(await r.json());feedOrigin="official";}
@@ -1412,6 +1426,26 @@ $("lgToggle").onclick=()=>{const l=$("legend"),c=l.classList.toggle("collapsed")
 let rsz;window.addEventListener("resize",()=>{clearTimeout(rsz);rsz=setTimeout(drawOverlay,120);});
 
 /* ============ panel lateral ============ */
+function renderPreventive(){
+  const box=$("prevBox"), lista=$("prevList"); if(!box) return;
+  const ps=(feed.preventive||[]).slice(0,12);
+  box.hidden=!ps.length;
+  if(!ps.length) return;
+  $("prevCount").textContent=plural(feed.preventive.length,"aviso","avisos");
+  lista.innerHTML=ps.map(x=>{
+    const comunas=Array.isArray(x.communes)?x.communes:[];
+    const mios=x.nacional?R.persons.length:comunas.reduce((n,c)=>n+(R.countByCom.get(key(c))||0),0);
+    const donde=x.nacional?"Todo el país":(comunas.length>4?comunas.slice(0,4).join(", ")+" y "+(comunas.length-4)+" más":comunas.join(", "));
+    const url=typeof x.officialUrl==="string"&&/^https:\/\/(www\.)?senapred\.cl\//.test(x.officialUrl)?x.officialUrl:"";
+    return '<'+(url?'a href="'+esc(url)+'" target="_blank" rel="noopener"':'div')+' class="prev-li">'+
+      '<span class="sym">'+ICON("i-bell")+'</span>'+
+      '<span class="prev-t"><b>'+esc(x.hazard||"Aviso")+'</b>'+
+      '<span class="m">'+esc(x.region||"")+(donde?' · '+esc(donde):'')+'</span>'+
+      '<span class="m">'+esc(x.at||"")+(isNaN(parseD(x.at))?"":' · '+ago(parseD(x.at)))+'</span></span>'+
+      (mios?'<span class="prev-n">'+fmtN(mios)+' de tu planilla</span>':'')+
+      '</'+(url?'a':'div')+'>';
+  }).join("");
+}
 function renderTiles(){
   const nR=feed.alerts.filter(a=>a.level==="Roja").length, nA=feed.alerts.length-nR;
   const exp=R.persons.filter(p=>p.level!=="none").length;
@@ -1543,8 +1577,10 @@ $("comSearch").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefau
 
 /* ============ render ============ */
 function render(){
+  sincronizarContacto();
   R=compute();
   renderTiles();
+  renderPreventive();
   const tag=$("peopleTag"); tag.textContent=people.example?"Ejemplo":people.rows.length?plural(people.rows.length,"persona","personas"):"Sin cargar"; tag.className="badge"+(people.example?" ex":"");
   const st=$("peopleStatus"); st.className="status";
   st.textContent=people.example?"Se muestran 12 personas ficticias. Sube tu planilla para reemplazarlas.":people.name?"Archivo: "+people.name:"No hay planilla cargada.";
@@ -1639,6 +1675,45 @@ let cLevel="all", cStatus="all", DL=null, lastFocus=null, guide=null;
 const JSPDF_URL="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js", JSPDF_SRI="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk";
 const AUTOTABLE_URL="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js", AUTOTABLE_SRI="sha384-fCAW/rDWORTbQXSiB7mOg0QtQ5c+r0f544y6XoKjuVva0nMBlCpNUjiFeG5iMdS3";
 function resetContacts(){cstatus.clear();cnote.clear();guide=null;}
+/* ===== El avance del contacto sobrevive a una recarga =====
+   Se guarda en este navegador, identificado por nombre y comuna (no por posicion
+   en la planilla), para que siga sirviendo aunque se vuelva a cargar el archivo.
+   Caduca a los 7 dias para no arrastrar una emergencia vieja. */
+const CONTACTO_KEY="hsec_contacto_v1", CONTACTO_DIAS=7;
+let cguardado=new Map(), cguardadoAt=0;
+const claveDe=row=>key(row&&row[0])+"|"+key(row&&row[1]);
+function cargarContacto(){
+  try{
+    const d=JSON.parse(localStorage.getItem(CONTACTO_KEY)||"null");
+    if(!d||!d.items) return;
+    if(Date.now()-(d.at||0) > CONTACTO_DIAS*864e5){localStorage.removeItem(CONTACTO_KEY);return;}
+    cguardado=new Map(Object.entries(d.items)); cguardadoAt=d.at||0;
+  }catch(_){}
+}
+function guardarContacto(){
+  cguardadoAt=Date.now();
+  try{localStorage.setItem(CONTACTO_KEY,JSON.stringify({at:cguardadoAt,items:Object.fromEntries(cguardado)}));}catch(_){}
+}
+function olvidarContacto(){
+  cguardado=new Map(); cguardadoAt=0;
+  try{localStorage.removeItem(CONTACTO_KEY);}catch(_){}
+  cstatus.clear(); cnote.clear(); guide=null;
+}
+function recordarPersona(idx){
+  const row=people.rows[idx]; if(!row) return;
+  const st=cstatus.get(idx), nt=cnote.get(idx);
+  if(!st&&!nt) cguardado.delete(claveDe(row));
+  else cguardado.set(claveDe(row),{s:st?st.s:"",t:st?st.t:Date.now(),n:nt||""});
+  guardarContacto();
+}
+function sincronizarContacto(){
+  if(!cguardado.size||!people.rows.length||people.example) return;
+  people.rows.forEach((row,i)=>{
+    const g=cguardado.get(claveDe(row)); if(!g) return;
+    if(g.s) cstatus.set(i,{s:g.s,t:g.t}); 
+    if(g.n) cnote.set(i,g.n);
+  });
+}
 function contactCols(){
   const r={phones:[],emails:[],extra:[]};
   people.cols.forEach((c,i)=>{ if(i<2) return; const n=norm(c);
@@ -1677,6 +1752,11 @@ function renderContacts(){
   const lg=levelGroups(), c=counts(lg), all=counts(contactGroups());
   $("cSub").textContent=plural(all.all,"persona","personas")+" en comunas con Alerta Roja o Amarilla · alertas SENAPRED al "+fmtDate(feed.generatedAt);
   const done=all.ok+all.noans+all.help;
+  const av=$("cSaved"), hay=cguardado.size&&cguardadoAt;
+  av.hidden=!hay;
+  if(hay) av.innerHTML='<p class="foot" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">'+ICON("i-check")+
+    '<span>Avance guardado en este dispositivo · '+esc(stamp(cguardadoAt).text)+'</span>'+
+    '<button type="button" class="al-x" id="cForget">Borrar avance</button></p>';
   $("cProgress").innerHTML='<span class="bar"><i style="width:'+(all.all?Math.round(done/all.all*100):0)+'%"></i></span><span>'+fmtN(done)+' de '+fmtN(all.all)+' con resultado</span>';
   const sb=[["all","Todas",c.all],["pending","Pendientes",c.pending],["ok","Está bien",c.ok],["noans","No contesta",c.noans],["help","Necesita apoyo",c.help]];
   $("cStat").innerHTML=sb.map(([k,l,n])=>'<button type="button" data-s="'+k+'" aria-pressed="'+(cStatus===k)+'">'+l+' <span class="n">'+fmtN(n)+'</span></button>').join("");
@@ -1742,6 +1822,7 @@ function renderGuide(){
 function setStatus(idx,s){
   const n=$("gNote"); if(n){const v=n.value.trim(); if(v) cnote.set(idx,v); else cnote.delete(idx);}
   cstatus.set(idx,{s,t:Date.now()});
+  recordarPersona(idx);
   renderFollow();
 }
 function openContacts(fromIdx){
@@ -1749,7 +1830,7 @@ function openContacts(fromIdx){
   if(fromIdx!=null) startGuide(fromIdx); else renderContacts();
   $("cClose").focus();
 }
-function closeContacts(){ const n=$("gNote"); if(n&&guide){const idx=guide.queue[guide.pos];const v=n.value.trim(); if(v) cnote.set(idx,v);}
+function closeContacts(){ const n=$("gNote"); if(n&&guide){const idx=guide.queue[guide.pos];const v=n.value.trim(); if(v){cnote.set(idx,v);recordarPersona(idx);}}
   guide=null; $("contactsDlg").hidden=true; document.body.style.overflow=""; renderFollow(); if(lastFocus&&lastFocus.focus) lastFocus.focus(); }
 function renderFollow(){
   const box=$("follow"); if(!R) return;
@@ -1793,6 +1874,11 @@ $("cBody").addEventListener("click",e=>{
 });
 $("cLevelSeg").addEventListener("click",e=>{const b=e.target.closest("button[data-f]");if(!b)return;cLevel=b.dataset.f;guide=null;
   $("cLevelSeg").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderContacts();});
+$("cSaved").addEventListener("click",e=>{
+  const b=e.target.closest("#cForget"); if(!b) return;
+  if(b.dataset.armed!=="1"){b.dataset.armed="1";b.textContent="Confirmar";setTimeout(()=>{if(b.isConnected){b.dataset.armed="";b.textContent="Borrar avance";}},3000);return;}
+  olvidarContacto(); renderContacts(); renderFollow(); render(); toast("Avance borrado");
+});
 $("cStat").addEventListener("click",e=>{const b=e.target.closest("button[data-s]");if(!b)return;cStatus=b.dataset.s;guide=null;renderContacts();});
 function exportRows(){
   const cc=contactCols(), rows=[];
@@ -2021,6 +2107,7 @@ $("coImport").addEventListener("change",e=>{const f=e.target.files[0];e.target.v
 function buildOfficeComList(){const dl=$("comList2");if(dl)dl.innerHTML=$("comList").innerHTML;}
 
 
+cargarContacto();
 loadCompany();
 /* ============ avisos por correo ============ */
 const SUBS="subs";
