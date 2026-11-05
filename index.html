@@ -9,6 +9,13 @@
 <meta name="theme-color" content="#f4f9fd" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#061020" media="(prefers-color-scheme: dark)">
 <meta name="referrer" content="no-referrer">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Alertas HSEC">
+<meta name="application-name" content="Alertas HSEC">
 <meta property="og:title" content="Alertas HSEC por Comuna">
 <meta property="og:description" content="Alertas SENAPRED cruzadas con tu nómina, sin subir datos de nadie.">
 <meta property="og:type" content="website">
@@ -2300,6 +2307,20 @@ document.addEventListener("keydown",e=>{if($("tour").hidden)return;if(e.key==="E
   if(window.ResizeObserver&&hdr) new ResizeObserver(medir).observe(hdr);
   medir(); alDesplazar();
 })();
+/* ===== Funcionamiento sin señal (solo fuera del visor de Claude) ===== */
+if("serviceWorker" in navigator && location.protocol==="https:"){
+  addEventListener("load",()=>{
+    navigator.serviceWorker.register("sw.js").then(reg=>{
+      reg.addEventListener("updatefound",()=>{
+        const nuevo=reg.installing; if(!nuevo) return;
+        nuevo.addEventListener("statechange",()=>{
+          if(nuevo.state==="installed"&&navigator.serviceWorker.controller) toast("Hay una versión nueva: vuelve a abrir la aplicación");
+        });
+      });
+    }).catch(()=>{});
+  });
+  addEventListener("online",()=>{ if(typeof loadOfficial==="function") loadOfficial(); });
+}
 $("wYes").onclick=startTour;
 initMsgs();
 $("wNo").onclick=()=>{$("welcome").hidden=true;try{localStorage.setItem(HELP_KEY,"1");}catch(_){}};

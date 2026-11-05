@@ -1,0 +1,24 @@
+{
+  "name": "Alertas HSEC por Comuna",
+  "short_name": "Alertas HSEC",
+  "description": "Cruza las Alertas Rojas y Amarillas oficiales de SENAPRED con la nómina de personas de tu empresa. La nómina se lee solo en tu dispositivo.",
+  "lang": "es-CL",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f9fd",
+  "theme_color": "#0a1e3d",
+  "categories": ["utilities", "productivity", "business"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Alertas vigentes", "short_name": "Alertas", "url": "./#alertas" },
+    { "name": "Lista de contacto", "short_name": "Contacto", "url": "./#contacto" },
+    { "name": "Cargar nómina", "short_name": "Planilla", "url": "./#planilla" }
+  ]
+}
