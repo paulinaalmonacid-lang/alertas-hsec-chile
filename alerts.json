@@ -16,7 +16,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "05-11-2026 15:35",
+      "verifiedAt": "06-11-2026 00:17",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -48,7 +48,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "05-11-2026 15:35",
+      "verifiedAt": "06-11-2026 00:17",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -70,7 +70,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "05-11-2026 15:35",
+      "verifiedAt": "06-11-2026 00:17",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -101,7 +101,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22",
       "officialDeclaredAt": "13-10-2026 12:21",
       "officialUpdatedAt": "14-10-2026 11:59",
-      "verifiedAt": "05-11-2026 15:35",
+      "verifiedAt": "06-11-2026 00:17",
       "history": [
         {
           "at": "08-10-2026 18:49",
@@ -158,6 +158,56 @@
   ],
   "recentChanges": [],
   "preventive": [
+    {
+      "at": "05-11-2026 21:29",
+      "hazard": "Amenaza de incendios forestales",
+      "region": "Región de Valparaíso",
+      "communes": [
+        "Rinconada",
+        "Cabildo",
+        "Petorca",
+        "Panquehue",
+        "Olmué",
+        "Cartagena",
+        "Catemu",
+        "Llaillay",
+        "San Felipe",
+        "Santa María",
+        "Villa Alemana",
+        "Santo Domingo",
+        "San Antonio",
+        "El Tabo",
+        "El Quisco",
+        "Algarrobo",
+        "Casablanca",
+        "Valparaíso",
+        "Viña del Mar",
+        "Concón",
+        "Quintero",
+        "Puchuncaví",
+        "Zapallar",
+        "Papudo",
+        "La Ligua",
+        "Juan Fernández",
+        "Isla de Pascua",
+        "Limache",
+        "Quillota",
+        "Calera",
+        "Nogales",
+        "Calle Larga",
+        "La Cruz",
+        "Putaendo",
+        "San Esteban",
+        "Los Andes",
+        "Hijuelas",
+        "Quilpué"
+      ],
+      "regions": [
+        "05"
+      ],
+      "detail": "Se declara Alerta Temprana Preventiva para la Región de Valparaíso por amenaza de incendios forestales",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-valparaiso-por-amenaza-de-incendios-forestales-2026-11-05-21-29-57"
+    },
     {
       "at": "05-11-2026 15:25",
       "hazard": "Viento",
@@ -594,5 +644,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-corral-por-remocion-en-masa"
     }
   ],
-  "generatedAt": "2026-11-05T15:35:09-03:00"
+  "generatedAt": "2026-11-06T00:17:14-03:00"
 }
