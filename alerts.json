@@ -16,7 +16,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "06-11-2026 00:17",
+      "verifiedAt": "06-11-2026 14:50",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -48,10 +48,46 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "06-11-2026 00:17",
+      "verifiedAt": "06-11-2026 14:50",
       "history": [
         {
           "at": "19-06-2026 19:57",
+          "level": "Amarilla",
+          "action": "Se declara Alerta Amarilla"
+        }
+      ]
+    },
+    {
+      "id": "SENAPRED-SE-DECLARA-ALERTA-AMARILLA-PARA-LA-REGION-DE-COQUIMBO-POR-CALOR-INTENSO-2026-11-",
+      "level": "Amarilla",
+      "hazard": "Calor intenso",
+      "region": "Región de Coquimbo",
+      "communes": [
+        "Andacollo",
+        "Los Vilos",
+        "Canela",
+        "Ovalle",
+        "Coquimbo",
+        "La Serena",
+        "Combarbalá",
+        "Punitaqui",
+        "Paihuano",
+        "Illapel",
+        "La Higuera",
+        "Monte Patria",
+        "Río Hurtado",
+        "Salamanca",
+        "Vicuña"
+      ],
+      "source": "SENAPRED - Alerta Amarilla oficial",
+      "detail": "Se declara Alerta Amarilla para la Región de Coquimbo por calor intenso",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-region-de-coquimbo-por-calor-intenso-2026-11-06-14-02-41",
+      "officialDeclaredAt": "06-11-2026 14:02",
+      "officialUpdatedAt": "",
+      "verifiedAt": "06-11-2026 14:50",
+      "history": [
+        {
+          "at": "06-11-2026 14:02",
           "level": "Amarilla",
           "action": "Se declara Alerta Amarilla"
         }
@@ -70,7 +106,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "06-11-2026 00:17",
+      "verifiedAt": "06-11-2026 14:50",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -101,7 +137,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22",
       "officialDeclaredAt": "13-10-2026 12:21",
       "officialUpdatedAt": "14-10-2026 11:59",
-      "verifiedAt": "06-11-2026 00:17",
+      "verifiedAt": "06-11-2026 14:50",
       "history": [
         {
           "at": "08-10-2026 18:49",
@@ -243,116 +279,6 @@
       ],
       "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Coquimbo por viento",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-la-higuera-paihuano-vicuna-rio-hurtado-monte-patria-combarbala-illapel-y-salamanca-por-tormentas-electricas-2026-10-27-17-03-31"
-    },
-    {
-      "at": "05-11-2026 14:19",
-      "hazard": "Evento meteorológico",
-      "region": "Región de Los Lagos",
-      "communes": [
-        "San Pablo",
-        "Puqueldón",
-        "Fresia",
-        "Llanquihue",
-        "Osorno",
-        "Purranque",
-        "Puyehue",
-        "Cochamó",
-        "Ancud",
-        "Quellón",
-        "Queilén",
-        "Chonchi",
-        "Puerto Montt",
-        "Río Negro",
-        "Castro",
-        "Dalcahue",
-        "Quemchi",
-        "San Juan de la Costa",
-        "Calbuco",
-        "Chaitén",
-        "Los Muermos",
-        "Maullín",
-        "Quinchao",
-        "Curaco de Vélez",
-        "Puerto Octay",
-        "Frutillar",
-        "Puerto Varas",
-        "Hualaihué",
-        "Palena",
-        "Futaleufú"
-      ],
-      "regions": [
-        "10"
-      ],
-      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Los Lagos por evento meteorológico",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-los-lagos-por-evento-meteorologico-2026-11-02-16-27-15"
-    },
-    {
-      "at": "05-11-2026 13:46",
-      "hazard": "Tormentas eléctricas",
-      "region": "Región de Los Ríos",
-      "communes": [
-        "La Unión",
-        "Los Lagos",
-        "Máfil",
-        "Paillaco",
-        "Lanco",
-        "Panguipulli",
-        "Río Bueno",
-        "Mariquina",
-        "Corral",
-        "Valdivia",
-        "Lago Ranco",
-        "Futrono"
-      ],
-      "regions": [
-        "14"
-      ],
-      "detail": "Se declara Alerta Temprana Preventiva para la Región de Los Ríos por tormentas eléctricas",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-los-rios-por-tormentas-electricas-2026-11-05-13-47-01"
-    },
-    {
-      "at": "05-11-2026 13:30",
-      "hazard": "Tormentas eléctricas",
-      "region": "Región de La Araucanía",
-      "communes": [
-        "Cholchol",
-        "Cunco",
-        "Freire",
-        "Galvarino",
-        "Nueva Imperial",
-        "Perquenco",
-        "Pitrufquén",
-        "Temuco",
-        "Teodoro Schmidt",
-        "Vilcún",
-        "Angol",
-        "Collipulli",
-        "Curacautín",
-        "Ercilla",
-        "Los Sauces",
-        "Lumaco",
-        "Purén",
-        "Renaico",
-        "Traiguén",
-        "Victoria",
-        "Gorbea",
-        "Lautaro",
-        "Lonquimay",
-        "Carahue",
-        "Toltén",
-        "Loncoche",
-        "Curarrehue",
-        "Saavedra",
-        "Villarrica",
-        "Pucón",
-        "Padre Las Casas",
-        "Melipeuco"
-      ],
-      "regions": [
-        "09"
-      ],
-      "detail": "Se declara Alerta Temprana Preventiva para la Región de La Araucanía por tormentas eléctricas",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-la-araucania-por-tormentas-electricas-2026-11-05-13-32-11"
     },
     {
       "at": "05-11-2026 13:25",
@@ -644,5 +570,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-corral-por-remocion-en-masa"
     }
   ],
-  "generatedAt": "2026-11-06T00:17:14-03:00"
+  "generatedAt": "2026-11-06T14:50:56-03:00"
 }
