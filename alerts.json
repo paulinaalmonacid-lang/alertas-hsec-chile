@@ -16,7 +16,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "07-11-2026 13:46",
+      "verifiedAt": "07-11-2026 17:42",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -48,7 +48,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "07-11-2026 13:46",
+      "verifiedAt": "07-11-2026 17:42",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -84,7 +84,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-region-de-coquimbo-por-calor-intenso-2026-11-06-14-02-41",
       "officialDeclaredAt": "06-11-2026 14:02",
       "officialUpdatedAt": "",
-      "verifiedAt": "07-11-2026 13:46",
+      "verifiedAt": "07-11-2026 17:42",
       "history": [
         {
           "at": "06-11-2026 14:02",
@@ -106,7 +106,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-monte-patria-por-crecida-2026-11-06-23-35-42",
       "officialDeclaredAt": "06-11-2026 23:35",
       "officialUpdatedAt": "",
-      "verifiedAt": "07-11-2026 13:46",
+      "verifiedAt": "07-11-2026 17:42",
       "history": [
         {
           "at": "06-11-2026 23:35",
@@ -128,7 +128,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "07-11-2026 13:46",
+      "verifiedAt": "07-11-2026 17:42",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -159,7 +159,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22",
       "officialDeclaredAt": "13-10-2026 12:21",
       "officialUpdatedAt": "14-10-2026 11:59",
-      "verifiedAt": "07-11-2026 13:46",
+      "verifiedAt": "07-11-2026 17:42",
       "history": [
         {
           "at": "08-10-2026 18:49",
@@ -217,6 +217,29 @@
   "recentChanges": [],
   "preventive": [
     {
+      "at": "07-11-2026 17:16",
+      "hazard": "Viento",
+      "region": "Región de Magallanes",
+      "communes": [
+        "Laguna Blanca",
+        "Torres del Paine",
+        "Primavera",
+        "San Gregorio",
+        "Porvenir",
+        "Río Verde",
+        "Punta Arenas",
+        "Natales",
+        "Cabo de Hornos",
+        "Timaukel",
+        "Antártica"
+      ],
+      "regions": [
+        "12"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Magallanes por viento",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-magallanes-y-la-antartica-chilena-por-viento-2026-11-06-19-33-06"
+    },
+    {
       "at": "07-11-2026 00:39",
       "hazard": "Crecida",
       "region": "Región de Coquimbo",
@@ -251,15 +274,6 @@
       ],
       "detail": "Se modifica cobertura de Alerta Temprana Preventiva para las provincias de Huasco y Copiapó por crecida",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-comuna-de-alto-del-carmen-por-crecida-2026-09-26-02-27-03"
-    },
-    {
-      "at": "06-11-2026 19:31",
-      "hazard": "Viento",
-      "region": "",
-      "communes": [],
-      "regions": [],
-      "detail": "Se declara Alerta Temprana Preventiva para la Región de Magallanes y la Antártica Chilena por viento",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-magallanes-y-la-antartica-chilena-por-viento-2026-11-06-19-33-06"
     },
     {
       "at": "06-11-2026 18:01",
@@ -645,5 +659,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-corral-por-remocion-en-masa"
     }
   ],
-  "generatedAt": "2026-11-07T13:46:46-03:00"
+  "generatedAt": "2026-11-07T17:42:29-03:00"
 }
