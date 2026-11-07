@@ -16,7 +16,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "06-11-2026 14:50",
+      "verifiedAt": "06-11-2026 23:35",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -48,7 +48,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "06-11-2026 14:50",
+      "verifiedAt": "06-11-2026 23:35",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -84,7 +84,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-region-de-coquimbo-por-calor-intenso-2026-11-06-14-02-41",
       "officialDeclaredAt": "06-11-2026 14:02",
       "officialUpdatedAt": "",
-      "verifiedAt": "06-11-2026 14:50",
+      "verifiedAt": "06-11-2026 23:35",
       "history": [
         {
           "at": "06-11-2026 14:02",
@@ -106,7 +106,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "06-11-2026 14:50",
+      "verifiedAt": "06-11-2026 23:35",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -137,7 +137,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22",
       "officialDeclaredAt": "13-10-2026 12:21",
       "officialUpdatedAt": "14-10-2026 11:59",
-      "verifiedAt": "06-11-2026 14:50",
+      "verifiedAt": "06-11-2026 23:35",
       "history": [
         {
           "at": "08-10-2026 18:49",
@@ -194,6 +194,90 @@
   ],
   "recentChanges": [],
   "preventive": [
+    {
+      "at": "06-11-2026 20:33",
+      "hazard": "Crecida",
+      "region": "Región de Atacama",
+      "communes": [
+        "Alto del Carmen",
+        "Freirina",
+        "Huasco",
+        "Vallenar",
+        "Copiapó",
+        "Caldera",
+        "Tierra Amarilla"
+      ],
+      "regions": [
+        "03"
+      ],
+      "detail": "Se modifica cobertura de Alerta Temprana Preventiva para las provincias de Huasco y Copiapó por crecida",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-comuna-de-alto-del-carmen-por-crecida-2026-09-26-02-27-03"
+    },
+    {
+      "at": "06-11-2026 19:31",
+      "hazard": "Viento",
+      "region": "",
+      "communes": [],
+      "regions": [],
+      "detail": "Se declara Alerta Temprana Preventiva para la Región de Magallanes y la Antártica Chilena por viento",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-magallanes-y-la-antartica-chilena-por-viento-2026-11-06-19-33-06"
+    },
+    {
+      "at": "06-11-2026 18:01",
+      "hazard": "Actividad del Complejo Volcánico Nevados de Chillán",
+      "region": "Región de Ñuble",
+      "communes": [
+        "Pinto",
+        "Coihueco"
+      ],
+      "regions": [
+        "16"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para las comunas de Pinto y Coihueco por actividad del Complejo Volcánico Nevados de Chillán",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-pinto-y-coihueco-por-actividad-del-complejo-volcanico-nevados-de-chillan-2026-06-15-18-49-10"
+    },
+    {
+      "at": "06-11-2026 15:39",
+      "hazard": "Evento zoosanitario",
+      "region": "Región de Los Lagos",
+      "communes": [
+        "San Pablo",
+        "Puqueldón",
+        "Fresia",
+        "Llanquihue",
+        "Osorno",
+        "Purranque",
+        "Puyehue",
+        "Cochamó",
+        "Ancud",
+        "Quellón",
+        "Queilén",
+        "Chonchi",
+        "Puerto Montt",
+        "Río Negro",
+        "Castro",
+        "Dalcahue",
+        "Quemchi",
+        "San Juan de la Costa",
+        "Calbuco",
+        "Chaitén",
+        "Los Muermos",
+        "Maullín",
+        "Quinchao",
+        "Curaco de Vélez",
+        "Puerto Octay",
+        "Frutillar",
+        "Puerto Varas",
+        "Hualaihué",
+        "Palena",
+        "Futaleufú"
+      ],
+      "regions": [
+        "10"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Los Lagos por evento zoosanitario",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-los-lagos-por-evento-zoosanitario-2026-04-23-19-16-12"
+    },
     {
       "at": "05-11-2026 21:29",
       "hazard": "Amenaza de incendios forestales",
@@ -509,20 +593,6 @@
       "officialUrl": "https://senapred.cl/alerta/se-modifica-cobertura-de-alerta-temprana-preventiva-para-la-region-de-valparaiso-por-alteracion-sanitaria-2026-03-03-08-31-11"
     },
     {
-      "at": "28-10-2026 19:16",
-      "hazard": "Actividad del Complejo Volcánico Nevados de Chillán",
-      "region": "Región de Ñuble",
-      "communes": [
-        "Pinto",
-        "Coihueco"
-      ],
-      "regions": [
-        "16"
-      ],
-      "detail": "Monitoreo Alerta Temprana Preventiva para las comunas de Pinto y Coihueco por actividad del Complejo Volcánico Nevados de Chillán",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-pinto-y-coihueco-por-actividad-del-complejo-volcanico-nevados-de-chillan-2026-06-15-18-49-10"
-    },
-    {
       "at": "20-10-2026 18:10",
       "hazard": "Actividad del Volcán Villarrica",
       "region": "Región de La Araucanía, Región de Los Ríos",
@@ -540,22 +610,6 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-villarrica-pucon-y-curarrehue-en-la-region-de-la-araucania-y-para-la-comuna-de-panguipulli-en-la-region-de-los-rios-por-actividad-del-volcan-villarrica-2026-09-04-19-28-53"
     },
     {
-      "at": "19-10-2026 21:15",
-      "hazard": "Crecida",
-      "region": "Región de Atacama",
-      "communes": [
-        "Alto del Carmen",
-        "Freirina",
-        "Huasco",
-        "Vallenar"
-      ],
-      "regions": [
-        "03"
-      ],
-      "detail": "Monitoreo Alerta Temprana Preventiva para la Provincia de Huasco por crecida",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-comuna-de-alto-del-carmen-por-crecida-2026-09-26-02-27-03"
-    },
-    {
       "at": "16-10-2026 14:58",
       "hazard": "Remoción en masa",
       "region": "Región de Los Ríos",
@@ -570,5 +624,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-corral-por-remocion-en-masa"
     }
   ],
-  "generatedAt": "2026-11-06T14:50:56-03:00"
+  "generatedAt": "2026-11-06T23:35:17-03:00"
 }
