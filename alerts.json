@@ -16,7 +16,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "08-11-2026 18:03",
+      "verifiedAt": "08-11-2026 23:27",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -48,7 +48,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "08-11-2026 18:03",
+      "verifiedAt": "08-11-2026 23:27",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -84,7 +84,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-region-de-coquimbo-por-calor-intenso-2026-11-06-14-02-41",
       "officialDeclaredAt": "06-11-2026 14:02",
       "officialUpdatedAt": "",
-      "verifiedAt": "08-11-2026 18:03",
+      "verifiedAt": "08-11-2026 23:27",
       "history": [
         {
           "at": "06-11-2026 14:02",
@@ -106,7 +106,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-monte-patria-por-crecida-2026-11-06-23-35-42",
       "officialDeclaredAt": "06-11-2026 23:35",
       "officialUpdatedAt": "",
-      "verifiedAt": "08-11-2026 18:03",
+      "verifiedAt": "08-11-2026 23:27",
       "history": [
         {
           "at": "06-11-2026 23:35",
@@ -128,10 +128,32 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "08-11-2026 18:03",
+      "verifiedAt": "08-11-2026 23:27",
       "history": [
         {
           "at": "24-09-2026 19:25",
+          "level": "Amarilla",
+          "action": "Se declara Alerta Amarilla"
+        }
+      ]
+    },
+    {
+      "id": "SENAPRED-SE-DECLARA-ALERTA-AMARILLA-PARA-LA-COMUNA-DE-NATALES-POR-INCENDIO-FORESTAL-2026-",
+      "level": "Amarilla",
+      "hazard": "Incendio forestal",
+      "region": "Región de Magallanes y de la Antártica Chilena",
+      "communes": [
+        "Natales"
+      ],
+      "source": "SENAPRED - Alerta Amarilla oficial",
+      "detail": "Se declara Alerta Amarilla para la comuna de Natales por incendio forestal",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-natales-por-incendio-forestal-2026-11-08-21-28-10",
+      "officialDeclaredAt": "08-11-2026 21:25",
+      "officialUpdatedAt": "",
+      "verifiedAt": "08-11-2026 23:27",
+      "history": [
+        {
+          "at": "08-11-2026 21:25",
           "level": "Amarilla",
           "action": "Se declara Alerta Amarilla"
         }
@@ -159,7 +181,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22",
       "officialDeclaredAt": "13-10-2026 12:21",
       "officialUpdatedAt": "14-10-2026 11:59",
-      "verifiedAt": "08-11-2026 18:03",
+      "verifiedAt": "08-11-2026 23:27",
       "history": [
         {
           "at": "08-10-2026 18:49",
@@ -216,6 +238,95 @@
   ],
   "recentChanges": [],
   "preventive": [
+    {
+      "at": "08-11-2026 19:59",
+      "hazard": "Evento meteorológico",
+      "region": "Región Metropolitana",
+      "communes": [
+        "San Joaquín",
+        "San Miguel",
+        "San Ramón",
+        "Independencia",
+        "La Cisterna",
+        "Peñalolén",
+        "Providencia",
+        "La Reina",
+        "Calera de Tango",
+        "Colina",
+        "Santiago",
+        "Lampa",
+        "Pirque",
+        "Puente Alto",
+        "Huechuraba",
+        "San Bernardo",
+        "Curacaví",
+        "María Pinto",
+        "Cerrillos",
+        "Cerro Navia",
+        "Vitacura",
+        "Conchalí",
+        "El Bosque",
+        "Estación Central",
+        "La Florida",
+        "La Granja",
+        "La Pintana",
+        "Las Condes",
+        "Lo Barnechea",
+        "Lo Espejo",
+        "Lo Prado",
+        "Macul",
+        "Maipú",
+        "Ñuñoa",
+        "Pedro Aguirre Cerda",
+        "Pudahuel",
+        "Quilicura",
+        "Quinta Normal",
+        "Recoleta",
+        "Renca",
+        "El Monte",
+        "Padre Hurtado",
+        "Peñaflor",
+        "Talagante",
+        "Paine",
+        "Isla de Maipo",
+        "Buin",
+        "San José de Maipo",
+        "Tiltil",
+        "Melipilla",
+        "San Pedro",
+        "Alhué"
+      ],
+      "regions": [
+        "13"
+      ],
+      "detail": "Se declara Alerta Temprana Preventiva para la Región Metropolitana por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-metropolitana-por-evento-meteorologico-2026-11-08-20-09-10"
+    },
+    {
+      "at": "08-11-2026 18:37",
+      "hazard": "Evento meteorológico",
+      "region": "Región de Valparaíso",
+      "communes": [
+        "La Ligua",
+        "Petorca",
+        "Cabildo",
+        "Rinconada",
+        "Calle Larga",
+        "San Esteban",
+        "Los Andes",
+        "Panquehue",
+        "Catemu",
+        "Llaillay",
+        "San Felipe",
+        "Santa María",
+        "Putaendo"
+      ],
+      "regions": [
+        "05"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para las provincias de Los Andes y San Felipe y las comunas de La Ligua, Petorca y Cabildo por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-provincias-de-los-andes-y-san-felipe-y-las-comunas-de-la-ligua-petorca-y-cabildo-por-evento-meteorologico-2026-11-08-15-19-16"
+    },
     {
       "at": "08-11-2026 16:45",
       "hazard": "Tormentas eléctricas",
@@ -280,31 +391,6 @@
       ],
       "detail": "Monitoreo Alerta Temprana Preventiva para la región de Magallanes por viento",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-magallanes-y-la-antartica-chilena-por-viento-2026-11-06-19-33-06"
-    },
-    {
-      "at": "08-11-2026 15:14",
-      "hazard": "Evento meteorológico",
-      "region": "Región de Valparaíso",
-      "communes": [
-        "La Ligua",
-        "Petorca",
-        "Cabildo",
-        "Rinconada",
-        "Calle Larga",
-        "San Esteban",
-        "Los Andes",
-        "Panquehue",
-        "Catemu",
-        "Llaillay",
-        "San Felipe",
-        "Santa María",
-        "Putaendo"
-      ],
-      "regions": [
-        "05"
-      ],
-      "detail": "Se declara Alerta Temprana Preventiva para las provincias de Los Andes y San Felipe y las comunas de La Ligua, Petorca y Cabildo por evento meteorológico",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-provincias-de-los-andes-y-san-felipe-y-las-comunas-de-la-ligua-petorca-y-cabildo-por-evento-meteorologico-2026-11-08-15-19-16"
     },
     {
       "at": "07-11-2026 00:39",
@@ -397,56 +483,6 @@
       ],
       "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Los Lagos por evento zoosanitario",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-los-lagos-por-evento-zoosanitario-2026-04-23-19-16-12"
-    },
-    {
-      "at": "05-11-2026 21:29",
-      "hazard": "Amenaza de incendios forestales",
-      "region": "Región de Valparaíso",
-      "communes": [
-        "Rinconada",
-        "Cabildo",
-        "Petorca",
-        "Panquehue",
-        "Olmué",
-        "Cartagena",
-        "Catemu",
-        "Llaillay",
-        "San Felipe",
-        "Santa María",
-        "Villa Alemana",
-        "Santo Domingo",
-        "San Antonio",
-        "El Tabo",
-        "El Quisco",
-        "Algarrobo",
-        "Casablanca",
-        "Valparaíso",
-        "Viña del Mar",
-        "Concón",
-        "Quintero",
-        "Puchuncaví",
-        "Zapallar",
-        "Papudo",
-        "La Ligua",
-        "Juan Fernández",
-        "Isla de Pascua",
-        "Limache",
-        "Quillota",
-        "Calera",
-        "Nogales",
-        "Calle Larga",
-        "La Cruz",
-        "Putaendo",
-        "San Esteban",
-        "Los Andes",
-        "Hijuelas",
-        "Quilpué"
-      ],
-      "regions": [
-        "05"
-      ],
-      "detail": "Se declara Alerta Temprana Preventiva para la Región de Valparaíso por amenaza de incendios forestales",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-valparaiso-por-amenaza-de-incendios-forestales-2026-11-05-21-29-57"
     },
     {
       "at": "05-11-2026 13:25",
@@ -570,5 +606,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-corral-por-remocion-en-masa"
     }
   ],
-  "generatedAt": "2026-11-08T18:03:03-03:00"
+  "generatedAt": "2026-11-08T23:27:26-03:00"
 }
