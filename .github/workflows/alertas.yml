@@ -72,6 +72,10 @@ jobs:
         id: aplicar
         run: python tools/aplicar_cambios.py alerts.json candidato.json
 
+      - name: Anotar el historial por comuna
+        if: steps.aplicar.outputs.changed == 'true'
+        run: python tools/historial.py --alerts alerts.json --out historial.json
+
       - name: Avisar por correo a las personas inscritas
         if: steps.aplicar.outputs.changed == 'true'
         env:
@@ -89,6 +93,6 @@ jobs:
           rm -f candidato.json cambios.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add alerts.json
+          git add alerts.json historial.json
           git commit -m "Alertas SENAPRED actualizadas automaticamente"
           git push

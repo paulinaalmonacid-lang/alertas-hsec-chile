@@ -63,6 +63,12 @@ Dos fuentes que **no** son SENAPRED y que la página pide directamente desde el 
 
 Las coordenadas de las 343 comunas del mapa están en `comunas_geo.json` y van embebidas en la página, así que el cálculo de cercanía funciona sin conexión.
 
+## Historial por comuna
+
+`tools/historial.py` va anotando en `historial.json`, cada vez que cambia el listado, qué comuna estuvo bajo qué alerta y entre qué fechas. Un cambio de nivel cierra un tramo y abre otro, así que queda registrado "estuvo Amarilla y pasó a Roja". Al tocar una comuna en el mapa, la página muestra ese historial.
+
+Empieza el 04-11-2026, que es cuando este repositorio guardó la primera lectura: no hay datos anteriores a esa fecha.
+
 ## Avisos por correo
 
 Cuando la revisión detecta un cambio oficial, escribe a las personas inscritas. El envío lo hace `tools/avisar_correo.py` dentro de la misma tarea automática, así que no depende de ningún servicio externo.
@@ -103,6 +109,8 @@ El sitio se publica con GitHub Pages desde la rama `main`. Cualquier cambio en `
 | `tools/senapred_scraper.py` | Lector del sitio de SENAPRED |
 | `tools/comunas_cl.json` | Las 346 comunas con su región y provincia |
 | `comunas_geo.json` | Latitud y longitud de las 343 comunas del mapa (sismos) |
+| `historial.json` | Qué comuna estuvo bajo qué alerta y entre qué fechas |
+| `tools/historial.py` | Va completando ese historial en cada lectura |
 | `tools/aplicar_cambios.py` | Decide si hubo cambio oficial y marca la fecha |
 | `tools/avisar_correo.py` | Escribe a las personas inscritas cuando hay un cambio |
 

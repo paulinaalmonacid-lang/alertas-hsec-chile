@@ -653,6 +653,10 @@ table.t.mini td{white-space:nowrap}
 .meta .sc b{color:#a8000f;font-weight:600;line-height:1.35}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .meta .sc b{color:#ff8a80}}
 :root[data-theme="dark"] .meta .sc b{color:#ff8a80}
+.hist{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.hist-f{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;align-items:center}
+.hist-p{font:500 14px var(--font);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hist-d{grid-column:2;font:400 12.5px var(--font);color:var(--label-2)}
 .sis-m{flex:none;width:44px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--fill);color:var(--label);
   font:700 16px/1 var(--font-rounded);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 .sis-m.medio{background:color-mix(in srgb,var(--yellow) 30%,transparent);color:#7a5a00}
@@ -726,6 +730,18 @@ table.t.mini td{white-space:nowrap}
 .wic.snow{color:#6fb4d8}
 .clima.foto .wic{color:#fff}
 .cl-alerta{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:7px 13px;border-radius:999px;font:600 13px var(--font)}
+.cl-fuego{display:inline-flex;align-items:center;gap:8px;margin-top:10px;margin-left:8px;padding:7px 13px;border-radius:999px;font:600 13px var(--font);
+  background:color-mix(in srgb,#e8600d 20%,transparent);color:#9a3e00}
+.cl-fuego svg.ic{width:16px;height:16px}
+.clima.foto .cl-fuego{background:rgba(255,255,255,.92)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cl-fuego{color:#ff9f5a}}
+:root[data-theme="dark"] .cl-fuego{color:#ff9f5a}
+.cl-dia.arde{background:color-mix(in srgb,#e8600d 12%,transparent)}
+.dia-fuego{display:block;margin-top:2px;color:#c2520b}
+.dia-fuego svg.ic{width:15px;height:15px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .dia-fuego{color:#ff9f5a}}
+:root[data-theme="dark"] .dia-fuego{color:#ff9f5a}
+#clPieFuego{background:color-mix(in srgb,#e8600d 10%,transparent);padding:10px 14px;border-radius:14px}
 .cl-alerta.Roja{background:color-mix(in srgb,var(--red) 16%,transparent);color:var(--red)}
 .cl-alerta.Amarilla{background:color-mix(in srgb,var(--yellow) 26%,transparent);color:#8a6400}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cl-alerta.Amarilla{background:color-mix(in srgb,var(--yellow) 20%,transparent);color:var(--yellow)}}
@@ -798,6 +814,7 @@ table.t.mini td{white-space:nowrap}
   <symbol id="i-sunset" viewBox="0 0 24 24"><path d="M7 16.4a5 5 0 0 1 10 0"/><path d="M3.2 19.8h17.6"/><path d="M12 8.2V2.4M8.9 5.1 12 8.2l3.1-3.1"/></symbol>
   <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.2c3.2 4 5.6 6.8 5.6 10a5.6 5.6 0 0 1-11.2 0c0-3.2 2.4-6 5.6-10z"/></symbol>
   <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3.5 8.5h10a2.7 2.7 0 1 0-2.7-2.7M3.5 15.5h13a2.7 2.7 0 1 1-2.7 2.7M3.5 12h7.8"/></symbol>
+  <symbol id="i-fuego" viewBox="0 0 24 24"><path d="M12 2.6c.4 2.6-1 3.9-2.4 5.3C8 9.5 6.5 11 6.5 13.6a5.5 5.5 0 0 0 11 0c0-2-.8-3.5-1.9-4.8-.5 1-1.2 1.6-2 1.9.4-2.9-.6-5.9-1.6-8.1z"/><path d="M12 19.8a2.6 2.6 0 0 1-2.6-2.6c0-1.6 1.6-2.3 2.6-4 1 1.7 2.6 2.4 2.6 4a2.6 2.6 0 0 1-2.6 2.6z"/></symbol>
   <symbol id="i-image" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="m4.5 17.5 4.8-4.2 4 3.3 2.6-2.3 3.6 3.2"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
 </svg>
@@ -838,6 +855,7 @@ table.t.mini td{white-space:nowrap}
     </div>
     <div class="cl-card cl-now" id="clNow" aria-live="polite"><div class="cl-msg" style="grid-column:1/-1">Cargando el clima…</div></div>
     <div class="cl-card cl-dias" id="clDias" hidden></div>
+    <p class="cl-pie" id="clPieFuego" hidden></p>
     <p class="cl-pie">Pronóstico de <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>, referencial. Para decisiones operativas usa el pronóstico oficial de la <a href="https://www.meteochile.gob.cl/" target="_blank" rel="noopener">Dirección Meteorológica de Chile</a>. El fondo que elijas se guarda solo en este dispositivo.</p>
   </section>
 
@@ -873,7 +891,7 @@ table.t.mini td{white-space:nowrap}
       <button type="button" class="btn primary block" id="btnContacts" data-tab="contacto" data-dtab="contacto"><svg class="ic"><use href="#i-people"/></svg>Lista de contacto<span class="ct" id="contactCount">0</span></button>
       <div class="group" id="follow" data-tab="contacto" data-dtab="contacto" hidden></div>
       <div class="group" id="selGroup" data-tab="alertas" data-dtab="mapa">
-        <div class="sect" id="selTitle">Alertas vigentes</div>
+        <div class="sect" id="selTitle" role="heading" aria-level="2">Alertas vigentes</div>
         <div class="list" id="selPanel" aria-live="polite"></div>
         <div class="foot" id="selFoot" style="padding:6px 16px 0"></div>
       </div>
@@ -1836,7 +1854,8 @@ function renderSelection(){
     h=backLi(r?r.name:"Región",'data-back-region="'+esc(c.r)+'"')+
       '<div class="li stack"><div class="row">'+cap(lv||"none")+'</div><h3>'+esc(c.n)+'</h3><p class="foot">'+esc(r?r.full:"")+'</p></div>'+
       ais.map(alertLi).join("")+
-      '<div class="li stack"><span class="t1"><b>'+plural(ppl.length,"persona en la comuna","personas en la comuna")+'</b></span>'+tokens(ppl)+'</div>';
+      '<div class="li stack"><span class="t1"><b>'+plural(ppl.length,"persona en la comuna","personas en la comuna")+'</b></span>'+tokens(ppl)+'</div>'+
+      histLi(sel.id);
   }
   if(sel) h='<button type="button" class="li mob-only" data-showmap><span class="sym" style="background:var(--blue)">'+ICON("i-map")+'</span><span class="main-t"><span class="t1" style="color:var(--blue)">Ver en el mapa</span></span>'+ICON("i-chev","chev")+'</button>'+h;
   P.innerHTML=h; F.textContent=foot; F.hidden=!foot;
@@ -2602,6 +2621,41 @@ $("subsBody").addEventListener("submit",async e=>{
   }catch(err){st.className="status err";st.textContent="No se pudo guardar. Puede que tu acceso a esta página no permita inscribirse.";}
 });
 
+/* ============ Historial por comuna ============ */
+/* Lo arma la tarea de GitHub a partir de las lecturas guardadas: no se calcula
+   aqui ni depende de la planilla. Si el archivo no esta, la pagina sigue igual. */
+let HIST=null;
+const HIST_URL=["https://paulinaalmonacid-lang.github.io/alertas-hsec-chile/historial.json","historial.json"];
+async function cargarHistorial(){
+  for(const u of HIST_URL){
+    try{
+      const r=await fetch(u,{cache:"no-store"});
+      if(!r.ok) continue;
+      const j=await r.json();
+      if(j&&j.comunas){ HIST=j; renderSelection(); return; }
+    }catch(_){}
+  }
+}
+const histOrden=e=>String(e.desde).split(" ")[0].split("-").reverse().join("");
+function histDe(k){
+  if(!HIST||!HIST.comunas) return null;
+  const c=HIST.comunas[k];
+  if(!c||!c.eventos||!c.eventos.length) return null;
+  return {ev:c.eventos.slice().sort((a,b)=>histOrden(b).localeCompare(histOrden(a))), desde:HIST.desde};
+}
+function histLi(k){
+  const h=histDe(k); if(!h) return "";
+  const cerrados=h.ev.filter(e=>!e.abierto);
+  const filas=h.ev.slice(0,6).map(e=>
+    '<div class="hist-f"><span class="cap '+e.nivel+'"><i class="dot"></i>'+e.nivel+'</span>'+
+    '<span class="hist-p">'+esc(e.peligro)+'</span>'+
+    '<span class="hist-d">'+esc(String(e.desde).split(" ")[0])+(e.abierto?" · vigente":" a "+esc(String(e.hasta).split(" ")[0]))+'</span></div>').join("");
+  return '<div class="li stack"><details><summary>'+ICON("i-chev")+'Historial de alertas ('+h.ev.length+')</summary>'+
+    '<div class="hist">'+filas+(h.ev.length>6?'<p class="foot">y '+(h.ev.length-6)+' más</p>':'')+
+    '<p class="foot">Desde el '+esc(String(h.desde).split(" ")[0])+', que es cuando esta página empezó a guardar. '+
+    (cerrados.length?plural(cerrados.length,"alerta ya terminada","alertas ya terminadas"):"Ninguna terminada todavía")+'.</p></div></details></div>';
+}
+
 /* ============ Sismos ============ */
 /* Los sismos no son alertas SENAPRED: es el dato crudo del USGS, que publica
    los eventos en abierto y al instante. Sirven para saber a quien tienes cerca
@@ -2739,6 +2793,7 @@ async function clPedir(l){
   const u="https://api.open-meteo.com/v1/forecast?latitude="+l.lat+"&longitude="+l.lon+
     "&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation_probability,weather_code,wind_speed_10m"+
     "&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max"+
+    "&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m"+
     "&timezone=auto&forecast_days=7";
   const r=await fetch(u,{cache:"no-store"}); if(!r.ok) throw new Error("clima");
   return r.json();
@@ -2772,6 +2827,22 @@ async function clBuscar(texto,silencio){
     if(!silencio) toast("No encontré ese lugar");
   }
 }
+/* Factor 30-30-30: en Chile se usa como umbral critico de propagacion de
+   incendios que coincidan temperatura sobre 30 °C, humedad bajo 30 % y viento
+   sobre 30 km/h. No es un indice oficial ni mide el peligro de que se inicie un
+   fuego: es una senal de que, si algo se enciende, avanza rapido. Se mira hora a
+   hora, porque las tres condiciones tienen que darse juntas. */
+const TRES=(t,h,v)=> t!=null&&h!=null&&v!=null&&t>30&&h<30&&v>30;
+function clDiasRiesgo(d){
+  const H=d.hourly||{}, dias={};
+  (H.time||[]).forEach((iso,i)=>{
+    if(TRES(H.temperature_2m[i],H.relative_humidity_2m[i],H.wind_speed_10m[i])){
+      const dia=String(iso).slice(0,10);
+      (dias[dia]=dias[dia]||[]).push(String(iso).slice(11,16));
+    }
+  });
+  return dias;
+}
 function clHHMM(iso){return String(iso||"").slice(11,16);}
 function clDuracion(a,b){
   const m=Math.max(0,Math.round((new Date(b)-new Date(a))/60000));
@@ -2789,11 +2860,14 @@ function clPintar(viejo){
   const fecha=DIAS_C[ahora.getUTCDay()]+", "+ahora.getUTCDate()+" "+MESES_C[ahora.getUTCMonth()]+" "+ahora.getUTCFullYear();
   const t=v=>v==null?"—":Math.round(v);
   const lv=clNivel(l.n);
+  const riesgo=clDiasRiesgo(d);
+  const ahoraArde=TRES(cu.temperature_2m,cu.relative_humidity_2m,cu.wind_speed_10m);
   $("clNow").innerHTML=
     '<div class="cl-head">'+
       '<div><div class="cl-place"><svg class="ic"><use href="#i-pin"/></svg>'+esc(l.n)+(l.reg?', '+esc(l.reg):'')+'</div>'+
       '<div class="cl-sub">'+esc(fecha)+(viejo?' · dato guardado':'')+'</div>'+
-      (lv?'<span class="cl-alerta '+lv+'">'+ICON("i-warn")+'Alerta '+lv+' vigente en esta comuna</span>':'')+'</div>'+
+      (lv?'<span class="cl-alerta '+lv+'">'+ICON("i-warn")+'Alerta '+lv+' vigente en esta comuna</span>':'')+
+      (ahoraArde?'<span class="cl-fuego">'+ICON("i-fuego")+'Condiciones 30-30-30 ahora mismo</span>':'')+'</div>'+
       '<div class="cl-hora"><b>'+hora+'</b><div class="cl-sub">Hora local</div></div>'+
     '</div>'+
     '<div class="cl-big">'+wIcon(ic)+
@@ -2815,16 +2889,23 @@ function clPintar(viejo){
         '<div class="cl-dato"><svg class="ic"><use href="#i-wind"/></svg><div><b>'+t(cu.wind_speed_10m)+' km/h</b><span>Viento</span></div></div>'+
       '</div>'+
     '</div>';
+  const pf=$("clPieFuego"), cuantos=Object.keys(riesgo).length;
+  pf.hidden=!cuantos&&!ahoraArde;
+  if(!pf.hidden) pf.innerHTML='<b>Qué es el 30-30-30:</b> cuando coinciden temperatura sobre 30 °C, humedad bajo 30 % y viento sobre 30 km/h, un incendio que ya empezó avanza muy rápido. No es un índice oficial ni dice que se vaya a iniciar un fuego: es para anticipar los días en que una faena queda en condiciones de propagación rápida. Lo oficial es <a href="https://www.conaf.cl/incendios-forestales/" target="_blank" rel="noopener">CONAF</a>.';
+
   const dias=$("clDias"); const n=(dy.time||[]).length;
   dias.hidden=!n;
   if(n) dias.innerHTML=(dy.time||[]).map((iso,i)=>{
     const f=new Date(iso+"T12:00:00"), [tx,ik]=wmo(dy.weather_code[i]);
-    return '<div class="cl-dia'+(i===0?' hoy':'')+'" title="'+esc(tx)+'">'+
+    const horas=riesgo[iso]||[];
+    const aviso=horas.length?"Condiciones 30-30-30 entre las "+horas[0]+" y las "+horas[horas.length-1]:"";
+    return '<div class="cl-dia'+(i===0?' hoy':'')+(horas.length?' arde':'')+'" title="'+esc(aviso||tx)+'">'+
       '<div class="d1">'+(i===0?"Hoy":DIAS_C[f.getDay()])+'</div>'+
       '<div class="d2">'+f.getDate()+" "+MESES_C[f.getMonth()]+'</div>'+
       wIcon(ik)+
       '<div class="mx">'+t(dy.temperature_2m_max[i])+'°</div>'+
-      '<div class="mn">'+t(dy.temperature_2m_min[i])+'°</div></div>';
+      '<div class="mn">'+t(dy.temperature_2m_min[i])+'°</div>'+
+      (horas.length?'<span class="dia-fuego" role="img" aria-label="'+esc(aviso)+'">'+ICON("i-fuego")+'</span>':'')+'</div>';
   }).join("");
 }
 function clAplicarFondo(){
@@ -3092,6 +3173,7 @@ $("wNo").onclick=()=>{$("welcome").hidden=true;try{localStorage.setItem(HELP_KEY
 
 clInit();
 cargarSismos();
+cargarHistorial();
 setTab(TABS.includes(location.hash.slice(1))?location.hash.slice(1):"mapa",false);
 if(matchMedia("(max-width:600px)").matches) $("lgToggle").click();
 render();
