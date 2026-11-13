@@ -4,7 +4,11 @@ name: Actualizar alertas SENAPRED
 # Horario: 07:58, 13:58 y 19:58 de Chile continental (UTC-3).
 on:
   schedule:
-    - cron: "58 10,16,22 * * *"
+    # GitHub atrasa y a veces se salta las tareas programadas: con tres horarios
+    # al dia llegaron a pasar 19 horas entre una revision y la siguiente. Con uno
+    # cada tres horas, aunque se pierdan algunos, el hueco se mantiene corto.
+    # El minuto 23 evita la hora en punto, que es cuando mas carga tiene GitHub.
+    - cron: "23 1,4,7,10,13,16,19,22 * * *"
   workflow_dispatch:
     inputs:
       prueba_correo:

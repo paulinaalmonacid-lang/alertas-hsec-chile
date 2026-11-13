@@ -36,7 +36,7 @@ El manual dentro de la página (**Ayuda → Preparar la nómina**) tiene plantil
 
 ## Cómo se actualizan las alertas
 
-Una tarea programada de GitHub Actions (`.github/workflows/alertas.yml`) lee el sitio oficial de SENAPRED tres veces al día (07:58, 13:58 y 19:58 de Chile continental) y actualiza `alerts.json` **solo cuando hay un cambio oficial**: una alerta nueva, un cambio de nivel, un cambio de comunas, un boletín nuevo o una cancelación.
+Una tarea programada de GitHub Actions (`.github/workflows/alertas.yml`) lee el sitio oficial de SENAPRED cada tres horas (01:23, 04:23, 07:23… hora de Chile continental) y actualiza `alerts.json` **solo cuando hay un cambio oficial**: una alerta nueva, un cambio de nivel, un cambio de comunas, un boletín nuevo o una cancelación.
 
 Para ejecutarla a mano: pestaña **Actions** → *Actualizar alertas SENAPRED* → **Run workflow**.
 
@@ -51,6 +51,8 @@ El lector está en `tools/senapred_scraper.py`. Reglas que respeta:
 Además de las Alertas Amarillas y Rojas, la página muestra aparte las **Alertas Tempranas Preventivas** que declara SENAPRED. Son avisos previos —muchos por pronósticos de la Dirección Meteorológica o riesgo de incendio— que suelen anticipar una alerta formal.
 
 Nunca se mezclan con las alertas: no cuentan como personas expuestas, no pintan el mapa ni entran en la lista de contacto. Viven en `alerts.json` bajo `preventive` y se consideran vigentes mientras el último estado publicado siga declarándolas y no pasen 30 días.
+
+> GitHub atrasa las tareas programadas cuando tiene carga, y a veces se salta alguna: no hay garantía de que corran a la hora exacta. Por eso hay ocho horarios al día en vez de los tres del principio, con los que llegaron a pasar diecinueve horas entre una revisión y la siguiente.
 
 ## Sismos y clima
 
