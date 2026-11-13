@@ -191,7 +191,13 @@ def ts(at):
     return dt.datetime(int(m[3]), int(m[2]), int(m[1]), int(m[4]), int(m[5])) if m else None
 
 
-def scrape(max_pages=60, timeout=30000):
+def scrape(max_pages=60, timeout=30000, extra_urls=()):
+    """Lee el listado de SENAPRED y abre la ficha de cada Alerta Amarilla o Roja.
+
+    extra_urls son fichas de alertas que ya conociamos. El listado esta ordenado
+    por fecha, asi que una alerta vigente pero antigua se cae de las paginas que
+    se alcanzan a leer; abriendo su ficha se confirma si sigue viva o si la
+    cancelaron, en vez de arrastrarla sin saber."""
     from playwright.sync_api import sync_playwright
     items, pages = {}, 0
     with sync_playwright() as p:
@@ -233,19 +239,25 @@ def scrape(max_pages=60, timeout=30000):
                 btn.click(timeout=10000)
             except Exception:
                 break
-        fichas = {}
-        for url, it in items.items():
-            if not re.search(r"alerta (amarilla|roja)", norm(it["title"])):
-                continue
-            pg.goto(url, wait_until="domcontentloaded", timeout=timeout)
+        objetivo = [u for u, it in items.items() if re.search(r"alerta (amarilla|roja)", norm(it["title"]))]
+        revisadas = []
+        for u in extra_urls:
+            if u and u not in objetivo:
+                objetivo.append(u); revisadas.append(u)
+        fichas, fallidas = {}, []
+        for url in objetivo:
             try:
-                pg.wait_for_function("/\\d{2}-\\d{2}-\\d{4} \\d{1,2}:\\d{2}/.test(document.body.innerText)", timeout=timeout)
-            except Exception:
-                pass
-            pg.wait_for_timeout(800)
-            fichas[url] = pg.inner_text("body")
+                pg.goto(url, wait_until="domcontentloaded", timeout=timeout)
+                try:
+                    pg.wait_for_function("/\\d{2}-\\d{2}-\\d{4} \\d{1,2}:\\d{2}/.test(document.body.innerText)", timeout=timeout)
+                except Exception:
+                    pass
+                pg.wait_for_timeout(800)
+                fichas[url] = pg.inner_text("body")
+            except Exception as e:
+                fallidas.append((url, type(e).__name__))
         b.close()
-    return list(items.values()), fichas, pages
+    return list(items.values()), fichas, pages, revisadas, fallidas
 
 
 def preventivas(items, places, now, dias=30):
@@ -422,19 +434,31 @@ def main():
     previous = json.load(open(a.previous, encoding="utf-8")) if a.previous else None
     places = Places(json.load(open(a.comunas, encoding="utf-8")))
     now = ts(a.now) if a.now else dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).replace(tzinfo=None)
+    conocidas = [x.get("officialUrl") for x in (previous or {}).get("alerts", []) if x.get("officialUrl")]
     try:
-        items, fichas, pages = scrape()
+        items, fichas, pages, revisadas, fallidas = scrape(extra_urls=conocidas)
     except Exception as e:
         print("ERROR: no se pudo leer SENAPRED: %s" % e); sys.exit(2)
     if not items:
         print("ERROR: el listado de SENAPRED vino vacío. No se modifica nada."); sys.exit(2)
+    # Las fichas revisadas aparte entran al mismo circuito que el listado: build
+    # lee su ficha y decide si la alerta sigue vigente, cambio de nivel o se cancelo.
+    por_url = {x["url"] for x in items}
+    anteriores = {x.get("officialUrl"): x for x in (previous or {}).get("alerts", [])}
+    for u in revisadas:
+        if u in fichas and u not in por_url:
+            vieja = anteriores.get(u) or {}
+            items.append({"url": u, "title": vieja.get("detail") or vieja.get("hazard") or "", "at": vieja.get("officialDeclaredAt", "")})
     alerts, cancels, warnings = build(items, fichas, places, previous, now)
+    for u, err in fallidas:
+        warnings.append("No se pudo abrir la ficha de una alerta conocida (" + err + "): " + u)
     prev_atp = preventivas(items, places, now)
     feed = {"source": "SENAPRED", "mode": "verified_snapshot",
             "note": (previous or {}).get("note", "Feed operativo HSEC."),
             "alerts": alerts, "recentChanges": cancels, "preventive": prev_atp}
     json.dump(feed, open(a.out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    print("Páginas del listado leídas: %d · ítems: %d · fichas abiertas: %d" % (pages, len(items), len(fichas)))
+    print("Páginas del listado leídas: %d · ítems: %d · fichas abiertas: %d (de ellas %d revisadas aparte, %d sin abrir)"
+          % (pages, len(items), len(fichas), len(revisadas), len(fallidas)))
     print("Alertas vigentes: %d (%d Rojas) · cancelaciones recientes: %d · avisos preventivos: %d"
           % (len(alerts), sum(x["level"] == "Roja" for x in alerts), len(cancels), len(prev_atp)))
     ch = diff(previous, alerts, cancels)
