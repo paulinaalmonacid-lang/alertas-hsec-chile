@@ -314,7 +314,10 @@ def build(items, fichas, places, previous, now):
             slug = it["url"].rstrip("/").split("/")[-1]
             alerts.append({
                 "id": prev["id"] if prev else "SENAPRED-" + re.sub(r"[^A-Z0-9]+", "-", slug.upper())[:80],
-                "level": cur, "hazard": prev["hazard"] if same and prev.get("hazard") else hazard_of(cur_title),
+                "level": cur,
+                # El peligro se recalcula siempre: los guardados antes de limpiar
+                # hazard_of arrastraban el alcance entero del titulo.
+                "hazard": hazard_of(cur_title) or (prev.get("hazard") if prev else "") or "Evento",
                 "region": prev["region"] if same and prev.get("region") else (region or ", ".join(REG_NAME[r] for r in regs)),
                 "communes": communes,
                 "source": "SENAPRED - Alerta " + cur + " oficial",
