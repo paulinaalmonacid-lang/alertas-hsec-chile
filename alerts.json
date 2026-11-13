@@ -21,43 +21,12 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-provincia-de-el-loa-y-las-comunas-de-antofagasta-sierra-gorda-y-maria-elena-por-calor-extremo-2026-11-11-13-20-47",
       "officialDeclaredAt": "11-11-2026 13:19",
       "officialUpdatedAt": "",
-      "verifiedAt": "13-11-2026 11:54",
+      "verifiedAt": "13-11-2026 19:02",
       "history": [
         {
           "at": "11-11-2026 13:19",
           "level": "Roja",
           "action": "Se declara Alerta Roja"
-        }
-      ]
-    },
-    {
-      "id": "SENAPRED-SE-DECLARA-ALERTA-AMARILLA-PARA-LAS-COMUNAS-DE-DIEGO-DE-ALMAGRO-COPIAPO-TIERRA-A",
-      "level": "Roja",
-      "hazard": "Calor extremo",
-      "region": "Región de Atacama",
-      "communes": [
-        "Diego de Almagro",
-        "Copiapó",
-        "Tierra Amarilla",
-        "Vallenar",
-        "Alto del Carmen"
-      ],
-      "source": "SENAPRED - Alerta Roja oficial",
-      "detail": "Se declara Alerta Roja comunal por calor extremo para las Comunas de Diego de Almagro, Copiapó, Tierra Amarilla, Vallenar y Alto del Carmen y cancela Alerta Amarilla para las mismas comunas por calor intenso",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-diego-de-almagro-copiapo-tierra-amarilla-vallenar-y-alto-del-carmen--por-calor-intenso-2026-11-09-18-41-37",
-      "officialDeclaredAt": "10-11-2026 19:33",
-      "officialUpdatedAt": "",
-      "verifiedAt": "13-11-2026 11:54",
-      "history": [
-        {
-          "at": "09-11-2026 18:36",
-          "level": "Amarilla",
-          "action": "Se declara Alerta Amarilla"
-        },
-        {
-          "at": "10-11-2026 19:33",
-          "level": "Roja",
-          "action": "Se declara Alerta Roja comunal por calor extremo"
         }
       ]
     },
@@ -78,7 +47,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-provincia-del-tamarugal-por-calor-extremo-2026-11-09-18-34-03",
       "officialDeclaredAt": "09-11-2026 18:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "13-11-2026 11:54",
+      "verifiedAt": "13-11-2026 19:02",
       "history": [
         {
           "at": "09-11-2026 18:25",
@@ -100,7 +69,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-alto-del-carmen-por-desborde-2026-11-10-18-43-26",
       "officialDeclaredAt": "10-11-2026 18:41",
       "officialUpdatedAt": "11-11-2026 22:53",
-      "verifiedAt": "13-11-2026 11:54",
+      "verifiedAt": "13-11-2026 19:02",
       "history": [
         {
           "at": "10-11-2026 18:41",
@@ -143,7 +112,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-monte-patria-por-crecida-2026-11-06-23-35-42",
       "officialDeclaredAt": "09-11-2026 00:25",
       "officialUpdatedAt": "11-11-2026 13:49",
-      "verifiedAt": "13-11-2026 11:54",
+      "verifiedAt": "13-11-2026 19:02",
       "history": [
         {
           "at": "06-11-2026 23:35",
@@ -185,7 +154,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-rio-hurtado-por-desborde-2026-11-09-03-47-13",
       "officialDeclaredAt": "09-11-2026 03:46",
       "officialUpdatedAt": "10-11-2026 21:26",
-      "verifiedAt": "13-11-2026 11:54",
+      "verifiedAt": "13-11-2026 19:02",
       "history": [
         {
           "at": "09-11-2026 03:46",
@@ -212,7 +181,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "13-11-2026 11:54",
+      "verifiedAt": "13-11-2026 19:02",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -244,7 +213,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "13-11-2026 11:54",
+      "verifiedAt": "13-11-2026 19:02",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -267,7 +236,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-los-andes-y-san-esteban-por-crecida-2026-11-12-22-13-04",
       "officialDeclaredAt": "12-11-2026 22:13",
       "officialUpdatedAt": "",
-      "verifiedAt": "13-11-2026 11:54",
+      "verifiedAt": "13-11-2026 19:02",
       "history": [
         {
           "at": "12-11-2026 22:13",
@@ -296,7 +265,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-salamanca-por-crecida-2026-11-09-02-13-13",
       "officialDeclaredAt": "09-11-2026 02:12",
       "officialUpdatedAt": "11-11-2026 16:01",
-      "verifiedAt": "13-11-2026 11:54",
+      "verifiedAt": "13-11-2026 19:02",
       "history": [
         {
           "at": "09-11-2026 02:12",
@@ -348,7 +317,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "13-11-2026 11:54",
+      "verifiedAt": "13-11-2026 19:02",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -379,7 +348,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22",
       "officialDeclaredAt": "13-10-2026 12:21",
       "officialUpdatedAt": "14-10-2026 11:59",
-      "verifiedAt": "13-11-2026 11:54",
+      "verifiedAt": "13-11-2026 19:02",
       "history": [
         {
           "at": "08-10-2026 18:49",
@@ -436,171 +405,82 @@
   ],
   "recentChanges": [
     {
-      "at": "13-11-2026 10:30",
+      "at": "13-11-2026 15:02",
       "type": "cancelled",
-      "level": "Amarilla",
-      "hazard": "Calor intenso",
-      "region": "Región de Coquimbo",
+      "level": "Roja",
+      "hazard": "Calor extremo",
+      "region": "Región de Atacama",
       "communes": [
-        "Combarbalá",
-        "Illapel",
-        "La Higuera",
-        "Monte Patria",
-        "Paihuano",
-        "Río Hurtado",
-        "Salamanca",
-        "Vicuña"
+        "Diego de Almagro",
+        "Copiapó",
+        "Tierra Amarilla",
+        "Vallenar",
+        "Alto del Carmen"
       ],
-      "detail": "Se cancela Alerta Amarilla para las comunas de Combarbalá, Illapel, La Higuera, Monte Patria, Paihuano, Río Hurtado, Salamanca y Vicuña por calor intenso",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-combarbala-illapel-la-higuera-monte-patria-paihuano-rio-hurtado-salamanca-y-vicuna-por-calor-intenso-2026-11-11-09-20-58"
-    },
-    {
-      "at": "12-11-2026 23:21",
-      "type": "cancelled",
-      "level": "Amarilla",
-      "hazard": "Calor intenso",
-      "region": "Región de Valparaíso",
-      "communes": [
-        "La Ligua",
-        "Petorca",
-        "Cabildo",
-        "Panquehue",
-        "Catemu",
-        "Llaillay",
-        "San Felipe",
-        "Santa María",
-        "Putaendo",
-        "Rinconada",
-        "Calle Larga",
-        "San Esteban",
-        "Los Andes"
-      ],
-      "detail": "Se cancela Alerta Amarilla para las Provincias de San Felipe y Los Andes y comunas de La Ligua, Petorca y Cabildo por calor intenso",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-provincias-de-san-felipe-y-los-andes-y-comunas-de-la-ligua-petorca-y-cabildo-por-calor-intenso-2026-11-11-18-01-59"
-    },
-    {
-      "at": "12-11-2026 21:01",
-      "type": "cancelled",
-      "level": "Amarilla",
-      "hazard": "Calor intenso",
-      "region": "Región Metropolitana de Santiago",
-      "communes": [
-        "San Joaquín",
-        "San Miguel",
-        "San Ramón",
-        "Independencia",
-        "La Cisterna",
-        "Peñalolén",
-        "Providencia",
-        "La Reina",
-        "Calera de Tango",
-        "Colina",
-        "Santiago",
-        "Lampa",
-        "Pirque",
-        "Puente Alto",
-        "Huechuraba",
-        "San Bernardo",
-        "Curacaví",
-        "María Pinto",
-        "Cerrillos",
-        "Cerro Navia",
-        "Vitacura",
-        "Conchalí",
-        "El Bosque",
-        "Estación Central",
-        "La Florida",
-        "La Granja",
-        "La Pintana",
-        "Las Condes",
-        "Lo Barnechea",
-        "Lo Espejo",
-        "Lo Prado",
-        "Macul",
-        "Maipú",
-        "Ñuñoa",
-        "Pedro Aguirre Cerda",
-        "Pudahuel",
-        "Quilicura",
-        "Quinta Normal",
-        "Recoleta",
-        "Renca",
-        "El Monte",
-        "Padre Hurtado",
-        "Peñaflor",
-        "Talagante",
-        "Paine",
-        "Isla de Maipo",
-        "Buin",
-        "San José de Maipo",
-        "Tiltil",
-        "Melipilla",
-        "San Pedro",
-        "Alhué"
-      ],
-      "detail": "Se cancela Alerta Amarilla para la Región Metropolitana por calor intenso",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-region-metropolitana-por-calor-intenso-2026-11-11-14-50-00"
-    },
-    {
-      "at": "08-11-2026 23:15",
-      "type": "cancelled",
-      "level": "Amarilla",
-      "hazard": "Calor intenso",
-      "region": "Región de Coquimbo",
-      "communes": [
-        "Andacollo",
-        "Los Vilos",
-        "Canela",
-        "Ovalle",
-        "Coquimbo",
-        "La Serena",
-        "Combarbalá",
-        "Punitaqui",
-        "Paihuano",
-        "Illapel",
-        "La Higuera",
-        "Monte Patria",
-        "Río Hurtado",
-        "Salamanca",
-        "Vicuña"
-      ],
-      "detail": "Se cancela Alerta Temprana Preventiva para la Región de Coquimbo por calor intenso",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-region-de-coquimbo-por-calor-intenso-2026-11-06-14-02-41"
-    },
-    {
-      "at": "10-11-2026 20:27",
-      "type": "cancelled",
-      "level": "Amarilla",
-      "hazard": "Incendio forestal",
-      "region": "Región de Magallanes y de la Antártica Chilena",
-      "communes": [
-        "Natales"
-      ],
-      "detail": "Se cancela Alerta Amarilla para la comuna de Natales por incendio forestal",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-natales-por-incendio-forestal-2026-11-08-21-28-10"
-    },
-    {
-      "at": "10-11-2026 07:28",
-      "type": "cancelled",
-      "level": "Amarilla",
-      "hazard": "Remoción en masa",
-      "region": "Región del Libertador Gral. Bernardo O'Higgins",
-      "communes": [
-        "Mostazal",
-        "Codegua",
-        "Rancagua",
-        "Machalí",
-        "Requínoa",
-        "Rengo",
-        "Malloa",
-        "San Fernando",
-        "Chimbarongo"
-      ],
-      "detail": "Se cancela Alerta Amarilla para las comunas de Mostazal, Codegua, Rancagua, Machalí, Requínoa, Rengo, Malloa, San Fernando y Chimbarongo por remoción en masa",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-mostazal-codegua-rancagua-machali-requinoa-rengo-malloa-san-fernando-y-chimbarongo-por-remocion-en-masa-2026-11-09-19-15-11"
+      "detail": "Se cancela Alerta Roja para las comunas de Diego de Almagro, Copiapó, Tierra Amarilla, Vallenar y Alto del Carmen por calor extremo",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-diego-de-almagro-copiapo-tierra-amarilla-vallenar-y-alto-del-carmen--por-calor-intenso-2026-11-09-18-41-37"
     }
   ],
   "preventive": [
+    {
+      "at": "13-11-2026 18:58",
+      "hazard": "Tormentas eléctricas",
+      "region": "Región de Tarapacá",
+      "communes": [
+        "Camiña",
+        "Colchane",
+        "Pozo Almonte",
+        "Huara",
+        "Pica"
+      ],
+      "regions": [
+        "01"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la provincia del Tamarugal por tormentas eléctricas",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-provincia-del-tamarugal-por-tormentas-electricas-2026-11-09-19-00-47"
+    },
+    {
+      "at": "13-11-2026 16:35",
+      "hazard": "Viento",
+      "region": "Región del Maule",
+      "communes": [
+        "Curepto",
+        "Empedrado",
+        "Pencahue",
+        "Linares",
+        "Longaví",
+        "Talca",
+        "Chanco",
+        "Pelluhue",
+        "Constitución",
+        "Licantén",
+        "Vichuquén",
+        "Cauquenes",
+        "Río Claro",
+        "Pelarco",
+        "San Javier",
+        "Villa Alegre",
+        "Yerbas Buenas",
+        "Maule",
+        "San Rafael",
+        "Sagrada Familia",
+        "Retiro",
+        "Curicó",
+        "Molina",
+        "Colbún",
+        "San Clemente",
+        "Hualañé",
+        "Rauco",
+        "Teno",
+        "Romeral",
+        "Parral"
+      ],
+      "regions": [
+        "07"
+      ],
+      "detail": "Se declara Alerta Temprana Preventiva para la Región del Maule por viento",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-del-maule-por-viento-2026-11-13-16-36-34"
+    },
     {
       "at": "13-11-2026 11:22",
       "hazard": "Evento meteorológico",
@@ -687,23 +567,6 @@
       ],
       "detail": "Monitoreo Alerta Temprana Preventiva a las provincias de Huasco y Copiapó por crecida",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-comuna-de-alto-del-carmen-por-crecida-2026-09-26-02-27-03"
-    },
-    {
-      "at": "09-11-2026 18:46",
-      "hazard": "Tormentas eléctricas",
-      "region": "Región de Tarapacá",
-      "communes": [
-        "Camiña",
-        "Colchane",
-        "Pozo Almonte",
-        "Huara",
-        "Pica"
-      ],
-      "regions": [
-        "01"
-      ],
-      "detail": "Se declara Alerta Temprana Preventiva para la provincia del Tamarugal por tormentas eléctricas",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-provincia-del-tamarugal-por-tormentas-electricas-2026-11-09-19-00-47"
     },
     {
       "at": "06-11-2026 15:39",
@@ -854,5 +717,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-corral-por-remocion-en-masa"
     }
   ],
-  "generatedAt": "2026-11-13T11:54:38-03:00"
+  "generatedAt": "2026-11-13T19:02:26-03:00"
 }
