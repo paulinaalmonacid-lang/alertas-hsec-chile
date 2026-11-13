@@ -1,1 +1,1732 @@
-[{"n": "Camiña", "r": "01", "p": "Iquique"}, {"n": "Colchane", "r": "01", "p": "Iquique"}, {"n": "Pozo Almonte", "r": "01", "p": "Iquique"}, {"n": "Huara", "r": "01", "p": "Iquique"}, {"n": "Alto Hospicio", "r": "01", "p": "Iquique"}, {"n": "Iquique", "r": "01", "p": "Iquique"}, {"n": "Pica", "r": "01", "p": "Iquique"}, {"n": "María Elena", "r": "02", "p": "Tocopilla"}, {"n": "Calama", "r": "02", "p": "El Loa"}, {"n": "Tocopilla", "r": "02", "p": "Tocopilla"}, {"n": "Antofagasta", "r": "02", "p": "Antofagasta"}, {"n": "Mejillones", "r": "02", "p": "Antofagasta"}, {"n": "Taltal", "r": "02", "p": "Antofagasta"}, {"n": "Sierra Gorda", "r": "02", "p": "Antofagasta"}, {"n": "San Pedro de Atacama", "r": "02", "p": "El Loa"}, {"n": "Ollagüe", "r": "02", "p": "El Loa"}, {"n": "Alto del Carmen", "r": "03", "p": "Huasco"}, {"n": "Freirina", "r": "03", "p": "Huasco"}, {"n": "Huasco", "r": "03", "p": "Huasco"}, {"n": "Copiapó", "r": "03", "p": "Copiapó"}, {"n": "Caldera", "r": "03", "p": "Copiapó"}, {"n": "Chañaral", "r": "03", "p": "Chañaral"}, {"n": "Tierra Amarilla", "r": "03", "p": "Copiapó"}, {"n": "Diego de Almagro", "r": "03", "p": "Chañaral"}, {"n": "Vallenar", "r": "03", "p": "Huasco"}, {"n": "Andacollo", "r": "04", "p": "Elqui"}, {"n": "Los Vilos", "r": "04", "p": "Choapa"}, {"n": "Canela", "r": "04", "p": "Choapa"}, {"n": "Ovalle", "r": "04", "p": "Limarí"}, {"n": "Coquimbo", "r": "04", "p": "Elqui"}, {"n": "La Serena", "r": "04", "p": "Elqui"}, {"n": "Combarbalá", "r": "04", "p": "Limarí"}, {"n": "Punitaqui", "r": "04", "p": "Limarí"}, {"n": "Paihuano", "r": "04", "p": "Elqui"}, {"n": "Illapel", "r": "04", "p": "Choapa"}, {"n": "La Higuera", "r": "04", "p": "Elqui"}, {"n": "Monte Patria", "r": "04", "p": "Limarí"}, {"n": "Río Hurtado", "r": "04", "p": "Limarí"}, {"n": "Salamanca", "r": "04", "p": "Choapa"}, {"n": "Vicuña", "r": "04", "p": "Elqui"}, {"n": "Rinconada", "r": "05", "p": "Los Andes"}, {"n": "Cabildo", "r": "05", "p": "Petorca"}, {"n": "Petorca", "r": "05", "p": "Petorca"}, {"n": "Panquehue", "r": "05", "p": "San Felipe"}, {"n": "Olmué", "r": "05", "p": "Marga Marga"}, {"n": "Cartagena", "r": "05", "p": "San Antonio"}, {"n": "Catemu", "r": "05", "p": "San Felipe"}, {"n": "Llaillay", "r": "05", "p": "San Felipe"}, {"n": "San Felipe", "r": "05", "p": "San Felipe"}, {"n": "Santa María", "r": "05", "p": "San Felipe"}, {"n": "Villa Alemana", "r": "05", "p": "Marga Marga"}, {"n": "Santo Domingo", "r": "05", "p": "San Antonio"}, {"n": "San Antonio", "r": "05", "p": "San Antonio"}, {"n": "El Tabo", "r": "05", "p": "San Antonio"}, {"n": "El Quisco", "r": "05", "p": "San Antonio"}, {"n": "Algarrobo", "r": "05", "p": "San Antonio"}, {"n": "Casablanca", "r": "05", "p": "Valparaíso"}, {"n": "Valparaíso", "r": "05", "p": "Valparaíso"}, {"n": "Viña del Mar", "r": "05", "p": "Valparaíso"}, {"n": "Concón", "r": "05", "p": "Valparaíso"}, {"n": "Quintero", "r": "05", "p": "Valparaíso"}, {"n": "Puchuncaví", "r": "05", "p": "Valparaíso"}, {"n": "Zapallar", "r": "05", "p": "Petorca"}, {"n": "Papudo", "r": "05", "p": "Petorca"}, {"n": "La Ligua", "r": "05", "p": "Petorca"}, {"n": "Juan Fernández", "r": "05", "p": "Valparaíso"}, {"n": "Isla de Pascua", "r": "05", "p": "Isla de Pascua"}, {"n": "Limache", "r": "05", "p": "Marga Marga"}, {"n": "Quillota", "r": "05", "p": "Quillota"}, {"n": "Calera", "r": "05", "p": "Quillota"}, {"n": "Nogales", "r": "05", "p": "Quillota"}, {"n": "Calle Larga", "r": "05", "p": "Los Andes"}, {"n": "La Cruz", "r": "05", "p": "Quillota"}, {"n": "Putaendo", "r": "05", "p": "San Felipe"}, {"n": "San Esteban", "r": "05", "p": "Los Andes"}, {"n": "Los Andes", "r": "05", "p": "Los Andes"}, {"n": "Hijuelas", "r": "05", "p": "Quillota"}, {"n": "Quilpué", "r": "05", "p": "Marga Marga"}, {"n": "Marchigüe", "r": "06", "p": "Cardenal Caro"}, {"n": "Codegua", "r": "06", "p": "Cachapoal"}, {"n": "Coinco", "r": "06", "p": "Cachapoal"}, {"n": "Coltauco", "r": "06", "p": "Cachapoal"}, {"n": "Graneros", "r": "06", "p": "Cachapoal"}, {"n": "Malloa", "r": "06", "p": "Cachapoal"}, {"n": "Peumo", "r": "06", "p": "Cachapoal"}, {"n": "Pichidegua", "r": "06", "p": "Cachapoal"}, {"n": "Rancagua", "r": "06", "p": "Cachapoal"}, {"n": "Requínoa", "r": "06", "p": "Cachapoal"}, {"n": "Mostazal", "r": "06", "p": "Cachapoal"}, {"n": "San Vicente", "r": "06", "p": "Cachapoal"}, {"n": "Nancagua", "r": "06", "p": "Colchagua"}, {"n": "Peralillo", "r": "06", "p": "Colchagua"}, {"n": "Placilla", "r": "06", "p": "Colchagua"}, {"n": "Pumanque", "r": "06", "p": "Colchagua"}, {"n": "Paredones", "r": "06", "p": "Cardenal Caro"}, {"n": "Pichilemu", "r": "06", "p": "Cardenal Caro"}, {"n": "Litueche", "r": "06", "p": "Cardenal Caro"}, {"n": "Navidad", "r": "06", "p": "Cardenal Caro"}, {"n": "La Estrella", "r": "06", "p": "Cardenal Caro"}, {"n": "Doñihue", "r": "06", "p": "Cachapoal"}, {"n": "Olivar", "r": "06", "p": "Cachapoal"}, {"n": "Rengo", "r": "06", "p": "Cachapoal"}, {"n": "Santa Cruz", "r": "06", "p": "Colchagua"}, {"n": "Palmilla", "r": "06", "p": "Colchagua"}, {"n": "Quinta de Tilcoco", "r": "06", "p": "Cachapoal"}, {"n": "Machalí", "r": "06", "p": "Cachapoal"}, {"n": "Las Cabras", "r": "06", "p": "Cachapoal"}, {"n": "Chimbarongo", "r": "06", "p": "Colchagua"}, {"n": "Lolol", "r": "06", "p": "Colchagua"}, {"n": "Chépica", "r": "06", "p": "Colchagua"}, {"n": "San Fernando", "r": "06", "p": "Colchagua"}, {"n": "Curepto", "r": "07", "p": "Talca"}, {"n": "Empedrado", "r": "07", "p": "Talca"}, {"n": "Pencahue", "r": "07", "p": "Talca"}, {"n": "Linares", "r": "07", "p": "Linares"}, {"n": "Longaví", "r": "07", "p": "Linares"}, {"n": "Talca", "r": "07", "p": "Talca"}, {"n": "Chanco", "r": "07", "p": "Cauquenes"}, {"n": "Pelluhue", "r": "07", "p": "Cauquenes"}, {"n": "Constitución", "r": "07", "p": "Talca"}, {"n": "Licantén", "r": "07", "p": "Curicó"}, {"n": "Vichuquén", "r": "07", "p": "Curicó"}, {"n": "Cauquenes", "r": "07", "p": "Cauquenes"}, {"n": "Río Claro", "r": "07", "p": "Talca"}, {"n": "Pelarco", "r": "07", "p": "Talca"}, {"n": "San Javier", "r": "07", "p": "Linares"}, {"n": "Villa Alegre", "r": "07", "p": "Linares"}, {"n": "Yerbas Buenas", "r": "07", "p": "Linares"}, {"n": "Maule", "r": "07", "p": "Talca"}, {"n": "San Rafael", "r": "07", "p": "Talca"}, {"n": "Sagrada Familia", "r": "07", "p": "Curicó"}, {"n": "Retiro", "r": "07", "p": "Linares"}, {"n": "Curicó", "r": "07", "p": "Curicó"}, {"n": "Molina", "r": "07", "p": "Curicó"}, {"n": "Colbún", "r": "07", "p": "Linares"}, {"n": "San Clemente", "r": "07", "p": "Talca"}, {"n": "Hualañé", "r": "07", "p": "Curicó"}, {"n": "Rauco", "r": "07", "p": "Curicó"}, {"n": "Teno", "r": "07", "p": "Curicó"}, {"n": "Romeral", "r": "07", "p": "Curicó"}, {"n": "Parral", "r": "07", "p": "Linares"}, {"n": "Cañete", "r": "08", "p": "Arauco"}, {"n": "Contulmo", "r": "08", "p": "Arauco"}, {"n": "Curanilahue", "r": "08", "p": "Arauco"}, {"n": "Lebu", "r": "08", "p": "Arauco"}, {"n": "Los Alamos", "r": "08", "p": "Arauco"}, {"n": "Laja", "r": "08", "p": "Bío-Bío"}, {"n": "Los Angeles", "r": "08", "p": "Bío-Bío"}, {"n": "Mulchén", "r": "08", "p": "Bío-Bío"}, {"n": "Nacimiento", "r": "08", "p": "Bío-Bío"}, {"n": "Negrete", "r": "08", "p": "Bío-Bío"}, {"n": "Quilaco", "r": "08", "p": "Bío-Bío"}, {"n": "Quilleco", "r": "08", "p": "Bío-Bío"}, {"n": "San Rosendo", "r": "08", "p": "Bío-Bío"}, {"n": "Tucapel", "r": "08", "p": "Bío-Bío"}, {"n": "Chiguayante", "r": "08", "p": "Concepción"}, {"n": "Concepción", "r": "08", "p": "Concepción"}, {"n": "Coronel", "r": "08", "p": "Concepción"}, {"n": "Florida", "r": "08", "p": "Concepción"}, {"n": "Hualqui", "r": "08", "p": "Concepción"}, {"n": "Lota", "r": "08", "p": "Concepción"}, {"n": "San Pedro de la Paz", "r": "08", "p": "Concepción"}, {"n": "Santa Juana", "r": "08", "p": "Concepción"}, {"n": "Yumbel", "r": "08", "p": "Bío-Bío"}, {"n": "Cabrero", "r": "08", "p": "Bío-Bío"}, {"n": "Antuco", "r": "08", "p": "Bío-Bío"}, {"n": "Alto Biobío", "r": "08", "p": "Bío-Bío"}, {"n": "Tirúa", "r": "08", "p": "Arauco"}, {"n": "Hualpén", "r": "08", "p": "Concepción"}, {"n": "Talcahuano", "r": "08", "p": "Concepción"}, {"n": "Penco", "r": "08", "p": "Concepción"}, {"n": "Tomé", "r": "08", "p": "Concepción"}, {"n": "Arauco", "r": "08", "p": "Arauco"}, {"n": "Santa Bárbara", "r": "08", "p": "Bío-Bío"}, {"n": "Cholchol", "r": "09", "p": "Cautín"}, {"n": "Cunco", "r": "09", "p": "Cautín"}, {"n": "Freire", "r": "09", "p": "Cautín"}, {"n": "Galvarino", "r": "09", "p": "Cautín"}, {"n": "Nueva Imperial", "r": "09", "p": "Cautín"}, {"n": "Perquenco", "r": "09", "p": "Cautín"}, {"n": "Pitrufquén", "r": "09", "p": "Cautín"}, {"n": "Temuco", "r": "09", "p": "Cautín"}, {"n": "Teodoro Schmidt", "r": "09", "p": "Cautín"}, {"n": "Vilcún", "r": "09", "p": "Cautín"}, {"n": "Angol", "r": "09", "p": "Malleco"}, {"n": "Collipulli", "r": "09", "p": "Malleco"}, {"n": "Curacautín", "r": "09", "p": "Malleco"}, {"n": "Ercilla", "r": "09", "p": "Malleco"}, {"n": "Los Sauces", "r": "09", "p": "Malleco"}, {"n": "Lumaco", "r": "09", "p": "Malleco"}, {"n": "Purén", "r": "09", "p": "Malleco"}, {"n": "Renaico", "r": "09", "p": "Malleco"}, {"n": "Traiguén", "r": "09", "p": "Malleco"}, {"n": "Victoria", "r": "09", "p": "Malleco"}, {"n": "Gorbea", "r": "09", "p": "Cautín"}, {"n": "Lautaro", "r": "09", "p": "Cautín"}, {"n": "Lonquimay", "r": "09", "p": "Malleco"}, {"n": "Carahue", "r": "09", "p": "Cautín"}, {"n": "Toltén", "r": "09", "p": "Cautín"}, {"n": "Loncoche", "r": "09", "p": "Cautín"}, {"n": "Curarrehue", "r": "09", "p": "Cautín"}, {"n": "Saavedra", "r": "09", "p": "Cautín"}, {"n": "Villarrica", "r": "09", "p": "Cautín"}, {"n": "Pucón", "r": "09", "p": "Cautín"}, {"n": "Padre Las Casas", "r": "09", "p": "Cautín"}, {"n": "Melipeuco", "r": "09", "p": "Cautín"}, {"n": "San Pablo", "r": "10", "p": "Osorno"}, {"n": "Puqueldón", "r": "10", "p": "Chiloe"}, {"n": "Fresia", "r": "10", "p": "Llanquihue"}, {"n": "Llanquihue", "r": "10", "p": "Llanquihue"}, {"n": "Osorno", "r": "10", "p": "Osorno"}, {"n": "Purranque", "r": "10", "p": "Osorno"}, {"n": "Puyehue", "r": "10", "p": "Osorno"}, {"n": "Cochamó", "r": "10", "p": "Llanquihue"}, {"n": "Ancud", "r": "10", "p": "Chiloe"}, {"n": "Quellón", "r": "10", "p": "Chiloe"}, {"n": "Queilén", "r": "10", "p": "Chiloe"}, {"n": "Chonchi", "r": "10", "p": "Chiloe"}, {"n": "Puerto Montt", "r": "10", "p": "Llanquihue"}, {"n": "Río Negro", "r": "10", "p": "Osorno"}, {"n": "Castro", "r": "10", "p": "Chiloe"}, {"n": "Dalcahue", "r": "10", "p": "Chiloe"}, {"n": "Quemchi", "r": "10", "p": "Chiloe"}, {"n": "San Juan de la Costa", "r": "10", "p": "Osorno"}, {"n": "Calbuco", "r": "10", "p": "Llanquihue"}, {"n": "Chaitén", "r": "10", "p": "Palena"}, {"n": "Los Muermos", "r": "10", "p": "Llanquihue"}, {"n": "Maullín", "r": "10", "p": "Llanquihue"}, {"n": "Quinchao", "r": "10", "p": "Chiloe"}, {"n": "Curaco de Vélez", "r": "10", "p": "Chiloe"}, {"n": "Puerto Octay", "r": "10", "p": "Osorno"}, {"n": "Frutillar", "r": "10", "p": "Llanquihue"}, {"n": "Puerto Varas", "r": "10", "p": "Llanquihue"}, {"n": "Hualaihué", "r": "10", "p": "Palena"}, {"n": "Palena", "r": "10", "p": "Palena"}, {"n": "Futaleufú", "r": "10", "p": "Palena"}, {"n": "Río Ibáñez", "r": "11", "p": "General Carrera"}, {"n": "Chile Chico", "r": "11", "p": "General Carrera"}, {"n": "Lago Verde", "r": "11", "p": "Coyhaique"}, {"n": "Coyhaique", "r": "11", "p": "Coyhaique"}, {"n": "Cisnes", "r": "11", "p": "Aysén"}, {"n": "Tortel", "r": "11", "p": "Capitán Prat"}, {"n": "O'Higgins", "r": "11", "p": "Capitán Prat"}, {"n": "Cochrane", "r": "11", "p": "Capitán Prat"}, {"n": "Guaitecas", "r": "11", "p": "Aysén"}, {"n": "Aysén", "r": "11", "p": "Aysén"}, {"n": "Laguna Blanca", "r": "12", "p": "Magallanes"}, {"n": "Torres del Paine", "r": "12", "p": "Ultima Esperanza"}, {"n": "Primavera", "r": "12", "p": "Tierra del Fuego"}, {"n": "San Gregorio", "r": "12", "p": "Magallanes"}, {"n": "Porvenir", "r": "12", "p": "Tierra del Fuego"}, {"n": "Río Verde", "r": "12", "p": "Magallanes"}, {"n": "Punta Arenas", "r": "12", "p": "Magallanes"}, {"n": "Natales", "r": "12", "p": "Ultima Esperanza"}, {"n": "Cabo de Hornos", "r": "12", "p": "Antártica Chilena"}, {"n": "Timaukel", "r": "12", "p": "Tierra del Fuego"}, {"n": "San Joaquín", "r": "13", "p": "Santiago"}, {"n": "San Miguel", "r": "13", "p": "Santiago"}, {"n": "San Ramón", "r": "13", "p": "Santiago"}, {"n": "Independencia", "r": "13", "p": "Santiago"}, {"n": "La Cisterna", "r": "13", "p": "Santiago"}, {"n": "Peñalolén", "r": "13", "p": "Santiago"}, {"n": "Providencia", "r": "13", "p": "Santiago"}, {"n": "La Reina", "r": "13", "p": "Santiago"}, {"n": "Calera de Tango", "r": "13", "p": "Maipo"}, {"n": "Colina", "r": "13", "p": "Chacabuco"}, {"n": "Santiago", "r": "13", "p": "Santiago"}, {"n": "Lampa", "r": "13", "p": "Chacabuco"}, {"n": "Pirque", "r": "13", "p": "Cordillera"}, {"n": "Puente Alto", "r": "13", "p": "Cordillera"}, {"n": "Huechuraba", "r": "13", "p": "Santiago"}, {"n": "San Bernardo", "r": "13", "p": "Maipo"}, {"n": "Curacaví", "r": "13", "p": "Melipilla"}, {"n": "María Pinto", "r": "13", "p": "Melipilla"}, {"n": "Cerrillos", "r": "13", "p": "Santiago"}, {"n": "Cerro Navia", "r": "13", "p": "Santiago"}, {"n": "Vitacura", "r": "13", "p": "Santiago"}, {"n": "Conchalí", "r": "13", "p": "Santiago"}, {"n": "El Bosque", "r": "13", "p": "Santiago"}, {"n": "Estación Central", "r": "13", "p": "Santiago"}, {"n": "La Florida", "r": "13", "p": "Santiago"}, {"n": "La Granja", "r": "13", "p": "Santiago"}, {"n": "La Pintana", "r": "13", "p": "Santiago"}, {"n": "Las Condes", "r": "13", "p": "Santiago"}, {"n": "Lo Barnechea", "r": "13", "p": "Santiago"}, {"n": "Lo Espejo", "r": "13", "p": "Santiago"}, {"n": "Lo Prado", "r": "13", "p": "Santiago"}, {"n": "Macul", "r": "13", "p": "Santiago"}, {"n": "Maipú", "r": "13", "p": "Santiago"}, {"n": "Ñuñoa", "r": "13", "p": "Santiago"}, {"n": "Pedro Aguirre Cerda", "r": "13", "p": "Santiago"}, {"n": "Pudahuel", "r": "13", "p": "Santiago"}, {"n": "Quilicura", "r": "13", "p": "Santiago"}, {"n": "Quinta Normal", "r": "13", "p": "Santiago"}, {"n": "Recoleta", "r": "13", "p": "Santiago"}, {"n": "Renca", "r": "13", "p": "Santiago"}, {"n": "El Monte", "r": "13", "p": "Talagante"}, {"n": "Padre Hurtado", "r": "13", "p": "Talagante"}, {"n": "Peñaflor", "r": "13", "p": "Talagante"}, {"n": "Talagante", "r": "13", "p": "Talagante"}, {"n": "Paine", "r": "13", "p": "Maipo"}, {"n": "Isla de Maipo", "r": "13", "p": "Talagante"}, {"n": "Buin", "r": "13", "p": "Maipo"}, {"n": "San José de Maipo", "r": "13", "p": "Cordillera"}, {"n": "Tiltil", "r": "13", "p": "Chacabuco"}, {"n": "Melipilla", "r": "13", "p": "Melipilla"}, {"n": "San Pedro", "r": "13", "p": "Melipilla"}, {"n": "Alhué", "r": "13", "p": "Melipilla"}, {"n": "La Unión", "r": "14", "p": "Ranco"}, {"n": "Los Lagos", "r": "14", "p": "Valdivia"}, {"n": "Máfil", "r": "14", "p": "Valdivia"}, {"n": "Paillaco", "r": "14", "p": "Valdivia"}, {"n": "Lanco", "r": "14", "p": "Valdivia"}, {"n": "Panguipulli", "r": "14", "p": "Valdivia"}, {"n": "Río Bueno", "r": "14", "p": "Ranco"}, {"n": "Mariquina", "r": "14", "p": "Valdivia"}, {"n": "Corral", "r": "14", "p": "Valdivia"}, {"n": "Valdivia", "r": "14", "p": "Valdivia"}, {"n": "Lago Ranco", "r": "14", "p": "Ranco"}, {"n": "Futrono", "r": "14", "p": "Ranco"}, {"n": "Putre", "r": "15", "p": "Parinacota"}, {"n": "Camarones", "r": "15", "p": "Arica"}, {"n": "Arica", "r": "15", "p": "Arica"}, {"n": "General Lagos", "r": "15", "p": "Parinacota"}, {"n": "Bulnes", "r": "16", "p": "Ñuble"}, {"n": "Chillán Viejo", "r": "16", "p": "Ñuble"}, {"n": "Chillán", "r": "16", "p": "Ñuble"}, {"n": "Yungay", "r": "16", "p": "Ñuble"}, {"n": "Quillón", "r": "16", "p": "Ñuble"}, {"n": "San Carlos", "r": "16", "p": "Punilla"}, {"n": "Treguaco", "r": "16", "p": "Itata"}, {"n": "Ranquil", "r": "16", "p": "Itata"}, {"n": "Portezuelo", "r": "16", "p": "Itata"}, {"n": "Cobquecura", "r": "16", "p": "Itata"}, {"n": "Quirihue", "r": "16", "p": "Itata"}, {"n": "Coelemu", "r": "16", "p": "Itata"}, {"n": "Ninhue", "r": "16", "p": "Itata"}, {"n": "Pinto", "r": "16", "p": "Ñuble"}, {"n": "San Ignacio", "r": "16", "p": "Ñuble"}, {"n": "Pemuco", "r": "16", "p": "Ñuble"}, {"n": "San Nicolás", "r": "16", "p": "Punilla"}, {"n": "San Fabián", "r": "16", "p": "Punilla"}, {"n": "Ñiquén", "r": "16", "p": "Punilla"}, {"n": "El Carmen", "r": "16", "p": "Ñuble"}, {"n": "Coihueco", "r": "16", "p": "Punilla"}, {"n": "Antártica", "r": "12", "p": "Antártica Chilena"}]
+[
+ {
+  "n": "Camiña",
+  "r": "01",
+  "p": "Tamarugal"
+ },
+ {
+  "n": "Colchane",
+  "r": "01",
+  "p": "Tamarugal"
+ },
+ {
+  "n": "Pozo Almonte",
+  "r": "01",
+  "p": "Tamarugal"
+ },
+ {
+  "n": "Huara",
+  "r": "01",
+  "p": "Tamarugal"
+ },
+ {
+  "n": "Alto Hospicio",
+  "r": "01",
+  "p": "Iquique"
+ },
+ {
+  "n": "Iquique",
+  "r": "01",
+  "p": "Iquique"
+ },
+ {
+  "n": "Pica",
+  "r": "01",
+  "p": "Tamarugal"
+ },
+ {
+  "n": "María Elena",
+  "r": "02",
+  "p": "Tocopilla"
+ },
+ {
+  "n": "Calama",
+  "r": "02",
+  "p": "El Loa"
+ },
+ {
+  "n": "Tocopilla",
+  "r": "02",
+  "p": "Tocopilla"
+ },
+ {
+  "n": "Antofagasta",
+  "r": "02",
+  "p": "Antofagasta"
+ },
+ {
+  "n": "Mejillones",
+  "r": "02",
+  "p": "Antofagasta"
+ },
+ {
+  "n": "Taltal",
+  "r": "02",
+  "p": "Antofagasta"
+ },
+ {
+  "n": "Sierra Gorda",
+  "r": "02",
+  "p": "Antofagasta"
+ },
+ {
+  "n": "San Pedro de Atacama",
+  "r": "02",
+  "p": "El Loa"
+ },
+ {
+  "n": "Ollagüe",
+  "r": "02",
+  "p": "El Loa"
+ },
+ {
+  "n": "Alto del Carmen",
+  "r": "03",
+  "p": "Huasco"
+ },
+ {
+  "n": "Freirina",
+  "r": "03",
+  "p": "Huasco"
+ },
+ {
+  "n": "Huasco",
+  "r": "03",
+  "p": "Huasco"
+ },
+ {
+  "n": "Copiapó",
+  "r": "03",
+  "p": "Copiapó"
+ },
+ {
+  "n": "Caldera",
+  "r": "03",
+  "p": "Copiapó"
+ },
+ {
+  "n": "Chañaral",
+  "r": "03",
+  "p": "Chañaral"
+ },
+ {
+  "n": "Tierra Amarilla",
+  "r": "03",
+  "p": "Copiapó"
+ },
+ {
+  "n": "Diego de Almagro",
+  "r": "03",
+  "p": "Chañaral"
+ },
+ {
+  "n": "Vallenar",
+  "r": "03",
+  "p": "Huasco"
+ },
+ {
+  "n": "Andacollo",
+  "r": "04",
+  "p": "Elqui"
+ },
+ {
+  "n": "Los Vilos",
+  "r": "04",
+  "p": "Choapa"
+ },
+ {
+  "n": "Canela",
+  "r": "04",
+  "p": "Choapa"
+ },
+ {
+  "n": "Ovalle",
+  "r": "04",
+  "p": "Limarí"
+ },
+ {
+  "n": "Coquimbo",
+  "r": "04",
+  "p": "Elqui"
+ },
+ {
+  "n": "La Serena",
+  "r": "04",
+  "p": "Elqui"
+ },
+ {
+  "n": "Combarbalá",
+  "r": "04",
+  "p": "Limarí"
+ },
+ {
+  "n": "Punitaqui",
+  "r": "04",
+  "p": "Limarí"
+ },
+ {
+  "n": "Paihuano",
+  "r": "04",
+  "p": "Elqui"
+ },
+ {
+  "n": "Illapel",
+  "r": "04",
+  "p": "Choapa"
+ },
+ {
+  "n": "La Higuera",
+  "r": "04",
+  "p": "Elqui"
+ },
+ {
+  "n": "Monte Patria",
+  "r": "04",
+  "p": "Limarí"
+ },
+ {
+  "n": "Río Hurtado",
+  "r": "04",
+  "p": "Limarí"
+ },
+ {
+  "n": "Salamanca",
+  "r": "04",
+  "p": "Choapa"
+ },
+ {
+  "n": "Vicuña",
+  "r": "04",
+  "p": "Elqui"
+ },
+ {
+  "n": "Rinconada",
+  "r": "05",
+  "p": "Los Andes"
+ },
+ {
+  "n": "Cabildo",
+  "r": "05",
+  "p": "Petorca"
+ },
+ {
+  "n": "Petorca",
+  "r": "05",
+  "p": "Petorca"
+ },
+ {
+  "n": "Panquehue",
+  "r": "05",
+  "p": "San Felipe de Aconcagua"
+ },
+ {
+  "n": "Olmué",
+  "r": "05",
+  "p": "Marga Marga"
+ },
+ {
+  "n": "Cartagena",
+  "r": "05",
+  "p": "San Antonio"
+ },
+ {
+  "n": "Catemu",
+  "r": "05",
+  "p": "San Felipe de Aconcagua"
+ },
+ {
+  "n": "Llaillay",
+  "r": "05",
+  "p": "San Felipe de Aconcagua"
+ },
+ {
+  "n": "San Felipe",
+  "r": "05",
+  "p": "San Felipe de Aconcagua"
+ },
+ {
+  "n": "Santa María",
+  "r": "05",
+  "p": "San Felipe de Aconcagua"
+ },
+ {
+  "n": "Villa Alemana",
+  "r": "05",
+  "p": "Marga Marga"
+ },
+ {
+  "n": "Santo Domingo",
+  "r": "05",
+  "p": "San Antonio"
+ },
+ {
+  "n": "San Antonio",
+  "r": "05",
+  "p": "San Antonio"
+ },
+ {
+  "n": "El Tabo",
+  "r": "05",
+  "p": "San Antonio"
+ },
+ {
+  "n": "El Quisco",
+  "r": "05",
+  "p": "San Antonio"
+ },
+ {
+  "n": "Algarrobo",
+  "r": "05",
+  "p": "San Antonio"
+ },
+ {
+  "n": "Casablanca",
+  "r": "05",
+  "p": "Valparaíso"
+ },
+ {
+  "n": "Valparaíso",
+  "r": "05",
+  "p": "Valparaíso"
+ },
+ {
+  "n": "Viña del Mar",
+  "r": "05",
+  "p": "Valparaíso"
+ },
+ {
+  "n": "Concón",
+  "r": "05",
+  "p": "Valparaíso"
+ },
+ {
+  "n": "Quintero",
+  "r": "05",
+  "p": "Valparaíso"
+ },
+ {
+  "n": "Puchuncaví",
+  "r": "05",
+  "p": "Valparaíso"
+ },
+ {
+  "n": "Zapallar",
+  "r": "05",
+  "p": "Petorca"
+ },
+ {
+  "n": "Papudo",
+  "r": "05",
+  "p": "Petorca"
+ },
+ {
+  "n": "La Ligua",
+  "r": "05",
+  "p": "Petorca"
+ },
+ {
+  "n": "Juan Fernández",
+  "r": "05",
+  "p": "Valparaíso"
+ },
+ {
+  "n": "Isla de Pascua",
+  "r": "05",
+  "p": "Isla de Pascua"
+ },
+ {
+  "n": "Limache",
+  "r": "05",
+  "p": "Marga Marga"
+ },
+ {
+  "n": "Quillota",
+  "r": "05",
+  "p": "Quillota"
+ },
+ {
+  "n": "Calera",
+  "r": "05",
+  "p": "Quillota"
+ },
+ {
+  "n": "Nogales",
+  "r": "05",
+  "p": "Quillota"
+ },
+ {
+  "n": "Calle Larga",
+  "r": "05",
+  "p": "Los Andes"
+ },
+ {
+  "n": "La Cruz",
+  "r": "05",
+  "p": "Quillota"
+ },
+ {
+  "n": "Putaendo",
+  "r": "05",
+  "p": "San Felipe de Aconcagua"
+ },
+ {
+  "n": "San Esteban",
+  "r": "05",
+  "p": "Los Andes"
+ },
+ {
+  "n": "Los Andes",
+  "r": "05",
+  "p": "Los Andes"
+ },
+ {
+  "n": "Hijuelas",
+  "r": "05",
+  "p": "Quillota"
+ },
+ {
+  "n": "Quilpué",
+  "r": "05",
+  "p": "Marga Marga"
+ },
+ {
+  "n": "Marchigüe",
+  "r": "06",
+  "p": "Cardenal Caro"
+ },
+ {
+  "n": "Codegua",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Coinco",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Coltauco",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Graneros",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Malloa",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Peumo",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Pichidegua",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Rancagua",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Requínoa",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Mostazal",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "San Vicente",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Nancagua",
+  "r": "06",
+  "p": "Colchagua"
+ },
+ {
+  "n": "Peralillo",
+  "r": "06",
+  "p": "Colchagua"
+ },
+ {
+  "n": "Placilla",
+  "r": "06",
+  "p": "Colchagua"
+ },
+ {
+  "n": "Pumanque",
+  "r": "06",
+  "p": "Colchagua"
+ },
+ {
+  "n": "Paredones",
+  "r": "06",
+  "p": "Cardenal Caro"
+ },
+ {
+  "n": "Pichilemu",
+  "r": "06",
+  "p": "Cardenal Caro"
+ },
+ {
+  "n": "Litueche",
+  "r": "06",
+  "p": "Cardenal Caro"
+ },
+ {
+  "n": "Navidad",
+  "r": "06",
+  "p": "Cardenal Caro"
+ },
+ {
+  "n": "La Estrella",
+  "r": "06",
+  "p": "Cardenal Caro"
+ },
+ {
+  "n": "Doñihue",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Olivar",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Rengo",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Santa Cruz",
+  "r": "06",
+  "p": "Colchagua"
+ },
+ {
+  "n": "Palmilla",
+  "r": "06",
+  "p": "Colchagua"
+ },
+ {
+  "n": "Quinta de Tilcoco",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Machalí",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Las Cabras",
+  "r": "06",
+  "p": "Cachapoal"
+ },
+ {
+  "n": "Chimbarongo",
+  "r": "06",
+  "p": "Colchagua"
+ },
+ {
+  "n": "Lolol",
+  "r": "06",
+  "p": "Colchagua"
+ },
+ {
+  "n": "Chépica",
+  "r": "06",
+  "p": "Colchagua"
+ },
+ {
+  "n": "San Fernando",
+  "r": "06",
+  "p": "Colchagua"
+ },
+ {
+  "n": "Curepto",
+  "r": "07",
+  "p": "Talca"
+ },
+ {
+  "n": "Empedrado",
+  "r": "07",
+  "p": "Talca"
+ },
+ {
+  "n": "Pencahue",
+  "r": "07",
+  "p": "Talca"
+ },
+ {
+  "n": "Linares",
+  "r": "07",
+  "p": "Linares"
+ },
+ {
+  "n": "Longaví",
+  "r": "07",
+  "p": "Linares"
+ },
+ {
+  "n": "Talca",
+  "r": "07",
+  "p": "Talca"
+ },
+ {
+  "n": "Chanco",
+  "r": "07",
+  "p": "Cauquenes"
+ },
+ {
+  "n": "Pelluhue",
+  "r": "07",
+  "p": "Cauquenes"
+ },
+ {
+  "n": "Constitución",
+  "r": "07",
+  "p": "Talca"
+ },
+ {
+  "n": "Licantén",
+  "r": "07",
+  "p": "Curicó"
+ },
+ {
+  "n": "Vichuquén",
+  "r": "07",
+  "p": "Curicó"
+ },
+ {
+  "n": "Cauquenes",
+  "r": "07",
+  "p": "Cauquenes"
+ },
+ {
+  "n": "Río Claro",
+  "r": "07",
+  "p": "Talca"
+ },
+ {
+  "n": "Pelarco",
+  "r": "07",
+  "p": "Talca"
+ },
+ {
+  "n": "San Javier",
+  "r": "07",
+  "p": "Linares"
+ },
+ {
+  "n": "Villa Alegre",
+  "r": "07",
+  "p": "Linares"
+ },
+ {
+  "n": "Yerbas Buenas",
+  "r": "07",
+  "p": "Linares"
+ },
+ {
+  "n": "Maule",
+  "r": "07",
+  "p": "Talca"
+ },
+ {
+  "n": "San Rafael",
+  "r": "07",
+  "p": "Talca"
+ },
+ {
+  "n": "Sagrada Familia",
+  "r": "07",
+  "p": "Curicó"
+ },
+ {
+  "n": "Retiro",
+  "r": "07",
+  "p": "Linares"
+ },
+ {
+  "n": "Curicó",
+  "r": "07",
+  "p": "Curicó"
+ },
+ {
+  "n": "Molina",
+  "r": "07",
+  "p": "Curicó"
+ },
+ {
+  "n": "Colbún",
+  "r": "07",
+  "p": "Linares"
+ },
+ {
+  "n": "San Clemente",
+  "r": "07",
+  "p": "Talca"
+ },
+ {
+  "n": "Hualañé",
+  "r": "07",
+  "p": "Curicó"
+ },
+ {
+  "n": "Rauco",
+  "r": "07",
+  "p": "Curicó"
+ },
+ {
+  "n": "Teno",
+  "r": "07",
+  "p": "Curicó"
+ },
+ {
+  "n": "Romeral",
+  "r": "07",
+  "p": "Curicó"
+ },
+ {
+  "n": "Parral",
+  "r": "07",
+  "p": "Linares"
+ },
+ {
+  "n": "Cañete",
+  "r": "08",
+  "p": "Arauco"
+ },
+ {
+  "n": "Contulmo",
+  "r": "08",
+  "p": "Arauco"
+ },
+ {
+  "n": "Curanilahue",
+  "r": "08",
+  "p": "Arauco"
+ },
+ {
+  "n": "Lebu",
+  "r": "08",
+  "p": "Arauco"
+ },
+ {
+  "n": "Los Alamos",
+  "r": "08",
+  "p": "Arauco"
+ },
+ {
+  "n": "Laja",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Los Angeles",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Mulchén",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Nacimiento",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Negrete",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Quilaco",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Quilleco",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "San Rosendo",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Tucapel",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Chiguayante",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "Concepción",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "Coronel",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "Florida",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "Hualqui",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "Lota",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "San Pedro de la Paz",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "Santa Juana",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "Yumbel",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Cabrero",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Antuco",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Alto Biobío",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Tirúa",
+  "r": "08",
+  "p": "Arauco"
+ },
+ {
+  "n": "Hualpén",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "Talcahuano",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "Penco",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "Tomé",
+  "r": "08",
+  "p": "Concepción"
+ },
+ {
+  "n": "Arauco",
+  "r": "08",
+  "p": "Arauco"
+ },
+ {
+  "n": "Santa Bárbara",
+  "r": "08",
+  "p": "Biobío"
+ },
+ {
+  "n": "Cholchol",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Cunco",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Freire",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Galvarino",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Nueva Imperial",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Perquenco",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Pitrufquén",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Temuco",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Teodoro Schmidt",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Vilcún",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Angol",
+  "r": "09",
+  "p": "Malleco"
+ },
+ {
+  "n": "Collipulli",
+  "r": "09",
+  "p": "Malleco"
+ },
+ {
+  "n": "Curacautín",
+  "r": "09",
+  "p": "Malleco"
+ },
+ {
+  "n": "Ercilla",
+  "r": "09",
+  "p": "Malleco"
+ },
+ {
+  "n": "Los Sauces",
+  "r": "09",
+  "p": "Malleco"
+ },
+ {
+  "n": "Lumaco",
+  "r": "09",
+  "p": "Malleco"
+ },
+ {
+  "n": "Purén",
+  "r": "09",
+  "p": "Malleco"
+ },
+ {
+  "n": "Renaico",
+  "r": "09",
+  "p": "Malleco"
+ },
+ {
+  "n": "Traiguén",
+  "r": "09",
+  "p": "Malleco"
+ },
+ {
+  "n": "Victoria",
+  "r": "09",
+  "p": "Malleco"
+ },
+ {
+  "n": "Gorbea",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Lautaro",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Lonquimay",
+  "r": "09",
+  "p": "Malleco"
+ },
+ {
+  "n": "Carahue",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Toltén",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Loncoche",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Curarrehue",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Saavedra",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Villarrica",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Pucón",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Padre Las Casas",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "Melipeuco",
+  "r": "09",
+  "p": "Cautín"
+ },
+ {
+  "n": "San Pablo",
+  "r": "10",
+  "p": "Osorno"
+ },
+ {
+  "n": "Puqueldón",
+  "r": "10",
+  "p": "Chiloé"
+ },
+ {
+  "n": "Fresia",
+  "r": "10",
+  "p": "Llanquihue"
+ },
+ {
+  "n": "Llanquihue",
+  "r": "10",
+  "p": "Llanquihue"
+ },
+ {
+  "n": "Osorno",
+  "r": "10",
+  "p": "Osorno"
+ },
+ {
+  "n": "Purranque",
+  "r": "10",
+  "p": "Osorno"
+ },
+ {
+  "n": "Puyehue",
+  "r": "10",
+  "p": "Osorno"
+ },
+ {
+  "n": "Cochamó",
+  "r": "10",
+  "p": "Llanquihue"
+ },
+ {
+  "n": "Ancud",
+  "r": "10",
+  "p": "Chiloé"
+ },
+ {
+  "n": "Quellón",
+  "r": "10",
+  "p": "Chiloé"
+ },
+ {
+  "n": "Queilén",
+  "r": "10",
+  "p": "Chiloé"
+ },
+ {
+  "n": "Chonchi",
+  "r": "10",
+  "p": "Chiloé"
+ },
+ {
+  "n": "Puerto Montt",
+  "r": "10",
+  "p": "Llanquihue"
+ },
+ {
+  "n": "Río Negro",
+  "r": "10",
+  "p": "Osorno"
+ },
+ {
+  "n": "Castro",
+  "r": "10",
+  "p": "Chiloé"
+ },
+ {
+  "n": "Dalcahue",
+  "r": "10",
+  "p": "Chiloé"
+ },
+ {
+  "n": "Quemchi",
+  "r": "10",
+  "p": "Chiloé"
+ },
+ {
+  "n": "San Juan de la Costa",
+  "r": "10",
+  "p": "Osorno"
+ },
+ {
+  "n": "Calbuco",
+  "r": "10",
+  "p": "Llanquihue"
+ },
+ {
+  "n": "Chaitén",
+  "r": "10",
+  "p": "Palena"
+ },
+ {
+  "n": "Los Muermos",
+  "r": "10",
+  "p": "Llanquihue"
+ },
+ {
+  "n": "Maullín",
+  "r": "10",
+  "p": "Llanquihue"
+ },
+ {
+  "n": "Quinchao",
+  "r": "10",
+  "p": "Chiloé"
+ },
+ {
+  "n": "Curaco de Vélez",
+  "r": "10",
+  "p": "Chiloé"
+ },
+ {
+  "n": "Puerto Octay",
+  "r": "10",
+  "p": "Osorno"
+ },
+ {
+  "n": "Frutillar",
+  "r": "10",
+  "p": "Llanquihue"
+ },
+ {
+  "n": "Puerto Varas",
+  "r": "10",
+  "p": "Llanquihue"
+ },
+ {
+  "n": "Hualaihué",
+  "r": "10",
+  "p": "Palena"
+ },
+ {
+  "n": "Palena",
+  "r": "10",
+  "p": "Palena"
+ },
+ {
+  "n": "Futaleufú",
+  "r": "10",
+  "p": "Palena"
+ },
+ {
+  "n": "Río Ibáñez",
+  "r": "11",
+  "p": "General Carrera"
+ },
+ {
+  "n": "Chile Chico",
+  "r": "11",
+  "p": "General Carrera"
+ },
+ {
+  "n": "Lago Verde",
+  "r": "11",
+  "p": "Coihaique"
+ },
+ {
+  "n": "Coyhaique",
+  "r": "11",
+  "p": "Coihaique"
+ },
+ {
+  "n": "Cisnes",
+  "r": "11",
+  "p": "Aysén"
+ },
+ {
+  "n": "Tortel",
+  "r": "11",
+  "p": "Capitán Prat"
+ },
+ {
+  "n": "O'Higgins",
+  "r": "11",
+  "p": "Capitán Prat"
+ },
+ {
+  "n": "Cochrane",
+  "r": "11",
+  "p": "Capitán Prat"
+ },
+ {
+  "n": "Guaitecas",
+  "r": "11",
+  "p": "Aysén"
+ },
+ {
+  "n": "Aysén",
+  "r": "11",
+  "p": "Aysén"
+ },
+ {
+  "n": "Laguna Blanca",
+  "r": "12",
+  "p": "Magallanes"
+ },
+ {
+  "n": "Torres del Paine",
+  "r": "12",
+  "p": "Última Esperanza"
+ },
+ {
+  "n": "Primavera",
+  "r": "12",
+  "p": "Tierra del Fuego"
+ },
+ {
+  "n": "San Gregorio",
+  "r": "12",
+  "p": "Magallanes"
+ },
+ {
+  "n": "Porvenir",
+  "r": "12",
+  "p": "Tierra del Fuego"
+ },
+ {
+  "n": "Río Verde",
+  "r": "12",
+  "p": "Magallanes"
+ },
+ {
+  "n": "Punta Arenas",
+  "r": "12",
+  "p": "Magallanes"
+ },
+ {
+  "n": "Natales",
+  "r": "12",
+  "p": "Última Esperanza"
+ },
+ {
+  "n": "Cabo de Hornos",
+  "r": "12",
+  "p": "Antártica Chilena"
+ },
+ {
+  "n": "Timaukel",
+  "r": "12",
+  "p": "Tierra del Fuego"
+ },
+ {
+  "n": "San Joaquín",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "San Miguel",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "San Ramón",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Independencia",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "La Cisterna",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Peñalolén",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Providencia",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "La Reina",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Calera de Tango",
+  "r": "13",
+  "p": "Maipo"
+ },
+ {
+  "n": "Colina",
+  "r": "13",
+  "p": "Chacabuco"
+ },
+ {
+  "n": "Santiago",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Lampa",
+  "r": "13",
+  "p": "Chacabuco"
+ },
+ {
+  "n": "Pirque",
+  "r": "13",
+  "p": "Cordillera"
+ },
+ {
+  "n": "Puente Alto",
+  "r": "13",
+  "p": "Cordillera"
+ },
+ {
+  "n": "Huechuraba",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "San Bernardo",
+  "r": "13",
+  "p": "Maipo"
+ },
+ {
+  "n": "Curacaví",
+  "r": "13",
+  "p": "Melipilla"
+ },
+ {
+  "n": "María Pinto",
+  "r": "13",
+  "p": "Melipilla"
+ },
+ {
+  "n": "Cerrillos",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Cerro Navia",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Vitacura",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Conchalí",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "El Bosque",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Estación Central",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "La Florida",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "La Granja",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "La Pintana",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Las Condes",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Lo Barnechea",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Lo Espejo",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Lo Prado",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Macul",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Maipú",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Ñuñoa",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Pedro Aguirre Cerda",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Pudahuel",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Quilicura",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Quinta Normal",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Recoleta",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "Renca",
+  "r": "13",
+  "p": "Santiago"
+ },
+ {
+  "n": "El Monte",
+  "r": "13",
+  "p": "Talagante"
+ },
+ {
+  "n": "Padre Hurtado",
+  "r": "13",
+  "p": "Talagante"
+ },
+ {
+  "n": "Peñaflor",
+  "r": "13",
+  "p": "Talagante"
+ },
+ {
+  "n": "Talagante",
+  "r": "13",
+  "p": "Talagante"
+ },
+ {
+  "n": "Paine",
+  "r": "13",
+  "p": "Maipo"
+ },
+ {
+  "n": "Isla de Maipo",
+  "r": "13",
+  "p": "Talagante"
+ },
+ {
+  "n": "Buin",
+  "r": "13",
+  "p": "Maipo"
+ },
+ {
+  "n": "San José de Maipo",
+  "r": "13",
+  "p": "Cordillera"
+ },
+ {
+  "n": "Tiltil",
+  "r": "13",
+  "p": "Chacabuco"
+ },
+ {
+  "n": "Melipilla",
+  "r": "13",
+  "p": "Melipilla"
+ },
+ {
+  "n": "San Pedro",
+  "r": "13",
+  "p": "Melipilla"
+ },
+ {
+  "n": "Alhué",
+  "r": "13",
+  "p": "Melipilla"
+ },
+ {
+  "n": "La Unión",
+  "r": "14",
+  "p": "Ranco"
+ },
+ {
+  "n": "Los Lagos",
+  "r": "14",
+  "p": "Valdivia"
+ },
+ {
+  "n": "Máfil",
+  "r": "14",
+  "p": "Valdivia"
+ },
+ {
+  "n": "Paillaco",
+  "r": "14",
+  "p": "Valdivia"
+ },
+ {
+  "n": "Lanco",
+  "r": "14",
+  "p": "Valdivia"
+ },
+ {
+  "n": "Panguipulli",
+  "r": "14",
+  "p": "Valdivia"
+ },
+ {
+  "n": "Río Bueno",
+  "r": "14",
+  "p": "Ranco"
+ },
+ {
+  "n": "Mariquina",
+  "r": "14",
+  "p": "Valdivia"
+ },
+ {
+  "n": "Corral",
+  "r": "14",
+  "p": "Valdivia"
+ },
+ {
+  "n": "Valdivia",
+  "r": "14",
+  "p": "Valdivia"
+ },
+ {
+  "n": "Lago Ranco",
+  "r": "14",
+  "p": "Ranco"
+ },
+ {
+  "n": "Futrono",
+  "r": "14",
+  "p": "Ranco"
+ },
+ {
+  "n": "Putre",
+  "r": "15",
+  "p": "Parinacota"
+ },
+ {
+  "n": "Camarones",
+  "r": "15",
+  "p": "Arica"
+ },
+ {
+  "n": "Arica",
+  "r": "15",
+  "p": "Arica"
+ },
+ {
+  "n": "General Lagos",
+  "r": "15",
+  "p": "Parinacota"
+ },
+ {
+  "n": "Bulnes",
+  "r": "16",
+  "p": "Diguillín"
+ },
+ {
+  "n": "Chillán Viejo",
+  "r": "16",
+  "p": "Diguillín"
+ },
+ {
+  "n": "Chillán",
+  "r": "16",
+  "p": "Diguillín"
+ },
+ {
+  "n": "Yungay",
+  "r": "16",
+  "p": "Diguillín"
+ },
+ {
+  "n": "Quillón",
+  "r": "16",
+  "p": "Diguillín"
+ },
+ {
+  "n": "San Carlos",
+  "r": "16",
+  "p": "Punilla"
+ },
+ {
+  "n": "Treguaco",
+  "r": "16",
+  "p": "Itata"
+ },
+ {
+  "n": "Ranquil",
+  "r": "16",
+  "p": "Itata"
+ },
+ {
+  "n": "Portezuelo",
+  "r": "16",
+  "p": "Itata"
+ },
+ {
+  "n": "Cobquecura",
+  "r": "16",
+  "p": "Itata"
+ },
+ {
+  "n": "Quirihue",
+  "r": "16",
+  "p": "Itata"
+ },
+ {
+  "n": "Coelemu",
+  "r": "16",
+  "p": "Itata"
+ },
+ {
+  "n": "Ninhue",
+  "r": "16",
+  "p": "Itata"
+ },
+ {
+  "n": "Pinto",
+  "r": "16",
+  "p": "Diguillín"
+ },
+ {
+  "n": "San Ignacio",
+  "r": "16",
+  "p": "Diguillín"
+ },
+ {
+  "n": "Pemuco",
+  "r": "16",
+  "p": "Diguillín"
+ },
+ {
+  "n": "San Nicolás",
+  "r": "16",
+  "p": "Punilla"
+ },
+ {
+  "n": "San Fabián",
+  "r": "16",
+  "p": "Punilla"
+ },
+ {
+  "n": "Ñiquén",
+  "r": "16",
+  "p": "Punilla"
+ },
+ {
+  "n": "El Carmen",
+  "r": "16",
+  "p": "Diguillín"
+ },
+ {
+  "n": "Coihueco",
+  "r": "16",
+  "p": "Punilla"
+ },
+ {
+  "n": "Antártica",
+  "r": "12",
+  "p": "Antártica Chilena"
+ }
+]

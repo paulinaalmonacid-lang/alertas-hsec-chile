@@ -32,7 +32,7 @@
   --bg:#f4f9fd; --card:#ffffff; --card-2:#eaf3fc;
   --label:#0a1e3d; --label-2:#4a5c75; --label-3:#7e8ea4;
   --sep:#d7e5f2; --fill:rgba(4,104,181,.085); --fill-2:rgba(4,104,181,.05);
-  --blue:#0468b5; --red:#d70015; --yellow:#ffcc00; --yellow-ink:#7a5300; --green:#1f9d74; --green-ink:#0f6b50; --gray:#6b7a90;
+  --blue:#0468b5; --red:#d70015;--badge:#d70015; --yellow:#ffcc00; --yellow-ink:#7a5300; --green:#1f9d74; --green-ink:#0f6b50; --gray:#6b7a90;
   --red-tint:rgba(215,0,21,.10); --yellow-tint:rgba(255,204,0,.22); --green-tint:rgba(31,157,116,.13);
   --reg-y:#fff6d6; --reg-r:#ffe9e6; --com-y:#ffe08a; --com-r:#f7b3ac;
   --sea:#e6f0fa; --land:#ffffff; --land-hover:#eaf3fc; --region-line:#b9cde0; --commune-line:#dbe7f3;
@@ -51,7 +51,7 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){  --bg:#061020; --card:#0f1d33; --card-2:#17273f;
   --label:#eaf2fb; --label-2:#9fb3cc; --label-3:#72869e;
   --sep:rgba(145,189,222,.22); --fill:rgba(140,185,230,.14); --fill-2:rgba(140,185,230,.09);
-  --blue:#5fb0ef; --red:#ff5a4e; --yellow:#ffd60a; --yellow-ink:#ffd60a; --green:#2fb88c; --green-ink:#5fd3a8; --gray:#8696ab;
+  --blue:#5fb0ef; --red:#ff5a4e;--badge:#c3281f; --yellow:#ffd60a; --yellow-ink:#ffd60a; --green:#2fb88c; --green-ink:#5fd3a8; --gray:#8696ab;
   --red-tint:rgba(255,90,78,.20); --yellow-tint:rgba(255,214,10,.16); --green-tint:rgba(47,184,140,.18);
   --reg-y:#3a3420; --reg-r:#44242a; --com-y:#6b5d1c; --com-r:#86353a;
   --sea:#0a1526; --land:#17273f; --land-hover:#22354f; --region-line:#45597a; --commune-line:#2c3f5c;
@@ -65,7 +65,7 @@
 :root[data-theme="dark"]{  --bg:#061020; --card:#0f1d33; --card-2:#17273f;
   --label:#eaf2fb; --label-2:#9fb3cc; --label-3:#72869e;
   --sep:rgba(145,189,222,.22); --fill:rgba(140,185,230,.14); --fill-2:rgba(140,185,230,.09);
-  --blue:#5fb0ef; --red:#ff5a4e; --yellow:#ffd60a; --yellow-ink:#ffd60a; --green:#2fb88c; --green-ink:#5fd3a8; --gray:#8696ab;
+  --blue:#5fb0ef; --red:#ff5a4e;--badge:#c3281f; --yellow:#ffd60a; --yellow-ink:#ffd60a; --green:#2fb88c; --green-ink:#5fd3a8; --gray:#8696ab;
   --red-tint:rgba(255,90,78,.20); --yellow-tint:rgba(255,214,10,.16); --green-tint:rgba(47,184,140,.18);
   --reg-y:#3a3420; --reg-r:#44242a; --com-y:#6b5d1c; --com-r:#86353a;
   --sea:#0a1526; --land:#17273f; --land-hover:#22354f; --region-line:#45597a; --commune-line:#2c3f5c;
@@ -226,7 +226,7 @@ button.li:active,a.li:active{background:var(--fill)}
 .when{font:600 22px/1.15 var(--font-rounded);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
 
 .cap{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 9px 3px 8px;border-radius:999px;white-space:nowrap;line-height:1.35}
-.cap.Roja{background:var(--red-tint);color:var(--red)}
+.cap.Roja{background:var(--red-tint);color:#a8000f}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cap.Roja,:root:not([data-theme="light"]) .chg.up,:root:not([data-theme="light"]) .sp.help{color:#ff8a80}}
 :root[data-theme="dark"] .cap.Roja,:root[data-theme="dark"] .chg.up,:root[data-theme="dark"] .sp.help{color:#ff8a80}
 .cap.Amarilla{background:var(--yellow-tint);color:var(--yellow-ink)}
@@ -327,7 +327,7 @@ footer a,.help-body p a,.hcard p a{text-decoration:underline;text-underline-offs
   .tabbar button[aria-current="page"]{background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04);color:var(--blue);font-weight:600}
   .tabbar button[aria-current="page"] svg.ic{color:var(--blue)}
   .tabbar button:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent)}
-  .tb-badge{min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--red);color:#fff;font:600 11px/18px var(--font-rounded);font-style:normal;text-align:center}
+  .tb-badge{min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--badge);color:#fff;font:600 11px/18px var(--font-rounded);font-style:normal;text-align:center}
   .tb-badge.y{background:var(--yellow);color:#1d1d1f}
   .wrap [data-dtab]{display:none!important}
   body[data-tab="mapa"] .wrap [data-dtab~="mapa"]:not([hidden]),body[data-tab="alertas"] .wrap [data-dtab~="alertas"]:not([hidden]),body[data-tab="contacto"] .wrap [data-dtab~="contacto"]:not([hidden]),
@@ -383,7 +383,7 @@ footer a,.help-body p a,.hcard p a{text-decoration:underline;text-underline-offs
   .tabbar button svg.ic{width:24px;height:24px;stroke-width:1.7}
   .tabbar button[aria-current="page"]{color:var(--blue)}
   .tabbar button:focus-visible{outline:2px solid var(--blue);border-radius:8px}
-  .tb-badge{position:absolute;top:0;left:calc(50% + 6px);min-width:17px;height:17px;padding:0 5px;border-radius:999px;background:var(--red);color:#fff;font:600 11px/17px var(--font-rounded);font-style:normal;text-align:center}
+  .tb-badge{position:absolute;top:0;left:calc(50% + 6px);min-width:17px;height:17px;padding:0 5px;border-radius:999px;background:var(--badge);color:#fff;font:600 11px/17px var(--font-rounded);font-style:normal;text-align:center}
   .tb-badge.y{background:var(--yellow);color:#1d1d1f}
   .mob-only{display:flex}
   .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
@@ -475,7 +475,7 @@ details.tl li.Roja .tl-dot{background:var(--red)} details.tl li.Amarilla .tl-dot
 .crow-main:hover .cname{color:var(--blue)}
 .cval a.tel{color:var(--label);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cval a.tel:hover{color:var(--blue)}
-.cval a.wa{font-size:12px;font-weight:600;color:#fff;background:#25d366;padding:4px 9px;border-radius:999px;text-decoration:none;flex:none}
+.cval a.wa{font-size:12px;font-weight:600;color:#fff;background:#0b7a43;padding:4px 9px;border-radius:999px;text-decoration:none;flex:none}
 .cval.big a.wa{font-size:14px;padding:7px 12px}
 .cval.phone{font-weight:600}
 .cnote{font-size:13px;color:var(--label);font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -509,7 +509,7 @@ details.tl li.Roja .tl-dot{background:var(--red)} details.tl li.Amarilla .tl-dot
 textarea.field{resize:vertical;min-height:60px;font:15px/1.4 var(--font)}
 @media (max-width:600px){.g-actions{grid-template-columns:1fr}.act{flex-direction:row;min-height:52px}.g-name{font-size:24px}.cstate{grid-column:2;align-items:flex-start;flex-direction:row;gap:8px}}
 .btn.block{width:100%}
-.btn .ct{font:600 13px/1 var(--font-rounded);background:rgba(255,255,255,.22);padding:3px 8px;border-radius:999px}
+.btn .ct{font:600 13px/1 var(--font-rounded);background:rgba(0,0,0,.34);padding:3px 8px;border-radius:999px}
 .btn:disabled{opacity:.45;cursor:default}
 .overlay{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.32);display:flex;align-items:center;justify-content:center;
   padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
@@ -942,7 +942,7 @@ table.t.mini td{white-space:nowrap}
       </div>
       <label class="search"><svg class="ic"><use href="#i-search"/></svg><input type="search" id="q" placeholder="Buscar nombre, comuna o región" aria-label="Buscar"></label>
     </div>
-    <div class="tbl-wrap"><table class="t"><thead id="thead"></thead><tbody id="tbody"></tbody></table><div class="more" id="more" hidden></div></div>
+    <div class="tbl-wrap" tabindex="0"><table class="t"><thead id="thead"></thead><tbody id="tbody"></tbody></table><div class="more" id="more" hidden></div></div>
   </section>
 
   <section data-tab="planilla" data-dtab="planilla">
@@ -1064,7 +1064,7 @@ table.t.mini td{white-space:nowrap}
           <p class="sub">Necesitas un archivo con, al menos, el <b>nombre</b> y la <b>comuna</b> de cada persona. Puede ser Excel (.xlsx o .xls), CSV o JSON.</p>
           <div class="hcard"><h4>Opción 1 · Excel</h4>
             <p>La primera fila debe tener los títulos de las columnas. Solo <b>Nombre</b> y <b>Comuna</b> son obligatorias; las demás son opcionales y aparecen en la lista. Si alguien trabaja en una comuna distinta de donde vive, agrega <b>Comuna de trabajo</b> y déjala vacía para quienes no la necesiten.</p>
-            <div class="tbl-wrap"><table class="t mini"><thead><tr><th>Nombre</th><th>Comuna</th><th>Comuna de trabajo</th><th>Área</th><th>Teléfono</th></tr></thead>
+            <div class="tbl-wrap" tabindex="0"><table class="t mini"><thead><tr><th>Nombre</th><th>Comuna</th><th>Comuna de trabajo</th><th>Área</th><th>Teléfono</th></tr></thead>
               <tbody><tr><td>Ana Pérez</td><td>Puente Alto</td><td>Arauco</td><td>Operaciones</td><td>+56 9 1234 5678</td></tr>
               <tr><td>Luis Soto</td><td>Arauco</td><td></td><td>Mantención</td><td>+56 9 2345 6789</td></tr></tbody></table></div>
             <div class="row"><button type="button" class="btn sm" data-copytpl="tsv"><svg class="ic"><use href="#i-copy"/></svg>Copiar plantilla para Excel</button><span class="foot">Pégala en una hoja nueva de Excel (celda A1) y reemplaza los ejemplos.</span></div>

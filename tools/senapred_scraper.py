@@ -81,8 +81,13 @@ def action_of(title):
 
 
 def hazard_of(title):
-    m = re.search(r"\s+por\s+(.+?)(?:\s+y\s+(?:se\s+)?declara\s+.*)?$", title, flags=re.I)
+    """El peligro es lo que va despues de "por". El titulo puede seguir con el
+    alcance o con la cancelacion de otra alerta, y eso no es parte del peligro:
+    "... por calor extremo para las Comunas de X y cancela Alerta Amarilla ..."."""
+    m = re.search(r"\s+por\s+(.+)$", title, flags=re.I)
     h = m.group(1).strip() if m else ""
+    h = re.split(r"\s+(?:y\s+(?:se\s+)?(?:declara|cancela)\b|para\s+(?:la|las|el|los)\b)", h, maxsplit=1, flags=re.I)[0]
+    h = re.sub(r"\s+", " ", h).strip(" .,;:")
     return h[:1].upper() + h[1:] if h else ""
 
 
@@ -95,6 +100,18 @@ class Places:
             self.by_region.setdefault(c["r"], []).append(c["n"])
             self.by_prov.setdefault(norm(c["p"]), []).append(c["n"])
 
+    def prov_lookup(self, nombre):
+        """Busca una provincia tolerando el nombre corto: "San Felipe" tiene que
+        encontrar "San Felipe de Aconcagua", y "El Loa" tanto con articulo como sin el."""
+        n = norm(nombre).strip()
+        if not n:
+            return None
+        if n in self.by_prov:
+            return self.by_prov[n]
+        cand = [k for k in self.by_prov
+                if k.startswith(n + " ") or n.startswith(k + " ") or k == "el " + n or n == "el " + k]
+        return self.by_prov[cand[0]] if len(cand) == 1 else None
+
     def resolve(self, title):
         """Devuelve (comunas, regiones, texto_no_resuelto) a partir del título del boletín vigente."""
         t = title.replace("’", "'")
@@ -103,7 +120,9 @@ class Places:
         scope = m.group(1) if m else t
         communes, regions, unresolved = [], set(), []
         # comunas explícitas
-        for cm in re.finditer(r"(?:la|las)\s+comunas?\s+de\s+(.+?)(?=\s+(?:en|de)\s+la\s+regi[oó]n|\s+y\s+para\s+|$)", scope, flags=re.I):
+        # El articulo es opcional: SENAPRED escribe tanto "y las comunas de X"
+        # como "y comunas de X", y el tramo termina donde empieza otro alcance.
+        for cm in re.finditer(r"(?:(?:la|las)\s+)?comunas?\s+de\s+(.+?)(?=\s+(?:en|de)\s+la\s+regi[oó]n|\s+y\s+para\s+|\s+y\s+(?:la|las\s+)?provincias?\s|$)", scope, flags=re.I):
             parts = re.split(r",\s*|\s+y\s+", cm.group(1))
             for p in parts:
                 p = p.strip()
@@ -114,10 +133,12 @@ class Places:
                     communes.append(c["n"]); regions.add(c["r"])
                 else:
                     unresolved.append(p)
-        # provincias
-        for pm in re.finditer(r"(?:la|las)\s+provincias?\s+de\s+(.+?)(?=\s+y\s+(?:la|las)\s+comuna|\s+en\s+la\s+regi[oó]n|$)", scope, flags=re.I):
+        # provincias. SENAPRED escribe "de", "del" y "de la" segun la provincia
+        # ("Provincia del Tamarugal", "Provincia de Arauco"), y a veces usa el
+        # nombre corto de una provincia cuyo nombre oficial es mas largo.
+        for pm in re.finditer(r"(?:la|las)\s+provincias?\s+(?:de\s+la\s+|del\s+|de\s+)?(.+?)(?=\s+y\s+(?:la|las\s+)?comunas?\s|\s+en\s+la\s+regi[oó]n|$)", scope, flags=re.I):
             for p in re.split(r",\s*|\s+y\s+", pm.group(1)):
-                lst = self.by_prov.get(norm(p))
+                lst = self.prov_lookup(p)
                 if lst:
                     communes += lst
                     regions.add(self.by_key[key(lst[0])]["r"])
@@ -132,6 +153,10 @@ class Places:
                     communes = list(self.by_region.get(code, [])); regions.add(code)
                 else:
                     unresolved.append("región " + rm.group(1).strip())
+        # Fragmentos que otro tramo del mismo titulo ya resolvio: no son avisos utiles.
+        unresolved = [u for u in unresolved
+                      if not re.search(r"\bcancela\b", norm(u))
+                      and not (u.startswith("provincia ") and re.search(r"comunas? de", norm(u)))]
         seen, out = set(), []
         for c in communes:
             if c not in seen:
@@ -152,6 +177,12 @@ def parse_ficha(text):
                 entries.append({"title": lines[j], "at": l})
     region = next((l for l in lines[:6] if re.match(r"^regi[oó]n\b", l, flags=re.I)), "")
     return entries, region
+
+
+# Una alerta que deja de aparecer en SENAPRED sin cancelacion visible se conserva
+# por si el listado la escondio, pero no para siempre: pasada una semana se descarta,
+# porque dejarla inflaria las personas expuestas con una emergencia ya terminada.
+DIAS_CONSERVAR = 7
 
 
 def ts(at):
@@ -300,9 +331,26 @@ def build(items, fichas, places, previous, now):
     # Alertas previas que ya no aparecen y sin cancelación visible: se conservan
     found = {a["officialUrl"] for a in alerts} | {c["officialUrl"] for c in cancels}
     for a in prev_alerts:
-        if a.get("officialUrl") not in found:
-            warnings.append("La alerta '" + a.get("hazard", "") + " (" + ", ".join(a.get("communes", [])[:3]) + ")' ya no aparece y no se encontró su cancelación: SE CONSERVA. Revisar su ficha: " + str(a.get("officialUrl")))
-            alerts.append(a)
+        if a.get("officialUrl") in found:
+            continue
+        etiqueta = (a.get("hazard", "") + " (" + ", ".join(a.get("communes", [])[:3]) + ")")
+        # SENAPRED a veces reemplaza un boletin por otro con URL nueva: si ya hay
+        # una alerta vigente del mismo nivel, peligro y alcance, esta es la copia vieja.
+        copia = any(b["level"] == a.get("level")
+                    and norm(b.get("hazard", "")) == norm(a.get("hazard", ""))
+                    and set(b.get("communes", [])) == set(a.get("communes", []))
+                    for b in alerts)
+        if copia:
+            warnings.append("La alerta '" + etiqueta + "' aparece con un boletin nuevo: se descarta la copia anterior.")
+            continue
+        desde = a.get("missingSince") or now.strftime("%d-%m-%Y %H:%M")
+        d0 = ts(desde)
+        dias = (now - d0).days if d0 else 0
+        if dias >= DIAS_CONSERVAR:
+            warnings.append("La alerta '" + etiqueta + "' lleva " + str(dias) + " dias sin aparecer en SENAPRED y sin cancelacion: SE DESCARTA. Ficha: " + str(a.get("officialUrl")))
+            continue
+        warnings.append("La alerta '" + etiqueta + "' ya no aparece y no se encontró su cancelación: SE CONSERVA (dia " + str(dias + 1) + " de " + str(DIAS_CONSERVAR) + "). Revisar su ficha: " + str(a.get("officialUrl")))
+        alerts.append({**a, "missingSince": desde})
     alerts.sort(key=lambda a: (0 if a["level"] == "Roja" else 1, a["hazard"]))
     return alerts, cancels, warnings
 
