@@ -179,10 +179,11 @@ def parse_ficha(text):
     return entries, region
 
 
-# Una alerta que deja de aparecer en SENAPRED sin cancelacion visible se conserva
-# por si el listado la escondio, pero no para siempre: pasada una semana se descarta,
-# porque dejarla inflaria las personas expuestas con una emergencia ya terminada.
-DIAS_CONSERVAR = 7
+# El listado de SENAPRED es cronologico: una alerta que sigue vigente puede quedar
+# fuera de las paginas leidas solo por ser antigua. Por eso una alerta que deja de
+# aparecer sin cancelacion NO se borra -- borrarla dejaria gente expuesta sin aviso--
+# sino que se marca con la fecha desde la que no se confirma, para revisarla a mano.
+DIAS_AVISAR = 7
 
 
 def ts(at):
@@ -346,10 +347,8 @@ def build(items, fichas, places, previous, now):
         desde = a.get("missingSince") or now.strftime("%d-%m-%Y %H:%M")
         d0 = ts(desde)
         dias = (now - d0).days if d0 else 0
-        if dias >= DIAS_CONSERVAR:
-            warnings.append("La alerta '" + etiqueta + "' lleva " + str(dias) + " dias sin aparecer en SENAPRED y sin cancelacion: SE DESCARTA. Ficha: " + str(a.get("officialUrl")))
-            continue
-        warnings.append("La alerta '" + etiqueta + "' ya no aparece y no se encontró su cancelación: SE CONSERVA (dia " + str(dias + 1) + " de " + str(DIAS_CONSERVAR) + "). Revisar su ficha: " + str(a.get("officialUrl")))
+        urgente = " REVISAR: lleva " + str(dias) + " dias sin confirmarse." if dias >= DIAS_AVISAR else ""
+        warnings.append("La alerta '" + etiqueta + "' no aparece en el listado y no se encontro su cancelacion: SE CONSERVA y queda marcada como sin confirmar desde el " + desde + "." + urgente + " Ficha: " + str(a.get("officialUrl")))
         alerts.append({**a, "missingSince": desde})
     alerts.sort(key=lambda a: (0 if a["level"] == "Roja" else 1, a["hazard"]))
     return alerts, cancels, warnings

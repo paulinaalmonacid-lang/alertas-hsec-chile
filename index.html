@@ -649,6 +649,10 @@ table.t.mini td{white-space:nowrap}
 .colmap-grid .f{gap:5px}
 .colmap-grid .minisel{width:100%}
 .colmap-grid .minisel select{width:100%}
+.meta .sc{grid-column:1/-1}
+.meta .sc b{color:#a8000f;font-weight:600;line-height:1.35}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .meta .sc b{color:#ff8a80}}
+:root[data-theme="dark"] .meta .sc b{color:#ff8a80}
 .sis-m{flex:none;width:44px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--fill);color:var(--label);
   font:700 16px/1 var(--font-rounded);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 .sis-m.medio{background:color-mix(in srgb,var(--yellow) 30%,transparent);color:#7a5a00}
@@ -1795,7 +1799,8 @@ function alertLi(ai){
 }
 function backLi(label,attr){return '<button type="button" class="li" '+attr+'><span class="main-t"><span class="t1" style="color:var(--blue)">‹ '+esc(label)+'</span></span></button>';}
 function metaGrid(a){
-  return '<div class="meta"><div><span>Declarada</span><b>'+esc(a.officialDeclaredAt||"—")+'</b></div><div><span>Última act. oficial</span><b>'+esc(a.officialUpdatedAt||"No informada")+'</b></div>'+(a.verifiedAt?'<div><span>Verificada</span><b>'+esc(a.verifiedAt)+'</b></div>':'')+'</div>';
+  return '<div class="meta"><div><span>Declarada</span><b>'+esc(a.officialDeclaredAt||"—")+'</b></div><div><span>Última act. oficial</span><b>'+esc(a.officialUpdatedAt||"No informada")+'</b></div>'+(a.verifiedAt?'<div><span>Verificada</span><b>'+esc(a.verifiedAt)+'</b></div>':'')+
+    (a.missingSince?'<div class="sc"><span>Sin confirmar</span><b>No aparece en el listado de SENAPRED desde el '+esc(a.missingSince)+'. Confirma en la ficha oficial antes de actuar.</b></div>':'')+'</div>';
 }
 function renderSelection(){
   const P=$("selPanel"), T=$("selTitle"), F=$("selFoot"); let h="", foot="";
