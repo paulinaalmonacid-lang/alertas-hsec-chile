@@ -21,7 +21,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-provincia-de-el-loa-y-las-comunas-de-antofagasta-sierra-gorda-y-maria-elena-por-calor-extremo-2026-11-11-13-20-47",
       "officialDeclaredAt": "11-11-2026 13:19",
       "officialUpdatedAt": "",
-      "verifiedAt": "13-11-2026 23:30",
+      "verifiedAt": "14-11-2026 08:37",
       "history": [
         {
           "at": "11-11-2026 13:19",
@@ -47,7 +47,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-provincia-del-tamarugal-por-calor-extremo-2026-11-09-18-34-03",
       "officialDeclaredAt": "09-11-2026 18:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "13-11-2026 23:30",
+      "verifiedAt": "14-11-2026 08:37",
       "history": [
         {
           "at": "09-11-2026 18:25",
@@ -69,7 +69,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-alto-del-carmen-por-desborde-2026-11-10-18-43-26",
       "officialDeclaredAt": "10-11-2026 18:41",
       "officialUpdatedAt": "11-11-2026 22:53",
-      "verifiedAt": "13-11-2026 23:30",
+      "verifiedAt": "14-11-2026 08:37",
       "history": [
         {
           "at": "10-11-2026 18:41",
@@ -112,7 +112,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-monte-patria-por-crecida-2026-11-06-23-35-42",
       "officialDeclaredAt": "09-11-2026 00:25",
       "officialUpdatedAt": "11-11-2026 13:49",
-      "verifiedAt": "13-11-2026 23:30",
+      "verifiedAt": "14-11-2026 08:37",
       "history": [
         {
           "at": "06-11-2026 23:35",
@@ -154,7 +154,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-rio-hurtado-por-desborde-2026-11-09-03-47-13",
       "officialDeclaredAt": "09-11-2026 03:46",
       "officialUpdatedAt": "10-11-2026 21:26",
-      "verifiedAt": "13-11-2026 23:30",
+      "verifiedAt": "14-11-2026 08:37",
       "history": [
         {
           "at": "09-11-2026 03:46",
@@ -181,7 +181,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "13-11-2026 23:30",
+      "verifiedAt": "14-11-2026 08:37",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -213,7 +213,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "13-11-2026 23:30",
+      "verifiedAt": "14-11-2026 08:37",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -235,13 +235,18 @@
       "detail": "Se declara Alerta Amarilla para las comunas de Los Andes y San Esteban por crecida",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-los-andes-y-san-esteban-por-crecida-2026-11-12-22-13-04",
       "officialDeclaredAt": "12-11-2026 22:13",
-      "officialUpdatedAt": "",
-      "verifiedAt": "13-11-2026 23:30",
+      "officialUpdatedAt": "14-11-2026 01:05",
+      "verifiedAt": "14-11-2026 08:37",
       "history": [
         {
           "at": "12-11-2026 22:13",
           "level": "Amarilla",
           "action": "Se declara Alerta Amarilla"
+        },
+        {
+          "at": "14-11-2026 01:05",
+          "level": "Amarilla",
+          "action": "Monitoreo Alerta Amarilla"
         }
       ]
     },
@@ -265,7 +270,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-salamanca-por-crecida-2026-11-09-02-13-13",
       "officialDeclaredAt": "09-11-2026 02:12",
       "officialUpdatedAt": "11-11-2026 16:01",
-      "verifiedAt": "13-11-2026 23:30",
+      "verifiedAt": "14-11-2026 08:37",
       "history": [
         {
           "at": "09-11-2026 02:12",
@@ -317,7 +322,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "13-11-2026 23:30",
+      "verifiedAt": "14-11-2026 08:37",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -348,7 +353,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22",
       "officialDeclaredAt": "13-10-2026 12:21",
       "officialUpdatedAt": "14-10-2026 11:59",
-      "verifiedAt": "13-11-2026 23:30",
+      "verifiedAt": "14-11-2026 08:37",
       "history": [
         {
           "at": "08-10-2026 18:49",
@@ -405,6 +410,28 @@
   ],
   "recentChanges": [],
   "preventive": [
+    {
+      "at": "14-11-2026 01:45",
+      "hazard": "Crecida",
+      "region": "Región de Valparaíso",
+      "communes": [
+        "Concón",
+        "Quintero",
+        "Quillota",
+        "Limache",
+        "Panquehue",
+        "Catemu",
+        "Llaillay",
+        "San Felipe",
+        "Santa María",
+        "Putaendo"
+      ],
+      "regions": [
+        "05"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para las Provincia de San Felipe y las comunas de Concón, Quintero, Quillota y Limache por crecida",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-provincia-de-san-felipe-y-las-comunas-de-los-andes-y-san-esteban-por-crecida-2026-11-11-21-08-18"
+    },
     {
       "at": "13-11-2026 19:39",
       "hazard": "Evento meteorológico",
@@ -478,28 +505,6 @@
       ],
       "detail": "Se declara Alerta Temprana Preventiva para la Región del Maule por viento",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-del-maule-por-viento-2026-11-13-16-36-34"
-    },
-    {
-      "at": "12-11-2026 22:29",
-      "hazard": "Crecida",
-      "region": "Región de Valparaíso",
-      "communes": [
-        "Concón",
-        "Quintero",
-        "Quillota",
-        "Limache",
-        "Panquehue",
-        "Catemu",
-        "Llaillay",
-        "San Felipe",
-        "Santa María",
-        "Putaendo"
-      ],
-      "regions": [
-        "05"
-      ],
-      "detail": "Se modifica cobertura de Alerta Temprana Preventiva para las Provincia de San Felipe y las comunas de Concón, Quintero, Quillota y Limache por crecida",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-provincia-de-san-felipe-y-las-comunas-de-los-andes-y-san-esteban-por-crecida-2026-11-11-21-08-18"
     },
     {
       "at": "12-11-2026 20:01",
@@ -700,5 +705,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-corral-por-remocion-en-masa"
     }
   ],
-  "generatedAt": "2026-11-13T23:30:59-03:00"
+  "generatedAt": "2026-11-14T08:37:06-03:00"
 }
