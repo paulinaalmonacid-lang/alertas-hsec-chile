@@ -19,7 +19,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-provincia-de-el-loa-y-las-comunas-de-antofagasta-sierra-gorda-y-maria-elena-por-calor-extremo-2026-11-11-13-20-47",
       "officialDeclaredAt": "11-11-2026 13:19",
       "officialUpdatedAt": "14-11-2026 17:08",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "11-11-2026 13:19",
@@ -50,7 +50,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-provincia-del-tamarugal-por-calor-extremo-2026-11-09-18-34-03",
       "officialDeclaredAt": "09-11-2026 18:25",
       "officialUpdatedAt": "14-11-2026 16:41",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "09-11-2026 18:25",
@@ -83,7 +83,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-monte-patria-por-crecida-2026-11-06-23-35-42",
       "officialDeclaredAt": "09-11-2026 00:25",
       "officialUpdatedAt": "14-11-2026 23:21",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "06-11-2026 23:35",
@@ -135,7 +135,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-alto-del-carmen-por-desborde-2026-11-10-18-43-26",
       "officialDeclaredAt": "10-11-2026 18:41",
       "officialUpdatedAt": "11-11-2026 22:53",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "10-11-2026 18:41",
@@ -172,7 +172,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-rio-hurtado-por-desborde-2026-11-09-03-47-13",
       "officialDeclaredAt": "09-11-2026 03:46",
       "officialUpdatedAt": "10-11-2026 21:26",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "09-11-2026 03:46",
@@ -183,28 +183,6 @@
           "at": "10-11-2026 21:26",
           "level": "Roja",
           "action": "Monitoreo Alerta Roja"
-        }
-      ]
-    },
-    {
-      "id": "SENAPRED-SE-DECLARA-ALERTA-ROJA-PARA-LA-COMUNA-DE-CHONCHI-POR-INCENDIO-FORESTAL-2026-11-1",
-      "level": "Roja",
-      "hazard": "Incendio forestal",
-      "region": "Región de los Lagos",
-      "communes": [
-        "Chonchi"
-      ],
-      "source": "SENAPRED - Alerta Roja oficial",
-      "detail": "Se declara Alerta Roja para la comuna de Chonchi por incendio forestal",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-chonchi-por-incendio-forestal-2026-11-14-22-22-00",
-      "officialDeclaredAt": "14-11-2026 22:21",
-      "officialUpdatedAt": "",
-      "verifiedAt": "15-11-2026 14:16",
-      "history": [
-        {
-          "at": "14-11-2026 22:21",
-          "level": "Roja",
-          "action": "Se declara Alerta Roja"
         }
       ]
     },
@@ -221,7 +199,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -253,7 +231,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -280,7 +258,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-los-andes-y-san-esteban-por-crecida-2026-11-12-22-13-04",
       "officialDeclaredAt": "12-11-2026 22:13",
       "officialUpdatedAt": "14-11-2026 22:33",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "12-11-2026 22:13",
@@ -314,7 +292,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-huasco-freirina-y-vallenar-por-crecida-2026-11-14-21-37-54",
       "officialDeclaredAt": "14-11-2026 21:33",
       "officialUpdatedAt": "",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "14-11-2026 21:33",
@@ -343,7 +321,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-salamanca-por-crecida-2026-11-09-02-13-13",
       "officialDeclaredAt": "09-11-2026 02:12",
       "officialUpdatedAt": "11-11-2026 16:01",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "09-11-2026 02:12",
@@ -395,7 +373,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -426,7 +404,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22",
       "officialDeclaredAt": "13-10-2026 12:21",
       "officialUpdatedAt": "14-10-2026 11:59",
-      "verifiedAt": "15-11-2026 14:16",
+      "verifiedAt": "15-11-2026 20:25",
       "history": [
         {
           "at": "08-10-2026 18:49",
@@ -481,10 +459,85 @@
       ]
     }
   ],
-  "recentChanges": [],
+  "recentChanges": [
+    {
+      "at": "15-11-2026 15:35",
+      "type": "cancelled",
+      "level": "Roja",
+      "hazard": "Incendio forestal",
+      "region": "Región de los Lagos",
+      "communes": [
+        "Chonchi"
+      ],
+      "detail": "Se cancela Alerta Roja para la comuna de Chonchi por incendio forestal",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-chonchi-por-incendio-forestal-2026-11-14-22-22-00"
+    }
+  ],
   "preventive": [
     {
-      "at": "15-11-2026 11:00",
+      "at": "15-11-2026 19:42",
+      "hazard": "Evento meteorológico",
+      "region": "Región de Coquimbo",
+      "communes": [
+        "La Higuera",
+        "Paihuano",
+        "Vicuña",
+        "Río Hurtado",
+        "Monte Patria",
+        "Combarbalá",
+        "Illapel",
+        "Salamanca"
+      ],
+      "regions": [
+        "04"
+      ],
+      "detail": "Se declara Alerta Temprana Preventiva para las comunas de La Higuera, Paihuano, Vicuña, Río Hurtado, Monte Patria, Combarbalá, Illapel y Salamanca por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-la-higuera-paihuano-vicuna-rio-hurtado-monte-patria-combarbala-illapel-y-salamanca-por-evento-meteorologico-2026-11-15-19-44-35"
+    },
+    {
+      "at": "15-11-2026 18:05",
+      "hazard": "Evento meteorológico",
+      "region": "Región del Maule",
+      "communes": [
+        "Curepto",
+        "Empedrado",
+        "Pencahue",
+        "Linares",
+        "Longaví",
+        "Talca",
+        "Chanco",
+        "Pelluhue",
+        "Constitución",
+        "Licantén",
+        "Vichuquén",
+        "Cauquenes",
+        "Río Claro",
+        "Pelarco",
+        "San Javier",
+        "Villa Alegre",
+        "Yerbas Buenas",
+        "Maule",
+        "San Rafael",
+        "Sagrada Familia",
+        "Retiro",
+        "Curicó",
+        "Molina",
+        "Colbún",
+        "San Clemente",
+        "Hualañé",
+        "Rauco",
+        "Teno",
+        "Romeral",
+        "Parral"
+      ],
+      "regions": [
+        "07"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región del Maule por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-del-maule-por-viento-2026-11-13-16-36-34"
+    },
+    {
+      "at": "15-11-2026 17:50",
       "hazard": "Evento meteorológico",
       "region": "Región de Los Lagos",
       "communes": [
@@ -522,44 +575,11 @@
       "regions": [
         "10"
       ],
-      "detail": "Se modifica Alerta Temprana Preventiva para la Región de Los Lagos por evento meteorológico",
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Los Lagos por evento meteorológico",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-los-lagos-por-tormentas-electricas-2026-11-14-18-32-10"
     },
     {
-      "at": "15-11-2026 09:16",
-      "hazard": "Evento meteorológico",
-      "region": "Región de Ñuble",
-      "communes": [
-        "Bulnes",
-        "Chillán Viejo",
-        "Chillán",
-        "Yungay",
-        "Quillón",
-        "San Carlos",
-        "Treguaco",
-        "Ranquil",
-        "Portezuelo",
-        "Cobquecura",
-        "Quirihue",
-        "Coelemu",
-        "Ninhue",
-        "Pinto",
-        "San Ignacio",
-        "Pemuco",
-        "San Nicolás",
-        "San Fabián",
-        "Ñiquén",
-        "El Carmen",
-        "Coihueco"
-      ],
-      "regions": [
-        "16"
-      ],
-      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Ñuble por evento meteorológico",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-uble-por-evento-meteorologico-2026-11-14-15-36-40"
-    },
-    {
-      "at": "15-11-2026 08:26",
+      "at": "15-11-2026 17:08",
       "hazard": "Tormentas eléctricas",
       "region": "Región de La Araucanía",
       "communes": [
@@ -601,6 +621,84 @@
       ],
       "detail": "Monitoreo Alerta Temprana Preventiva para la Región de La Araucanía por tormentas eléctricas",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-la-araucania-por-tormentas-electricas-2026-11-14-14-16-28"
+    },
+    {
+      "at": "15-11-2026 16:45",
+      "hazard": "Evento meteorológico",
+      "region": "Región de O'Higgins",
+      "communes": [
+        "Marchigüe",
+        "Codegua",
+        "Coinco",
+        "Coltauco",
+        "Graneros",
+        "Malloa",
+        "Peumo",
+        "Pichidegua",
+        "Rancagua",
+        "Requínoa",
+        "Mostazal",
+        "San Vicente",
+        "Nancagua",
+        "Peralillo",
+        "Placilla",
+        "Pumanque",
+        "Paredones",
+        "Pichilemu",
+        "Litueche",
+        "Navidad",
+        "La Estrella",
+        "Doñihue",
+        "Olivar",
+        "Rengo",
+        "Santa Cruz",
+        "Palmilla",
+        "Quinta de Tilcoco",
+        "Machalí",
+        "Las Cabras",
+        "Chimbarongo",
+        "Lolol",
+        "Chépica",
+        "San Fernando"
+      ],
+      "regions": [
+        "06"
+      ],
+      "detail": "Se modifica Alerta Temprana Preventiva para la Región de O'Higgins por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-ohiggins-por-viento-2026-11-14-17-37-04"
+    },
+    {
+      "at": "15-11-2026 09:16",
+      "hazard": "Evento meteorológico",
+      "region": "Región de Ñuble",
+      "communes": [
+        "Bulnes",
+        "Chillán Viejo",
+        "Chillán",
+        "Yungay",
+        "Quillón",
+        "San Carlos",
+        "Treguaco",
+        "Ranquil",
+        "Portezuelo",
+        "Cobquecura",
+        "Quirihue",
+        "Coelemu",
+        "Ninhue",
+        "Pinto",
+        "San Ignacio",
+        "Pemuco",
+        "San Nicolás",
+        "San Fabián",
+        "Ñiquén",
+        "El Carmen",
+        "Coihueco"
+      ],
+      "regions": [
+        "16"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Ñuble por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-uble-por-evento-meteorologico-2026-11-14-15-36-40"
     },
     {
       "at": "15-11-2026 08:10",
@@ -682,48 +780,6 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-provincia-de-el-loa-y-comunas-de-antofagasta-y-taltal-por-tormentas-electricas-2026-11-09-14-14-37"
     },
     {
-      "at": "14-11-2026 22:11",
-      "hazard": "Evento Meteorológico",
-      "region": "Región del Maule",
-      "communes": [
-        "Curepto",
-        "Empedrado",
-        "Pencahue",
-        "Linares",
-        "Longaví",
-        "Talca",
-        "Chanco",
-        "Pelluhue",
-        "Constitución",
-        "Licantén",
-        "Vichuquén",
-        "Cauquenes",
-        "Río Claro",
-        "Pelarco",
-        "San Javier",
-        "Villa Alegre",
-        "Yerbas Buenas",
-        "Maule",
-        "San Rafael",
-        "Sagrada Familia",
-        "Retiro",
-        "Curicó",
-        "Molina",
-        "Colbún",
-        "San Clemente",
-        "Hualañé",
-        "Rauco",
-        "Teno",
-        "Romeral",
-        "Parral"
-      ],
-      "regions": [
-        "07"
-      ],
-      "detail": "Se modifica Alerta Temprana Preventiva para la región del Maule por Evento Meteorológico",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-del-maule-por-viento-2026-11-13-16-36-34"
-    },
-    {
       "at": "14-11-2026 21:47",
       "hazard": "Crecida",
       "region": "Región de Atacama",
@@ -737,51 +793,6 @@
       ],
       "detail": "Se modifica cobertura de Alerta Temprana Preventiva para la provincia de Copiapó por crecida",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-comuna-de-alto-del-carmen-por-crecida-2026-09-26-02-27-03"
-    },
-    {
-      "at": "14-11-2026 17:35",
-      "hazard": "Viento",
-      "region": "Región de O'Higgins",
-      "communes": [
-        "Marchigüe",
-        "Codegua",
-        "Coinco",
-        "Coltauco",
-        "Graneros",
-        "Malloa",
-        "Peumo",
-        "Pichidegua",
-        "Rancagua",
-        "Requínoa",
-        "Mostazal",
-        "San Vicente",
-        "Nancagua",
-        "Peralillo",
-        "Placilla",
-        "Pumanque",
-        "Paredones",
-        "Pichilemu",
-        "Litueche",
-        "Navidad",
-        "La Estrella",
-        "Doñihue",
-        "Olivar",
-        "Rengo",
-        "Santa Cruz",
-        "Palmilla",
-        "Quinta de Tilcoco",
-        "Machalí",
-        "Las Cabras",
-        "Chimbarongo",
-        "Lolol",
-        "Chépica",
-        "San Fernando"
-      ],
-      "regions": [
-        "06"
-      ],
-      "detail": "Se declara Alerta Temprana Preventiva para la Región de O'Higgins por viento",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-ohiggins-por-viento-2026-11-14-17-37-04"
     },
     {
       "at": "14-11-2026 17:32",
@@ -1004,5 +1015,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-corral-por-remocion-en-masa"
     }
   ],
-  "generatedAt": "2026-11-15T14:16:33-03:00"
+  "generatedAt": "2026-11-15T20:25:58-03:00"
 }
