@@ -4,36 +4,6 @@
   "note": "Feed operativo HSEC. Solo Alertas Amarillas y Rojas SENAPRED. Distingue fecha oficial y verificacion. history = boletines oficiales de cada alerta; recentChanges = cancelaciones oficiales de los ultimos 14 dias.",
   "alerts": [
     {
-      "id": "SENAPRED-SE-DECLARA-ALERTA-ROJA-PARA-LA-PROVINCIA-DE-EL-LOA-Y-LAS-COMUNAS-DE-ANTOFAGASTA-",
-      "level": "Roja",
-      "hazard": "Calor extremo",
-      "region": "Región de Antofagasta",
-      "communes": [
-        "Antofagasta",
-        "Sierra Gorda",
-        "María Elena",
-        "San Pedro de Atacama"
-      ],
-      "source": "SENAPRED - Alerta Roja oficial",
-      "detail": "Se declara Alerta Roja para la Provincia de El Loa y las comunas de Antofagasta, Sierra Gorda y María Elena por calor extremo",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-provincia-de-el-loa-y-las-comunas-de-antofagasta-sierra-gorda-y-maria-elena-por-calor-extremo-2026-11-11-13-20-47",
-      "officialDeclaredAt": "11-11-2026 13:19",
-      "officialUpdatedAt": "14-11-2026 17:08",
-      "verifiedAt": "15-11-2026 20:25",
-      "history": [
-        {
-          "at": "11-11-2026 13:19",
-          "level": "Roja",
-          "action": "Se declara Alerta Roja"
-        },
-        {
-          "at": "14-11-2026 17:08",
-          "level": "Roja",
-          "action": "Se modifica cobertura de Alerta Roja"
-        }
-      ]
-    },
-    {
       "id": "SENAPRED-SE-DECLARA-ALERTA-ROJA-PARA-LA-PROVINCIA-DEL-TAMARUGAL-POR-CALOR-EXTREMO-2026-11",
       "level": "Roja",
       "hazard": "Calor extremo",
@@ -50,7 +20,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-provincia-del-tamarugal-por-calor-extremo-2026-11-09-18-34-03",
       "officialDeclaredAt": "09-11-2026 18:25",
       "officialUpdatedAt": "14-11-2026 16:41",
-      "verifiedAt": "15-11-2026 20:25",
+      "verifiedAt": "16-11-2026 05:04",
       "history": [
         {
           "at": "09-11-2026 18:25",
@@ -61,6 +31,31 @@
           "at": "14-11-2026 16:41",
           "level": "Roja",
           "action": "Monitoreo Alerta Roja"
+        }
+      ]
+    },
+    {
+      "id": "SENAPRED-SE-DECLARA-ALERTA-ROJA-PARA-LAS-COMUNAS-DE-CONCON-QUINTERO-QUILLOTA-Y-LIMACHE-PO",
+      "level": "Roja",
+      "hazard": "Desborde",
+      "region": "Región de Valparaíso",
+      "communes": [
+        "Concón",
+        "Quintero",
+        "Quillota",
+        "Limache"
+      ],
+      "source": "SENAPRED - Alerta Roja oficial",
+      "detail": "Se declara Alerta Roja para las comunas de Concón, Quintero, Quillota y Limache por desborde",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comunas-de-concon-quintero-quillota-y-limache-por-desborde-2026-11-15-23-32-36",
+      "officialDeclaredAt": "15-11-2026 23:31",
+      "officialUpdatedAt": "",
+      "verifiedAt": "16-11-2026 05:04",
+      "history": [
+        {
+          "at": "15-11-2026 23:31",
+          "level": "Roja",
+          "action": "Se declara Alerta Roja"
         }
       ]
     },
@@ -83,7 +78,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-monte-patria-por-crecida-2026-11-06-23-35-42",
       "officialDeclaredAt": "09-11-2026 00:25",
       "officialUpdatedAt": "14-11-2026 23:21",
-      "verifiedAt": "15-11-2026 20:25",
+      "verifiedAt": "16-11-2026 05:04",
       "history": [
         {
           "at": "06-11-2026 23:35",
@@ -135,7 +130,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-alto-del-carmen-por-desborde-2026-11-10-18-43-26",
       "officialDeclaredAt": "10-11-2026 18:41",
       "officialUpdatedAt": "11-11-2026 22:53",
-      "verifiedAt": "15-11-2026 20:25",
+      "verifiedAt": "16-11-2026 05:04",
       "history": [
         {
           "at": "10-11-2026 18:41",
@@ -172,7 +167,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-rio-hurtado-por-desborde-2026-11-09-03-47-13",
       "officialDeclaredAt": "09-11-2026 03:46",
       "officialUpdatedAt": "10-11-2026 21:26",
-      "verifiedAt": "15-11-2026 20:25",
+      "verifiedAt": "16-11-2026 05:04",
       "history": [
         {
           "at": "09-11-2026 03:46",
@@ -199,7 +194,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "15-11-2026 20:25",
+      "verifiedAt": "16-11-2026 05:04",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -231,7 +226,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "15-11-2026 20:25",
+      "verifiedAt": "16-11-2026 05:04",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -247,18 +242,14 @@
       "region": "Región de Valparaíso",
       "communes": [
         "Los Andes",
-        "San Esteban",
-        "Concón",
-        "Quintero",
-        "Quillota",
-        "Limache"
+        "San Esteban"
       ],
       "source": "SENAPRED - Alerta Amarilla oficial",
       "detail": "Se declara Alerta Amarilla para las comunas de Los Andes y San Esteban por crecida",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-los-andes-y-san-esteban-por-crecida-2026-11-12-22-13-04",
       "officialDeclaredAt": "12-11-2026 22:13",
-      "officialUpdatedAt": "14-11-2026 22:33",
-      "verifiedAt": "15-11-2026 20:25",
+      "officialUpdatedAt": "16-11-2026 00:40",
+      "verifiedAt": "16-11-2026 05:04",
       "history": [
         {
           "at": "12-11-2026 22:13",
@@ -272,6 +263,11 @@
         },
         {
           "at": "14-11-2026 22:33",
+          "level": "Amarilla",
+          "action": "Se modifica cobertura de Alerta Amarilla"
+        },
+        {
+          "at": "16-11-2026 00:40",
           "level": "Amarilla",
           "action": "Se modifica cobertura de Alerta Amarilla"
         }
@@ -291,11 +287,38 @@
       "detail": "Se declara Alerta Amarilla para las Comunas de Huasco, Freirina y Vallenar por crecida",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-huasco-freirina-y-vallenar-por-crecida-2026-11-14-21-37-54",
       "officialDeclaredAt": "14-11-2026 21:33",
-      "officialUpdatedAt": "",
-      "verifiedAt": "15-11-2026 20:25",
+      "officialUpdatedAt": "15-11-2026 22:37",
+      "verifiedAt": "16-11-2026 05:04",
       "history": [
         {
           "at": "14-11-2026 21:33",
+          "level": "Amarilla",
+          "action": "Se declara Alerta Amarilla"
+        },
+        {
+          "at": "15-11-2026 22:37",
+          "level": "Amarilla",
+          "action": "Monitoreo Alerta Amarilla"
+        }
+      ]
+    },
+    {
+      "id": "SENAPRED-SE-DECLARA-ALERTA-AMARILLA-PARA-LA-COMUNA-DE-TIERRA-AMARILLA-POR-CRECIDA-2026-11",
+      "level": "Amarilla",
+      "hazard": "Crecida",
+      "region": "Región de Atacama",
+      "communes": [
+        "Tierra Amarilla"
+      ],
+      "source": "SENAPRED - Alerta Amarilla oficial",
+      "detail": "Se declara Alerta Amarilla para la comuna de Tierra Amarilla por crecida",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-tierra-amarilla-por-crecida-2026-11-15-20-54-08",
+      "officialDeclaredAt": "15-11-2026 20:52",
+      "officialUpdatedAt": "",
+      "verifiedAt": "16-11-2026 05:04",
+      "history": [
+        {
+          "at": "15-11-2026 20:52",
           "level": "Amarilla",
           "action": "Se declara Alerta Amarilla"
         }
@@ -321,7 +344,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-salamanca-por-crecida-2026-11-09-02-13-13",
       "officialDeclaredAt": "09-11-2026 02:12",
       "officialUpdatedAt": "11-11-2026 16:01",
-      "verifiedAt": "15-11-2026 20:25",
+      "verifiedAt": "16-11-2026 05:04",
       "history": [
         {
           "at": "09-11-2026 02:12",
@@ -373,7 +396,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "15-11-2026 20:25",
+      "verifiedAt": "16-11-2026 05:04",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -404,7 +427,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22",
       "officialDeclaredAt": "13-10-2026 12:21",
       "officialUpdatedAt": "14-10-2026 11:59",
-      "verifiedAt": "15-11-2026 20:25",
+      "verifiedAt": "16-11-2026 05:04",
       "history": [
         {
           "at": "08-10-2026 18:49",
@@ -461,19 +484,36 @@
   ],
   "recentChanges": [
     {
-      "at": "15-11-2026 15:35",
+      "at": "15-11-2026 20:36",
       "type": "cancelled",
       "level": "Roja",
-      "hazard": "Incendio forestal",
-      "region": "Región de los Lagos",
+      "hazard": "Calor extremo",
+      "region": "Región de Antofagasta",
       "communes": [
-        "Chonchi"
+        "Antofagasta",
+        "Sierra Gorda",
+        "María Elena",
+        "San Pedro de Atacama"
       ],
-      "detail": "Se cancela Alerta Roja para la comuna de Chonchi por incendio forestal",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-chonchi-por-incendio-forestal-2026-11-14-22-22-00"
+      "detail": "Se cancela Alerta Roja para las comunas de Antofagasta, Sierra Gorda, María Elena y San Pedro de Atacama por calor extremo",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-provincia-de-el-loa-y-las-comunas-de-antofagasta-sierra-gorda-y-maria-elena-por-calor-extremo-2026-11-11-13-20-47"
     }
   ],
   "preventive": [
+    {
+      "at": "15-11-2026 20:31",
+      "hazard": "Crecida",
+      "region": "Región de Atacama",
+      "communes": [
+        "Copiapó",
+        "Caldera"
+      ],
+      "regions": [
+        "03"
+      ],
+      "detail": "Se modifica cobertura de Alerta Temprana Preventiva para las comunas de Copiapó y Caldera por crecida",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-comuna-de-alto-del-carmen-por-crecida-2026-09-26-02-27-03"
+    },
     {
       "at": "15-11-2026 19:42",
       "hazard": "Evento meteorológico",
@@ -780,21 +820,6 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-provincia-de-el-loa-y-comunas-de-antofagasta-y-taltal-por-tormentas-electricas-2026-11-09-14-14-37"
     },
     {
-      "at": "14-11-2026 21:47",
-      "hazard": "Crecida",
-      "region": "Región de Atacama",
-      "communes": [
-        "Copiapó",
-        "Caldera",
-        "Tierra Amarilla"
-      ],
-      "regions": [
-        "03"
-      ],
-      "detail": "Se modifica cobertura de Alerta Temprana Preventiva para la provincia de Copiapó por crecida",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-comuna-de-alto-del-carmen-por-crecida-2026-09-26-02-27-03"
-    },
-    {
       "at": "14-11-2026 17:32",
       "hazard": "Viento",
       "region": "Región de Atacama",
@@ -1015,5 +1040,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-corral-por-remocion-en-masa"
     }
   ],
-  "generatedAt": "2026-11-15T20:25:58-03:00"
+  "generatedAt": "2026-11-16T05:04:08-03:00"
 }
