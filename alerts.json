@@ -16,7 +16,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-alto-del-carmen-por-desborde-2026-11-10-18-43-26",
       "officialDeclaredAt": "10-11-2026 18:41",
       "officialUpdatedAt": "16-11-2026 16:14",
-      "verifiedAt": "17-11-2026 01:36",
+      "verifiedAt": "17-11-2026 13:57",
       "history": [
         {
           "at": "10-11-2026 18:41",
@@ -64,7 +64,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-monte-patria-por-crecida-2026-11-06-23-35-42",
       "officialDeclaredAt": "09-11-2026 00:25",
       "officialUpdatedAt": "16-11-2026 12:17",
-      "verifiedAt": "17-11-2026 01:36",
+      "verifiedAt": "17-11-2026 13:57",
       "history": [
         {
           "at": "06-11-2026 23:35",
@@ -121,7 +121,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-rio-hurtado-por-desborde-2026-11-09-03-47-13",
       "officialDeclaredAt": "09-11-2026 03:46",
       "officialUpdatedAt": "10-11-2026 21:26",
-      "verifiedAt": "17-11-2026 01:36",
+      "verifiedAt": "17-11-2026 13:57",
       "history": [
         {
           "at": "09-11-2026 03:46",
@@ -148,7 +148,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "17-11-2026 01:36",
+      "verifiedAt": "17-11-2026 13:57",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -180,12 +180,39 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "17-11-2026 01:36",
+      "verifiedAt": "17-11-2026 13:57",
       "history": [
         {
           "at": "19-06-2026 19:57",
           "level": "Amarilla",
           "action": "Se declara Alerta Amarilla"
+        }
+      ]
+    },
+    {
+      "id": "SENAPRED-SE-DECLARA-ALERTA-AMARILLA-PARA-LA-COMUNA-DE-TIERRA-AMARILLA-POR-CRECIDA-2026-11",
+      "level": "Amarilla",
+      "hazard": "Crecida",
+      "region": "Región de Atacama",
+      "communes": [
+        "Tierra Amarilla"
+      ],
+      "source": "SENAPRED - Alerta Amarilla oficial",
+      "detail": "Se declara Alerta Amarilla para la comuna de Tierra Amarilla por crecida",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-tierra-amarilla-por-crecida-2026-11-15-20-54-08",
+      "officialDeclaredAt": "15-11-2026 20:52",
+      "officialUpdatedAt": "17-11-2026 13:30",
+      "verifiedAt": "17-11-2026 13:57",
+      "history": [
+        {
+          "at": "15-11-2026 20:52",
+          "level": "Amarilla",
+          "action": "Se declara Alerta Amarilla"
+        },
+        {
+          "at": "17-11-2026 13:30",
+          "level": "Amarilla",
+          "action": "Monitoreo Alerta Amarilla"
         }
       ]
     },
@@ -207,7 +234,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-los-andes-y-san-esteban-por-crecida-2026-11-12-22-13-04",
       "officialDeclaredAt": "12-11-2026 22:13",
       "officialUpdatedAt": "16-11-2026 12:26",
-      "verifiedAt": "17-11-2026 01:36",
+      "verifiedAt": "17-11-2026 13:57",
       "history": [
         {
           "at": "12-11-2026 22:13",
@@ -251,7 +278,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-huasco-freirina-y-vallenar-por-crecida-2026-11-14-21-37-54",
       "officialDeclaredAt": "14-11-2026 21:33",
       "officialUpdatedAt": "15-11-2026 22:37",
-      "verifiedAt": "17-11-2026 01:36",
+      "verifiedAt": "17-11-2026 13:57",
       "history": [
         {
           "at": "14-11-2026 21:33",
@@ -262,28 +289,6 @@
           "at": "15-11-2026 22:37",
           "level": "Amarilla",
           "action": "Monitoreo Alerta Amarilla"
-        }
-      ]
-    },
-    {
-      "id": "SENAPRED-SE-DECLARA-ALERTA-AMARILLA-PARA-LA-COMUNA-DE-TIERRA-AMARILLA-POR-CRECIDA-2026-11",
-      "level": "Amarilla",
-      "hazard": "Crecida",
-      "region": "Región de Atacama",
-      "communes": [
-        "Tierra Amarilla"
-      ],
-      "source": "SENAPRED - Alerta Amarilla oficial",
-      "detail": "Se declara Alerta Amarilla para la comuna de Tierra Amarilla por crecida",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-tierra-amarilla-por-crecida-2026-11-15-20-54-08",
-      "officialDeclaredAt": "15-11-2026 20:52",
-      "officialUpdatedAt": "",
-      "verifiedAt": "17-11-2026 01:36",
-      "history": [
-        {
-          "at": "15-11-2026 20:52",
-          "level": "Amarilla",
-          "action": "Se declara Alerta Amarilla"
         }
       ]
     },
@@ -307,7 +312,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-salamanca-por-crecida-2026-11-09-02-13-13",
       "officialDeclaredAt": "09-11-2026 02:12",
       "officialUpdatedAt": "11-11-2026 16:01",
-      "verifiedAt": "17-11-2026 01:36",
+      "verifiedAt": "17-11-2026 13:57",
       "history": [
         {
           "at": "09-11-2026 02:12",
@@ -359,7 +364,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "17-11-2026 01:36",
+      "verifiedAt": "17-11-2026 13:57",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -371,6 +376,108 @@
   ],
   "recentChanges": [],
   "preventive": [
+    {
+      "at": "17-11-2026 09:07",
+      "hazard": "Evento meteorológico",
+      "region": "Región de Ñuble",
+      "communes": [
+        "Bulnes",
+        "Chillán Viejo",
+        "Chillán",
+        "Yungay",
+        "Quillón",
+        "San Carlos",
+        "Treguaco",
+        "Ranquil",
+        "Portezuelo",
+        "Cobquecura",
+        "Quirihue",
+        "Coelemu",
+        "Ninhue",
+        "Pinto",
+        "San Ignacio",
+        "Pemuco",
+        "San Nicolás",
+        "San Fabián",
+        "Ñiquén",
+        "El Carmen",
+        "Coihueco"
+      ],
+      "regions": [
+        "16"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Ñuble por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-uble-por-evento-meteorologico-2026-11-14-15-36-40"
+    },
+    {
+      "at": "17-11-2026 08:41",
+      "hazard": "Evento meteorológico",
+      "region": "Región del Biobío",
+      "communes": [
+        "Cañete",
+        "Contulmo",
+        "Curanilahue",
+        "Lebu",
+        "Los Alamos",
+        "Laja",
+        "Los Angeles",
+        "Mulchén",
+        "Nacimiento",
+        "Negrete",
+        "Quilaco",
+        "Quilleco",
+        "San Rosendo",
+        "Tucapel",
+        "Chiguayante",
+        "Concepción",
+        "Coronel",
+        "Florida",
+        "Hualqui",
+        "Lota",
+        "San Pedro de la Paz",
+        "Santa Juana",
+        "Yumbel",
+        "Cabrero",
+        "Antuco",
+        "Alto Biobío",
+        "Tirúa",
+        "Hualpén",
+        "Talcahuano",
+        "Penco",
+        "Tomé",
+        "Arauco",
+        "Santa Bárbara"
+      ],
+      "regions": [
+        "08"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región del Biobío por evento meteorológico",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-del-biobio-por-evento-meteorologico-2026-11-14-14-22-49"
+    },
+    {
+      "at": "17-11-2026 01:57",
+      "hazard": "Tormentas eléctricas",
+      "region": "Región de Los Ríos",
+      "communes": [
+        "La Unión",
+        "Los Lagos",
+        "Máfil",
+        "Paillaco",
+        "Lanco",
+        "Panguipulli",
+        "Río Bueno",
+        "Mariquina",
+        "Corral",
+        "Valdivia",
+        "Lago Ranco",
+        "Futrono"
+      ],
+      "regions": [
+        "14"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Los Ríos por tormentas eléctricas",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-los-rios-por-tormentas-electricas-2026-11-14-14-06-56"
+    },
     {
       "at": "17-11-2026 01:00",
       "hazard": "Tormentas eléctricas",
@@ -554,39 +661,6 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-del-maule-por-viento-2026-11-13-16-36-34"
     },
     {
-      "at": "16-11-2026 10:14",
-      "hazard": "Evento meteorológico",
-      "region": "Región de Ñuble",
-      "communes": [
-        "Bulnes",
-        "Chillán Viejo",
-        "Chillán",
-        "Yungay",
-        "Quillón",
-        "San Carlos",
-        "Treguaco",
-        "Ranquil",
-        "Portezuelo",
-        "Cobquecura",
-        "Quirihue",
-        "Coelemu",
-        "Ninhue",
-        "Pinto",
-        "San Ignacio",
-        "Pemuco",
-        "San Nicolás",
-        "San Fabián",
-        "Ñiquén",
-        "El Carmen",
-        "Coihueco"
-      ],
-      "regions": [
-        "16"
-      ],
-      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Ñuble por evento meteorológico",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-uble-por-evento-meteorologico-2026-11-14-15-36-40"
-    },
-    {
       "at": "15-11-2026 20:31",
       "hazard": "Crecida",
       "region": "Región de Atacama",
@@ -646,51 +720,6 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-ohiggins-por-viento-2026-11-14-17-37-04"
     },
     {
-      "at": "15-11-2026 08:10",
-      "hazard": "Evento meteorológico",
-      "region": "Región del Biobío",
-      "communes": [
-        "Cañete",
-        "Contulmo",
-        "Curanilahue",
-        "Lebu",
-        "Los Alamos",
-        "Laja",
-        "Los Angeles",
-        "Mulchén",
-        "Nacimiento",
-        "Negrete",
-        "Quilaco",
-        "Quilleco",
-        "San Rosendo",
-        "Tucapel",
-        "Chiguayante",
-        "Concepción",
-        "Coronel",
-        "Florida",
-        "Hualqui",
-        "Lota",
-        "San Pedro de la Paz",
-        "Santa Juana",
-        "Yumbel",
-        "Cabrero",
-        "Antuco",
-        "Alto Biobío",
-        "Tirúa",
-        "Hualpén",
-        "Talcahuano",
-        "Penco",
-        "Tomé",
-        "Arauco",
-        "Santa Bárbara"
-      ],
-      "regions": [
-        "08"
-      ],
-      "detail": "Monitoreo Alerta Temprana Preventiva para la Región del Biobío por evento meteorológico",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-del-biobio-por-evento-meteorologico-2026-11-14-14-22-49"
-    },
-    {
       "at": "15-11-2026 02:15",
       "hazard": "Crecida",
       "region": "Región de Valparaíso",
@@ -707,30 +736,6 @@
       ],
       "detail": "Se modifica cobertura de Alerta Temprana Preventiva para la Provincia de San Felipe por crecida",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-provincia-de-san-felipe-y-las-comunas-de-los-andes-y-san-esteban-por-crecida-2026-11-11-21-08-18"
-    },
-    {
-      "at": "14-11-2026 15:38",
-      "hazard": "Tormentas eléctricas",
-      "region": "Región de Los Ríos",
-      "communes": [
-        "La Unión",
-        "Los Lagos",
-        "Máfil",
-        "Paillaco",
-        "Lanco",
-        "Panguipulli",
-        "Río Bueno",
-        "Mariquina",
-        "Corral",
-        "Valdivia",
-        "Lago Ranco",
-        "Futrono"
-      ],
-      "regions": [
-        "14"
-      ],
-      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Los Ríos por tormentas eléctricas",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-los-rios-por-tormentas-electricas-2026-11-14-14-06-56"
     },
     {
       "at": "12-11-2026 20:01",
@@ -881,5 +886,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-villarrica-pucon-y-curarrehue-en-la-region-de-la-araucania-y-para-la-comuna-de-panguipulli-en-la-region-de-los-rios-por-actividad-del-volcan-villarrica-2026-09-04-19-28-53"
     }
   ],
-  "generatedAt": "2026-11-17T01:36:16-03:00"
+  "generatedAt": "2026-11-17T13:57:15-03:00"
 }
