@@ -16,7 +16,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-alto-del-carmen-por-desborde-2026-11-10-18-43-26",
       "officialDeclaredAt": "10-11-2026 18:41",
       "officialUpdatedAt": "16-11-2026 16:14",
-      "verifiedAt": "16-11-2026 17:34",
+      "verifiedAt": "17-11-2026 01:36",
       "history": [
         {
           "at": "10-11-2026 18:41",
@@ -64,7 +64,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-monte-patria-por-crecida-2026-11-06-23-35-42",
       "officialDeclaredAt": "09-11-2026 00:25",
       "officialUpdatedAt": "16-11-2026 12:17",
-      "verifiedAt": "16-11-2026 17:34",
+      "verifiedAt": "17-11-2026 01:36",
       "history": [
         {
           "at": "06-11-2026 23:35",
@@ -121,7 +121,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-rio-hurtado-por-desborde-2026-11-09-03-47-13",
       "officialDeclaredAt": "09-11-2026 03:46",
       "officialUpdatedAt": "10-11-2026 21:26",
-      "verifiedAt": "16-11-2026 17:34",
+      "verifiedAt": "17-11-2026 01:36",
       "history": [
         {
           "at": "09-11-2026 03:46",
@@ -148,7 +148,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "16-11-2026 17:34",
+      "verifiedAt": "17-11-2026 01:36",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -180,7 +180,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "16-11-2026 17:34",
+      "verifiedAt": "17-11-2026 01:36",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -207,7 +207,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-los-andes-y-san-esteban-por-crecida-2026-11-12-22-13-04",
       "officialDeclaredAt": "12-11-2026 22:13",
       "officialUpdatedAt": "16-11-2026 12:26",
-      "verifiedAt": "16-11-2026 17:34",
+      "verifiedAt": "17-11-2026 01:36",
       "history": [
         {
           "at": "12-11-2026 22:13",
@@ -251,7 +251,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-huasco-freirina-y-vallenar-por-crecida-2026-11-14-21-37-54",
       "officialDeclaredAt": "14-11-2026 21:33",
       "officialUpdatedAt": "15-11-2026 22:37",
-      "verifiedAt": "16-11-2026 17:34",
+      "verifiedAt": "17-11-2026 01:36",
       "history": [
         {
           "at": "14-11-2026 21:33",
@@ -278,7 +278,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-tierra-amarilla-por-crecida-2026-11-15-20-54-08",
       "officialDeclaredAt": "15-11-2026 20:52",
       "officialUpdatedAt": "",
-      "verifiedAt": "16-11-2026 17:34",
+      "verifiedAt": "17-11-2026 01:36",
       "history": [
         {
           "at": "15-11-2026 20:52",
@@ -307,7 +307,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-salamanca-por-crecida-2026-11-09-02-13-13",
       "officialDeclaredAt": "09-11-2026 02:12",
       "officialUpdatedAt": "11-11-2026 16:01",
-      "verifiedAt": "16-11-2026 17:34",
+      "verifiedAt": "17-11-2026 01:36",
       "history": [
         {
           "at": "09-11-2026 02:12",
@@ -359,7 +359,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "16-11-2026 17:34",
+      "verifiedAt": "17-11-2026 01:36",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -369,61 +369,52 @@
       ]
     }
   ],
-  "recentChanges": [
-    {
-      "at": "16-11-2026 10:12",
-      "type": "cancelled",
-      "level": "Roja",
-      "hazard": "Calor extremo",
-      "region": "Región de Tarapacá",
-      "communes": [
-        "Camiña",
-        "Colchane",
-        "Pozo Almonte",
-        "Huara",
-        "Pica"
-      ],
-      "detail": "Se cancela Alerta Roja para la provincia del Tamarugal por calor extremo",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-provincia-del-tamarugal-por-calor-extremo-2026-11-09-18-34-03"
-    },
-    {
-      "at": "16-11-2026 11:03",
-      "type": "cancelled",
-      "level": "Roja",
-      "hazard": "Desborde",
-      "region": "Región de Valparaíso",
-      "communes": [
-        "Concón",
-        "Quintero",
-        "Quillota",
-        "Limache"
-      ],
-      "detail": "Se cancela Alerta Roja para las comunas de Concón, Quintero, Quillota y Limache por desborde",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comunas-de-concon-quintero-quillota-y-limache-por-desborde-2026-11-15-23-32-36"
-    },
-    {
-      "at": "04-11-2026 12:54",
-      "type": "cancelled",
-      "level": "Amarilla",
-      "hazard": "Remoción en masa",
-      "region": "Región Metropolitana de Santiago",
-      "communes": [
-        "San José de Maipo",
-        "Puente Alto",
-        "Pirque",
-        "La Florida",
-        "Peñalolén",
-        "La Reina",
-        "Las Condes",
-        "Lo Barnechea",
-        "Vitacura",
-        "Colina"
-      ],
-      "detail": "Se cancela Alerta Temprana Preventiva para las comunas de San José de Maipo, Puente Alto, Pirque, La Florida, Peñalolén, La Reina, Las Condes, Lo Barnechea, Vitacura y Colina por remoción en masa",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-las-comuna-de-san-jose-de-maipo-puente-alto-pirque-la-florida-penalolen-la-reina-las-condes-lo-barnechea-vitacura-y-colina-por-remocion-en-masa-2026-10-08-18-55-22"
-    }
-  ],
+  "recentChanges": [],
   "preventive": [
+    {
+      "at": "17-11-2026 01:00",
+      "hazard": "Tormentas eléctricas",
+      "region": "Región de La Araucanía",
+      "communes": [
+        "Cholchol",
+        "Cunco",
+        "Freire",
+        "Galvarino",
+        "Nueva Imperial",
+        "Perquenco",
+        "Pitrufquén",
+        "Temuco",
+        "Teodoro Schmidt",
+        "Vilcún",
+        "Angol",
+        "Collipulli",
+        "Curacautín",
+        "Ercilla",
+        "Los Sauces",
+        "Lumaco",
+        "Purén",
+        "Renaico",
+        "Traiguén",
+        "Victoria",
+        "Gorbea",
+        "Lautaro",
+        "Lonquimay",
+        "Carahue",
+        "Toltén",
+        "Loncoche",
+        "Curarrehue",
+        "Saavedra",
+        "Villarrica",
+        "Pucón",
+        "Padre Las Casas",
+        "Melipeuco"
+      ],
+      "regions": [
+        "09"
+      ],
+      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de La Araucanía por tormentas eléctricas",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-la-araucania-por-tormentas-electricas-2026-11-14-14-16-28"
+    },
     {
       "at": "16-11-2026 16:22",
       "hazard": "Evento meteorológico",
@@ -519,50 +510,6 @@
       ],
       "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Los Lagos por evento meteorológico",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-los-lagos-por-tormentas-electricas-2026-11-14-18-32-10"
-    },
-    {
-      "at": "16-11-2026 11:36",
-      "hazard": "Tormentas eléctricas",
-      "region": "Región de La Araucanía",
-      "communes": [
-        "Cholchol",
-        "Cunco",
-        "Freire",
-        "Galvarino",
-        "Nueva Imperial",
-        "Perquenco",
-        "Pitrufquén",
-        "Temuco",
-        "Teodoro Schmidt",
-        "Vilcún",
-        "Angol",
-        "Collipulli",
-        "Curacautín",
-        "Ercilla",
-        "Los Sauces",
-        "Lumaco",
-        "Purén",
-        "Renaico",
-        "Traiguén",
-        "Victoria",
-        "Gorbea",
-        "Lautaro",
-        "Lonquimay",
-        "Carahue",
-        "Toltén",
-        "Loncoche",
-        "Curarrehue",
-        "Saavedra",
-        "Villarrica",
-        "Pucón",
-        "Padre Las Casas",
-        "Melipeuco"
-      ],
-      "regions": [
-        "09"
-      ],
-      "detail": "Monitoreo Alerta Temprana Preventiva para la Región de La Araucanía por tormentas eléctricas",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-la-araucania-por-tormentas-electricas-2026-11-14-14-16-28"
     },
     {
       "at": "16-11-2026 11:32",
@@ -934,5 +881,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-villarrica-pucon-y-curarrehue-en-la-region-de-la-araucania-y-para-la-comuna-de-panguipulli-en-la-region-de-los-rios-por-actividad-del-volcan-villarrica-2026-09-04-19-28-53"
     }
   ],
-  "generatedAt": "2026-11-16T17:34:39-03:00"
+  "generatedAt": "2026-11-17T01:36:16-03:00"
 }
