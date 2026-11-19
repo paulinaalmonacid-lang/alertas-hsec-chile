@@ -914,7 +914,7 @@ table.t.mini td{white-space:nowrap}
         <p class="foot" style="padding:0 2px">No son Alertas Amarillas ni Rojas. Son avisos previos de SENAPRED, muchos por pronósticos de la Dirección Meteorológica o riesgo de incendio, que suelen anticipar una alerta formal. No cuentan como personas expuestas ni aparecen en la lista de contacto.</p>
       </div>
 
-      <div class="group" id="subsBox" data-tab="alertas" data-dtab="alertas"><div class="sect sect-row" style="justify-content:space-between"><span>Avisos por correo</span><span id="subsCount" style="text-transform:none;letter-spacing:0"></span></div><div class="list" id="subsBody"></div><div class="foot" style="padding:6px 16px 0">Llega un correo cuando SENAPRED declara, sube de nivel o cancela una Alerta Roja o Amarilla. Revisión automática tres veces al día.</div></div>
+      <div class="group" id="subsBox" data-tab="alertas" data-dtab="alertas"><div class="sect sect-row" style="justify-content:space-between"><span>Avisos por correo</span><span id="subsCount" style="text-transform:none;letter-spacing:0"></span></div><div class="list" id="subsBody"></div><div class="foot" style="padding:6px 16px 0">Llega un correo cuando SENAPRED declara, sube de nivel o cancela una Alerta Roja o Amarilla. Revisión automática cada tres horas.</div></div>
       <div class="group" data-tab="planilla" data-dtab="planilla" id="sheetBox">
         <div class="sect">Planilla de personas</div>
         <div class="card pad" style="display:flex;flex-direction:column;gap:12px">
@@ -1154,7 +1154,7 @@ table.t.mini td{white-space:nowrap}
             <li>La tarjeta <b>Avisos por correo</b> está en la pestaña <b>Alertas</b>.</li>
             <li>Quien administra la página inscribe los correos y elige las regiones de cada uno.</li>
             <li>Para inscribirte, pide a quien administra esta página que agregue tu correo.</li>
-            <li>La revisión es automática tres veces al día (cerca de las 8:00, 14:00 y 20:00).</li>
+            <li>La revisión es automática cada tres horas, de día y de noche.</li>
             <li>Los correos nunca incluyen nombres ni datos de las nóminas.</li>
           </ul>
           <button type="button" class="btn sm" data-goto="alertas">Ir a Alertas</button>
@@ -1176,7 +1176,7 @@ table.t.mini td{white-space:nowrap}
           <h3 class="h-big">Contactar a quien administra la página</h3>
           <p class="sub">¿Tienes una duda, encontraste un problema o quieres sugerir algo? Escribe aquí y el mensaje llega directo a quien administra esta página. Tu dirección de correo solo la ve ella.</p>
           <div id="msgBox"><div class="hcard"><span class="foot">Cargando…</span></div></div>
-          <p class="foot">Los mensajes se revisan y reenvían por correo tres veces al día, junto con la revisión de alertas. No escribas datos personales de terceros (nombres, teléfonos o direcciones de tu nómina) en el mensaje.</p>
+          <p class="foot">Los mensajes se revisan y reenvían por correo tres veces al día. No escribas datos personales de terceros (nombres, teléfonos o direcciones de tu nómina) en el mensaje.</p>
         </section>
         <section data-hs="faq" hidden>
           <h3 class="h-big">Preguntas frecuentes</h3>
@@ -1185,7 +1185,7 @@ table.t.mini td{white-space:nowrap}
           <details class="faq"><summary>El mapa me muestra a todos expuestos, ¿por qué?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Casi siempre es porque se está leyendo la columna equivocada. Si tu archivo trae la comuna de la oficina y la de la casa, revisa en Planilla el recuadro <b>Qué columna es cada cosa</b> y deja en <b>Comuna donde vive</b> la de residencia. Si además todos figuran expuestos por la oficina y en realidad trabajan a distancia, pon <b>Comuna donde trabaja</b> en <i>Ninguna</i>: así solo cuenta dónde vive cada persona. Al revés, si la faena es lo que importa, déjala puesta: quien vive y trabaja en comunas distintas aparece expuesto por las dos.</p></details>
           <details class="faq"><summary>¿De dónde salen los sismos?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Del USGS, el servicio geológico de Estados Unidos, que publica los sismos del mundo en abierto y al instante. Los pide tu navegador cada vez que abres Alertas. No son alertas de SENAPRED: un sismo aparece aunque nadie haya declarado nada, que es justamente para lo que sirve. El radio que se muestra depende de la magnitud, es referencial y no mide daño; el número a la derecha es cuánta gente tuya vive o trabaja dentro de ese radio.</p></details>
           <details class="faq"><summary>¿De dónde sale el clima y para qué sirve?<svg class="ic"><use href="#i-chev"/></svg></summary><p>De Open-Meteo, un servicio abierto de pronóstico. Muestra el tiempo de ahora y siete días para la comuna que busques, y avisa si esa comuna tiene una alerta vigente. Es referencial: para decisiones operativas usa el pronóstico oficial de la Dirección Meteorológica de Chile. El fondo que elijas se guarda solo en tu dispositivo.</p></details>
-          <details class="faq"><summary>¿Cada cuánto se actualizan las alertas?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Una revisión automática lee la página oficial de SENAPRED tres veces al día. La fecha del indicador “SENAPRED” cambia solo cuando hay un cambio oficial. Ante cualquier decisión, confirma en senapred.cl/alertas.</p></details>
+          <details class="faq"><summary>¿Cada cuánto se actualizan las alertas?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Una revisión automática lee la página oficial de SENAPRED cada tres horas, ocho veces al día. La fecha del indicador “SENAPRED” cambia solo cuando hay un cambio oficial. Ante cualquier decisión, confirma en senapred.cl/alertas.</p></details>
           <details class="faq"><summary>¿Por qué una comuna aparece como “no reconocida”?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Suele ser un error de escritura o una abreviatura (por ejemplo “Pte. Alto”). Escribe el nombre oficial completo; no importan mayúsculas ni tildes. Esas personas no se cruzan con ninguna alerta hasta corregirlas.</p></details>
           <details class="faq"><summary>¿Qué diferencia hay con los avisos de la DMC o el Botón Rojo de CONAF?<svg class="ic"><use href="#i-chev"/></svg></summary><p>Solo SENAPRED declara Alertas Amarillas y Rojas. Los avisos meteorológicos de la DMC y el Botón Rojo de CONAF son información preventiva y no se muestran como alertas en esta página.</p></details>
           <details class="faq"><summary>¿Las personas aparecen en su domicilio en el mapa?<svg class="ic"><use href="#i-chev"/></svg></summary><p>No. El mapa solo muestra cantidades por comuna, nunca direcciones.</p></details>
@@ -1802,7 +1802,7 @@ function renderTiles(){
   const manual=feed.mode==="manual", stale=feedOrigin!=="official"&&!manual;
   $("source").innerHTML='<div class="li stack"><div class="row" style="justify-content:space-between"><span class="foot">Última actualización con cambios</span><span class="badge '+(manual||stale?'ex':'ok')+'">'+(manual?'Editado en sesión':stale?'Sin conexión al feed':'Verificado')+'</span></div>'+
     '<span class="when">'+esc(fmtDate(feed.generatedAt))+'</span>'+
-    '<span class="foot">Se revisa automáticamente tres veces al día. La fecha cambia solo cuando SENAPRED publica un cambio oficial.</span></div>'+
+    '<span class="foot">Se revisa automáticamente cada tres horas. La fecha cambia solo cuando SENAPRED publica un cambio oficial.</span></div>'+
     '<a class="li" href="https://senapred.cl/alertas/" target="_blank" rel="noopener"><span class="main-t"><span class="t1" style="color:var(--blue)">Ver alertas en senapred.cl</span></span>'+ICON("i-chev","chev")+'</a>';
   $("statusPill").innerHTML='<span class="dot '+(stale?'y':'g')+'"></span><span>SENAPRED · <b>'+esc(fmtDate(feed.generatedAt))+'</b></span>';
 }
