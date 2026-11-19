@@ -545,7 +545,59 @@ textarea.field{resize:vertical;min-height:60px;font:15px/1.4 var(--font)}
 .cval button{border:0;background:var(--fill);color:var(--blue);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;cursor:pointer;flex:none;padding:0}
 .cval button svg.ic{width:13px;height:13px}
 .cnone{font-size:12px;color:var(--label-3)}
-@media (max-width:600px){.crow{grid-template-columns:minmax(0,1fr)}.cinfo{align-items:flex-start}.cstate{align-items:flex-start}}
+.cfast,.cmark{display:none}
+/* En el telefono el encabezado del dialogo se comia la pantalla y dejaba la
+   lista en una franja. Aqui se aprieta para que se vean las personas. */
+@media (max-width:600px){
+  .solo-ancho{display:none}
+  #contactsDlg .dlg-head{padding:14px 16px 8px}
+  #contactsDlg .dlg-head h2{font-size:21px}
+  #contactsDlg .dlg-tools{gap:8px;padding-bottom:8px}
+  #cStat{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  #cStat::-webkit-scrollbar{display:none}
+  #cStat button{flex:none}
+  #cProgress{font-size:11.5px}
+  #cSaved .foot{font-size:11.5px;gap:6px}
+  #cSaved svg.ic{width:14px;height:14px}
+  /* El pie con los cuatro botones de exportar ocupaba 176 px: mas que el
+     encabezado. En el telefono va en una sola fila que se desliza. */
+  #contactsDlg .dlg-foot{flex-wrap:nowrap;gap:8px;padding:9px 14px calc(10px + env(safe-area-inset-bottom,0px))}
+  #contactsDlg .dlg-foot #cNote{flex:none;max-width:132px;font-size:11px;line-height:1.3}
+  #contactsDlg .dlg-foot .row{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:6px;min-width:0}
+  #contactsDlg .dlg-foot .row::-webkit-scrollbar{display:none}
+  #contactsDlg .dlg-foot .btn{flex:none}
+}
+@media (max-width:600px){
+  .crow{grid-template-columns:minmax(0,1fr);background:var(--card);border-radius:16px;padding:12px 14px;gap:10px;
+    box-shadow:inset 0 1px 0 var(--vidrio-borde),0 0 0 .5px var(--vidrio-linea)}
+  .crow+.crow{margin-top:9px}
+  .crow+.crow::before{display:none}
+  #cBody .list{background:none;border-radius:0;overflow:visible}
+  .cinfo{align-items:flex-start}
+  .cstate{align-items:flex-start;flex-direction:row;gap:8px}
+  .csub-mas{display:none}
+  .cfast{display:flex;gap:8px}
+  .cfast .cbtn{flex:1 1 0;min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    border-radius:12px;font:600 15px var(--font);color:#fff;text-decoration:none}
+  .cfast .cbtn svg.ic{width:17px;height:17px}
+  .cfast .call{background:#0468b5}
+  .cfast .wa{background:#0b7a43}
+  .cmark{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .cmark .mk{all:unset;cursor:pointer;min-height:38px;display:flex;align-items:center;justify-content:center;text-align:center;
+    border-radius:10px;background:var(--fill);color:var(--label-2);font:600 12.5px var(--font);padding:0 4px}
+  .cmark .mk:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent);outline-offset:2px}
+  .cmark .mk.ok.on{background:var(--green);color:#fff}
+  .cmark .mk.noans.on{background:var(--gray);color:#fff}
+  .cmark .mk.help.on{background:var(--red);color:#fff}
+  /* Con los botones grandes, el telefono repetia tres veces lo mismo: el
+     distintivo de estado, el enlace de WhatsApp chico y el boton de copiar. */
+  .crow .cstate{display:none}
+  .crow .cinfo{display:none}
+  .crow{padding:11px 13px;gap:9px}
+  .cmark{gap:5px}
+}
+.solo-angosto{display:none}
+@media (max-width:600px){.solo-angosto{display:inline}}
 .tip-note{font-size:13px;color:var(--label-2);display:flex;gap:8px;align-items:flex-start}
 .tip-note svg{margin-top:2px;flex:none}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -1025,7 +1077,7 @@ table.t.mini td{white-space:nowrap}
     </div>
     <div class="dlg-body" id="cBody"></div>
     <div class="dlg-foot">
-      <p class="tip-note" id="cNote"><svg class="ic"><use href="#i-lock"/></svg><span>Contiene datos personales. Guarda o imprime la lista solo para el contacto HSEC, y bórrala cuando ya no se use.</span></p>
+      <p class="tip-note" id="cNote"><svg class="ic"><use href="#i-lock"/></svg><span>Contiene datos personales.<span class="solo-ancho"> Guarda o imprime la lista solo para el contacto HSEC, y bórrala cuando ya no se use.</span></span></p>
       <div id="cMin"></div>
       <div class="row">
         <button type="button" class="btn sm" id="cCopy"><svg class="ic"><use href="#i-copy"/></svg>Copiar</button>
@@ -2126,9 +2178,21 @@ const phoneVal=(v,big)=>{if(!v)return "";const t=telHref(v),w=waLink(v);
     (w?'<a class="wa" href="'+esc(w)+'" target="_blank" rel="noopener" aria-label="Abrir WhatsApp con '+esc(v)+'">WhatsApp</a>':'')+'</span>';};
 const contactVal=(v,icon,label,big)=>v?'<span class="cval'+(big?' big':'')+'"><svg class="ic"><use href="#'+icon+'"/></svg><span>'+esc(v)+'</span><button type="button" data-copy="'+esc(v)+'" aria-label="Copiar '+label+'"><svg class="ic"><use href="#i-copy"/></svg></button></span>':'';
 
+/* En el telefono cada persona es una tarjeta: llamar, escribir y marcar el
+   resultado sin entrar a otra pantalla. En el computador estos controles se
+   ocultan, porque ahi la fila ya cabe entera. */
+function accionesRapidas(p,s,cc){
+  const tel=cc.phone>=0?cc.tel(p.row):"", t=telHref(tel), w=waLink(tel);
+  const llamar=t?'<a class="cbtn call" href="'+esc(t)+'">'+ICON("i-phone")+'Llamar</a>':"";
+  const wapp=w?'<a class="cbtn wa" href="'+esc(w)+'" target="_blank" rel="noopener">WhatsApp</a>':"";
+  const marcar=["ok","noans","help"].map(k=>
+    '<button type="button" class="mk '+k+(s===k?" on":"")+'" data-fast="'+k+'" data-i="'+p.idx+'" aria-pressed="'+(s===k)+'">'+CS[k]+'</button>').join("");
+  return (llamar||wapp?'<div class="cfast">'+llamar+wapp+'</div>':"")+'<div class="cmark">'+marcar+'</div>';
+}
 function renderContacts(){
   const lg=levelGroups(), c=counts(lg), all=counts(contactGroups());
-  $("cSub").textContent=plural(all.all,"persona","personas")+" en comunas con Alerta Roja o Amarilla · alertas SENAPRED al "+fmtDate(feed.generatedAt);
+  $("cSub").innerHTML=esc(plural(all.all,"persona","personas")+" en comunas con Alerta Roja o Amarilla")+
+    '<span class="solo-ancho"> · alertas SENAPRED al '+esc(fmtDate(feed.generatedAt))+'</span>';
   const done=all.ok+all.noans+all.help;
   const av=$("cSaved"), hay=cguardado.size&&cguardadoAt;
   av.hidden=!hay;
@@ -2166,11 +2230,17 @@ function renderContacts(){
       g.members.map(p=>{const s=stOf(p.idx), note=cnote.get(p.idx);
         const faena=R.wc>=0?String(p.row[R.wc]||"").trim():"";
         const donde=p.por==="faena"&&faena?"Faena: "+faena:p.por==="ambas"&&faena?p.row[1]+" · Faena: "+faena:p.row[1];
-        const sub=[donde].concat(cc.extra.map(i=>p.row[i]).filter(Boolean)).join(" · ");
+        // En el telefono solo cabe lo que ubica a la persona: la comuna y el
+        // primer dato extra. El resto se oculta por CSS, no se pierde.
+        const extras=cc.extra.map(i=>p.row[i]).filter(Boolean);
+        const fono=cc.phone>=0?String(cc.tel(p.row)||"").trim():"";
+        const sub=esc([donde].concat(extras.slice(0,1)).join(" · "))+
+          (extras.length>1?'<span class="csub-mas"> · '+esc(extras.slice(1).join(" · "))+'</span>':"")+
+          (fono?'<span class="solo-angosto"> · '+esc(fono)+'</span>':"");
 
         const info=(cc.phone>=0?(phoneVal(cc.tel(p.row))||'<span class="cnone">Sin teléfono</span>'):'')+contactVal(cc.mail(p.row),"i-mail","correo");
-        return '<div class="crow s-'+s+'"><button type="button" class="crow-main" data-open="'+p.idx+'" aria-label="Contactar a '+esc(p.row[0])+'"><span class="cname">'+esc(p.row[0])+'</span><span class="csub">'+esc(sub)+'</span>'+(note?'<span class="cnote">'+esc(note)+'</span>':'')+'</button>'+
-          '<div class="cinfo">'+(info||'<span class="cnone">Sin datos de contacto</span>')+'</div><div class="cstate">'+pill(p.idx)+(cstatus.get(p.idx)?'<span class="caption">'+stamp(cstatus.get(p.idx).t).hm+'</span>':'')+'</div></div>';
+        return '<div class="crow s-'+s+'"><button type="button" class="crow-main" data-open="'+p.idx+'" aria-label="Contactar a '+esc(p.row[0])+'"><span class="cname">'+esc(p.row[0])+'</span><span class="csub">'+sub+'</span>'+(note?'<span class="cnote">'+esc(note)+'</span>':'')+'</button>'+
+          '<div class="cinfo">'+(info||'<span class="cnone">Sin datos de contacto</span>')+'</div><div class="cstate">'+pill(p.idx)+(cstatus.get(p.idx)?'<span class="caption">'+stamp(cstatus.get(p.idx).t).hm+'</span>':'')+'</div>'+accionesRapidas(p,s,cc)+'</div>';
       }).join("")+'</div></section>';}).join("");
   if(!groups.length) h+='<p class="empty" style="padding:20px 4px">'+(c.all?"No hay personas con este filtro.":"No hay personas en comunas con alerta.")+'</p>';
   $("cBody").innerHTML=h;
@@ -2264,6 +2334,13 @@ function copyText(text,okMsg){
 $("cBody").addEventListener("click",e=>{
   const cp=e.target.closest("button[data-copy]"); if(cp){copyText(cp.dataset.copy,"Copiado");return;}
   const op=e.target.closest("[data-open]"); if(op){startGuide(+op.dataset.open);return;}
+  const fa=e.target.closest("[data-fast]");
+  if(fa){
+    const caja=$("cBody"), y=caja.scrollTop, idx=+fa.dataset.i;
+    // Volver a tocar el mismo resultado lo deshace, por si se marco sin querer.
+    setStatus(idx, stOf(idx)===fa.dataset.fast?"pending":fa.dataset.fast);
+    renderContacts(); caja.scrollTop=y; return;
+  }
   const st=e.target.closest("[data-set]"); if(st&&guide){const idx=guide.queue[guide.pos];setStatus(idx,st.dataset.set);guide.pos++;renderContacts();
     const first=$("cBody").querySelector(".act.ok,[data-g='list']"); if(first) first.focus(); return;}
   const g=e.target.closest("[data-g]"); if(!g) return;
