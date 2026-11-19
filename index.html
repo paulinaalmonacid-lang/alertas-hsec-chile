@@ -39,8 +39,14 @@
   --az-900:#0a1e3d; --az-800:#223a5e; --az-700:#355982; --az-600:#4d79a8; --az-500:#6e9ecc;
   --az-300:#9fc0e3; --az-200:#d0e1f2; --az-100:#e8f1fa; --az-50:#f3f8fd;
   --material:rgba(255,255,255,.62); --glass-edge:rgba(255,255,255,.55);
-  --vidrio:rgba(255,255,255,.80); --vidrio-borde:rgba(255,255,255,.9); --vidrio-linea:rgba(34,58,94,.08);
-  --lienzo:radial-gradient(120% 80% at 50% -10%,#ffffff 0%,#f3f8fd 38%,#e8f1fa 72%,#dcebf8 100%);
+  --vidrio:rgba(255,255,255,.60); --vidrio-borde:rgba(255,255,255,.95); --vidrio-linea:rgba(34,58,94,.09);
+  --vidrio-base:rgba(255,255,255,.60); --vidrio-fondo:rgba(255,255,255,.74);
+  --brillo:linear-gradient(158deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.14) 34%,rgba(255,255,255,0) 62%);
+  --vidrio-sombra:0 1px 2px rgba(34,58,94,.05),0 12px 30px -14px rgba(34,58,94,.26);
+  --desenfoque:saturate(190%) blur(22px);
+  --lienzo:radial-gradient(90% 55% at 88% 96%,rgba(29,199,212,.20) 0%,rgba(29,199,212,0) 60%),
+           radial-gradient(70% 50% at 8% 8%,rgba(4,104,181,.14) 0%,rgba(4,104,181,0) 65%),
+           radial-gradient(120% 80% at 50% -10%,#ffffff 0%,#f1f7fd 30%,#e3eefb 64%,#d6e8f8 100%);
   --marca:linear-gradient(90deg,#060e23 0%,#0a1e3d 14%,#06335c 28%,#024b80 42%,#00689b 57%,#0086bb 72%,#10a9c9 87%,#1dc7d4 100%);
   --shadow:0 1px 3px rgba(10,30,61,.08),0 10px 28px rgba(10,30,61,.08);
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI Variable Text","Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
@@ -58,8 +64,14 @@
   --az-900:#dceaf8; --az-800:#b9d3ee; --az-700:#9fc0e3; --az-600:#6e9ecc; --az-500:#4d79a8;
   --az-300:#355982; --az-200:#223a5e; --az-100:#16304f; --az-50:#101f36;
   --material:rgba(15,29,51,.62); --glass-edge:rgba(145,189,222,.14);
-  --vidrio:rgba(20,33,56,.78); --vidrio-borde:rgba(150,185,230,.16); --vidrio-linea:rgba(150,185,230,.10);
-  --lienzo:radial-gradient(120% 80% at 50% -10%,#0d1b31 0%,#081426 45%,#050e1c 100%);
+  --vidrio:rgba(22,37,63,.62); --vidrio-borde:rgba(165,205,250,.22); --vidrio-linea:rgba(150,185,230,.12);
+  --vidrio-base:rgba(22,37,63,.62); --vidrio-fondo:rgba(18,31,54,.76);
+  --brillo:linear-gradient(158deg,rgba(190,222,255,.13) 0%,rgba(190,222,255,.03) 36%,rgba(190,222,255,0) 64%);
+  --vidrio-sombra:0 1px 2px rgba(0,0,0,.4),0 14px 34px -16px rgba(0,0,0,.7);
+  --desenfoque:saturate(170%) blur(22px);
+  --lienzo:radial-gradient(90% 55% at 88% 96%,rgba(29,199,212,.16) 0%,rgba(29,199,212,0) 62%),
+           radial-gradient(70% 50% at 8% 8%,rgba(4,104,181,.20) 0%,rgba(4,104,181,0) 66%),
+           radial-gradient(120% 80% at 50% -10%,#0e1d35 0%,#091527 45%,#050e1c 100%);
   --marca:linear-gradient(90deg,#060e23 0%,#0a1e3d 14%,#06335c 28%,#024b80 42%,#00689b 57%,#0086bb 72%,#10a9c9 87%,#1dc7d4 100%);
   --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 28px rgba(0,0,0,.45); color-scheme:dark}}
 :root[data-theme="dark"]{  --bg:#061020; --card:#0f1d33; --card-2:#17273f;
@@ -72,8 +84,14 @@
   --az-900:#dceaf8; --az-800:#b9d3ee; --az-700:#9fc0e3; --az-600:#6e9ecc; --az-500:#4d79a8;
   --az-300:#355982; --az-200:#223a5e; --az-100:#16304f; --az-50:#101f36;
   --material:rgba(15,29,51,.62); --glass-edge:rgba(145,189,222,.14);
-  --vidrio:rgba(20,33,56,.78); --vidrio-borde:rgba(150,185,230,.16); --vidrio-linea:rgba(150,185,230,.10);
-  --lienzo:radial-gradient(120% 80% at 50% -10%,#0d1b31 0%,#081426 45%,#050e1c 100%);
+  --vidrio:rgba(22,37,63,.62); --vidrio-borde:rgba(165,205,250,.22); --vidrio-linea:rgba(150,185,230,.12);
+  --vidrio-base:rgba(22,37,63,.62); --vidrio-fondo:rgba(18,31,54,.76);
+  --brillo:linear-gradient(158deg,rgba(190,222,255,.13) 0%,rgba(190,222,255,.03) 36%,rgba(190,222,255,0) 64%);
+  --vidrio-sombra:0 1px 2px rgba(0,0,0,.4),0 14px 34px -16px rgba(0,0,0,.7);
+  --desenfoque:saturate(170%) blur(22px);
+  --lienzo:radial-gradient(90% 55% at 88% 96%,rgba(29,199,212,.16) 0%,rgba(29,199,212,0) 62%),
+           radial-gradient(70% 50% at 8% 8%,rgba(4,104,181,.20) 0%,rgba(4,104,181,0) 66%),
+           radial-gradient(120% 80% at 50% -10%,#0e1d35 0%,#091527 45%,#050e1c 100%);
   --marca:linear-gradient(90deg,#060e23 0%,#0a1e3d 14%,#06335c 28%,#024b80 42%,#00689b 57%,#0086bb 72%,#10a9c9 87%,#1dc7d4 100%);
   --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 28px rgba(0,0,0,.45); color-scheme:dark}
 [hidden]{display:none!important}
@@ -324,8 +342,21 @@ footer a,.help-body p a,.hcard p a{text-decoration:underline;text-underline-offs
   .tabbar button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:999px;color:var(--label);font:500 14px var(--font);position:relative;letter-spacing:-.01em}
   .tabbar button svg.ic{width:18px;height:18px;stroke-width:1.8;color:var(--label-2)}
   .tabbar button:hover{background:var(--fill-2)}
-  .tabbar button[aria-current="page"]{background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04);color:var(--blue);font-weight:600}
+  /* El vidrio se nota cuando algo se mueve detras: la pastilla se desliza de una
+     pestaña a otra en vez de aparecer de golpe, y el contenido entra por debajo. */
+  .tabbar button{z-index:1}
+  .tab-ind{position:absolute;top:4px;bottom:4px;left:0;width:0;border-radius:999px;pointer-events:none;z-index:0;
+    background-color:var(--vidrio-fondo);background-image:var(--brillo);
+    -webkit-backdrop-filter:saturate(200%) blur(14px);backdrop-filter:saturate(200%) blur(14px);
+    box-shadow:inset 0 1px 0 var(--vidrio-borde),0 1px 3px rgba(10,30,61,.14),0 0 0 .5px var(--vidrio-linea);
+    transform:translate3d(0,0,0);
+    transition:transform .46s cubic-bezier(.23,1.02,.3,1),width .46s cubic-bezier(.23,1.02,.3,1)}
+  .tab-ind.quieta{transition:none}
+  .tabbar button[aria-current="page"]{color:var(--blue);font-weight:600}
+  .tabbar button:active{transform:scale(.97)}
   .tabbar button[aria-current="page"] svg.ic{color:var(--blue)}
+  @keyframes entraSeccion{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  body[data-anim="1"] .wrap [data-dtab]:not([hidden]){animation:entraSeccion .34s cubic-bezier(.23,1,.32,1) both}
   .tabbar button:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 55%,transparent)}
   .tb-badge{min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--badge);color:#fff;font:600 11px/18px var(--font-rounded);font-style:normal;text-align:center}
   .tb-badge.y{background:var(--yellow);color:#1d1d1f}
@@ -376,6 +407,9 @@ footer a,.help-body p a,.hcard p a{text-decoration:underline;text-underline-offs
   body[data-tab="mapa"] .mapcard{height:calc(100dvh - 76px - 96px - env(safe-area-inset-bottom,0px) - env(safe-area-inset-top,0px));min-height:420px}
   body[data-tab="mapa"] .wrap{gap:10px}
   .sheet{right:68px}
+  .tab-ind{display:none}
+  @keyframes entraSeccion{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  body[data-anim="1"] .wrap [data-tab]:not([hidden]){animation:entraSeccion .32s cubic-bezier(.23,1,.32,1) both}
   .tabbar{display:grid;grid-template-columns:repeat(6,1fr);position:fixed;left:0;right:0;bottom:0;z-index:25;
     padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));
     background:var(--material);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid var(--sep)}
@@ -668,21 +702,32 @@ details.faq p{padding:0 16px 14px;font-size:14px;color:var(--label-2)}
 @media (prefers-reduced-motion:reduce){.tour-spot,.tour-card{transition:none}}
 #btnHelp svg.ic{width:16px;height:16px}
 /* ===== Superficies tipo vidrio liquido ===== */
+/* Vidrio: el color translucido no basta, lo que lo hace vidrio es el desenfoque
+   de lo que queda detras, el filo de luz arriba y el reflejo en diagonal. */
 .card,.list,.tile,.acard{
-  background:var(--vidrio);
-  box-shadow:inset 0 1px 0 var(--vidrio-borde),0 0 0 .5px var(--vidrio-linea),
-             0 1px 2px rgba(34,58,94,.04),0 10px 24px -12px rgba(34,58,94,.18);
+  background-color:var(--vidrio-base);
+  background-image:var(--brillo);
+  -webkit-backdrop-filter:var(--desenfoque); backdrop-filter:var(--desenfoque);
+  box-shadow:inset 0 1px 0 var(--vidrio-borde),inset 0 -1px 0 rgba(34,58,94,.05),
+             0 0 0 .5px var(--vidrio-linea),var(--vidrio-sombra);
 }
+/* Donde hay texto largo o una tabla, el vidrio se vuelve mas opaco: la lectura
+   manda sobre el efecto. */
+.dialog .card,.dialog .list,.tbl-wrap,.g-card{background-color:var(--vidrio-fondo)}
 .card,.list{border-radius:20px}
 .tile{border-radius:18px}
 .acard{border-radius:22px;padding:18px}
-.dialog{border-radius:26px;box-shadow:0 30px 80px -20px rgba(10,30,61,.45),0 0 0 .5px var(--vidrio-linea)}
+.dialog{border-radius:26px;box-shadow:inset 0 1px 0 var(--vidrio-borde),0 30px 80px -20px rgba(10,30,61,.45),0 0 0 .5px var(--vidrio-linea)}
 @media (max-width:600px){.dialog{border-radius:22px 22px 0 0}}
 .sym{border-radius:10px}
 /* El tinte azul es solo para los avisos preventivos: los iconos de alerta
    conservan su rojo y su amarillo, que son senal de seguridad. */
 .prev-li .sym{background:var(--az-100);color:var(--az-700)}
 .mapcard{border-radius:24px}
+@media (prefers-reduced-motion:reduce){
+  .tab-ind{transition:none}
+  body[data-anim="1"] .wrap [data-dtab]:not([hidden]),body[data-anim="1"] .wrap [data-tab]:not([hidden]){animation:none}
+}
 @media (prefers-reduced-transparency:reduce){.card,.list,.tile,.acard{background:var(--card)}}
 .prev-li{display:flex;gap:10px;align-items:flex-start;padding:11px 14px;border-bottom:.5px solid var(--sep)}
 .prev-li:last-child{border-bottom:0}
@@ -884,7 +929,7 @@ table.t.mini td{white-space:nowrap}
       <span class="status-pill" id="statusPill"><span class="dot g"></span><span>SENAPRED</span></span>
     </div>
   </header>
-<nav class="tabbar" id="tabbar" aria-label="Secciones">
+<nav class="tabbar" id="tabbar" aria-label="Secciones"><span class="tab-ind" id="tabInd" aria-hidden="true"></span>
   <button type="button" data-go="clima"><svg class="ic"><use href="#i-cloudsun"/></svg><span>Clima</span></button>
   <button type="button" data-go="mapa"><svg class="ic"><use href="#i-map"/></svg><span>Mapa</span></button>
   <button type="button" data-go="alertas"><svg class="ic"><use href="#i-bell"/></svg><span>Alertas</span><i class="tb-badge" id="tbAlerts" hidden></i></button>
@@ -3022,8 +3067,22 @@ function clInit(){
 /* ============ formato celular ============ */
 const TABS=["clima","mapa","alertas","contacto","oficinas","planilla"];
 const isMobile=()=>matchMedia("(max-width:760px)").matches;
+/* La pastilla se mide sobre el boton activo: asi sigue cuadrando aunque cambien
+   los textos, las insignias o el ancho de la ventana. */
+let tabAnim=null;
+function moverPestana(animar){
+  const barra=$("tabbar"), ind=$("tabInd");
+  if(!barra||!ind) return;
+  const b=barra.querySelector('button[aria-current="page"]');
+  if(!b||!b.offsetParent){ ind.style.width="0px"; return; }
+  if(!animar) ind.classList.add("quieta");
+  ind.style.width=b.offsetWidth+"px";
+  ind.style.transform="translate3d("+(b.offsetLeft-barra.clientLeft)+"px,0,0)";
+  if(!animar) requestAnimationFrame(()=>ind.classList.remove("quieta"));
+}
 function setTab(t,push){
   if(!TABS.includes(t)) t="mapa";
+  const antes=document.body.dataset.tab;
   document.body.dataset.tab=t;
   $("tabbar").querySelectorAll("button").forEach(b=>{if(b.dataset.go===t)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");});
   if(push!==false){try{if(location.hash!=="#"+t)history.replaceState(null,"","#"+t);}catch(_){}}
@@ -3031,7 +3090,15 @@ function setTab(t,push){
   if(t==="clima") clCargar();
   if(t==="alertas") cargarSismos();
   window.scrollTo(0,0);
+  requestAnimationFrame(()=>moverPestana(true));
+  if(antes&&antes!==t){
+    document.body.dataset.anim="1";
+    clearTimeout(tabAnim);
+    tabAnim=setTimeout(()=>{delete document.body.dataset.anim;},360);
+  }
 }
+addEventListener("resize",()=>moverPestana(false));
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>moverPestana(false));
 $("tabbar").addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)setTab(b.dataset.go);});
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(TABS.includes(h))setTab(h,false);});
 function updateTabBadges(){
@@ -3252,6 +3319,7 @@ clInit();
 cargarSismos();
 cargarHistorial();
 setTab(TABS.includes(location.hash.slice(1))?location.hash.slice(1):"mapa",false);
+moverPestana(false);
 if(matchMedia("(max-width:600px)").matches) $("lgToggle").click();
 render();
 loadMap().then(loadOfficial);
