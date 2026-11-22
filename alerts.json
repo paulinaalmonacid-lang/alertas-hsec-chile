@@ -16,7 +16,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-alto-del-carmen-por-desborde-2026-11-10-18-43-26",
       "officialDeclaredAt": "10-11-2026 18:41",
       "officialUpdatedAt": "20-11-2026 19:48",
-      "verifiedAt": "22-11-2026 05:07",
+      "verifiedAt": "22-11-2026 14:54",
       "history": [
         {
           "at": "10-11-2026 18:41",
@@ -74,7 +74,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-monte-patria-por-crecida-2026-11-06-23-35-42",
       "officialDeclaredAt": "09-11-2026 00:25",
       "officialUpdatedAt": "16-11-2026 12:17",
-      "verifiedAt": "22-11-2026 05:07",
+      "verifiedAt": "22-11-2026 14:54",
       "history": [
         {
           "at": "06-11-2026 23:35",
@@ -131,7 +131,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-rio-hurtado-por-desborde-2026-11-09-03-47-13",
       "officialDeclaredAt": "09-11-2026 03:46",
       "officialUpdatedAt": "10-11-2026 21:26",
-      "verifiedAt": "22-11-2026 05:07",
+      "verifiedAt": "22-11-2026 14:54",
       "history": [
         {
           "at": "09-11-2026 03:46",
@@ -158,7 +158,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "22-11-2026 05:07",
+      "verifiedAt": "22-11-2026 14:54",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -190,7 +190,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "22-11-2026 05:07",
+      "verifiedAt": "22-11-2026 14:54",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -216,8 +216,8 @@
       "detail": "Se declara Alerta Amarilla para las Comunas de Antofagasta, Sierra Gorda y María Elena por calor intenso",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-antofagasta-sierra-gorda-y-maria-elena-por-calor-intenso-2026-11-17-19-36-44",
       "officialDeclaredAt": "17-11-2026 18:59",
-      "officialUpdatedAt": "18-11-2026 19:24",
-      "verifiedAt": "22-11-2026 05:07",
+      "officialUpdatedAt": "22-11-2026 09:38",
+      "verifiedAt": "22-11-2026 14:54",
       "history": [
         {
           "at": "17-11-2026 18:59",
@@ -228,6 +228,43 @@
           "at": "18-11-2026 19:24",
           "level": "Amarilla",
           "action": "Se modifica cobertura de Alerta Amarilla"
+        },
+        {
+          "at": "22-11-2026 09:38",
+          "level": "Amarilla",
+          "action": "Monitoreo Alerta Amarilla"
+        }
+      ]
+    },
+    {
+      "id": "SENAPRED-SE-DECLARA-ALERTA-AMARILLA-PARA-LA-COMUNA-DE-TIERRA-AMARILLA-POR-CRECIDA-2026-11",
+      "level": "Amarilla",
+      "hazard": "Crecida",
+      "region": "Región de Atacama",
+      "communes": [
+        "Tierra Amarilla"
+      ],
+      "source": "SENAPRED - Alerta Amarilla oficial",
+      "detail": "Se declara Alerta Amarilla para la comuna de Tierra Amarilla por crecida",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-tierra-amarilla-por-crecida-2026-11-15-20-54-08",
+      "officialDeclaredAt": "15-11-2026 20:52",
+      "officialUpdatedAt": "22-11-2026 12:20",
+      "verifiedAt": "22-11-2026 14:54",
+      "history": [
+        {
+          "at": "15-11-2026 20:52",
+          "level": "Amarilla",
+          "action": "Se declara Alerta Amarilla"
+        },
+        {
+          "at": "17-11-2026 13:30",
+          "level": "Amarilla",
+          "action": "Monitoreo Alerta Amarilla"
+        },
+        {
+          "at": "22-11-2026 12:20",
+          "level": "Amarilla",
+          "action": "Monitoreo Alerta Amarilla"
         }
       ]
     },
@@ -246,7 +283,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-huasco-freirina-y-vallenar-por-crecida-2026-11-14-21-37-54",
       "officialDeclaredAt": "14-11-2026 21:33",
       "officialUpdatedAt": "18-11-2026 13:00",
-      "verifiedAt": "22-11-2026 05:07",
+      "verifiedAt": "22-11-2026 14:54",
       "history": [
         {
           "at": "14-11-2026 21:33",
@@ -260,33 +297,6 @@
         },
         {
           "at": "18-11-2026 13:00",
-          "level": "Amarilla",
-          "action": "Monitoreo Alerta Amarilla"
-        }
-      ]
-    },
-    {
-      "id": "SENAPRED-SE-DECLARA-ALERTA-AMARILLA-PARA-LA-COMUNA-DE-TIERRA-AMARILLA-POR-CRECIDA-2026-11",
-      "level": "Amarilla",
-      "hazard": "Crecida",
-      "region": "Región de Atacama",
-      "communes": [
-        "Tierra Amarilla"
-      ],
-      "source": "SENAPRED - Alerta Amarilla oficial",
-      "detail": "Se declara Alerta Amarilla para la comuna de Tierra Amarilla por crecida",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-tierra-amarilla-por-crecida-2026-11-15-20-54-08",
-      "officialDeclaredAt": "15-11-2026 20:52",
-      "officialUpdatedAt": "17-11-2026 13:30",
-      "verifiedAt": "22-11-2026 05:07",
-      "history": [
-        {
-          "at": "15-11-2026 20:52",
-          "level": "Amarilla",
-          "action": "Se declara Alerta Amarilla"
-        },
-        {
-          "at": "17-11-2026 13:30",
           "level": "Amarilla",
           "action": "Monitoreo Alerta Amarilla"
         }
@@ -312,7 +322,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-salamanca-por-crecida-2026-11-09-02-13-13",
       "officialDeclaredAt": "09-11-2026 02:12",
       "officialUpdatedAt": "11-11-2026 16:01",
-      "verifiedAt": "22-11-2026 05:07",
+      "verifiedAt": "22-11-2026 14:54",
       "history": [
         {
           "at": "09-11-2026 02:12",
@@ -364,7 +374,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "22-11-2026 05:07",
+      "verifiedAt": "22-11-2026 14:54",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -376,6 +386,58 @@
   ],
   "recentChanges": [],
   "preventive": [
+    {
+      "at": "22-11-2026 13:21",
+      "hazard": "Tormentas eléctricas",
+      "region": "Región de Arica y Parinacota",
+      "communes": [
+        "Camarones"
+      ],
+      "regions": [
+        "15"
+      ],
+      "detail": "Se declara Alerta Temprana Preventiva para provincia de Parinacota y la comuna de Camarones por tormentas eléctricas",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-provincia-de-parinacota-y-la-comuna-de-camarones-por-tormentas-electricas-2026-11-22-13-22-34"
+    },
+    {
+      "at": "22-11-2026 13:16",
+      "hazard": "Viento",
+      "region": "Región de Atacama",
+      "communes": [
+        "Diego de Almagro",
+        "Copiapó",
+        "Tierra Amarilla",
+        "Alto del Carmen",
+        "Vallenar",
+        "Huasco",
+        "Freirina"
+      ],
+      "regions": [
+        "03"
+      ],
+      "detail": "Se modifica cobertura de Alerta Temprana Preventiva para las comunas de Diego de Almagro, Copiapó, Tierra Amarilla, Alto del Carmen, Vallenar, Huasco y Freirina por viento",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-diego-de-almagro-copiapo-tierra-amarilla-vallenar-y-alto-del-carmen-por-viento-2026-11-14-17-33-44"
+    },
+    {
+      "at": "22-11-2026 13:03",
+      "hazard": "Tormentas eléctricas",
+      "region": "Región de Coquimbo",
+      "communes": [
+        "La Higuera",
+        "Paihuano",
+        "Vicuña",
+        "Río Hurtado",
+        "Monte Patria",
+        "Combarbalá",
+        "Illapel",
+        "Salamanca"
+      ],
+      "regions": [
+        "04"
+      ],
+      "detail": "Se declara Alerta Temprana Preventiva para las comunas de La Higuera, Paihuano, Vicuña, Río Hurtado, Monte Patria, Combarbalá, Illapel y Salamanca por tormentas eléctricas",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-la-higuera-paihuano-vicuna-rio-hurtado-monte-patria-combarbala-illapel-y-salamanca-por-tormentas-electricas-2026-11-22-13-04-16"
+    },
     {
       "at": "21-11-2026 23:51",
       "hazard": "Marejadas anormales",
@@ -435,36 +497,6 @@
       ],
       "detail": "Monitoreo Alerta Temprana Preventiva para la Región de Los Ríos por evento zoosanitario",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-los-rios-por-evento-zoosanitario-2026-04-13-15-31-03"
-    },
-    {
-      "at": "20-11-2026 18:06",
-      "hazard": "Viento",
-      "region": "Región de Atacama",
-      "communes": [
-        "Huasco",
-        "Freirina"
-      ],
-      "regions": [
-        "03"
-      ],
-      "detail": "Monitoreo Alerta Temprana Preventiva para las comunas de Huasco y Freirina por viento",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-diego-de-almagro-copiapo-tierra-amarilla-vallenar-y-alto-del-carmen-por-viento-2026-11-14-17-33-44"
-    },
-    {
-      "at": "20-11-2026 17:48",
-      "hazard": "Crecida",
-      "region": "Región de Valparaíso",
-      "communes": [
-        "Concón",
-        "Quintero",
-        "Quillota",
-        "Limache"
-      ],
-      "regions": [
-        "05"
-      ],
-      "detail": "Se modifica cobertura de Alerta Temprana Preventiva para las comunas de Concón, Quintero, Quillota y Limache por crecida",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-provincia-de-san-felipe-y-las-comunas-de-los-andes-y-san-esteban-por-crecida-2026-11-11-21-08-18"
     },
     {
       "at": "19-11-2026 16:51",
@@ -612,5 +644,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-modifica-cobertura-de-alerta-temprana-preventiva-para-la-region-de-valparaiso-por-alteracion-sanitaria-2026-03-03-08-31-11"
     }
   ],
-  "generatedAt": "2026-11-22T05:07:40-03:00"
+  "generatedAt": "2026-11-22T14:54:36-03:00"
 }
