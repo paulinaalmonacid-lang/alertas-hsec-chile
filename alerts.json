@@ -16,7 +16,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-alto-del-carmen-por-desborde-2026-11-10-18-43-26",
       "officialDeclaredAt": "10-11-2026 18:41",
       "officialUpdatedAt": "20-11-2026 19:48",
-      "verifiedAt": "23-11-2026 06:14",
+      "verifiedAt": "23-11-2026 19:06",
       "history": [
         {
           "at": "10-11-2026 18:41",
@@ -74,7 +74,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-monte-patria-por-crecida-2026-11-06-23-35-42",
       "officialDeclaredAt": "09-11-2026 00:25",
       "officialUpdatedAt": "16-11-2026 12:17",
-      "verifiedAt": "23-11-2026 06:14",
+      "verifiedAt": "23-11-2026 19:06",
       "history": [
         {
           "at": "06-11-2026 23:35",
@@ -131,7 +131,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-rio-hurtado-por-desborde-2026-11-09-03-47-13",
       "officialDeclaredAt": "09-11-2026 03:46",
       "officialUpdatedAt": "10-11-2026 21:26",
-      "verifiedAt": "23-11-2026 06:14",
+      "verifiedAt": "23-11-2026 19:06",
       "history": [
         {
           "at": "09-11-2026 03:46",
@@ -158,7 +158,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "23-11-2026 06:14",
+      "verifiedAt": "23-11-2026 19:06",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -190,7 +190,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "23-11-2026 06:14",
+      "verifiedAt": "23-11-2026 19:06",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -223,49 +223,12 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-provincias-de-san-felipe-y-los-andes-y-las-comunas-de-petorca-y-cabildo-por-calor-intenso-2026-11-22-17-57-09",
       "officialDeclaredAt": "22-11-2026 17:55",
       "officialUpdatedAt": "",
-      "verifiedAt": "23-11-2026 06:14",
+      "verifiedAt": "23-11-2026 19:06",
       "history": [
         {
           "at": "22-11-2026 17:55",
           "level": "Amarilla",
           "action": "Se declara Alerta Amarilla"
-        }
-      ]
-    },
-    {
-      "id": "SENAPRED-SE-DECLARA-ALERTA-AMARILLA-PARA-LAS-COMUNAS-DE-ANTOFAGASTA-SIERRA-GORDA-Y-MARIA-",
-      "level": "Amarilla",
-      "hazard": "Calor intenso",
-      "region": "Región de Antofagasta",
-      "communes": [
-        "Antofagasta",
-        "Sierra Gorda",
-        "María Elena",
-        "Calama",
-        "San Pedro de Atacama",
-        "Ollagüe"
-      ],
-      "source": "SENAPRED - Alerta Amarilla oficial",
-      "detail": "Se declara Alerta Amarilla para las Comunas de Antofagasta, Sierra Gorda y María Elena por calor intenso",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-antofagasta-sierra-gorda-y-maria-elena-por-calor-intenso-2026-11-17-19-36-44",
-      "officialDeclaredAt": "17-11-2026 18:59",
-      "officialUpdatedAt": "22-11-2026 09:38",
-      "verifiedAt": "23-11-2026 06:14",
-      "history": [
-        {
-          "at": "17-11-2026 18:59",
-          "level": "Amarilla",
-          "action": "Se declara Alerta Amarilla"
-        },
-        {
-          "at": "18-11-2026 19:24",
-          "level": "Amarilla",
-          "action": "Se modifica cobertura de Alerta Amarilla"
-        },
-        {
-          "at": "22-11-2026 09:38",
-          "level": "Amarilla",
-          "action": "Monitoreo Alerta Amarilla"
         }
       ]
     },
@@ -282,7 +245,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-tierra-amarilla-por-crecida-2026-11-15-20-54-08",
       "officialDeclaredAt": "15-11-2026 20:52",
       "officialUpdatedAt": "22-11-2026 12:20",
-      "verifiedAt": "23-11-2026 06:14",
+      "verifiedAt": "23-11-2026 19:06",
       "history": [
         {
           "at": "15-11-2026 20:52",
@@ -316,7 +279,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-huasco-freirina-y-vallenar-por-crecida-2026-11-14-21-37-54",
       "officialDeclaredAt": "14-11-2026 21:33",
       "officialUpdatedAt": "18-11-2026 13:00",
-      "verifiedAt": "23-11-2026 06:14",
+      "verifiedAt": "23-11-2026 19:06",
       "history": [
         {
           "at": "14-11-2026 21:33",
@@ -355,7 +318,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-salamanca-por-crecida-2026-11-09-02-13-13",
       "officialDeclaredAt": "09-11-2026 02:12",
       "officialUpdatedAt": "11-11-2026 16:01",
-      "verifiedAt": "23-11-2026 06:14",
+      "verifiedAt": "23-11-2026 19:06",
       "history": [
         {
           "at": "09-11-2026 02:12",
@@ -407,7 +370,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-alto-biobio-por-crecida-de-embalse-ralco-2026-09-24-19-31-44",
       "officialDeclaredAt": "24-09-2026 19:25",
       "officialUpdatedAt": "",
-      "verifiedAt": "23-11-2026 06:14",
+      "verifiedAt": "23-11-2026 19:06",
       "history": [
         {
           "at": "24-09-2026 19:25",
@@ -417,10 +380,28 @@
       ]
     }
   ],
-  "recentChanges": [],
+  "recentChanges": [
+    {
+      "at": "23-11-2026 18:30",
+      "type": "cancelled",
+      "level": "Amarilla",
+      "hazard": "Calor intenso",
+      "region": "Región de Antofagasta",
+      "communes": [
+        "Antofagasta",
+        "Sierra Gorda",
+        "María Elena",
+        "Calama",
+        "San Pedro de Atacama",
+        "Ollagüe"
+      ],
+      "detail": "Se cancela Alerta Amarilla para las Provincia de El Loa y comunas de Antofagasta, Sierra Gorda y María Elena por calor intenso",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-antofagasta-sierra-gorda-y-maria-elena-por-calor-intenso-2026-11-17-19-36-44"
+    }
+  ],
   "preventive": [
     {
-      "at": "22-11-2026 20:31",
+      "at": "23-11-2026 12:58",
       "hazard": "Marejadas anormales",
       "region": "Región de Valparaíso",
       "communes": [
@@ -429,7 +410,7 @@
       "regions": [
         "05"
       ],
-      "detail": "Monitoreo Alerta Temprana Preventiva para las comunas del borde costero entre las regiones de Arica y Parinacota y Biobío y la comuna de Juan Fernández, Región de Valparaíso, por marejadas anormales",
+      "detail": "Monitoreo Alerta Temprana Preventiva para las comunas del borde costero entre las regiones de Arica y Parinacota y Biobío y la comuna de Juan Fernández por marejadas anormales",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-del-borde-costero-continental-entre-las-regiones-de-arica-y-parinacota-y-biobio-y-para-la-comuna-de-juan-fernandez-region-de-valparaiso-por-marejadas-anniormales-2026-11-18-15-17-52"
     },
     {
@@ -677,5 +658,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-modifica-cobertura-de-alerta-temprana-preventiva-para-la-region-de-valparaiso-por-alteracion-sanitaria-2026-03-03-08-31-11"
     }
   ],
-  "generatedAt": "2026-11-23T06:14:20-03:00"
+  "generatedAt": "2026-11-23T19:06:24-03:00"
 }
