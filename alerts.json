@@ -4,6 +4,63 @@
   "note": "Feed operativo HSEC. Solo Alertas Amarillas y Rojas SENAPRED. Distingue fecha oficial y verificacion. history = boletines oficiales de cada alerta; recentChanges = cancelaciones oficiales de los ultimos 14 dias.",
   "alerts": [
     {
+      "id": "SENAPRED-SE-DECLARA-ALERTA-ROJA-PARA-LA-COMUNA-DE-ALTO-DEL-CARMEN-POR-DESBORDE-2026-11-10",
+      "level": "Roja",
+      "hazard": "Desborde",
+      "region": "Región de Atacama",
+      "communes": [
+        "Alto del Carmen"
+      ],
+      "source": "SENAPRED - Alerta Roja oficial",
+      "detail": "Se declara alerta roja para la comuna de Alto del Carmen por desborde",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-alto-del-carmen-por-desborde-2026-11-10-18-43-26",
+      "officialDeclaredAt": "10-11-2026 18:41",
+      "officialUpdatedAt": "27-11-2026 18:13",
+      "verifiedAt": "27-11-2026 21:06",
+      "history": [
+        {
+          "at": "10-11-2026 18:41",
+          "level": "Roja",
+          "action": "Se declara alerta roja"
+        },
+        {
+          "at": "11-11-2026 00:49",
+          "level": "Roja",
+          "action": "Monitoreo Alerta roja"
+        },
+        {
+          "at": "11-11-2026 13:45",
+          "level": "Roja",
+          "action": "Monitoreo Alerta Roja"
+        },
+        {
+          "at": "11-11-2026 22:53",
+          "level": "Roja",
+          "action": "Monitoreo Alerta Roja"
+        },
+        {
+          "at": "16-11-2026 16:14",
+          "level": "Roja",
+          "action": "Monitoreo Alerta Roja"
+        },
+        {
+          "at": "18-11-2026 18:23",
+          "level": "Roja",
+          "action": "Monitoreo Alerta Roja"
+        },
+        {
+          "at": "20-11-2026 19:48",
+          "level": "Roja",
+          "action": "Monitoreo Alerta Roja"
+        },
+        {
+          "at": "27-11-2026 18:13",
+          "level": "Roja",
+          "action": "Monitoreo Alerta Roja"
+        }
+      ]
+    },
+    {
       "id": "SENAPRED-SE-DECLARA-ALERTA-AMARILLA-PARA-LA-COMUNA-DE-MONTE-PATRIA-POR-CRECIDA-2026-11-06",
       "level": "Roja",
       "hazard": "Desborde",
@@ -22,7 +79,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-monte-patria-por-crecida-2026-11-06-23-35-42",
       "officialDeclaredAt": "09-11-2026 00:25",
       "officialUpdatedAt": "25-11-2026 13:09",
-      "verifiedAt": "27-11-2026 11:00",
+      "verifiedAt": "27-11-2026 21:06",
       "history": [
         {
           "at": "06-11-2026 23:35",
@@ -77,58 +134,6 @@
       ]
     },
     {
-      "id": "SENAPRED-SE-DECLARA-ALERTA-ROJA-PARA-LA-COMUNA-DE-ALTO-DEL-CARMEN-POR-DESBORDE-2026-11-10",
-      "level": "Roja",
-      "hazard": "Desborde",
-      "region": "Región de Atacama",
-      "communes": [
-        "Alto del Carmen"
-      ],
-      "source": "SENAPRED - Alerta Roja oficial",
-      "detail": "Se declara alerta roja para la comuna de Alto del Carmen por desborde",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-alto-del-carmen-por-desborde-2026-11-10-18-43-26",
-      "officialDeclaredAt": "10-11-2026 18:41",
-      "officialUpdatedAt": "20-11-2026 19:48",
-      "verifiedAt": "27-11-2026 11:00",
-      "history": [
-        {
-          "at": "10-11-2026 18:41",
-          "level": "Roja",
-          "action": "Se declara alerta roja"
-        },
-        {
-          "at": "11-11-2026 00:49",
-          "level": "Roja",
-          "action": "Monitoreo Alerta roja"
-        },
-        {
-          "at": "11-11-2026 13:45",
-          "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
-        },
-        {
-          "at": "11-11-2026 22:53",
-          "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
-        },
-        {
-          "at": "16-11-2026 16:14",
-          "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
-        },
-        {
-          "at": "18-11-2026 18:23",
-          "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
-        },
-        {
-          "at": "20-11-2026 19:48",
-          "level": "Roja",
-          "action": "Monitoreo Alerta Roja"
-        }
-      ]
-    },
-    {
       "id": "SENAPRED-SE-DECLARA-ALERTA-ROJA-PARA-LA-COMUNA-DE-RIO-HURTADO-POR-DESBORDE-2026-11-09-03-",
       "level": "Roja",
       "hazard": "Desborde",
@@ -141,7 +146,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-rio-hurtado-por-desborde-2026-11-09-03-47-13",
       "officialDeclaredAt": "09-11-2026 03:46",
       "officialUpdatedAt": "10-11-2026 21:26",
-      "verifiedAt": "27-11-2026 11:00",
+      "verifiedAt": "27-11-2026 21:06",
       "history": [
         {
           "at": "09-11-2026 03:46",
@@ -168,7 +173,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-roja-para-la-comuna-de-arauco-por-remocion-en-masa-2026-10-20-21-44-09",
       "officialDeclaredAt": "20-10-2026 21:43",
       "officialUpdatedAt": "29-10-2026 13:30",
-      "verifiedAt": "27-11-2026 11:00",
+      "verifiedAt": "27-11-2026 21:06",
       "history": [
         {
           "at": "20-10-2026 21:43",
@@ -200,7 +205,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-antofagasta-por-alteracion-sanitaria-2026-06-19-19-58-06",
       "officialDeclaredAt": "19-06-2026 19:57",
       "officialUpdatedAt": "",
-      "verifiedAt": "27-11-2026 11:00",
+      "verifiedAt": "27-11-2026 21:06",
       "history": [
         {
           "at": "19-06-2026 19:57",
@@ -233,7 +238,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-provincias-de-san-felipe-y-los-andes-y-las-comunas-de-petorca-y-cabildo-por-calor-intenso-2026-11-22-17-57-09",
       "officialDeclaredAt": "22-11-2026 17:55",
       "officialUpdatedAt": "26-11-2026 21:24",
-      "verifiedAt": "27-11-2026 11:00",
+      "verifiedAt": "27-11-2026 21:06",
       "history": [
         {
           "at": "22-11-2026 17:55",
@@ -265,7 +270,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-tierra-amarilla-por-crecida-2026-11-15-20-54-08",
       "officialDeclaredAt": "15-11-2026 20:52",
       "officialUpdatedAt": "25-11-2026 22:30",
-      "verifiedAt": "27-11-2026 11:00",
+      "verifiedAt": "27-11-2026 21:06",
       "history": [
         {
           "at": "15-11-2026 20:52",
@@ -304,7 +309,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-las-comunas-de-huasco-freirina-y-vallenar-por-crecida-2026-11-14-21-37-54",
       "officialDeclaredAt": "14-11-2026 21:33",
       "officialUpdatedAt": "18-11-2026 13:00",
-      "verifiedAt": "27-11-2026 11:00",
+      "verifiedAt": "27-11-2026 21:06",
       "history": [
         {
           "at": "14-11-2026 21:33",
@@ -343,7 +348,7 @@
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-amarilla-para-la-comuna-de-salamanca-por-crecida-2026-11-09-02-13-13",
       "officialDeclaredAt": "09-11-2026 02:12",
       "officialUpdatedAt": "11-11-2026 16:01",
-      "verifiedAt": "27-11-2026 11:00",
+      "verifiedAt": "27-11-2026 21:06",
       "history": [
         {
           "at": "09-11-2026 02:12",
@@ -386,7 +391,22 @@
   "recentChanges": [],
   "preventive": [
     {
-      "at": "27-11-2026 10:25",
+      "at": "27-11-2026 16:57",
+      "hazard": "Tormentas eléctricas",
+      "region": "Región de Arica y Parinacota",
+      "communes": [
+        "Camarones",
+        "Putre",
+        "General Lagos"
+      ],
+      "regions": [
+        "15"
+      ],
+      "detail": "Se declara Alerta Temprana Preventiva para la Provincia de Parinacota y comuna de Camarones por tormentas eléctricas",
+      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-provincia-de-parinacota-y-comuna-de-camarones-por-tormentas-electricas-2026-11-27-16-58-46"
+    },
+    {
+      "at": "27-11-2026 11:01",
       "hazard": "Actividad del Complejo Volcánico Nevados de Chillán",
       "region": "Región de Ñuble",
       "communes": [
@@ -396,7 +416,7 @@
       "regions": [
         "16"
       ],
-      "detail": "Monitoreo Alerta Temprana Preventiva para las comunas de Pinto y Coihueco por actividad del Complejo Volcánico Nevados de Chillán",
+      "detail": "Monitoreo Alerta Temprana Preventiva para las comunas de Pinto y Coihueco, por actividad del Complejo Volcánico Nevados de Chillán",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-las-comunas-de-pinto-y-coihueco-por-actividad-del-complejo-volcanico-nevados-de-chillan-2026-06-15-18-49-10"
     },
     {
@@ -412,27 +432,6 @@
       ],
       "detail": "Monitoreo Alerta Temprana Preventiva para las comunas de Copiapó y Caldera por crecida",
       "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-comuna-de-alto-del-carmen-por-crecida-2026-09-26-02-27-03"
-    },
-    {
-      "at": "26-11-2026 13:38",
-      "hazard": "Viento",
-      "region": "Región de Magallanes",
-      "communes": [
-        "Laguna Blanca",
-        "San Gregorio",
-        "Río Verde",
-        "Punta Arenas",
-        "Torres del Paine",
-        "Natales",
-        "Primavera",
-        "Porvenir",
-        "Timaukel"
-      ],
-      "regions": [
-        "12"
-      ],
-      "detail": "Se modifica evento y cobertura de Alerta Temprana Preventiva para las provincias de Magallanes, Última Esperanza y Tierra del Fuego por viento",
-      "officialUrl": "https://senapred.cl/alerta/se-declara-alerta-temprana-preventiva-para-la-region-de-magallanes-por-tormentas-electricas-2026-11-21-17-00-38"
     },
     {
       "at": "24-11-2026 13:08",
@@ -640,5 +639,5 @@
       "officialUrl": "https://senapred.cl/alerta/se-modifica-cobertura-de-alerta-temprana-preventiva-para-la-region-de-valparaiso-por-alteracion-sanitaria-2026-03-03-08-31-11"
     }
   ],
-  "generatedAt": "2026-11-27T11:00:37-03:00"
+  "generatedAt": "2026-11-27T21:06:52-03:00"
 }
